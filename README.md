@@ -9,7 +9,7 @@ Natural Language Processing (NLP) is a subfield of linguistics, computer science
 - Use encoder-decoder, causal, & self-attention to machine translate complete sentences, summarize text, build chatbots & question-answering.
 
 
-## Advance your subject-matter expertise
+## Advance subject-matter expertise
 - Learn in-demand skills from university and industry experts
 - Master a subject or tool with hands-on projects
 - Develop a deep understanding of key concepts
