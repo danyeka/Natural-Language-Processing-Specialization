@@ -1,0 +1,418 @@
+WEBVTT
+
+1
+00:00:00.277 --> 00:00:01.335
+Welcome.
+
+2
+00:00:01.335 --> 00:00:05.902
+You will now see how you can train one
+model to get you very good results on
+
+3
+00:00:05.902 --> 00:00:07.211
+several NLP tasks.
+
+4
+00:00:07.211 --> 00:00:11.609
+When training such a model, we usually
+append a tag to notify whether we're
+
+5
+00:00:11.609 --> 00:00:15.390
+training on either machine translation,
+question answering,
+
+6
+00:00:15.390 --> 00:00:18.776
+summarization, sentiment,
+or some other type of task.
+
+7
+00:00:18.776 --> 00:00:21.723
+Let's see how you can use this
+in your own applications.
+
+8
+00:00:21.723 --> 00:00:25.599
+>> Speaker 2: So the multitask
+training strategy works as follow.
+
+9
+00:00:25.599 --> 00:00:30.452
+So if you want to translate from English
+to German, you append the prefix translate
+
+10
+00:00:30.452 --> 00:00:34.616
+English to German, and it gives
+you the corresponding translation.
+
+11
+00:00:34.616 --> 00:00:38.382
+For cola sentence like,
+the course is jumping well, and
+
+12
+00:00:38.382 --> 00:00:43.097
+it says it's not acceptable because
+it's grammatically incorrect.
+
+13
+00:00:43.097 --> 00:00:48.420
+If you have two sentences and
+you want to identify their similarity,
+
+14
+00:00:48.420 --> 00:00:51.171
+you put in the stsp sentence 1, and
+
+15
+00:00:51.171 --> 00:00:56.160
+then sentence 2 inside over here,
+sentence 1, sentence 2.
+
+16
+00:00:56.160 --> 00:00:58.593
+And then you get the corresponding score.
+
+17
+00:00:58.593 --> 00:01:03.152
+If you want to summarize, you add
+the summarize prefix to the article or
+
+18
+00:01:03.152 --> 00:01:06.945
+the text you want to summarize and
+it gives you the summary.
+
+19
+00:01:06.945 --> 00:01:09.308
+So this is how it works.
+
+20
+00:01:09.308 --> 00:01:14.195
+Inputs and outputs format, so
+for machine translation you just
+
+21
+00:01:14.195 --> 00:01:18.277
+do translate blank to blank and
+you add the sentence.
+
+22
+00:01:18.277 --> 00:01:22.906
+To predict entailments, contradiction,
+or whether it's neutral,
+
+23
+00:01:22.906 --> 00:01:27.763
+you would feed in something as follows,
+so nnli premise, I hate pigeons,
+
+24
+00:01:27.763 --> 00:01:32.930
+then the hypothesis, my feelings towards
+pigeons are filled with animosity,
+
+25
+00:01:32.930 --> 00:01:34.960
+and the target is entailment.
+
+26
+00:01:34.960 --> 00:01:39.851
+So basically over here, this is going to
+try to learn the overall structure
+
+27
+00:01:39.851 --> 00:01:43.377
+of entailment, and
+by feeding in the entire thing,
+
+28
+00:01:43.377 --> 00:01:48.588
+the model would have full visibility
+over the entire input, and then it would
+
+29
+00:01:48.588 --> 00:01:53.828
+be tasked with marking a classification
+by outputting the word entailment.
+
+30
+00:01:53.828 --> 00:01:58.771
+So it is easy for the model to learn
+to predict one of the correct class
+
+31
+00:01:58.771 --> 00:02:02.430
+labels given the task prefix mnli,
+in this case.
+
+32
+00:02:02.430 --> 00:02:06.613
+If you know the main difference
+between prefix LM and
+
+33
+00:02:06.613 --> 00:02:11.557
+the BERT architecture is that
+the classifier is integrated to
+
+34
+00:02:11.557 --> 00:02:16.516
+the output layer of the transformer
+decoder in the prefix LM.
+
+35
+00:02:16.516 --> 00:02:19.271
+And over here you have
+the Winograd schema,
+
+36
+00:02:19.271 --> 00:02:24.636
+which is another way to predict whether a
+pronoun, for example, over here, the city
+
+37
+00:02:24.636 --> 00:02:29.648
+councilmen refused the demonstrators
+a permit because they feared violence.
+
+38
+00:02:29.648 --> 00:02:33.608
+So you're going to feed
+this into your model, and
+
+39
+00:02:33.608 --> 00:02:38.530
+then it will be tasked to predict
+they as the city councilmen.
+
+40
+00:02:38.530 --> 00:02:44.399
+So for multi-task training strategy, this
+is a table found in the original paper,
+
+41
+00:02:44.399 --> 00:02:47.871
+and we'll talk about what
+the GLUE benchmark is,
+
+42
+00:02:47.871 --> 00:02:51.605
+and these other benchmarks,
+you can check them out.
+
+43
+00:02:51.605 --> 00:02:56.087
+But for the purpose of this week,
+we'll be focusing on the GLUE benchmark,
+
+44
+00:02:56.087 --> 00:02:57.917
+which would be the next video.
+
+45
+00:02:57.917 --> 00:03:02.388
+And we'll talk about adapter layers and
+gradual unfreezing.
+
+46
+00:03:02.388 --> 00:03:07.676
+But these are the scores reported,
+and you can see that the T5
+
+47
+00:03:07.676 --> 00:03:12.469
+paper actually reaches states
+of the art in many tasks.
+
+48
+00:03:12.469 --> 00:03:15.392
+So how much data from
+each task you train on?
+
+49
+00:03:15.392 --> 00:03:20.800
+So for the data training strategies,
+there is examples proportional mixing,
+
+50
+00:03:20.800 --> 00:03:25.642
+and in this case, what you end up doing,
+you take an equal proportion,
+
+51
+00:03:25.642 --> 00:03:28.886
+say, like 10% from each
+data that you have.
+
+52
+00:03:28.886 --> 00:03:33.984
+And if the first data sets, for
+example, blue, you take 10% of this,
+
+53
+00:03:33.984 --> 00:03:38.508
+then you'll get 10% over here,
+10% of this is larger, and
+
+54
+00:03:38.508 --> 00:03:42.884
+10% is just a random number I picked,
+but you get the point.
+
+55
+00:03:42.884 --> 00:03:46.916
+For the other type of data
+training strategy is equal mixing,
+
+56
+00:03:46.916 --> 00:03:51.192
+so regardless of the size of each data,
+you take an equal sample.
+
+57
+00:03:51.192 --> 00:03:55.716
+And then there is something in the middle
+called temperature-scaled mixing,
+
+58
+00:03:55.716 --> 00:03:59.710
+where you try to play with the parameters
+to get something in between.
+
+59
+00:03:59.710 --> 00:04:03.807
+Now, we'll talk about gradual
+unfreezing versus adapter layers.
+
+60
+00:04:03.807 --> 00:04:07.713
+So in gradual unfreezing,
+what ends up happening,
+
+61
+00:04:07.713 --> 00:04:10.211
+you unfreeze one layer at a time.
+
+62
+00:04:10.211 --> 00:04:13.841
+So you say this is your neural network,
+unfreezing the last one,
+
+63
+00:04:13.841 --> 00:04:18.461
+you fine-tune using that, you keep the
+others fixed, then unfreezing this one,
+
+64
+00:04:18.461 --> 00:04:22.226
+and then you unfreeze this one, so
+you keep unfreezing each layer.
+
+65
+00:04:22.226 --> 00:04:25.650
+And for the adapter layers, you basically,
+
+66
+00:04:25.650 --> 00:04:31.519
+add a neural network to each feed-forward
+in each block of the transformer.
+
+67
+00:04:31.519 --> 00:04:34.428
+And then, these new feed-forward networks,
+
+68
+00:04:34.428 --> 00:04:38.581
+they're designed so that the output
+dimension matches the input.
+
+69
+00:04:38.581 --> 00:04:43.210
+And this allows them to be inserted
+without having any structural change.
+
+70
+00:04:43.210 --> 00:04:47.302
+When fine-tuning only these
+new adapter layers and
+
+71
+00:04:47.302 --> 00:04:51.769
+the layer normalization
+parameters are being updated.
+
+72
+00:04:51.769 --> 00:04:54.710
+So we'll talk now a bit
+more about fine-tuning.
+
+73
+00:04:54.710 --> 00:04:59.827
+The approach that's usually being used
+here has the goal of training a single
+
+74
+00:04:59.827 --> 00:05:04.708
+model that can simultaneously perform
+many tasks at once, for example,
+
+75
+00:05:04.708 --> 00:05:09.375
+the model, most of its parameters
+are shared across all of the tasks.
+
+76
+00:05:09.375 --> 00:05:14.621
+And we might train a single model on many
+tasks, but when reporting performance,
+
+77
+00:05:14.621 --> 00:05:17.976
+we can select a different checkpoint for
+each task.
+
+78
+00:05:17.976 --> 00:05:22.061
+So over here, the task could be
+like translation, summarization, or
+
+79
+00:05:22.061 --> 00:05:23.707
+masked language modeling.
+
+80
+00:05:23.707 --> 00:05:28.453
+And they do the train in 2
+to the power of 18 steps.
+
+81
+00:05:28.453 --> 00:05:31.286
+>> Speaker 1: You learned about
+multiple training strategies used for
+
+82
+00:05:31.286 --> 00:05:32.590
+your transformer model.
+
+83
+00:05:32.590 --> 00:05:36.993
+Now, that you know how to train this
+model, you need the way to evaluate it.
+
+84
+00:05:36.993 --> 00:05:41.771
+Concretely, you'll be evaluating it using
+the GLUE benchmark, which stands for
+
+85
+00:05:41.771 --> 00:05:45.126
+General Language Understanding Evaluation
+benchmark.
+
+86
+00:05:45.126 --> 00:05:45.780
+See you there.

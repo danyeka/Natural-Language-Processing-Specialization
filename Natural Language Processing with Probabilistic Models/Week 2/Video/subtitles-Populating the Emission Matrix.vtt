@@ -1,0 +1,182 @@
+WEBVTT
+
+1
+00:00:00.340 --> 00:00:04.844
+In the previous video I showed you how
+to calculate the transition matrix.
+
+2
+00:00:04.844 --> 00:00:08.805
+However, knowing the probability
+of going from one part of speech
+
+3
+00:00:08.805 --> 00:00:11.362
+tag to another alone
+will not help us much.
+
+4
+00:00:11.362 --> 00:00:15.345
+We need to be able to somehow
+get words into the equation.
+
+5
+00:00:15.345 --> 00:00:18.788
+Hence we will introduce a new
+type of matrix that tells
+
+6
+00:00:18.788 --> 00:00:23.393
+you about the probability of going
+from one word to a part of speech tag.
+
+7
+00:00:23.393 --> 00:00:24.996
+So let's dive in.
+
+8
+00:00:24.996 --> 00:00:29.617
+Going back to your very small training
+corpus which has the associated parts
+
+9
+00:00:29.617 --> 00:00:32.662
+of speech sags depicted
+by the background color.
+
+10
+00:00:32.662 --> 00:00:37.808
+In contrast to the transition
+probabilities here, you would want to
+
+11
+00:00:37.808 --> 00:00:42.963
+count the co occurrences of a part
+of speech tag with a specific word.
+
+12
+00:00:42.963 --> 00:00:47.122
+For example the word You appears
+two times in your corpus
+
+13
+00:00:47.122 --> 00:00:50.410
+tagged with the blue
+parts of speech stack.
+
+14
+00:00:50.410 --> 00:00:54.940
+And the blue parts of
+speech tag appears 3 times.
+
+15
+00:00:54.940 --> 00:00:57.350
+So the emission probability for
+
+16
+00:00:57.350 --> 00:01:01.909
+the word You following the blue
+part of speech tag is 2/3.
+
+17
+00:01:01.909 --> 00:01:06.653
+Let's continue with a more complicated
+example the haiku you processed in
+
+18
+00:01:06.653 --> 00:01:11.633
+the previous lesson, you have the same
+tax and can start to fill in the counts.
+
+19
+00:01:11.633 --> 00:01:16.471
+But instead of counting pairs of tags
+you will now count how often a word
+
+20
+00:01:16.471 --> 00:01:19.505
+is tagged with a specific
+tag like now verb or
+
+21
+00:01:19.505 --> 00:01:22.958
+the other tag like it is
+shown in the first column.
+
+22
+00:01:22.958 --> 00:01:26.202
+Of the emission matrix for the tag and
+
+23
+00:01:26.202 --> 00:01:31.856
+the word in the non tag is associated
+zero times with the word in.
+
+24
+00:01:31.856 --> 00:01:37.207
+The verb tag is associated zero
+times with the word in two and
+
+25
+00:01:37.207 --> 00:01:42.681
+the o tag is associated two times
+with the word in the corpus.
+
+26
+00:01:42.681 --> 00:01:47.606
+The formula with smoothing for
+the emission probabilities be of
+
+27
+00:01:47.606 --> 00:01:52.740
+wi given the attack ti for
+the word is given by the counts of ti.
+
+28
+00:01:52.740 --> 00:01:58.225
+And the word wi divided by the
+corresponding rows in the emission matrix,
+
+29
+00:01:58.225 --> 00:02:02.746
+which is the same as dividing by
+the total count of the tag ti.
+
+30
+00:02:02.746 --> 00:02:06.357
+With capital N being
+the number of tags and
+
+31
+00:02:06.357 --> 00:02:10.184
+capital V being the size
+of our vocabulary.
+
+32
+00:02:10.184 --> 00:02:14.477
+To recap, you now can calculate both
+transition and emission matrices.
+
+33
+00:02:14.477 --> 00:02:18.803
+And also apply smoothing for
+better generalization of the model.
+
+34
+00:02:18.803 --> 00:02:20.544
+You've come a long way this week.
+
+35
+00:02:20.544 --> 00:02:23.754
+Great work given the emission and
+transition matrices.
+
+36
+00:02:23.754 --> 00:02:27.201
+You will now learn how to use
+them together in order for
+
+37
+00:02:27.201 --> 00:02:30.961
+you to confuse the part of
+speech tags of a given sentence.

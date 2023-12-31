@@ -1,0 +1,336 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.250
+Welcome back. In this video,
+
+2
+00:00:02.250 --> 00:00:04.560
+you're going to learn
+about a special type of
+
+3
+00:00:04.560 --> 00:00:07.865
+neural network known as
+the Siamese network.
+
+4
+00:00:07.865 --> 00:00:10.080
+It is a neural
+network made up of
+
+5
+00:00:10.080 --> 00:00:12.090
+two identical neural networks
+
+6
+00:00:12.090 --> 00:00:13.965
+which are merged at the end.
+
+7
+00:00:13.965 --> 00:00:17.685
+This type of architecture has
+many applications in NLP.
+
+8
+00:00:17.685 --> 00:00:19.710
+In this video, you'll see
+
+9
+00:00:19.710 --> 00:00:22.215
+the different examples
+where you can use it.
+
+10
+00:00:22.215 --> 00:00:24.465
+Consider the following question.
+
+11
+00:00:24.465 --> 00:00:28.005
+How old are you?, and,
+what is your age?
+
+12
+00:00:28.005 --> 00:00:29.670
+You can see that these questions
+
+13
+00:00:29.670 --> 00:00:31.560
+don't have any words in common.
+
+14
+00:00:31.560 --> 00:00:34.665
+However, they both
+mean the same thing.
+
+15
+00:00:34.665 --> 00:00:36.450
+On the other hand, if you were
+
+16
+00:00:36.450 --> 00:00:38.334
+to look at the
+following questions,
+
+17
+00:00:38.334 --> 00:00:40.350
+where are you from?, and,
+
+18
+00:00:40.350 --> 00:00:42.230
+where are you going?, you can
+
+19
+00:00:42.230 --> 00:00:44.645
+see that the first three
+words are the same.
+
+20
+00:00:44.645 --> 00:00:46.850
+However, the last word
+
+21
+00:00:46.850 --> 00:00:49.835
+completely changes the
+meaning of each question.
+
+22
+00:00:49.835 --> 00:00:51.935
+This example shows
+that comparing
+
+23
+00:00:51.935 --> 00:00:55.390
+meaning is not as simple
+as just comparing words.
+
+24
+00:00:55.390 --> 00:00:58.080
+Coming up, you're
+going to see how
+
+25
+00:00:58.080 --> 00:01:00.470
+you can use Siamese networks to
+
+26
+00:01:00.470 --> 00:01:02.900
+compare the meaning
+of word sequences
+
+27
+00:01:02.900 --> 00:01:05.675
+and identify
+question duplicates,
+
+28
+00:01:05.675 --> 00:01:08.465
+which is a very important
+NLP application
+
+29
+00:01:08.465 --> 00:01:12.365
+at the core of platforms like
+Stack Overflow or Quora.
+
+30
+00:01:12.365 --> 00:01:15.740
+Before these platforms allow
+you to post a new question,
+
+31
+00:01:15.740 --> 00:01:17.750
+they want to be sure that
+your question hasn't
+
+32
+00:01:17.750 --> 00:01:20.080
+already been posted
+by somebody else.
+
+33
+00:01:20.080 --> 00:01:21.750
+Now take this sentence,
+
+34
+00:01:21.750 --> 00:01:23.830
+I'm happy because I'm learning,
+
+35
+00:01:23.830 --> 00:01:26.000
+and consider it
+in the context of
+
+36
+00:01:26.000 --> 00:01:29.000
+sentiment analysis and
+binary classification.
+
+37
+00:01:29.000 --> 00:01:31.999
+Now in training a
+classification algorithm,
+
+38
+00:01:31.999 --> 00:01:33.830
+you discover what
+features give this
+
+39
+00:01:33.830 --> 00:01:37.010
+statement a positive
+or negative sentiment.
+
+40
+00:01:37.010 --> 00:01:40.460
+With Siamese networks,
+you'll be aiming to identify
+
+41
+00:01:40.460 --> 00:01:41.540
+what's makes two input
+
+42
+00:01:41.540 --> 00:01:43.910
+similar and what
+makes them different.
+
+43
+00:01:43.910 --> 00:01:46.205
+Take a look at these
+two questions.
+
+44
+00:01:46.205 --> 00:01:48.470
+What is your age?,
+and, how old are you?
+
+45
+00:01:48.470 --> 00:01:50.630
+When you build a Siamese model,
+
+46
+00:01:50.630 --> 00:01:53.135
+you're trying to
+identify the difference
+
+47
+00:01:53.135 --> 00:01:56.240
+or the similarity between
+these two questions.
+
+48
+00:01:56.240 --> 00:01:58.115
+You do this by computing
+
+49
+00:01:58.115 --> 00:01:59.975
+a single similarity score
+
+50
+00:01:59.975 --> 00:02:03.095
+representing the relationship
+between the two questions.
+
+51
+00:02:03.095 --> 00:02:06.070
+Based on that score, when
+compared against a threshold,
+
+52
+00:02:06.070 --> 00:02:07.570
+you can predict whether these
+
+53
+00:02:07.570 --> 00:02:10.075
+two are the same or different.
+
+54
+00:02:10.075 --> 00:02:13.810
+Siamese networks have
+many applications in NLP.
+
+55
+00:02:13.810 --> 00:02:16.180
+You can use them to authenticate
+
+56
+00:02:16.180 --> 00:02:18.400
+handwritten checks
+by determining
+
+57
+00:02:18.400 --> 00:02:20.905
+whether two signatures
+are the same or not.
+
+58
+00:02:20.905 --> 00:02:23.920
+You can use them to identify
+question duplicates
+
+59
+00:02:23.920 --> 00:02:27.350
+on platforms like Quora
+or Stack Overflow.
+
+60
+00:02:27.350 --> 00:02:29.100
+You can use them in search
+
+61
+00:02:29.100 --> 00:02:31.240
+aging queries to predict whether
+
+62
+00:02:31.240 --> 00:02:32.680
+a new query is similar to
+
+63
+00:02:32.680 --> 00:02:35.140
+the one that was
+already executed.
+
+64
+00:02:35.140 --> 00:02:37.150
+These are just a few examples,
+
+65
+00:02:37.150 --> 00:02:39.100
+but there are many
+more applications
+
+66
+00:02:39.100 --> 00:02:41.205
+of Siamese networks in NLP.
+
+67
+00:02:41.205 --> 00:02:43.230
+You can use Siamese networks and
+
+68
+00:02:43.230 --> 00:02:45.465
+many types of NLP applications.
+
+69
+00:02:45.465 --> 00:02:46.985
+In the next video,
+
+70
+00:02:46.985 --> 00:02:48.860
+I will walk you through
+the architecture
+
+71
+00:02:48.860 --> 00:02:50.530
+that is used in
+this type of model,
+
+72
+00:02:50.530 --> 00:02:53.840
+and I'll show you how you
+can use it in a text.
+
+73
+00:02:53.840 --> 00:02:56.610
+I'll see you in the next video.

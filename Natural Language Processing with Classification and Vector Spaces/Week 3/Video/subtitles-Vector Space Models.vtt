@@ -1,0 +1,219 @@
+WEBVTT
+
+1
+00:00:00.391 --> 00:00:04.623
+Last week you learned about
+a classification algorithm known as
+
+2
+00:00:04.623 --> 00:00:05.493
+naive bayes.
+
+3
+00:00:05.493 --> 00:00:08.595
+This week you're going to
+learn about vector spaces and
+
+4
+00:00:08.595 --> 00:00:13.222
+specifically you will learn what type of
+information these vectors could encode.
+
+5
+00:00:13.222 --> 00:00:17.256
+You'll see different types of applications
+that you can use with these vector spaces
+
+6
+00:00:17.256 --> 00:00:20.742
+and you'll see different types of
+algorithms you'll be implementing.
+
+7
+00:00:20.742 --> 00:00:23.029
+Let's take a look at an example.
+
+8
+00:00:23.029 --> 00:00:27.319
+In this video I'm going to introduce
+you to the general idea behind
+
+9
+00:00:27.319 --> 00:00:28.784
+vector space models.
+
+10
+00:00:28.784 --> 00:00:32.663
+You're going to see their advantages
+along with some of their applications in
+
+11
+00:00:32.663 --> 00:00:35.040
+natural language processing.
+
+12
+00:00:35.040 --> 00:00:39.943
+So suppose you have two questions,
+the first one is, where are you heading?
+
+13
+00:00:39.943 --> 00:00:42.903
+And the second one is where are you from?
+
+14
+00:00:42.903 --> 00:00:47.661
+These sentences have identical
+words except for the last ones.
+
+15
+00:00:47.661 --> 00:00:51.141
+However, they both have
+a different meaning.
+
+16
+00:00:51.141 --> 00:00:55.362
+On the other hand say you have
+two more questions whose words
+
+17
+00:00:55.362 --> 00:01:00.103
+are completely different but
+both sentences mean the same thing.
+
+18
+00:01:00.103 --> 00:01:04.977
+Vector space models will help you identify
+whether the first pair of questions or
+
+19
+00:01:04.977 --> 00:01:09.719
+the second pair are similar in meaning
+even if they do not share the same words.
+
+20
+00:01:09.719 --> 00:01:13.012
+They can be used to
+identify similarity for
+
+21
+00:01:13.012 --> 00:01:17.596
+a question answering,
+paraphrasing and summarization.
+
+22
+00:01:17.596 --> 00:01:22.462
+Vector space models will also allow you
+to capture dependencies between words.
+
+23
+00:01:22.462 --> 00:01:26.295
+Consider this sentence,
+you eat cereal from a bowl,
+
+24
+00:01:26.295 --> 00:01:31.164
+here you can see that the words cereal and
+the word bowl are related.
+
+25
+00:01:31.164 --> 00:01:36.597
+Now let's look at this other sentence, you
+buy something and someone else sells it.
+
+26
+00:01:36.597 --> 00:01:42.182
+So what it's saying is that someone sells
+something because someone else buys it.
+
+27
+00:01:42.182 --> 00:01:46.302
+The second half of the sentence
+is dependent on the first half.
+
+28
+00:01:46.302 --> 00:01:49.999
+With vectors based models,
+you will be able to capture this and
+
+29
+00:01:49.999 --> 00:01:53.921
+many other types of relationships
+among different sets of words.
+
+30
+00:01:53.921 --> 00:01:58.770
+Vector space models are used in
+information extraction to answer
+
+31
+00:01:58.770 --> 00:02:03.806
+questions, in the style of who,
+what, where, how and etcetera.
+
+32
+00:02:03.806 --> 00:02:07.503
+In machine translation and
+in chess sports programming.
+
+33
+00:02:07.503 --> 00:02:10.785
+They're also used in many,
+many other applications.
+
+34
+00:02:10.785 --> 00:02:15.487
+As a final thought I'd like to share
+with you this quote from John Firth,
+
+35
+00:02:15.487 --> 00:02:20.362
+a famous English linguists, you shall
+know a word by the company it keeps.
+
+36
+00:02:20.362 --> 00:02:23.747
+This is one of the most
+fundamental concepts in NLP.
+
+37
+00:02:23.747 --> 00:02:28.736
+When using vector space models the way
+that representations are made is by
+
+38
+00:02:28.736 --> 00:02:32.517
+identifying the context around
+each word in the text and
+
+39
+00:02:32.517 --> 00:02:35.103
+this captures the relative meaning.
+
+40
+00:02:35.103 --> 00:02:40.842
+Eureka, vector space models allow you to
+represent words and documents as vectors.
+
+41
+00:02:40.842 --> 00:02:43.423
+This captures the relative meaning.
+
+42
+00:02:43.423 --> 00:02:47.530
+You learn about vector space models and
+you have seen different types of
+
+43
+00:02:47.530 --> 00:02:50.828
+applications where these
+vector space models are used.
+
+44
+00:02:50.828 --> 00:02:53.996
+In the next video you will
+build them from scratch and
+
+45
+00:02:53.996 --> 00:02:58.460
+specifically you will see how they
+are built using cooccurrence matrices

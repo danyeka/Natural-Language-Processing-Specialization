@@ -1,0 +1,390 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.580
+In this video, I will show
+
+2
+00:00:02.580 --> 00:00:04.545
+you in more detail
+the architecture
+
+3
+00:00:04.545 --> 00:00:05.760
+of the LSTM and
+
+4
+00:00:05.760 --> 00:00:08.880
+the computations that are
+made inside a single cell.
+
+5
+00:00:08.880 --> 00:00:11.100
+As you might recall
+from earlier,
+
+6
+00:00:11.100 --> 00:00:12.840
+in a typical LSTM,
+
+7
+00:00:12.840 --> 00:00:14.190
+you have a cell state,
+
+8
+00:00:14.190 --> 00:00:17.460
+a hidden state, input
+x, and output y.
+
+9
+00:00:17.460 --> 00:00:19.350
+You can think of
+the cell state as
+
+10
+00:00:19.350 --> 00:00:21.720
+the memory of your
+network and gets
+
+11
+00:00:21.720 --> 00:00:24.060
+modified using information from
+
+12
+00:00:24.060 --> 00:00:26.400
+the input and the
+previous hidden state.
+
+13
+00:00:26.400 --> 00:00:30.150
+The gates in an LSTM decide
+which information is
+
+14
+00:00:30.150 --> 00:00:34.275
+kept or added and select
+the output at every step.
+
+15
+00:00:34.275 --> 00:00:36.585
+You will typically
+have three gates,
+
+16
+00:00:36.585 --> 00:00:39.680
+your forget gate used to
+decide which information
+
+17
+00:00:39.680 --> 00:00:40.730
+is kept and which is
+
+18
+00:00:40.730 --> 00:00:43.040
+discarded from the
+previous cell state.
+
+19
+00:00:43.040 --> 00:00:47.060
+The input gate that selects
+the relevant information
+
+20
+00:00:47.060 --> 00:00:49.355
+from the input in
+previous hidden state
+
+21
+00:00:49.355 --> 00:00:50.960
+and the output gate,
+
+22
+00:00:50.960 --> 00:00:53.210
+that determines which
+information from
+
+23
+00:00:53.210 --> 00:00:54.920
+the cell state is used as
+
+24
+00:00:54.920 --> 00:00:57.050
+output and stored in
+the hidden state.
+
+25
+00:00:57.050 --> 00:00:58.880
+Sigmoid activation functions
+
+26
+00:00:58.880 --> 00:01:00.650
+with different
+trainable parameters
+
+27
+00:01:00.650 --> 00:01:02.300
+are applied to the input and
+
+28
+00:01:02.300 --> 00:01:04.670
+previous states for
+the three gates.
+
+29
+00:01:04.670 --> 00:01:06.860
+The use of the
+sigmoid ensures that
+
+30
+00:01:06.860 --> 00:01:09.635
+the values for the gates
+are between 0 and 1.
+
+31
+00:01:09.635 --> 00:01:13.280
+In practice, the values
+encountered in the vectors
+
+32
+00:01:13.280 --> 00:01:15.020
+corresponding to each gate
+
+33
+00:01:15.020 --> 00:01:17.360
+are very close to
+either zero or one.
+
+34
+00:01:17.360 --> 00:01:19.065
+With a value of zero,
+
+35
+00:01:19.065 --> 00:01:20.315
+the gate is closed,
+
+36
+00:01:20.315 --> 00:01:22.040
+so information
+doesn't get through.
+
+37
+00:01:22.040 --> 00:01:25.780
+While a value of one will
+let information flow freely.
+
+38
+00:01:25.780 --> 00:01:28.550
+Another significant
+computation made inside
+
+39
+00:01:28.550 --> 00:01:31.445
+an LSTM is the
+candidate cell state.
+
+40
+00:01:31.445 --> 00:01:34.250
+To get that, you have to
+transform the information
+
+41
+00:01:34.250 --> 00:01:37.640
+from the previous hidden
+states and the current inputs.
+
+42
+00:01:37.640 --> 00:01:40.745
+A hyperbolic tangent
+activation function
+
+43
+00:01:40.745 --> 00:01:43.685
+is typically used in
+different implementations.
+
+44
+00:01:43.685 --> 00:01:45.500
+It shrinks the information
+
+45
+00:01:45.500 --> 00:01:46.940
+from the previous hidden states
+
+46
+00:01:46.940 --> 00:01:50.495
+and the current inputs to be
+between negative 1 and 1.
+
+47
+00:01:50.495 --> 00:01:53.270
+This nonlinear transformation
+has been used in
+
+48
+00:01:53.270 --> 00:01:56.345
+the past because it improves
+training performance.
+
+49
+00:01:56.345 --> 00:01:58.235
+However, you could try
+
+50
+00:01:58.235 --> 00:02:00.955
+other activations and
+test their behavior.
+
+51
+00:02:00.955 --> 00:02:03.195
+With the forget and input gate
+
+52
+00:02:03.195 --> 00:02:04.695
+and the candidate cell state,
+
+53
+00:02:04.695 --> 00:02:06.555
+you can update the cell state.
+
+54
+00:02:06.555 --> 00:02:08.120
+To get the new cell state,
+
+55
+00:02:08.120 --> 00:02:09.380
+you add the information from
+
+56
+00:02:09.380 --> 00:02:10.640
+the candidate cell state that
+
+57
+00:02:10.640 --> 00:02:12.140
+passes through the input gates
+
+58
+00:02:12.140 --> 00:02:14.210
+to the cell state information
+
+59
+00:02:14.210 --> 00:02:16.675
+that passes through
+the forget gate.
+
+60
+00:02:16.675 --> 00:02:18.890
+Finally, you can compute
+
+61
+00:02:18.890 --> 00:02:20.260
+the new hidden state used to
+
+62
+00:02:20.260 --> 00:02:22.630
+produce output at a given step.
+
+63
+00:02:22.630 --> 00:02:24.445
+To get the new hidden state,
+
+64
+00:02:24.445 --> 00:02:26.660
+you pass transformed information
+
+65
+00:02:26.660 --> 00:02:29.560
+from the new cell state
+through the output gate.
+
+66
+00:02:29.560 --> 00:02:32.450
+Note that here the
+new cell state first
+
+67
+00:02:32.450 --> 00:02:35.479
+passes through a hyperbolic
+tangent activation.
+
+68
+00:02:35.479 --> 00:02:39.110
+Nevertheless, some LSTM
+architectures ignore
+
+69
+00:02:39.110 --> 00:02:40.820
+this information and pass
+
+70
+00:02:40.820 --> 00:02:43.585
+the new cell state directly
+through the output gate.
+
+71
+00:02:43.585 --> 00:02:46.035
+Let's recap everything
+I just covered.
+
+72
+00:02:46.035 --> 00:02:48.500
+An LSTM has three gates to
+
+73
+00:02:48.500 --> 00:02:51.365
+decide what information is
+passed along the network.
+
+74
+00:02:51.365 --> 00:02:53.810
+The forget gate
+decides what to keep.
+
+75
+00:02:53.810 --> 00:02:56.060
+The input gate decides
+what to add from
+
+76
+00:02:56.060 --> 00:02:58.450
+the previous hidden
+step and current input
+
+77
+00:02:58.450 --> 00:03:00.290
+and the output gate determines
+
+78
+00:03:00.290 --> 00:03:03.865
+the next hidden state and
+the output at a given step.
+
+79
+00:03:03.865 --> 00:03:07.175
+You now understand the
+intuition behind LSTMs.
+
+80
+00:03:07.175 --> 00:03:09.515
+In the coding exercise
+for this week,
+
+81
+00:03:09.515 --> 00:03:12.080
+you'll implement
+LSTMs on your own.
+
+82
+00:03:12.080 --> 00:03:13.549
+In the next video,
+
+83
+00:03:13.549 --> 00:03:15.050
+I will show you how to use
+
+84
+00:03:15.050 --> 00:03:17.900
+LSTMs to solve a real NLP task.
+
+85
+00:03:17.900 --> 00:03:20.370
+Let's go to the next video.

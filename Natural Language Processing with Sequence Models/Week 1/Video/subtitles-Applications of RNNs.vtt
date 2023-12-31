@@ -1,0 +1,259 @@
+WEBVTT
+
+1
+00:00:00.240 --> 00:00:02.820
+There are many types of RNN Architectures.
+
+2
+00:00:02.820 --> 00:00:06.572
+Sometimes you're trying to build
+a sentiment classifier of tweets.
+
+3
+00:00:06.572 --> 00:00:09.585
+In that case you might want
+to use one type of model.
+
+4
+00:00:09.585 --> 00:00:13.323
+Another time, you might want to
+generate a caption for an image and
+
+5
+00:00:13.323 --> 00:00:16.740
+then you might want to use
+a different architecture.
+
+6
+00:00:16.740 --> 00:00:19.537
+So there are many different
+types of architectures and
+
+7
+00:00:19.537 --> 00:00:22.351
+in this video we will show
+you all the different types.
+
+8
+00:00:23.740 --> 00:00:26.481
+>> There are many different
+types of tasks in AI.
+
+9
+00:00:26.481 --> 00:00:31.340
+Here, I'll group them according to
+the nature of their inputs and outputs.
+
+10
+00:00:31.340 --> 00:00:35.908
+For instance, a One to One task
+takes as input, a set of law or
+
+11
+00:00:35.908 --> 00:00:40.224
+non correlated features x and
+returns a single output y.
+
+12
+00:00:40.224 --> 00:00:43.951
+Say you had a list of scores
+from your favorite team
+
+13
+00:00:43.951 --> 00:00:46.720
+in the European soccer tournament.
+
+14
+00:00:46.720 --> 00:00:51.356
+La Liga Santander, as inputs,
+you could have a recurrent neural network
+
+15
+00:00:51.356 --> 00:00:55.840
+that predicted the position of
+your team on the leader board.
+
+16
+00:00:55.840 --> 00:01:00.588
+However, notice that this recurrent
+neural network isn't much different from
+
+17
+00:01:00.588 --> 00:01:03.540
+a conventional neural network.
+
+18
+00:01:03.540 --> 00:01:09.940
+It only has an additional hidden states h,
+superscript, subscript 0.
+
+19
+00:01:09.940 --> 00:01:14.640
+So for this type of task,
+RNNs aren't all that useful.
+
+20
+00:01:14.640 --> 00:01:18.939
+But if you want a neural network
+that takes an arbitrary image and
+
+21
+00:01:18.939 --> 00:01:23.638
+generates a caption describing
+the content of that image in English,
+
+22
+00:01:23.638 --> 00:01:26.917
+in this case a brown puppy,
+you can build an RNN.
+
+23
+00:01:26.917 --> 00:01:32.372
+This type of task is known as One to Many
+because your RNN takes a single image and
+
+24
+00:01:32.372 --> 00:01:36.340
+generates multiple words to describe it.
+
+25
+00:01:36.340 --> 00:01:38.947
+Another type of task is Many to One.
+
+26
+00:01:38.947 --> 00:01:43.744
+You may already be familiar with
+one practical example of this type,
+
+27
+00:01:43.744 --> 00:01:45.326
+sentiment analysis.
+
+28
+00:01:45.326 --> 00:01:49.995
+In that instance, if you have
+a sequence of words like this Tweet
+
+29
+00:01:49.995 --> 00:01:54.924
+that says I am very happy as input
+in your model should output whether
+
+30
+00:01:54.924 --> 00:01:58.555
+the tweet has a negative or
+positive sentiments,
+
+31
+00:01:58.555 --> 00:02:04.262
+your RNN would take every word from
+the sequence as inputs in different steps,
+
+32
+00:02:04.262 --> 00:02:11.240
+propagates information from the beginning
+to the end and outputs the sentiment.
+
+33
+00:02:11.240 --> 00:02:16.940
+Finally, Many to Many tasks involve
+multiple inputs and multiple outputs.
+
+34
+00:02:16.940 --> 00:02:22.151
+For example, in machine translation
+you have a sequence of words in french
+
+35
+00:02:22.151 --> 00:02:27.775
+you want to get its equivalent in another
+language such as English and RNN would do
+
+36
+00:02:27.775 --> 00:02:33.567
+well for this task because they propagate
+information from the beginning to end and
+
+37
+00:02:33.567 --> 00:02:39.940
+this is what makes them able to capture
+the general meaning afford sequences.
+
+38
+00:02:39.940 --> 00:02:44.069
+This particular architecture
+encoder decoder is very popular for
+
+39
+00:02:44.069 --> 00:02:46.340
+machine translation.
+
+40
+00:02:46.340 --> 00:02:51.058
+The first part of this neural network
+doesn't return any outputs, y hat.
+
+41
+00:02:51.058 --> 00:02:54.691
+And it's called an encoder
+because it encodes sequences,
+
+42
+00:02:54.691 --> 00:02:57.021
+affords any single representation.
+
+43
+00:02:57.021 --> 00:03:01.715
+This captures the overall meaning of
+the sentence that is decoded later to
+
+44
+00:03:01.715 --> 00:03:05.240
+a sequence of words in the other language.
+
+45
+00:03:05.240 --> 00:03:07.163
+RNN are powerful architectures.
+
+46
+00:03:07.163 --> 00:03:10.636
+This can be used to solve
+a lot of interesting problems.
+
+47
+00:03:10.636 --> 00:03:15.586
+In NLP, there are multiple applications
+where current neural networks are useful,
+
+48
+00:03:15.586 --> 00:03:19.340
+such as machine translation and
+caption generation.
+
+49
+00:03:19.340 --> 00:03:23.910
+You can think of are RNNs as versatile
+tools that can be shaped according to
+
+50
+00:03:23.910 --> 00:03:25.440
+the situation.
+
+51
+00:03:25.440 --> 00:03:27.965
+>> Depending on the task
+you're trying to solve,
+
+52
+00:03:27.965 --> 00:03:30.310
+you can choose one of these architectures.
+
+53
+00:03:30.310 --> 00:03:34.233
+In the next video, I'll talk about
+a simple record, neural network and
+
+54
+00:03:34.233 --> 00:03:36.951
+then you can apply it to
+all these architectures.

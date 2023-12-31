@@ -1,0 +1,251 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.320
+I will show you one of
+
+2
+00:00:01.320 --> 00:00:03.360
+the most commonly
+used Benchmarks
+
+3
+00:00:03.360 --> 00:00:05.205
+in natural language processing.
+
+4
+00:00:05.205 --> 00:00:08.550
+Specifically, you'll learn
+about the GLUE Benchmark.
+
+5
+00:00:08.550 --> 00:00:10.005
+This is used to train,
+
+6
+00:00:10.005 --> 00:00:12.780
+evaluate, analyze NLP tasks.
+
+7
+00:00:12.780 --> 00:00:15.550
+Let's take a look at this
+in some more detail.
+
+8
+00:00:15.550 --> 00:00:17.785
+The glue benchmark stands for
+
+9
+00:00:17.785 --> 00:00:20.835
+General Language
+Understanding Evaluation.
+
+10
+00:00:20.835 --> 00:00:24.290
+It is basically a collection
+that is used to train,
+
+11
+00:00:24.290 --> 00:00:28.535
+evaluate, analyze natural
+language understanding systems.
+
+12
+00:00:28.535 --> 00:00:31.940
+It has a lot of datasets
+and each dataset has
+
+13
+00:00:31.940 --> 00:00:34.055
+several genres and there are
+
+14
+00:00:34.055 --> 00:00:36.485
+different sizes and
+different difficulties.
+
+15
+00:00:36.485 --> 00:00:38.390
+Some of them are, for example,
+
+16
+00:00:38.390 --> 00:00:40.505
+used for co-reference
+resolution.
+
+17
+00:00:40.505 --> 00:00:44.125
+Others are just used for
+simple sentiment analysis,
+
+18
+00:00:44.125 --> 00:00:47.760
+others are used for question
+answering, and so forth.
+
+19
+00:00:47.760 --> 00:00:51.015
+It is used with a leaderboard,
+
+20
+00:00:51.015 --> 00:00:54.050
+so people can use
+the datasets and see
+
+21
+00:00:54.050 --> 00:00:57.650
+how well their models
+perform compared to others.
+
+22
+00:00:57.650 --> 00:01:00.260
+Tasks evaluated on could be,
+
+23
+00:01:00.260 --> 00:01:03.040
+for example, sentence
+grammatical or not.
+
+24
+00:01:03.040 --> 00:01:07.850
+For example, if a sentence
+makes sense or it does not,
+
+25
+00:01:07.850 --> 00:01:09.790
+is going to be
+used on sentiment,
+
+26
+00:01:09.790 --> 00:01:13.070
+it could be used to
+paraphrase some texts,
+
+27
+00:01:13.070 --> 00:01:17.830
+it could be used on similarity,
+on question duplicates.
+
+28
+00:01:17.830 --> 00:01:21.015
+Whether a question is
+answerable or not,
+
+29
+00:01:21.015 --> 00:01:24.080
+whether it's a contradiction,
+whether it's entailment.
+
+30
+00:01:24.080 --> 00:01:27.245
+Also, for the Winograd schema,
+
+31
+00:01:27.245 --> 00:01:30.200
+which is basically
+trying to identify
+
+32
+00:01:30.200 --> 00:01:32.150
+whether a pronoun refers
+
+33
+00:01:32.150 --> 00:01:34.835
+to a certain noun
+or to another noun.
+
+34
+00:01:34.835 --> 00:01:36.950
+It's used to drive research.
+
+35
+00:01:36.950 --> 00:01:39.080
+As I said, that
+researchers usually use
+
+36
+00:01:39.080 --> 00:01:41.755
+the GLUE as a benchmark.
+
+37
+00:01:41.755 --> 00:01:43.940
+It is also a model agnostic,
+
+38
+00:01:43.940 --> 00:01:46.460
+so it doesn't matter
+which model you use.
+
+39
+00:01:46.460 --> 00:01:48.830
+Just evaluate on GLUE and
+
+40
+00:01:48.830 --> 00:01:51.325
+see how well your
+model performs.
+
+41
+00:01:51.325 --> 00:01:53.240
+Finally, it allows you to make
+
+42
+00:01:53.240 --> 00:01:55.160
+use of transfer learning
+because you have
+
+43
+00:01:55.160 --> 00:01:57.125
+access to several datasets
+
+44
+00:01:57.125 --> 00:01:59.585
+and you can learn
+certain things from
+
+45
+00:01:59.585 --> 00:02:01.655
+different datasets
+that will help you
+
+46
+00:02:01.655 --> 00:02:05.440
+evaluate on a completely
+new datasets within GLUE.
+
+47
+00:02:05.440 --> 00:02:07.130
+You now know not only how to
+
+48
+00:02:07.130 --> 00:02:09.065
+implement states
+of the art models,
+
+49
+00:02:09.065 --> 00:02:11.525
+but you also know how
+to evaluate them.
+
+50
+00:02:11.525 --> 00:02:12.994
+In the next video,
+
+51
+00:02:12.994 --> 00:02:15.290
+I'll be talking about
+question answering
+
+52
+00:02:15.290 --> 00:02:17.000
+and I'll show you
+how you can use
+
+53
+00:02:17.000 --> 00:02:18.410
+these models to build
+
+54
+00:02:18.410 --> 00:02:22.680
+a sophisticated QA system.
+I'll see you there.

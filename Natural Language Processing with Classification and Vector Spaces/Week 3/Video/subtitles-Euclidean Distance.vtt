@@ -1,0 +1,374 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.950
+Hello. In this video,
+
+2
+00:00:01.950 --> 00:00:04.305
+you're going to learn
+about Euclidean distance,
+
+3
+00:00:04.305 --> 00:00:06.405
+which is a similarity metric.
+
+4
+00:00:06.405 --> 00:00:09.089
+This metric allows
+you to identify
+
+5
+00:00:09.089 --> 00:00:10.680
+how far two points or
+
+6
+00:00:10.680 --> 00:00:13.530
+two vectors are apart
+from each other.
+
+7
+00:00:13.530 --> 00:00:16.080
+During this segment,
+you will get
+
+8
+00:00:16.080 --> 00:00:17.430
+the Euclidean distance between
+
+9
+00:00:17.430 --> 00:00:19.260
+two documents vectors
+like the ones
+
+10
+00:00:19.260 --> 00:00:21.780
+from the previous video
+and then generalize
+
+11
+00:00:21.780 --> 00:00:25.230
+that notion to vector spaces
+in higher dimensions.
+
+12
+00:00:25.230 --> 00:00:26.730
+Let's use two of
+
+13
+00:00:26.730 --> 00:00:29.174
+the corpora vectors
+you saw previously.
+
+14
+00:00:29.174 --> 00:00:31.140
+Remember in that example,
+
+15
+00:00:31.140 --> 00:00:32.595
+there were two dimensions.
+
+16
+00:00:32.595 --> 00:00:33.810
+The number of times that
+
+17
+00:00:33.810 --> 00:00:37.095
+the word data and the word
+film appeared in the corpus.
+
+18
+00:00:37.095 --> 00:00:38.730
+Corpus A will be
+
+19
+00:00:38.730 --> 00:00:40.890
+the entertainment corpus and
+
+20
+00:00:40.890 --> 00:00:43.760
+Corpus B will be the
+machine-learning corpus.
+
+21
+00:00:43.760 --> 00:00:45.590
+Now let's represent
+those vectors
+
+22
+00:00:45.590 --> 00:00:47.825
+as points in the vector space.
+
+23
+00:00:47.825 --> 00:00:50.360
+The Euclidean distance is
+
+24
+00:00:50.360 --> 00:00:53.180
+the length of the straight
+line segments connecting them.
+
+25
+00:00:53.180 --> 00:00:55.910
+To get that value, you should
+use the following formula.
+
+26
+00:00:55.910 --> 00:01:00.170
+The first term is their
+horizontal distance squared,
+
+27
+00:01:00.170 --> 00:01:03.785
+and the second term is their
+vertical distance squared.
+
+28
+00:01:03.785 --> 00:01:06.020
+As you see, this formula is
+
+29
+00:01:06.020 --> 00:01:08.330
+an example of the
+Pythagorean theorem.
+
+30
+00:01:08.330 --> 00:01:11.000
+If you solve for each of
+the terms in the equation,
+
+31
+00:01:11.000 --> 00:01:13.495
+you should arrive
+at this expression,
+
+32
+00:01:13.495 --> 00:01:16.595
+and at last get a
+Euclidean distance
+
+33
+00:01:16.595 --> 00:01:21.110
+approximately equal to 10,667.
+
+34
+00:01:21.110 --> 00:01:24.750
+Feel free to pause the video
+and check this process.
+
+35
+00:01:25.280 --> 00:01:28.075
+When you have higher dimensions,
+
+36
+00:01:28.075 --> 00:01:30.925
+the Euclidean distance is
+not much more difficult.
+
+37
+00:01:30.925 --> 00:01:32.650
+Let's walk through
+an example using
+
+38
+00:01:32.650 --> 00:01:34.790
+the following
+co-occurrence matrix.
+
+39
+00:01:34.790 --> 00:01:37.330
+Suppose that you want to
+know the Euclidean distance
+
+40
+00:01:37.330 --> 00:01:39.640
+between the vector v of
+
+41
+00:01:39.640 --> 00:01:41.230
+the word ice cream and
+
+42
+00:01:41.230 --> 00:01:44.390
+the vector representation
+w of the word the boba.
+
+43
+00:01:44.390 --> 00:01:46.345
+To start, you need to get
+
+44
+00:01:46.345 --> 00:01:48.865
+the difference between
+each of their dimensions.
+
+45
+00:01:48.865 --> 00:01:51.535
+Square those differences,
+sum them up,
+
+46
+00:01:51.535 --> 00:01:53.860
+and then get the square
+roots of your results.
+
+47
+00:01:53.860 --> 00:01:56.155
+This process is
+the generalization
+
+48
+00:01:56.155 --> 00:01:57.760
+of the one from the last slide.
+
+49
+00:01:57.760 --> 00:01:59.680
+This is the formula that you
+
+50
+00:01:59.680 --> 00:02:01.690
+would use to get the
+Euclidean distance
+
+51
+00:02:01.690 --> 00:02:04.060
+between vector
+representations on
+
+52
+00:02:04.060 --> 00:02:06.235
+an n-dimensional vector space.
+
+53
+00:02:06.235 --> 00:02:08.230
+If you remember from algebra,
+
+54
+00:02:08.230 --> 00:02:10.600
+this formula is
+known as the norm of
+
+55
+00:02:10.600 --> 00:02:11.620
+the difference between the
+
+56
+00:02:11.620 --> 00:02:13.990
+vectors that you are comparing.
+
+57
+00:02:13.990 --> 00:02:16.000
+Let's take a look at
+
+58
+00:02:16.000 --> 00:02:19.015
+the implementation of the
+Euclidean distance in Python.
+
+59
+00:02:19.015 --> 00:02:21.280
+If you have two vector
+representations
+
+60
+00:02:21.280 --> 00:02:23.950
+like the ones from
+the previous example,
+
+61
+00:02:23.950 --> 00:02:26.350
+you can use the lean
+alg module from
+
+62
+00:02:26.350 --> 00:02:29.590
+NumPy to get the norm of the
+difference between them.
+
+63
+00:02:29.590 --> 00:02:31.855
+If you implement
+this code in Python,
+
+64
+00:02:31.855 --> 00:02:33.520
+you should get these results.
+
+65
+00:02:33.520 --> 00:02:37.520
+The norm function works
+for n-dimensional spaces.
+
+66
+00:02:37.560 --> 00:02:39.955
+The primary takeaways here
+
+67
+00:02:39.955 --> 00:02:42.760
+are that the Euclidean
+distance is basically
+
+68
+00:02:42.760 --> 00:02:44.620
+the length of the straight
+line that connects
+
+69
+00:02:44.620 --> 00:02:48.010
+two vectors and that
+together Euclidean distance,
+
+70
+00:02:48.010 --> 00:02:49.780
+you have to calculate
+the norm of
+
+71
+00:02:49.780 --> 00:02:51.140
+the difference between
+
+72
+00:02:51.140 --> 00:02:52.805
+the vectors that
+you are comparing.
+
+73
+00:02:52.805 --> 00:02:54.320
+By using this metric,
+
+74
+00:02:54.320 --> 00:02:56.000
+you can get a sense of how
+
+75
+00:02:56.000 --> 00:02:58.885
+similar two documents
+or words are.
+
+76
+00:02:58.885 --> 00:03:01.670
+Now that you have learned
+Euclidean distance,
+
+77
+00:03:01.670 --> 00:03:02.960
+in the next video,
+
+78
+00:03:02.960 --> 00:03:05.960
+I'll show you a different
+type of similarity function.
+
+79
+00:03:05.960 --> 00:03:09.740
+Concretely, I'll show you the
+cosine similarity function,
+
+80
+00:03:09.740 --> 00:03:12.740
+which is one of the most
+popular similarity functions.
+
+81
+00:03:12.740 --> 00:03:15.030
+See you in the next video.

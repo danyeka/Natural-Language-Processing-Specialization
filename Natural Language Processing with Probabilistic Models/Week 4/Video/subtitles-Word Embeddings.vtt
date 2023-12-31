@@ -1,0 +1,438 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.640
+I'm about to show you a
+method that can encode
+
+2
+00:00:02.640 --> 00:00:06.060
+meaning in a relatively
+low dimensional vector.
+
+3
+00:00:06.060 --> 00:00:08.070
+In other words, a vector
+
+4
+00:00:08.070 --> 00:00:11.835
+whose dimension is not
+necessarily v dimensional.
+
+5
+00:00:11.835 --> 00:00:15.000
+Words on the left are
+considered negative in
+
+6
+00:00:15.000 --> 00:00:16.650
+some way and words on
+
+7
+00:00:16.650 --> 00:00:19.290
+the right are considered
+positive in some way.
+
+8
+00:00:19.290 --> 00:00:21.315
+Words that are much
+more negative,
+
+9
+00:00:21.315 --> 00:00:23.640
+are further to the left
+and the words that
+
+10
+00:00:23.640 --> 00:00:26.425
+are much more positive
+are further to the right.
+
+11
+00:00:26.425 --> 00:00:28.400
+You could store
+their positions as
+
+12
+00:00:28.400 --> 00:00:31.010
+numbers in a single
+vector of Length 1.
+
+13
+00:00:31.010 --> 00:00:32.690
+Notice that you can now use
+
+14
+00:00:32.690 --> 00:00:35.435
+any decimal value
+instead of 0 and 1.
+
+15
+00:00:35.435 --> 00:00:37.285
+This is quite useful,
+
+16
+00:00:37.285 --> 00:00:40.250
+in that now you can say that
+happy and excited that are
+
+17
+00:00:40.250 --> 00:00:43.460
+more similar to each other
+compared to the word paper,
+
+18
+00:00:43.460 --> 00:00:45.830
+because the number
+representing happy
+
+19
+00:00:45.830 --> 00:00:48.740
+is closer to the number
+representing excited.
+
+20
+00:00:48.740 --> 00:00:52.000
+You can extend this by adding
+a vertical number line.
+
+21
+00:00:52.000 --> 00:00:53.915
+Words that are
+higher on this line
+
+22
+00:00:53.915 --> 00:00:56.044
+are more concrete
+physical objects,
+
+23
+00:00:56.044 --> 00:00:59.675
+whereas words lower on this
+line are more abstract ideas.
+
+24
+00:00:59.675 --> 00:01:02.690
+Again, you can arrange
+each word along both of
+
+25
+00:01:02.690 --> 00:01:04.430
+these number lines and see how
+
+26
+00:01:04.430 --> 00:01:07.025
+words that are both more
+concrete and positive,
+
+27
+00:01:07.025 --> 00:01:10.415
+like puppy and kitten,
+are closer together.
+
+28
+00:01:10.415 --> 00:01:12.290
+You can store the two numbers
+
+29
+00:01:12.290 --> 00:01:13.595
+that represent their position
+
+30
+00:01:13.595 --> 00:01:16.790
+on the two number lines
+as a vector of Length 2.
+
+31
+00:01:16.790 --> 00:01:20.030
+What you've done here is to
+represent the vocabulary
+
+32
+00:01:20.030 --> 00:01:23.335
+of words with a small
+vector of Length 2.
+
+33
+00:01:23.335 --> 00:01:25.460
+You gained a little
+bit of meaning
+
+34
+00:01:25.460 --> 00:01:27.695
+while also giving
+up some precision.
+
+35
+00:01:27.695 --> 00:01:29.900
+This vector
+representation is less
+
+36
+00:01:29.900 --> 00:01:32.000
+precise than one-hot
+vectors in that it's
+
+37
+00:01:32.000 --> 00:01:34.160
+possible for two
+words to be located
+
+38
+00:01:34.160 --> 00:01:36.640
+on the same point
+in this 2D plots;
+
+39
+00:01:36.640 --> 00:01:39.750
+like snake and
+spider, for example.
+
+40
+00:01:39.750 --> 00:01:41.570
+What you created just now is
+
+41
+00:01:41.570 --> 00:01:43.460
+an example of the
+word embedding.
+
+42
+00:01:43.460 --> 00:01:45.485
+Word embedding represents words
+
+43
+00:01:45.485 --> 00:01:47.300
+in a vector form that's both,
+
+44
+00:01:47.300 --> 00:01:49.735
+has a relatively low dimension;
+
+45
+00:01:49.735 --> 00:01:52.200
+saying the hundreds
+to look thousands,
+
+46
+00:01:52.200 --> 00:01:53.750
+making it practical for
+
+47
+00:01:53.750 --> 00:01:57.155
+calculations and carries
+the meaning of words,
+
+48
+00:01:57.155 --> 00:01:58.790
+making it possible to
+
+49
+00:01:58.790 --> 00:02:01.530
+determine how semantically
+close words are.
+
+50
+00:02:01.530 --> 00:02:03.740
+In general purpose vocabularies,
+
+51
+00:02:03.740 --> 00:02:05.570
+the vector for
+forests would usually
+
+52
+00:02:05.570 --> 00:02:07.610
+be similar to the
+vector for tree.
+
+53
+00:02:07.610 --> 00:02:10.460
+What's very dissimilar to
+the vector for ticket,
+
+54
+00:02:10.460 --> 00:02:12.365
+you will visualize
+such similarities
+
+55
+00:02:12.365 --> 00:02:14.275
+as parts of this
+week's assignments.
+
+56
+00:02:14.275 --> 00:02:17.345
+It also makes it possible
+to work out analogies,
+
+57
+00:02:17.345 --> 00:02:19.490
+such as finding the
+missing word in
+
+58
+00:02:19.490 --> 00:02:22.330
+Paris is to France
+as Rome is to?
+
+59
+00:02:22.330 --> 00:02:25.370
+Encoding the meaning of
+words is also the first step
+
+60
+00:02:25.370 --> 00:02:28.385
+towards encoding the meaning
+of entire sentences,
+
+61
+00:02:28.385 --> 00:02:29.870
+which is the foundation for
+
+62
+00:02:29.870 --> 00:02:31.970
+more complex NLP use cases
+
+63
+00:02:31.970 --> 00:02:34.249
+like question answering
+and translation.
+
+64
+00:02:34.249 --> 00:02:36.170
+Creating word
+embedding is one of
+
+65
+00:02:36.170 --> 00:02:38.285
+the main objectives
+of this module.
+
+66
+00:02:38.285 --> 00:02:39.755
+In this week's lecture,
+
+67
+00:02:39.755 --> 00:02:41.660
+you will implement
+word embeddings
+
+68
+00:02:41.660 --> 00:02:43.865
+from simpler to more
+advanced methods.
+
+69
+00:02:43.865 --> 00:02:45.230
+You'll also begin to build
+
+70
+00:02:45.230 --> 00:02:47.195
+upon the simpler
+representations.
+
+71
+00:02:47.195 --> 00:02:49.875
+Finally, a note on terminology.
+
+72
+00:02:49.875 --> 00:02:53.090
+In theory, all vector
+representations of words,
+
+73
+00:02:53.090 --> 00:02:54.780
+including one-hot vectors and
+
+74
+00:02:54.780 --> 00:02:58.505
+word embedding vectors are
+known as word vectors.
+
+75
+00:02:58.505 --> 00:03:01.355
+The term word vector
+and word embeddings
+
+76
+00:03:01.355 --> 00:03:04.310
+are used as well to refer
+to word embedding vectors.
+
+77
+00:03:04.310 --> 00:03:05.900
+Don't be surprised if you also
+
+78
+00:03:05.900 --> 00:03:07.840
+see these terms in the wild.
+
+79
+00:03:07.840 --> 00:03:09.905
+Now that you can transform words
+
+80
+00:03:09.905 --> 00:03:11.690
+into integers and vectors,
+
+81
+00:03:11.690 --> 00:03:14.795
+specifically one-hot vectors
+and toward embeddings,
+
+82
+00:03:14.795 --> 00:03:17.330
+you can explain why word
+embeddings are better
+
+83
+00:03:17.330 --> 00:03:20.545
+suited to real-world
+applications of NLP.
+
+84
+00:03:20.545 --> 00:03:23.810
+In this video, I have
+shown how a vector with
+
+85
+00:03:23.810 --> 00:03:27.080
+two-dimensions can tell you
+something about [inaudible].
+
+86
+00:03:27.080 --> 00:03:28.760
+Maybe the first
+coordinates will tell
+
+87
+00:03:28.760 --> 00:03:30.710
+you if the word is positive or
+
+88
+00:03:30.710 --> 00:03:33.140
+negative and the second
+coordinate will tell
+
+89
+00:03:33.140 --> 00:03:35.945
+you if it is abstract
+or concrete.
+
+90
+00:03:35.945 --> 00:03:37.610
+The more coordinates you have,
+
+91
+00:03:37.610 --> 00:03:39.125
+the more things you can capture.
+
+92
+00:03:39.125 --> 00:03:40.579
+In the next video,
+
+93
+00:03:40.579 --> 00:03:44.280
+I will show you how to
+learn these coordinates.

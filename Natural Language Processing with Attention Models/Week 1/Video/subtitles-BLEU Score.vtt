@@ -1,0 +1,537 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.820
+After building and
+training your model,
+
+2
+00:00:02.820 --> 00:00:05.755
+it is essential to assess
+how well it performs.
+
+3
+00:00:05.755 --> 00:00:07.470
+For machine translation,
+
+4
+00:00:07.470 --> 00:00:09.040
+you have different metrics that
+
+5
+00:00:09.040 --> 00:00:11.080
+were engineered
+just for this task.
+
+6
+00:00:11.080 --> 00:00:14.420
+In this lecture, I will
+show you the BLEU score and
+
+7
+00:00:14.420 --> 00:00:16.300
+some of its issues
+for evaluating
+
+8
+00:00:16.300 --> 00:00:18.505
+machine translation models.
+
+9
+00:00:18.505 --> 00:00:22.860
+The BLEU score, a bilingual
+evaluation under study,
+
+10
+00:00:22.860 --> 00:00:25.260
+is an algorithm designed
+to evaluate some of
+
+11
+00:00:25.260 --> 00:00:26.640
+the most challenging problems in
+
+12
+00:00:26.640 --> 00:00:29.430
+NLP, including
+machine translation.
+
+13
+00:00:29.430 --> 00:00:33.540
+It evaluates the quality of
+machine-translated text by
+
+14
+00:00:33.540 --> 00:00:35.660
+comparing a candidate
+translation
+
+15
+00:00:35.660 --> 00:00:37.340
+to one or more references,
+
+16
+00:00:37.340 --> 00:00:40.250
+which are often
+human translations.
+
+17
+00:00:40.250 --> 00:00:42.680
+The closer the BLEU
+score is to one,
+
+18
+00:00:42.680 --> 00:00:44.160
+the better your model is,
+
+19
+00:00:44.160 --> 00:00:46.860
+the closer to zero,
+the worse it is.
+
+20
+00:00:46.860 --> 00:00:48.840
+With that said, what is
+
+21
+00:00:48.840 --> 00:00:52.260
+the BLEU score and why is
+this an important metric?
+
+22
+00:00:52.260 --> 00:00:54.160
+To get the BLEU score,
+
+23
+00:00:54.160 --> 00:00:56.660
+you have to compute the
+precision of the candidates
+
+24
+00:00:56.660 --> 00:00:59.800
+by comparing its end-grams
+with reference translations.
+
+25
+00:00:59.800 --> 00:01:03.860
+To demonstrate, I'll use
+unigrams as an example.
+
+26
+00:01:03.860 --> 00:01:07.640
+Let's say that you have a
+candidate sequence that
+
+27
+00:01:07.640 --> 00:01:11.460
+you got from your model
+composed of I, I, am, I.
+
+28
+00:01:11.460 --> 00:01:13.860
+You also have one
+reference translation
+
+29
+00:01:13.860 --> 00:01:15.320
+which contains the words,
+
+30
+00:01:15.320 --> 00:01:17.360
+Eunice said, I'm hungry.
+
+31
+00:01:17.360 --> 00:01:20.740
+A second reference translation
+that includes the words,
+
+32
+00:01:20.740 --> 00:01:22.675
+he said, I'm hungry.
+
+33
+00:01:22.675 --> 00:01:24.500
+To get the BLEU score,
+
+34
+00:01:24.500 --> 00:01:26.260
+you count how many words from
+
+35
+00:01:26.260 --> 00:01:28.500
+the candidate appear in any of
+
+36
+00:01:28.500 --> 00:01:31.000
+the references and
+divide that count by
+
+37
+00:01:31.000 --> 00:01:34.205
+the total number of words in
+the candidate translation.
+
+38
+00:01:34.205 --> 00:01:37.460
+You can view it as
+a precision metric.
+
+39
+00:01:37.460 --> 00:01:39.520
+You have to go
+through all the words
+
+40
+00:01:39.520 --> 00:01:41.105
+in the candidate translation.
+
+41
+00:01:41.105 --> 00:01:43.060
+First, you have the word I,
+
+42
+00:01:43.060 --> 00:01:46.080
+which appears in both
+reference translations.
+
+43
+00:01:46.080 --> 00:01:48.060
+You add one to your count.
+
+44
+00:01:48.060 --> 00:01:50.860
+Then you have again the word I,
+
+45
+00:01:50.860 --> 00:01:53.910
+which you already know
+appears on both references,
+
+46
+00:01:53.910 --> 00:01:55.940
+and you add one to your count.
+
+47
+00:01:55.940 --> 00:01:58.350
+After that, you have the word
+
+48
+00:01:58.350 --> 00:02:01.240
+am which also appears
+in both references.
+
+49
+00:02:01.240 --> 00:02:03.500
+You add that word to your count.
+
+50
+00:02:03.500 --> 00:02:06.020
+At the end, you have
+the word I again,
+
+51
+00:02:06.020 --> 00:02:08.380
+which appears on
+both references.
+
+52
+00:02:08.380 --> 00:02:10.705
+You can add one to your count.
+
+53
+00:02:10.705 --> 00:02:14.020
+Finally, you can get the
+BLEU score by dividing
+
+54
+00:02:14.020 --> 00:02:15.200
+your count by the number of
+
+55
+00:02:15.200 --> 00:02:17.240
+words in the candidate
+translation,
+
+56
+00:02:17.240 --> 00:02:19.675
+which in this case
+is equal to 4.
+
+57
+00:02:19.675 --> 00:02:23.365
+The whole process gives you
+a BLEU score equal to 1.
+
+58
+00:02:23.365 --> 00:02:26.440
+Weird? This translation that
+
+59
+00:02:26.440 --> 00:02:27.700
+is far from being equal to
+
+60
+00:02:27.700 --> 00:02:29.910
+the references got
+a perfect score.
+
+61
+00:02:29.910 --> 00:02:32.000
+With this vanilla BLEU score,
+
+62
+00:02:32.000 --> 00:02:35.955
+a model that always outputs
+common words will do great.
+
+63
+00:02:35.955 --> 00:02:39.130
+Let's try a modified
+version that will give
+
+64
+00:02:39.130 --> 00:02:42.315
+you a better estimate of
+your model's performance.
+
+65
+00:02:42.315 --> 00:02:45.005
+For the modified version
+of the BLEU score,
+
+66
+00:02:45.005 --> 00:02:46.730
+after you find a word from
+
+67
+00:02:46.730 --> 00:02:49.630
+the candidates in one or
+more of the references,
+
+68
+00:02:49.630 --> 00:02:51.710
+you stop considering
+that word from
+
+69
+00:02:51.710 --> 00:02:54.510
+the reference for the following
+words in the candidates.
+
+70
+00:02:54.510 --> 00:02:57.490
+In other words, you
+exhaust the words in
+
+71
+00:02:57.490 --> 00:02:59.230
+the references after you
+
+72
+00:02:59.230 --> 00:03:02.070
+match them with a word
+in the candidates.
+
+73
+00:03:02.070 --> 00:03:04.150
+Let's start from the beginning
+
+74
+00:03:04.150 --> 00:03:05.810
+of the candidate translation.
+
+75
+00:03:05.810 --> 00:03:09.130
+You have the word I that
+appears in both references.
+
+76
+00:03:09.130 --> 00:03:10.930
+You add one to your count and
+
+77
+00:03:10.930 --> 00:03:13.810
+exhaust the word I
+from both references.
+
+78
+00:03:13.810 --> 00:03:15.790
+Then you have the word I again,
+
+79
+00:03:15.790 --> 00:03:18.690
+but you don't have that word
+in the references because
+
+80
+00:03:18.690 --> 00:03:22.335
+it was taken out for the
+previous word in the candidate.
+
+81
+00:03:22.335 --> 00:03:25.060
+You don't add anything
+to your count.
+
+82
+00:03:25.060 --> 00:03:28.390
+Then you have the word M,
+
+83
+00:03:28.390 --> 00:03:30.750
+which appears in
+both references.
+
+84
+00:03:30.750 --> 00:03:32.770
+You add one to your counts and
+
+85
+00:03:32.770 --> 00:03:35.665
+eliminate the word M
+from both references.
+
+86
+00:03:35.665 --> 00:03:39.225
+After that, you have
+the word I again,
+
+87
+00:03:39.225 --> 00:03:41.915
+but no left occurrences
+in the references.
+
+88
+00:03:41.915 --> 00:03:44.330
+You don't add anything
+to your counts.
+
+89
+00:03:44.330 --> 00:03:48.430
+Finally, you divide your count
+by the number of words in
+
+90
+00:03:48.430 --> 00:03:51.005
+the candidate translation
+to get BLEU score
+
+91
+00:03:51.005 --> 00:03:55.060
+of 2/4 or 0.5.
+
+92
+00:03:55.190 --> 00:03:57.710
+As you can note, this version of
+
+93
+00:03:57.710 --> 00:03:59.090
+the BLEU score makes more sense
+
+94
+00:03:59.090 --> 00:04:00.975
+than the vanilla implementation.
+
+95
+00:04:00.975 --> 00:04:03.120
+However, like anything in life,
+
+96
+00:04:03.120 --> 00:04:04.420
+using the BLEU score as an
+
+97
+00:04:04.420 --> 00:04:06.760
+evaluation metric
+has some caveats.
+
+98
+00:04:06.760 --> 00:04:08.540
+For one, it doesn't
+
+99
+00:04:08.540 --> 00:04:11.200
+consider the semantic
+meaning of the words.
+
+100
+00:04:11.200 --> 00:04:14.715
+It also doesn't consider the
+structure of the sentence.
+
+101
+00:04:14.715 --> 00:04:16.885
+Imagine getting
+this translation.
+
+102
+00:04:16.885 --> 00:04:19.190
+Ate I was hungry because.
+
+103
+00:04:19.190 --> 00:04:22.840
+If the reference sentence is
+I ate because I was hungry,
+
+104
+00:04:22.840 --> 00:04:25.175
+this would get a
+perfect BLEU score.
+
+105
+00:04:25.175 --> 00:04:28.680
+BLEU score is the most widely
+adopted evaluation metric
+
+106
+00:04:28.680 --> 00:04:30.100
+for machine translation.
+
+107
+00:04:30.100 --> 00:04:31.600
+But you should be aware of these
+
+108
+00:04:31.600 --> 00:04:33.295
+drawbacks before using it.
+
+109
+00:04:33.295 --> 00:04:35.120
+You now know how to evaluate
+
+110
+00:04:35.120 --> 00:04:37.940
+your machine translation
+model using the BLEU score.
+
+111
+00:04:37.940 --> 00:04:41.200
+I also showed you that this
+metric has some issues
+
+112
+00:04:41.200 --> 00:04:42.740
+because it doesn't care about
+
+113
+00:04:42.740 --> 00:04:44.900
+semantics and
+sentence structure.
+
+114
+00:04:44.900 --> 00:04:46.380
+In the following video,
+
+115
+00:04:46.380 --> 00:04:49.740
+you'll see another metric
+for machine translation.
+
+116
+00:04:49.740 --> 00:04:51.900
+That metric could be used to
+
+117
+00:04:51.900 --> 00:04:54.920
+better estimate your
+model performance.

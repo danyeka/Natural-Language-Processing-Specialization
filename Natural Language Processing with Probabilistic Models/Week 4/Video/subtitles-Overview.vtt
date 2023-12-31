@@ -1,0 +1,219 @@
+WEBVTT
+
+1
+00:00:00.767 --> 00:00:02.068
+Welcome to this week.
+
+2
+00:00:02.068 --> 00:00:04.645
+You're now going to learn
+about word vectors,
+
+3
+00:00:04.645 --> 00:00:08.843
+and specifically, you're going to see
+how you can train them from scratch.
+
+4
+00:00:08.843 --> 00:00:12.671
+Previously, you just downloaded word
+vectors and used them, but in this week,
+
+5
+00:00:12.671 --> 00:00:14.546
+you're going to be able to train them.
+
+6
+00:00:14.546 --> 00:00:19.115
+In this video, you're going to learn about
+the different applications of word vectors
+
+7
+00:00:19.115 --> 00:00:24.140
+and then you're going to learn about the
+different ways of training word vectors.
+
+8
+00:00:24.140 --> 00:00:27.109
+Word vectors,
+also known as word embeddings,
+
+9
+00:00:27.109 --> 00:00:31.202
+are the cornerstone of most consumer and
+enterprise uses of NLP.
+
+10
+00:00:31.202 --> 00:00:34.774
+If you completed course one
+of the NLP specialization,
+
+11
+00:00:34.774 --> 00:00:39.258
+you may remember that you used
+pre-generated word embeddings to find
+
+12
+00:00:39.258 --> 00:00:43.978
+semantic analogies between words and
+to calculate similarity of words.
+
+13
+00:00:43.978 --> 00:00:48.167
+You could, for instance,
+combine word embeddings with a classifier,
+
+14
+00:00:48.167 --> 00:00:50.090
+to perform sentiment analysis,
+
+15
+00:00:50.090 --> 00:00:55.040
+or to classify customer reviews or
+comments from user feedback surveys.
+
+16
+00:00:55.040 --> 00:00:59.107
+More advanced use cases for word
+embeddings include machine translation
+
+17
+00:00:59.107 --> 00:01:03.240
+systems, information extraction,
+and question answering.
+
+18
+00:01:03.240 --> 00:01:05.893
+These are your learning objectives for
+this week.
+
+19
+00:01:05.893 --> 00:01:08.694
+Identify the key concepts
+of word representations.
+
+20
+00:01:08.694 --> 00:01:10.883
+You will represent words numerically so
+
+21
+00:01:10.883 --> 00:01:13.550
+that they can be used
+with mathematical models.
+
+22
+00:01:13.550 --> 00:01:16.579
+I'll also go over the benefits
+of word embeddings and
+
+23
+00:01:16.579 --> 00:01:18.605
+representing words with numbers.
+
+24
+00:01:18.605 --> 00:01:20.194
+Generate word embeddings.
+
+25
+00:01:20.194 --> 00:01:25.041
+I'll show you the general way in which a
+model can learn word embeddings from data,
+
+26
+00:01:25.041 --> 00:01:28.517
+illustrated with some examples
+of commonly used methods.
+
+27
+00:01:28.517 --> 00:01:30.861
+Prepare text for machine learning.
+
+28
+00:01:30.861 --> 00:01:36.190
+You will transform a corpus of text into a
+training set for a machine learning model.
+
+29
+00:01:36.190 --> 00:01:40.884
+I'll give practical advice that you can
+apply to real life corpora as diverse as
+
+30
+00:01:40.884 --> 00:01:42.016
+books and tweets.
+
+31
+00:01:42.016 --> 00:01:45.358
+You will implement the continuous
+bag-of-words model,
+
+32
+00:01:45.358 --> 00:01:49.640
+which is one of the many ways in
+which word embeddings can be created.
+
+33
+00:01:49.640 --> 00:01:50.690
+It's a simple and
+
+34
+00:01:50.690 --> 00:01:55.640
+efficient approach that initially
+popularized the use of word embeddings.
+
+35
+00:01:55.640 --> 00:01:58.646
+There are other techniques like GloVe,
+Word2Vec and
+
+36
+00:01:58.646 --> 00:02:00.744
+others that can be used to train them.
+
+37
+00:02:00.744 --> 00:02:04.740
+But for this week, we're going to look
+at the continuous bag-of-words model.
+
+38
+00:02:04.740 --> 00:02:06.980
+If you aren't familiar
+with neural networks,
+
+39
+00:02:06.980 --> 00:02:10.396
+then I strongly recommend that you go
+through the first course of the deep
+
+40
+00:02:10.396 --> 00:02:13.440
+learning specialization
+by deeplearning.ai.
+
+41
+00:02:13.440 --> 00:02:17.050
+If you are familiar with neural networks
+but haven't used them in a while,
+
+42
+00:02:17.050 --> 00:02:21.140
+then don't worry,
+I'll review them in this week's lecture.
+
+43
+00:02:21.140 --> 00:02:25.162
+So we have identified many applications
+that make use of word embeddings.
+
+44
+00:02:25.162 --> 00:02:29.350
+We've also seen all the cool things that
+you will be doing by the end of this week.
+
+45
+00:02:29.350 --> 00:02:30.906
+Isn't this exciting?
+
+46
+00:02:30.906 --> 00:02:32.660
+Let's get started in the next videos.

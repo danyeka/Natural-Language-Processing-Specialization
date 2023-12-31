@@ -1,0 +1,389 @@
+WEBVTT
+
+1
+00:00:00.110 --> 00:00:02.890
+There has been a lot of
+hype with the transformers.
+
+2
+00:00:02.890 --> 00:00:06.852
+In this video, I'll give you
+an overview of the transformers model.
+
+3
+00:00:06.852 --> 00:00:11.804
+The transformer model was introduced
+in 2017 by researchers at Google,
+
+4
+00:00:11.804 --> 00:00:15.855
+including Lukasz Kaiser,
+who helped us develop this course.
+
+5
+00:00:15.855 --> 00:00:19.646
+Since then, the transformer architecture
+has become the standard for
+
+6
+00:00:19.646 --> 00:00:24.842
+large language models, including BERT, T5,
+and GPT-3, which you'll learn about later.
+
+7
+00:00:24.842 --> 00:00:28.971
+The transformers revolutionized the field
+of natural language processing.
+
+8
+00:00:28.971 --> 00:00:31.988
+I suggest that you read
+the first transformer paper,
+
+9
+00:00:31.988 --> 00:00:33.538
+Attention is all you need.
+
+10
+00:00:33.538 --> 00:00:37.621
+It's the basis for all the models
+presented in the rest of this course.
+
+11
+00:00:37.621 --> 00:00:41.145
+You'll see how each part of
+the transformer model works in detail.
+
+12
+00:00:41.145 --> 00:00:46.004
+But first, I want to give you a brief
+overview of this architecture.
+
+13
+00:00:46.004 --> 00:00:49.326
+Now, don't worry if some of
+its components aren't clear,
+
+14
+00:00:49.326 --> 00:00:52.074
+I'll go more in depth on
+the following lectures.
+
+15
+00:00:52.074 --> 00:00:55.355
+The Transformer model uses
+scale dot-product attention,
+
+16
+00:00:55.355 --> 00:00:57.870
+which you saw in the first
+week of this course.
+
+17
+00:00:57.870 --> 00:01:03.021
+The first form of attention is very
+efficient in terms of computation and
+
+18
+00:01:03.021 --> 00:01:08.181
+memory due to it consisting of just
+matrix multiplication operations.
+
+19
+00:01:08.181 --> 00:01:10.936
+This mechanism is
+the core of the model and
+
+20
+00:01:10.936 --> 00:01:16.210
+it allows the transformer to grow larger
+and more complex while being faster and
+
+21
+00:01:16.210 --> 00:01:20.477
+using less memory than other
+comparable model architectures.
+
+22
+00:01:20.477 --> 00:01:24.978
+In the transformer model, you will
+use the multi-head attention layer.
+
+23
+00:01:24.978 --> 00:01:27.070
+This layer runs in parallel and
+
+24
+00:01:27.070 --> 00:01:31.334
+it has a number of scale dot-product
+attention mechanisms and
+
+25
+00:01:31.334 --> 00:01:36.571
+multiple linear transformations of
+the input queries, keys, and values.
+
+26
+00:01:36.571 --> 00:01:42.581
+In this layer, the linear transformations
+are learnable parameters.
+
+27
+00:01:42.581 --> 00:01:47.345
+The transformer encoder starts
+with a multi-head attention module
+
+28
+00:01:47.345 --> 00:01:51.132
+that performed self attention
+on the input sequence.
+
+29
+00:01:51.132 --> 00:01:57.248
+That is, each word in the input attends
+to every other word in the input.
+
+30
+00:01:57.248 --> 00:02:01.342
+This is followed by a residual
+connection and normalization,
+
+31
+00:02:01.342 --> 00:02:06.378
+a feed forward layer, and another
+residual connection and normalization.
+
+32
+00:02:06.378 --> 00:02:12.222
+This entire block is one encoder layer and
+is repeated N number of times.
+
+33
+00:02:12.222 --> 00:02:16.362
+Thanks to self attention layer,
+the encoder will give
+
+34
+00:02:16.362 --> 00:02:20.952
+you a contextual representation
+of each one of your inputs.
+
+35
+00:02:20.952 --> 00:02:25.805
+The decoder is constructed similarly
+to the encoder with multi-headed
+
+36
+00:02:25.805 --> 00:02:30.350
+attention modules,
+residual connections, and normalization.
+
+37
+00:02:30.350 --> 00:02:34.512
+The first attention module is
+masked such that each position
+
+38
+00:02:34.512 --> 00:02:37.130
+attends only to previous positions.
+
+39
+00:02:37.130 --> 00:02:40.695
+It blocks leftward flowing information.
+
+40
+00:02:40.695 --> 00:02:44.703
+The second attention module
+takes the encoder output and
+
+41
+00:02:44.703 --> 00:02:47.722
+allows the decoder to attend to all items.
+
+42
+00:02:47.722 --> 00:02:54.292
+This whole decoder layer is also repeated
+some number of times, one after another.
+
+43
+00:02:54.292 --> 00:02:59.181
+Transformers also incorporates
+a positional encoding stage which encodes
+
+44
+00:02:59.181 --> 00:03:01.865
+each input's position in the sequence.
+
+45
+00:03:01.865 --> 00:03:06.535
+This is necessary because transformers
+don't use recurrent neural networks, but
+
+46
+00:03:06.535 --> 00:03:09.045
+the word order is relevant for
+any language.
+
+47
+00:03:09.045 --> 00:03:13.333
+Positional encoding can be learned or
+fixed, just as with word embeddings.
+
+48
+00:03:13.333 --> 00:03:18.816
+For instance, let's suppose you want
+to translate from the French phrase.
+
+49
+00:03:18.816 --> 00:03:21.562
+Over here you have [FOREIGN], and
+
+50
+00:03:21.562 --> 00:03:26.250
+then you want to capture
+the sequential information.
+
+51
+00:03:26.250 --> 00:03:31.194
+The transformers uses a positional
+encoding to retain the position of
+
+52
+00:03:31.194 --> 00:03:32.711
+the input sequence.
+
+53
+00:03:32.711 --> 00:03:37.431
+The positional encoding has values that
+are added to the embeddings so that for
+
+54
+00:03:37.431 --> 00:03:41.595
+every input word you have information
+about its order and position.
+
+55
+00:03:41.595 --> 00:03:49.138
+In this case, a positional encoding
+vector for each word, [FOREIGN].
+
+56
+00:03:49.138 --> 00:03:52.543
+Putting these parts together,
+here's the full model architecture.
+
+57
+00:03:52.543 --> 00:03:56.469
+Briefly on the left,
+the input sentence is first embedded and
+
+58
+00:03:56.469 --> 00:03:59.045
+the positional encodings are applied.
+
+59
+00:03:59.045 --> 00:04:00.635
+This goes to the encoder,
+
+60
+00:04:00.635 --> 00:04:04.988
+which consists of multiple layers
+of multi-head attention modules.
+
+61
+00:04:04.988 --> 00:04:08.539
+On the right is the decoder,
+which takes the output sentence,
+
+62
+00:04:08.539 --> 00:04:12.567
+shifts it over one step to the right,
+and the outputs from the encoder.
+
+63
+00:04:12.567 --> 00:04:17.384
+The decoder output is turned
+into output probabilities using
+
+64
+00:04:17.384 --> 00:04:20.725
+a linear layer with a softmax activation.
+
+65
+00:04:20.725 --> 00:04:24.961
+This architecture is easy to
+parallelize compared to RNN models, and
+
+66
+00:04:24.961 --> 00:04:28.926
+as such, can be trained much more
+efficiently on multiple GPUs.
+
+67
+00:04:28.926 --> 00:04:33.919
+It can also scale up to learn multiple
+tasks on larger and larger datasets.
+
+68
+00:04:33.919 --> 00:04:36.727
+I went through this quickly but
+don't worry,
+
+69
+00:04:36.727 --> 00:04:39.684
+I'll go in-depth on each
+part in later videos.
+
+70
+00:04:39.684 --> 00:04:45.615
+In summary, RNNs have some problems that
+come from their sequential structure.
+
+71
+00:04:45.615 --> 00:04:50.734
+With RNNs, it is hard to fully exploit
+the advantages of parallel computing.
+
+72
+00:04:50.734 --> 00:04:54.923
+And for long sequences, important
+information might get lost within
+
+73
+00:04:54.923 --> 00:04:58.125
+the network and
+vanishing gradient problems arise.
+
+74
+00:04:58.125 --> 00:05:02.199
+But fortunately, recent research
+has found ways to solve for
+
+75
+00:05:02.199 --> 00:05:05.502
+the shortcomings of RNNs
+by using transformers.
+
+76
+00:05:05.502 --> 00:05:10.517
+Transformers are a great alternative
+to RNNs that help overcome these
+
+77
+00:05:10.517 --> 00:05:15.197
+problems in NLP and in many fields
+that process sequential data.
+
+78
+00:05:15.197 --> 00:05:18.946
+You now can see why everyone
+is talking about transformers,
+
+79
+00:05:18.946 --> 00:05:20.794
+they are indeed very useful.
+
+80
+00:05:20.794 --> 00:05:24.810
+In the next video, I'll talk about some
+of the applications of transformers.

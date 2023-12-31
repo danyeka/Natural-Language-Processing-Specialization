@@ -1,0 +1,445 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.920
+I had previously mentioned,
+
+2
+00:00:01.920 --> 00:00:04.500
+that you need context
+words and center words
+
+3
+00:00:04.500 --> 00:00:07.395
+to train your continuous
+bag-of-words model.
+
+4
+00:00:07.395 --> 00:00:08.910
+The question now is,
+
+5
+00:00:08.910 --> 00:00:12.390
+how do you actually get
+these words? Let's dive in.
+
+6
+00:00:12.390 --> 00:00:16.005
+Previously, you cleaned
+and tokenized the corpus,
+
+7
+00:00:16.005 --> 00:00:18.015
+and you now have
+this clean corpus
+
+8
+00:00:18.015 --> 00:00:20.205
+as an array of words or tokens.
+
+9
+00:00:20.205 --> 00:00:22.380
+Now, I will show you how to
+
+10
+00:00:22.380 --> 00:00:25.110
+extract center words and
+their context words,
+
+11
+00:00:25.110 --> 00:00:26.970
+which will serve as examples to
+
+12
+00:00:26.970 --> 00:00:29.445
+train the continuous
+bag-of-words model.
+
+13
+00:00:29.445 --> 00:00:31.815
+Here's the code to
+do this in Python.
+
+14
+00:00:31.815 --> 00:00:34.815
+The get_windows function
+takes two arguments,
+
+15
+00:00:34.815 --> 00:00:38.580
+words, which is an array
+of words, or tokens.
+
+16
+00:00:38.580 --> 00:00:40.455
+But I'll stick with
+the term words here.
+
+17
+00:00:40.455 --> 00:00:44.145
+The context have size
+stored in the variable C,
+
+18
+00:00:44.145 --> 00:00:45.980
+which is the number
+of words to be
+
+19
+00:00:45.980 --> 00:00:48.290
+taken on each side
+of the center word.
+
+20
+00:00:48.290 --> 00:00:50.560
+This was 2 in the
+previous video,
+
+21
+00:00:50.560 --> 00:00:53.175
+for a total window size of 5.
+
+22
+00:00:53.175 --> 00:00:55.580
+The function initializes
+a counter with
+
+23
+00:00:55.580 --> 00:00:57.710
+the index of the first word
+
+24
+00:00:57.710 --> 00:00:59.755
+that has enough words before it.
+
+25
+00:00:59.755 --> 00:01:01.425
+In the working example,
+
+26
+00:01:01.425 --> 00:01:03.210
+I am happy because
+I am learning,
+
+27
+00:01:03.210 --> 00:01:05.100
+the tokenized array would be,
+
+28
+00:01:05.100 --> 00:01:07.240
+I am happy because
+I am learning,
+
+29
+00:01:07.240 --> 00:01:10.010
+where I has the index 0,
+
+30
+00:01:10.010 --> 00:01:13.025
+am index 1, and so on.
+
+31
+00:01:13.025 --> 00:01:15.060
+For a context have size of 2,
+
+32
+00:01:15.060 --> 00:01:16.700
+where the context words are
+
+33
+00:01:16.700 --> 00:01:19.305
+the two words before and
+after the center word.
+
+34
+00:01:19.305 --> 00:01:22.610
+The first center word that
+can be used is happy.
+
+35
+00:01:22.610 --> 00:01:24.320
+It's index is 2,
+
+36
+00:01:24.320 --> 00:01:26.435
+which is the size
+of the context.
+
+37
+00:01:26.435 --> 00:01:28.850
+I then start a loop
+in this index,
+
+38
+00:01:28.850 --> 00:01:30.350
+which will run until it
+
+39
+00:01:30.350 --> 00:01:32.630
+reaches the last
+possible center word,
+
+40
+00:01:32.630 --> 00:01:35.495
+which is the last word that
+has two words after it.
+
+41
+00:01:35.495 --> 00:01:36.920
+Stopping just before it
+
+42
+00:01:36.920 --> 00:01:38.780
+reaches the index
+corresponding to
+
+43
+00:01:38.780 --> 00:01:40.400
+the number of words in the array
+
+44
+00:01:40.400 --> 00:01:42.604
+minus the size of the context.
+
+45
+00:01:42.604 --> 00:01:44.855
+In each iteration of the loop,
+
+46
+00:01:44.855 --> 00:01:46.850
+I extract the center word,
+
+47
+00:01:46.850 --> 00:01:49.190
+which is the word at
+the current index.
+
+48
+00:01:49.190 --> 00:01:51.560
+Next, I create an array with
+
+49
+00:01:51.560 --> 00:01:53.810
+the C words before
+the center word,
+
+50
+00:01:53.810 --> 00:01:55.490
+and the C words after it.
+
+51
+00:01:55.490 --> 00:01:59.150
+I can now return the context
+word and center words.
+
+52
+00:01:59.150 --> 00:02:02.430
+I'm using a special way of
+returning value in Python.
+
+53
+00:02:02.430 --> 00:02:03.680
+As you can see, I'm using
+
+54
+00:02:03.680 --> 00:02:05.780
+the yield keyword
+instead of return.
+
+55
+00:02:05.780 --> 00:02:08.035
+Without going into
+too much detail,
+
+56
+00:02:08.035 --> 00:02:10.895
+where return would immediately
+exit the function,
+
+57
+00:02:10.895 --> 00:02:12.980
+yield returns the
+values and simply
+
+58
+00:02:12.980 --> 00:02:15.155
+pauses the main
+get_windows function.
+
+59
+00:02:15.155 --> 00:02:18.060
+The function known as a
+generator function with
+
+60
+00:02:18.060 --> 00:02:21.230
+the use of yield will
+then continue running,
+
+61
+00:02:21.230 --> 00:02:22.910
+if more values are needed.
+
+62
+00:02:22.910 --> 00:02:25.325
+Simply put, with a yield,
+
+63
+00:02:25.325 --> 00:02:28.550
+I can return values from
+a function several times,
+
+64
+00:02:28.550 --> 00:02:29.960
+which is what I'm doing at
+
+65
+00:02:29.960 --> 00:02:31.940
+each iteration of
+the while loop.
+
+66
+00:02:31.940 --> 00:02:34.640
+Finally, I increase my
+index by one to move
+
+67
+00:02:34.640 --> 00:02:38.755
+my sliding window one word
+to the right. Just to recap.
+
+68
+00:02:38.755 --> 00:02:40.610
+The get_windows
+function takes in
+
+69
+00:02:40.610 --> 00:02:42.680
+a corpus and the context size,
+
+70
+00:02:42.680 --> 00:02:44.540
+and returns the
+context words and
+
+71
+00:02:44.540 --> 00:02:47.105
+center words for each
+successive window.
+
+72
+00:02:47.105 --> 00:02:48.855
+Here's how to use this function.
+
+73
+00:02:48.855 --> 00:02:51.560
+I'm using a loop to get
+the successive tuples of
+
+74
+00:02:51.560 --> 00:02:54.740
+context words and center
+words into x and y.
+
+75
+00:02:54.740 --> 00:02:57.035
+Then displaying these words,
+
+76
+00:02:57.035 --> 00:02:59.000
+you will notice that I'm using
+
+77
+00:02:59.000 --> 00:03:02.570
+usual machine learning notation
+for features and target,
+
+78
+00:03:02.570 --> 00:03:04.460
+as this is what the
+context words and
+
+79
+00:03:04.460 --> 00:03:07.615
+center words are for the
+continuous bag-of-words model.
+
+80
+00:03:07.615 --> 00:03:09.890
+If I run the code on the array,
+
+81
+00:03:09.890 --> 00:03:11.855
+I am happy because
+I am learning,
+
+82
+00:03:11.855 --> 00:03:14.195
+which I got by
+tokenizing the sentence,
+
+83
+00:03:14.195 --> 00:03:15.895
+I'm happy because I'm learning
+
+84
+00:03:15.895 --> 00:03:18.165
+and the context have size of 2,
+
+85
+00:03:18.165 --> 00:03:19.515
+this is the output.
+
+86
+00:03:19.515 --> 00:03:22.940
+Up next, you'll convert this
+sets of words into a set of
+
+87
+00:03:22.940 --> 00:03:24.620
+vectors is going
+to be consumed by
+
+88
+00:03:24.620 --> 00:03:27.175
+the continuous
+bag-of-words model.
+
+89
+00:03:27.175 --> 00:03:30.170
+You have seen how to
+extract center words and
+
+90
+00:03:30.170 --> 00:03:33.035
+contexts words using a
+sliding window in Python.
+
+91
+00:03:33.035 --> 00:03:35.660
+This is useful for the
+programming assignments.
+
+92
+00:03:35.660 --> 00:03:37.430
+You also saw how you can use
+
+93
+00:03:37.430 --> 00:03:39.440
+the yield functionality
+in Python,
+
+94
+00:03:39.440 --> 00:03:42.275
+which is commonly used
+for data generators,
+
+95
+00:03:42.275 --> 00:03:44.510
+or you can think of them
+as functions that keep
+
+96
+00:03:44.510 --> 00:03:47.730
+giving you data
+in small batches.

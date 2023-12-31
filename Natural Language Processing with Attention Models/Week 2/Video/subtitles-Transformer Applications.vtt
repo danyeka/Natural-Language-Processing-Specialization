@@ -1,0 +1,509 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:04.093
+Transformer is one of the most
+versatile deep learning models.
+
+2
+00:00:04.093 --> 00:00:09.273
+It is successfully applied to a number
+of tasks both in NLP and beyond.
+
+3
+00:00:09.273 --> 00:00:11.579
+Let me show you a few examples.
+
+4
+00:00:11.579 --> 00:00:16.048
+>> Speaker 2: In this video you will see a
+brief overview of the diverse transformer
+
+5
+00:00:16.048 --> 00:00:17.520
+applications in NLP.
+
+6
+00:00:17.520 --> 00:00:21.123
+Also, you will learn about
+some powerful transformers.
+
+7
+00:00:23.182 --> 00:00:28.070
+First, I'll mention the most popular
+applications of transformers in NLP.
+
+8
+00:00:28.070 --> 00:00:32.401
+Then you'll learn what are the state
+of the art transformer models,
+
+9
+00:00:32.401 --> 00:00:37.418
+including the so called text to text
+transfer transformer, T5 in shorthand.
+
+10
+00:00:37.418 --> 00:00:41.675
+Finally, you will see how useful and
+versatile T5 is.
+
+11
+00:00:41.675 --> 00:00:46.469
+Since transformers can be generally
+applied to any sequential
+
+12
+00:00:46.469 --> 00:00:51.182
+task just like RNNs,
+it has been widely used throughout NLP.
+
+13
+00:00:51.182 --> 00:00:52.640
+One very interesting and
+
+14
+00:00:52.640 --> 00:00:55.979
+popular application is
+automatic text summarization.
+
+15
+00:00:55.979 --> 00:01:00.307
+They're also used for autocompletion,
+named entity recognition,
+
+16
+00:01:00.307 --> 00:01:03.841
+automatic question answering,
+machine translation.
+
+17
+00:01:03.841 --> 00:01:09.072
+Another application is chatbots and
+many other NLP tasks like
+
+18
+00:01:09.072 --> 00:01:14.413
+sentiment analysis and
+market intelligence, among others.
+
+19
+00:01:14.413 --> 00:01:18.271
+Many variants of transformers
+are used in NLP and as usual,
+
+20
+00:01:18.271 --> 00:01:21.758
+researchers give their
+models their very own names.
+
+21
+00:01:21.758 --> 00:01:26.201
+For example, GPT-2 which stands for
+generative pre-training for
+
+22
+00:01:26.201 --> 00:01:30.654
+transformer, is a transformer
+created by OpenAI with pretraining.
+
+23
+00:01:30.654 --> 00:01:36.339
+It is so good at generating text that news
+magazines the economists had a reporter
+
+24
+00:01:36.339 --> 00:01:41.356
+ask the GPT-2 model questions as if
+they were interviewing a person,
+
+25
+00:01:41.356 --> 00:01:45.388
+and they published the interview
+at the end in 2019.
+
+26
+00:01:45.388 --> 00:01:49.933
+Bert, which stands for
+bidirectional encoder representations from
+
+27
+00:01:49.933 --> 00:01:54.322
+transformers and which was created
+by the Google AI language team,
+
+28
+00:01:54.322 --> 00:01:59.108
+is another famous transformer used for
+learning text representations.
+
+29
+00:01:59.108 --> 00:02:03.417
+T5, which stands for
+text-to-text transfer transformer and
+
+30
+00:02:03.417 --> 00:02:07.800
+was also created by Google,
+is a multitask transformer that can do
+
+31
+00:02:07.800 --> 00:02:11.261
+question answering among
+a lot of different tasks.
+
+32
+00:02:11.261 --> 00:02:14.980
+Let's dive a little bit
+deeper into the T5 model.
+
+33
+00:02:14.980 --> 00:02:18.738
+A single T5 model can learn to
+do multiple different tasks.
+
+34
+00:02:18.738 --> 00:02:21.407
+This is pretty significant advancement.
+
+35
+00:02:21.407 --> 00:02:26.550
+For example, let's say you want to
+perform tasks such as translation,
+
+36
+00:02:26.550 --> 00:02:29.766
+classification, and question answering.
+
+37
+00:02:29.766 --> 00:02:33.930
+Normally, you would design and train
+one model to perform translation, and
+
+38
+00:02:33.930 --> 00:02:37.647
+then design and train a second model
+to perform classification, and
+
+39
+00:02:37.647 --> 00:02:41.318
+then design and train a third model
+to perform question answering.
+
+40
+00:02:41.318 --> 00:02:42.841
+But with transformers,
+
+41
+00:02:42.841 --> 00:02:47.130
+you can train a single model that is
+able to perform all of these tasks.
+
+42
+00:02:47.130 --> 00:02:51.997
+For instance, to tell the T5 model that
+you wanted to perform a certain task,
+
+43
+00:02:51.997 --> 00:02:56.792
+you'll give the model an input string of
+text that includes both the task that
+
+44
+00:02:56.792 --> 00:03:01.537
+you want it to do, as well as the data
+that you want it to perform that task on.
+
+45
+00:03:01.537 --> 00:03:06.670
+For example, if you want to translate
+the particular English sentence,
+
+46
+00:03:06.670 --> 00:03:09.069
+I am happy from English to French,
+
+47
+00:03:09.069 --> 00:03:14.644
+you would use the input string translates
+English into French colon I am happy.
+
+48
+00:03:14.644 --> 00:03:18.327
+And the model would be able to
+output the sentence [FOREIGN],
+
+49
+00:03:18.327 --> 00:03:21.430
+which is the translation
+of I'm happy in French.
+
+50
+00:03:21.430 --> 00:03:26.888
+This is an example of classification over
+here, where input sentences are classified
+
+51
+00:03:26.888 --> 00:03:31.390
+into two classes, acceptable when
+they make sense and unacceptable.
+
+52
+00:03:31.390 --> 00:03:35.577
+In this example, the input string
+starts with cola sentence,
+
+53
+00:03:35.577 --> 00:03:39.054
+which the model understands
+is asking it to classify
+
+54
+00:03:39.054 --> 00:03:43.890
+the sentence that follows this
+command as acceptable or unacceptable.
+
+55
+00:03:43.890 --> 00:03:48.426
+For instance, the sentence he
+bought fruits and is incomplete and
+
+56
+00:03:48.426 --> 00:03:51.023
+then is classified as unacceptable.
+
+57
+00:03:51.023 --> 00:03:55.422
+Meanwhile, if we give the T5
+model this input cola sentence,
+
+58
+00:03:55.422 --> 00:03:57.838
+he bought fruits and vegetables.
+
+59
+00:03:57.838 --> 00:04:03.290
+The model classifies he bought fruits and
+vegetables as an acceptable sentence.
+
+60
+00:04:03.290 --> 00:04:08.902
+If we give the T5 model the input starting
+with the word question over here,
+
+61
+00:04:08.902 --> 00:04:15.230
+followed by a colon, the model then knows
+that this is a question answering example.
+
+62
+00:04:15.230 --> 00:04:16.417
+In this example,
+
+63
+00:04:16.417 --> 00:04:21.571
+the question is which volcano in Tanzania
+is the highest mountain in Africa?
+
+64
+00:04:21.571 --> 00:04:27.690
+And your T5 will output the answer to that
+question, which is Mount Kilimanjaro.
+
+65
+00:04:27.690 --> 00:04:32.316
+And remember that all of these tasks
+are done by the same model with no
+
+66
+00:04:32.316 --> 00:04:36.792
+modification other than the input
+sentences, how cool is that?
+
+67
+00:04:36.792 --> 00:04:42.230
+Even more, the T5 also performs tasks
+of regression and summarization.
+
+68
+00:04:42.230 --> 00:04:48.090
+Recall that a regression model is one
+that outputs a continuous numeric value.
+
+69
+00:04:48.090 --> 00:04:53.040
+Here you can see an example of regression
+which outputs the similarity between
+
+70
+00:04:53.040 --> 00:04:54.090
+two sentences.
+
+71
+00:04:54.090 --> 00:04:59.222
+The start of the input string Stsb
+will indicate to the model that
+
+72
+00:04:59.222 --> 00:05:04.750
+it should perform a similarity
+measurement between two sentences.
+
+73
+00:05:04.750 --> 00:05:09.658
+The two sentences are denoted by
+the words sentence1 and sentence2.
+
+74
+00:05:09.658 --> 00:05:15.004
+The range of possible outputs for this
+model is any numerical value ranging from
+
+75
+00:05:15.004 --> 00:05:20.348
+zero to five, where zero indicates that
+the sentences are not similar at all and
+
+76
+00:05:20.348 --> 00:05:23.970
+five indicates that
+the sentences are very similar.
+
+77
+00:05:23.970 --> 00:05:29.328
+Let's consider this example when
+comparing the sentence 1, cats and
+
+78
+00:05:29.328 --> 00:05:34.951
+dogs are mammals with sentence 2,
+these are four known forces in nature,
+
+79
+00:05:34.951 --> 00:05:38.810
+gravity, electromagnetic,
+weak, and strong.
+
+80
+00:05:38.810 --> 00:05:41.645
+The resulting similarity level is zero,
+
+81
+00:05:41.645 --> 00:05:44.970
+indicating that the sentences
+are not similar.
+
+82
+00:05:44.970 --> 00:05:47.484
+Now let's consider this other example.
+
+83
+00:05:47.484 --> 00:05:50.568
+Sentence1, cats and dogs are mammals.
+
+84
+00:05:50.568 --> 00:05:55.310
+And sentence 2, cats, and dogs,
+and cows are domesticated.
+
+85
+00:05:55.310 --> 00:05:56.374
+In this case,
+
+86
+00:05:56.374 --> 00:06:01.973
+the similarity level may be 2.6 if you
+use a range between zero and five.
+
+87
+00:06:01.973 --> 00:06:05.994
+Finally, here you can see
+an example of summarization.
+
+88
+00:06:05.994 --> 00:06:10.962
+It is a long story about all
+the events and details of an onslaught
+
+89
+00:06:10.962 --> 00:06:15.840
+of severe weather in Mississippi,
+which is summarized just as
+
+90
+00:06:15.840 --> 00:06:20.270
+six people hospitalized after
+a storm in Attala county.
+
+91
+00:06:20.270 --> 00:06:23.864
+This is a demo using T5 for
+trivia questions so
+
+92
+00:06:23.864 --> 00:06:27.374
+that you can compete
+against a transformer.
+
+93
+00:06:27.374 --> 00:06:32.311
+What makes this demo interesting is
+that T5 was trained in a closed book
+
+94
+00:06:32.311 --> 00:06:35.945
+setting without access to
+any external knowledge.
+
+95
+00:06:39.223 --> 00:06:44.347
+So these are examples where I
+was playing against the trivia.
+
+96
+00:06:48.762 --> 00:06:53.989
+All right, so in this video you saw what
+are the transformers applications in NLP,
+
+97
+00:06:53.989 --> 00:06:57.214
+which range from translations
+to summarization.
+
+98
+00:06:57.214 --> 00:07:01.028
+Some transformers include GPT,
+BERT and T5.
+
+99
+00:07:01.028 --> 00:07:04.770
+And I also showed you how versatile and
+powerful T5 is,
+
+100
+00:07:04.770 --> 00:07:09.000
+as it can perform multiple tasks
+using tech representations.
+
+101
+00:07:09.000 --> 00:07:12.765
+>> Speaker 1: Now you know why we need
+transformers and where it can be applied.
+
+102
+00:07:12.765 --> 00:07:17.680
+Isn't it astounding this one model
+can handle such a variety of tasks?
+
+103
+00:07:17.680 --> 00:07:21.255
+I hope you are now eager to
+learn how transformers works.
+
+104
+00:07:21.255 --> 00:07:23.401
+And that's what I will show you next.
+
+105
+00:07:23.401 --> 00:07:24.630
+Let's go to the next video.

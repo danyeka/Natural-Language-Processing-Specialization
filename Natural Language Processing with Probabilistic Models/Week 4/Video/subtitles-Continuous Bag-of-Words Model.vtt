@@ -1,0 +1,460 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.040
+You'll now see the
+overall structure of
+
+2
+00:00:02.040 --> 00:00:04.410
+the algorithm you'll be
+implementing this week.
+
+3
+00:00:04.410 --> 00:00:06.300
+You'll see how you
+can initialize
+
+4
+00:00:06.300 --> 00:00:09.015
+your word vectors to
+predict new word vectors.
+
+5
+00:00:09.015 --> 00:00:11.715
+Let's dive in and see
+how you can do this.
+
+6
+00:00:11.715 --> 00:00:14.070
+I'll start with the
+overall process for
+
+7
+00:00:14.070 --> 00:00:16.455
+machine learning model-based
+word embeddings,
+
+8
+00:00:16.455 --> 00:00:17.970
+and then move on to how it's
+
+9
+00:00:17.970 --> 00:00:21.570
+instantiated for the
+continuous bag-of-words model.
+
+10
+00:00:21.570 --> 00:00:23.910
+As a reminder, to
+create word embeddings,
+
+11
+00:00:23.910 --> 00:00:25.200
+you need a corpus,
+
+12
+00:00:25.200 --> 00:00:26.910
+and a machine
+learning model that
+
+13
+00:00:26.910 --> 00:00:28.620
+performs a learning task.
+
+14
+00:00:28.620 --> 00:00:30.960
+One by-product of
+the learning task
+
+15
+00:00:30.960 --> 00:00:33.240
+is a set of word embeddings.
+
+16
+00:00:33.240 --> 00:00:36.300
+You also need a way to
+transform the corpus into
+
+17
+00:00:36.300 --> 00:00:37.920
+a representation that is
+
+18
+00:00:37.920 --> 00:00:40.230
+suited to the machine
+learning model.
+
+19
+00:00:40.230 --> 00:00:43.250
+In the case of the continuous
+bag-of-words model,
+
+20
+00:00:43.250 --> 00:00:45.605
+the objective of the
+task is to predict
+
+21
+00:00:45.605 --> 00:00:48.640
+a missing word based on
+the surrounding words.
+
+22
+00:00:48.640 --> 00:00:50.570
+The rationale is that if
+
+23
+00:00:50.570 --> 00:00:52.670
+two unique words
+are both frequently
+
+24
+00:00:52.670 --> 00:00:54.680
+surrounded by a similar sets of
+
+25
+00:00:54.680 --> 00:00:57.545
+words when used in
+various sentences,
+
+26
+00:00:57.545 --> 00:01:01.480
+then those two words tend to
+be related in their meaning.
+
+27
+00:01:01.480 --> 00:01:03.590
+Another way to say this is that
+
+28
+00:01:03.590 --> 00:01:05.750
+they are related semantically.
+
+29
+00:01:05.750 --> 00:01:08.345
+For example, in the sentence,
+
+30
+00:01:08.345 --> 00:01:10.550
+the little something is barking,
+
+31
+00:01:10.550 --> 00:01:12.200
+with a large enough corpus,
+
+32
+00:01:12.200 --> 00:01:13.790
+the model will learn
+to predict that
+
+33
+00:01:13.790 --> 00:01:16.730
+the missing word is
+related to dogs,
+
+34
+00:01:16.730 --> 00:01:19.235
+such as the word dog itself,
+
+35
+00:01:19.235 --> 00:01:23.185
+or puppy, hound,
+terrier, and so on.
+
+36
+00:01:23.185 --> 00:01:25.790
+The model will end up
+learning the meaning
+
+37
+00:01:25.790 --> 00:01:28.510
+of words based on
+their contexts.
+
+38
+00:01:28.510 --> 00:01:30.860
+How do you use the
+corpus to create
+
+39
+00:01:30.860 --> 00:01:33.215
+training data for
+the prediction task?
+
+40
+00:01:33.215 --> 00:01:36.485
+Let's say that the
+corpus is the sentence,
+
+41
+00:01:36.485 --> 00:01:38.585
+I am happy because I'm learning,
+
+42
+00:01:38.585 --> 00:01:41.035
+and you can ignore the
+punctuation for now.
+
+43
+00:01:41.035 --> 00:01:44.080
+For a given word of
+a corpus, happy,
+
+44
+00:01:44.080 --> 00:01:47.510
+for example, which I'll
+call the center word,
+
+45
+00:01:47.510 --> 00:01:51.019
+I will define the context
+words as forwards,
+
+46
+00:01:51.019 --> 00:01:53.120
+the two words before
+the center word,
+
+47
+00:01:53.120 --> 00:01:54.970
+and the towards after it,
+
+48
+00:01:54.970 --> 00:01:57.945
+and I'll note this
+as C equals 2,
+
+49
+00:01:57.945 --> 00:02:00.540
+for the two words
+before or after.
+
+50
+00:02:00.540 --> 00:02:04.530
+Where C is called the half
+size of the contexts,
+
+51
+00:02:04.530 --> 00:02:07.520
+it is a hyperparameter
+of the model.
+
+52
+00:02:07.520 --> 00:02:10.010
+You could use another
+number of words.
+
+53
+00:02:10.010 --> 00:02:11.575
+This is just an example.
+
+54
+00:02:11.575 --> 00:02:14.180
+Here, the context words
+for the center word
+
+55
+00:02:14.180 --> 00:02:17.450
+happy are I am because I.
+
+56
+00:02:17.450 --> 00:02:20.240
+Let's also define the
+window as the count
+
+57
+00:02:20.240 --> 00:02:23.135
+of the center word plus
+the context words.
+
+58
+00:02:23.135 --> 00:02:25.940
+Here, the size of the
+window is equal to
+
+59
+00:02:25.940 --> 00:02:29.345
+one center word plus two
+context words before,
+
+60
+00:02:29.345 --> 00:02:31.430
+plus two contexts words after,
+
+61
+00:02:31.430 --> 00:02:32.995
+which equals to five.
+
+62
+00:02:32.995 --> 00:02:34.595
+To train the model,
+
+63
+00:02:34.595 --> 00:02:36.925
+you will need a
+sets of examples,
+
+64
+00:02:36.925 --> 00:02:38.840
+and each example will be made of
+
+65
+00:02:38.840 --> 00:02:41.945
+context words and the center
+word to be predicted.
+
+66
+00:02:41.945 --> 00:02:43.909
+In this first example,
+
+67
+00:02:43.909 --> 00:02:47.870
+the window is, I am
+happy because I,
+
+68
+00:02:47.870 --> 00:02:50.390
+and the model will
+take the context words
+
+69
+00:02:50.390 --> 00:02:51.905
+I am because I,
+
+70
+00:02:51.905 --> 00:02:54.565
+and should predict the
+center word, happy.
+
+71
+00:02:54.565 --> 00:02:57.380
+You can now slide the
+window by one word,
+
+72
+00:02:57.380 --> 00:03:00.200
+and the next training
+example that you have is,
+
+73
+00:03:00.200 --> 00:03:02.950
+I'm happy something I am.
+
+74
+00:03:02.950 --> 00:03:06.410
+The input to the model
+will be the context words,
+
+75
+00:03:06.410 --> 00:03:08.000
+I'm happy I am,
+
+76
+00:03:08.000 --> 00:03:09.650
+and the target center word,
+
+77
+00:03:09.650 --> 00:03:11.695
+to predict is because.
+
+78
+00:03:11.695 --> 00:03:14.045
+Sliding the window by one again,
+
+79
+00:03:14.045 --> 00:03:16.490
+the model will take
+happy because I'm
+
+80
+00:03:16.490 --> 00:03:19.780
+learning and should
+predict the target I.
+
+81
+00:03:19.780 --> 00:03:21.290
+This is basically how the
+
+82
+00:03:21.290 --> 00:03:23.840
+continuous bag-of-words
+model works.
+
+83
+00:03:23.840 --> 00:03:26.090
+As you can see in the
+model architecture
+
+84
+00:03:26.090 --> 00:03:27.485
+from the original paper,
+
+85
+00:03:27.485 --> 00:03:29.480
+context words as inputs,
+
+86
+00:03:29.480 --> 00:03:31.480
+and center words as outputs.
+
+87
+00:03:31.480 --> 00:03:33.620
+To recap, you just learned how
+
+88
+00:03:33.620 --> 00:03:36.845
+the continuous bag-of-words
+model broadly works.
+
+89
+00:03:36.845 --> 00:03:38.345
+For the rest of the week,
+
+90
+00:03:38.345 --> 00:03:41.165
+you'll focus on preparing
+a training data-set,
+
+91
+00:03:41.165 --> 00:03:42.995
+starting from a corpus,
+
+92
+00:03:42.995 --> 00:03:46.525
+and then you'll dive into the
+math powering the models.
+
+93
+00:03:46.525 --> 00:03:50.315
+To recap, in a continuous
+bag-of-words model,
+
+94
+00:03:50.315 --> 00:03:52.640
+you try to predict
+the center word using
+
+95
+00:03:52.640 --> 00:03:55.220
+the context words or
+the surrounding words,
+
+96
+00:03:55.220 --> 00:03:57.635
+and as a byproduct
+of the algorithm,
+
+97
+00:03:57.635 --> 00:03:59.780
+you end up getting
+the word embeddings.
+
+98
+00:03:59.780 --> 00:04:00.950
+In the next videos,
+
+99
+00:04:00.950 --> 00:04:04.170
+we will show you how
+this actually works.

@@ -1,0 +1,564 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.460
+Hugging Face provides
+you everything that you
+
+2
+00:00:02.460 --> 00:00:04.980
+need to fine tune a
+transformer model.
+
+3
+00:00:04.980 --> 00:00:07.500
+They provide more than
+1,000 datasets for
+
+4
+00:00:07.500 --> 00:00:08.850
+specific tasks that you can
+
+5
+00:00:08.850 --> 00:00:11.125
+quickly load using
+the datasets library.
+
+6
+00:00:11.125 --> 00:00:12.720
+They also provide you with
+
+7
+00:00:12.720 --> 00:00:14.670
+tokenizers that help
+you pre-process
+
+8
+00:00:14.670 --> 00:00:16.770
+your data before
+the training and
+
+9
+00:00:16.770 --> 00:00:19.755
+post-process the outputs
+after running the model..
+
+10
+00:00:19.755 --> 00:00:22.080
+They have more than 15,000 model
+
+11
+00:00:22.080 --> 00:00:23.445
+checkpoints that you can load
+
+12
+00:00:23.445 --> 00:00:25.290
+from the transformer's library.
+
+13
+00:00:25.290 --> 00:00:28.320
+Additionally, the trainer
+object lets you train
+
+14
+00:00:28.320 --> 00:00:29.520
+your model without worrying
+
+15
+00:00:29.520 --> 00:00:31.680
+about coding the
+training procedure.
+
+16
+00:00:31.680 --> 00:00:33.345
+As if it wasn't enough,
+
+17
+00:00:33.345 --> 00:00:35.310
+it also has predefined metrics
+
+18
+00:00:35.310 --> 00:00:36.630
+that you can use to evaluate
+
+19
+00:00:36.630 --> 00:00:38.390
+your model's
+performance which can
+
+20
+00:00:38.390 --> 00:00:41.005
+integrate into the
+trainer objects.
+
+21
+00:00:41.005 --> 00:00:44.600
+Hugging Face has more than
+15,000 model checkpoints that
+
+22
+00:00:44.600 --> 00:00:45.800
+you can use as starting
+
+23
+00:00:45.800 --> 00:00:48.065
+points for your fine
+tuning process.
+
+24
+00:00:48.065 --> 00:00:50.150
+Recall that a model checkpoints
+
+25
+00:00:50.150 --> 00:00:51.770
+is the set of
+weights learned for
+
+26
+00:00:51.770 --> 00:00:53.930
+a model during the
+training procedure
+
+27
+00:00:53.930 --> 00:00:56.015
+using a determined datasets.
+
+28
+00:00:56.015 --> 00:00:57.980
+For instance, you could use
+
+29
+00:00:57.980 --> 00:01:00.170
+a model checkpoints for
+the distilled version of
+
+30
+00:01:00.170 --> 00:01:02.030
+the bird transformer obtained by
+
+31
+00:01:02.030 --> 00:01:04.295
+training on the
+question-answering datasets,
+
+32
+00:01:04.295 --> 00:01:05.720
+which you can find as
+
+33
+00:01:05.720 --> 00:01:11.120
+distil-base-case distil-squad
+in Hugging Face.
+
+34
+00:01:11.120 --> 00:01:14.060
+Or you could use
+the base version of
+
+35
+00:01:14.060 --> 00:01:17.480
+the bert model trade on
+the KAIST English corpus,
+
+36
+00:01:17.480 --> 00:01:21.600
+which you can find
+as bert-base-cased.
+
+37
+00:01:21.600 --> 00:01:22.820
+You can explore the Hugging Face
+
+38
+00:01:22.820 --> 00:01:24.080
+model library to look for
+
+39
+00:01:24.080 --> 00:01:27.410
+a checkpoint that you can use
+for your specific use case.
+
+40
+00:01:27.410 --> 00:01:30.485
+Once you have selected the
+checkpoints you want to use,
+
+41
+00:01:30.485 --> 00:01:32.720
+you can upload this
+architecture and weights using
+
+42
+00:01:32.720 --> 00:01:34.340
+a single line of code using
+
+43
+00:01:34.340 --> 00:01:36.440
+functions from the
+transformers library.
+
+44
+00:01:36.440 --> 00:01:39.350
+You'll see how to do that
+in the next ungraded lab.
+
+45
+00:01:39.350 --> 00:01:41.740
+Don't worry about
+the code just yet.
+
+46
+00:01:41.740 --> 00:01:44.390
+Now to fine tune a
+transformer model for
+
+47
+00:01:44.390 --> 00:01:48.650
+a specific task or perform
+well in a particular domain,
+
+48
+00:01:48.650 --> 00:01:50.195
+you need lots of data.
+
+49
+00:01:50.195 --> 00:01:53.210
+You could get and
+process your datasets by
+
+50
+00:01:53.210 --> 00:01:55.280
+scraping the web or even
+
+51
+00:01:55.280 --> 00:01:57.290
+collecting data from
+an app you made.
+
+52
+00:01:57.290 --> 00:01:59.920
+But Hugging Face has
+a library with task
+
+53
+00:01:59.920 --> 00:02:01.570
+specific datasets that is worth
+
+54
+00:02:01.570 --> 00:02:04.180
+exploring before you go
+through much trouble.
+
+55
+00:02:04.180 --> 00:02:06.955
+You can search this dataset
+library on their web
+
+56
+00:02:06.955 --> 00:02:10.225
+by filtering for task
+category, language, and size.
+
+57
+00:02:10.225 --> 00:02:12.970
+To load any datasets
+that you choose,
+
+58
+00:02:12.970 --> 00:02:16.070
+you only need a function
+from datasets library.
+
+59
+00:02:16.070 --> 00:02:19.480
+If you decide to use a
+dataset from Hugging Face,
+
+60
+00:02:19.480 --> 00:02:22.615
+you only need a line of
+code to load your data.
+
+61
+00:02:22.615 --> 00:02:24.775
+If you already have
+your datasets,
+
+62
+00:02:24.775 --> 00:02:27.200
+the loading process
+is just as easy.
+
+63
+00:02:27.200 --> 00:02:30.400
+Using the Hugging Face
+datasets library is
+
+64
+00:02:30.400 --> 00:02:31.600
+a smart choice because it is
+
+65
+00:02:31.600 --> 00:02:34.015
+optimized to work with
+massive datasets.
+
+66
+00:02:34.015 --> 00:02:36.460
+It has methods that will
+help you pre-process
+
+67
+00:02:36.460 --> 00:02:40.280
+the data even if you decide
+to work with your own data.
+
+68
+00:02:40.470 --> 00:02:43.090
+Once you figure out what dataset
+
+69
+00:02:43.090 --> 00:02:44.890
+to use to fine tune your model,
+
+70
+00:02:44.890 --> 00:02:46.150
+you need to pre-process
+
+71
+00:02:46.150 --> 00:02:49.225
+the data to feed it to
+the model for training.
+
+72
+00:02:49.225 --> 00:02:52.090
+The way to pre-process the
+data varies depending on
+
+73
+00:02:52.090 --> 00:02:55.255
+the task and the model
+you want to fine tune.
+
+74
+00:02:55.255 --> 00:02:58.320
+But Hugging Face provides
+tokenizer objects,
+
+75
+00:02:58.320 --> 00:02:59.775
+thus ease the process.
+
+76
+00:02:59.775 --> 00:03:02.410
+You only need to specify the
+model checkpoints you are
+
+77
+00:03:02.410 --> 00:03:03.789
+using and the tokenizer
+
+78
+00:03:03.789 --> 00:03:05.870
+does almost all
+the heavy lifting.
+
+79
+00:03:05.870 --> 00:03:08.785
+A tokenizer receives
+your text data
+
+80
+00:03:08.785 --> 00:03:11.560
+and returns the tokens
+that your model can read.
+
+81
+00:03:11.560 --> 00:03:15.610
+For instance, you can pass
+a distill bert tokenizer,
+
+82
+00:03:15.610 --> 00:03:17.050
+that's x with the question,
+
+83
+00:03:17.050 --> 00:03:19.510
+what's well-known
+superheroes were introduced
+
+84
+00:03:19.510 --> 00:03:24.230
+between 1939 and 1941
+by Detective Comics?
+
+85
+00:03:24.230 --> 00:03:26.600
+It would return
+the numeric token,
+
+86
+00:03:26.600 --> 00:03:28.160
+that's the distill birds model
+
+87
+00:03:28.160 --> 00:03:30.355
+can use for training
+and inference.
+
+88
+00:03:30.355 --> 00:03:32.630
+You might need to take
+some additional steps
+
+89
+00:03:32.630 --> 00:03:34.535
+for the pre-processing
+of your data.
+
+90
+00:03:34.535 --> 00:03:36.050
+After getting the tokens that
+
+91
+00:03:36.050 --> 00:03:38.765
+vary depending on the model
+you want to fine-tune,
+
+92
+00:03:38.765 --> 00:03:40.400
+the dataset you're using
+
+93
+00:03:40.400 --> 00:03:42.760
+and the task you're
+training the model for.
+
+94
+00:03:42.760 --> 00:03:44.990
+To ensure that you're doing
+everything you need to
+
+95
+00:03:44.990 --> 00:03:46.900
+do during the
+pre-processing step,
+
+96
+00:03:46.900 --> 00:03:48.500
+you need to read
+the description of
+
+97
+00:03:48.500 --> 00:03:51.425
+your model checkpoints and
+the datasets you are using,
+
+98
+00:03:51.425 --> 00:03:54.415
+which are also provided
+by Hugging Face.
+
+99
+00:03:54.415 --> 00:03:57.485
+Now to perform the fine
+tuning of your model,
+
+100
+00:03:57.485 --> 00:03:59.555
+you need to run a
+training procedure
+
+101
+00:03:59.555 --> 00:04:02.090
+and as you might
+already have guessed,
+
+102
+00:04:02.090 --> 00:04:04.915
+Hugging Face will make this
+step easier for you too.
+
+103
+00:04:04.915 --> 00:04:07.235
+The Hugging Face
+transformer's library
+
+104
+00:04:07.235 --> 00:04:09.830
+has the trainer object that
+gets the model that you
+
+105
+00:04:09.830 --> 00:04:11.840
+want to fine tune as inputs
+
+106
+00:04:11.840 --> 00:04:14.615
+with some other arguments
+that you can tweak as needed,
+
+107
+00:04:14.615 --> 00:04:16.685
+such as the number
+form of steps and
+
+108
+00:04:16.685 --> 00:04:18.785
+epochs or the strength
+of the weight decay.
+
+109
+00:04:18.785 --> 00:04:20.720
+To perform the
+training procedure,
+
+110
+00:04:20.720 --> 00:04:22.520
+you need to call
+the training method
+
+111
+00:04:22.520 --> 00:04:23.765
+from the trainer objects,
+
+112
+00:04:23.765 --> 00:04:25.700
+which is just one line of code.
+
+113
+00:04:25.700 --> 00:04:28.730
+Additionally, you can
+define a function to
+
+114
+00:04:28.730 --> 00:04:31.595
+use some predefined metrics
+provided by Hugging Face,
+
+115
+00:04:31.595 --> 00:04:33.470
+such as the blue score or
+
+116
+00:04:33.470 --> 00:04:35.825
+even you can define your
+own metrics if you wish.
+
+117
+00:04:35.825 --> 00:04:38.810
+With Hugging Face, computing
+the metrics you want with
+
+118
+00:04:38.810 --> 00:04:40.670
+the trainer object is done by
+
+119
+00:04:40.670 --> 00:04:43.100
+just scowling and evaluation
+method on the training,
+
+120
+00:04:43.100 --> 00:04:45.720
+validation or test data.

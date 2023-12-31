@@ -1,0 +1,229 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.120
+Hello. I will now show you
+how you can initialize
+
+2
+00:00:03.120 --> 00:00:04.920
+a matrix that can
+tell you the parts
+
+3
+00:00:04.920 --> 00:00:07.050
+of speech tag of every word.
+
+4
+00:00:07.050 --> 00:00:09.570
+This matrix will tell
+you the probability that
+
+5
+00:00:09.570 --> 00:00:12.555
+every word belongs to a
+certain parts of speech tag.
+
+6
+00:00:12.555 --> 00:00:14.580
+Let me show you how
+you can do this.
+
+7
+00:00:14.580 --> 00:00:17.475
+As you just saw, the
+initialization step
+
+8
+00:00:17.475 --> 00:00:19.470
+is one of three
+steps to populate
+
+9
+00:00:19.470 --> 00:00:21.750
+the auxiliary matrices C
+
+10
+00:00:21.750 --> 00:00:24.330
+and D. In the
+initialization step,
+
+11
+00:00:24.330 --> 00:00:25.740
+the first column of each of
+
+12
+00:00:25.740 --> 00:00:29.070
+our matrices C and
+D is populated.
+
+13
+00:00:29.070 --> 00:00:31.440
+The first column of C represents
+
+14
+00:00:31.440 --> 00:00:34.380
+probability of the
+transitions from the start
+
+15
+00:00:34.380 --> 00:00:36.390
+states Pi in the graph to
+
+16
+00:00:36.390 --> 00:00:40.455
+the first tag t_i and word w_1,
+
+17
+00:00:40.455 --> 00:00:45.700
+meaning we're trying to go
+from tag 1 to the word w_1.
+
+18
+00:00:45.700 --> 00:00:47.660
+This is shown here
+for a model with
+
+19
+00:00:47.660 --> 00:00:50.515
+three hidden states for
+the sake of clarity.
+
+20
+00:00:50.515 --> 00:00:53.890
+The first column entries, c_1,1,
+
+21
+00:00:53.890 --> 00:00:57.380
+are the products of the
+transition probabilities of
+
+22
+00:00:57.380 --> 00:00:58.730
+the initial states and
+
+23
+00:00:58.730 --> 00:01:01.490
+their respective
+emission probabilities.
+
+24
+00:01:01.490 --> 00:01:04.220
+As your initial probabilities
+are contained in
+
+25
+00:01:04.220 --> 00:01:07.175
+the first row of the
+transition matrix A,
+
+26
+00:01:07.175 --> 00:01:09.575
+this is the same as a_1,
+
+27
+00:01:09.575 --> 00:01:13.925
+I times the corresponding
+emission probability b.
+
+28
+00:01:13.925 --> 00:01:16.880
+The C index function
+simply returns
+
+29
+00:01:16.880 --> 00:01:18.620
+the column index and
+
+30
+00:01:18.620 --> 00:01:21.935
+the matrix b for the
+given word, here,
+
+31
+00:01:21.935 --> 00:01:24.555
+w_1 in the D matrix,
+
+32
+00:01:24.555 --> 00:01:26.510
+you store the labels
+that represent
+
+33
+00:01:26.510 --> 00:01:28.730
+the different states
+you're traversing when
+
+34
+00:01:28.730 --> 00:01:31.490
+finding the most likely
+sequence of parts of
+
+35
+00:01:31.490 --> 00:01:34.715
+speech tags for the
+given sequence of words,
+
+36
+00:01:34.715 --> 00:01:37.265
+w_1, all the way to w_k.
+
+37
+00:01:37.265 --> 00:01:40.400
+In the first column, you
+simply set all entries to
+
+38
+00:01:40.400 --> 00:01:41.930
+zero as there are
+
+39
+00:01:41.930 --> 00:01:45.055
+no preceding parts of speech
+tags we have traversed.
+
+40
+00:01:45.055 --> 00:01:46.665
+That's it for step 1.
+
+41
+00:01:46.665 --> 00:01:49.340
+You now know how to
+initialize your matrices.
+
+42
+00:01:49.340 --> 00:01:50.615
+In the next video,
+
+43
+00:01:50.615 --> 00:01:51.770
+you're going to learn how to
+
+44
+00:01:51.770 --> 00:01:54.155
+continue populating
+your matrices.
+
+45
+00:01:54.155 --> 00:01:56.000
+You can use that to decode
+
+46
+00:01:56.000 --> 00:01:58.460
+the parts of speech of
+a certain sentence.
+
+47
+00:01:58.460 --> 00:02:00.905
+You'll learn about the
+Viterbi algorithm,
+
+48
+00:02:00.905 --> 00:02:02.690
+which you can use
+for part-of-speech
+
+49
+00:02:02.690 --> 00:02:05.759
+tagging and also
+speech recognition.

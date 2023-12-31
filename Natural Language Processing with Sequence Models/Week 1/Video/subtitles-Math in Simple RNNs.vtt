@@ -1,0 +1,213 @@
+WEBVTT
+
+1
+00:00:00.340 --> 00:00:05.032
+you saw the advantages and the basic idea
+behind your current neural networks.
+
+2
+00:00:05.032 --> 00:00:07.903
+RNNs might seem like
+complicated structures, but
+
+3
+00:00:07.903 --> 00:00:12.251
+as you will see, their computations
+are actually pretty straight forward.
+
+4
+00:00:13.540 --> 00:00:17.530
+I'll show you how plain RNNs propagates
+information through time within
+
+5
+00:00:17.530 --> 00:00:22.240
+a sequence of variables, as well as
+how they make sequential predictions.
+
+6
+00:00:22.240 --> 00:00:25.854
+You'll get familiar with the math
+behind basic recurrent units,
+
+7
+00:00:25.854 --> 00:00:28.961
+to prepare you to implement
+forward propagation in RNN.
+
+8
+00:00:30.540 --> 00:00:35.400
+Take a look at this plain or vanilla RNN,
+it has too many architecture.
+
+9
+00:00:35.400 --> 00:00:40.059
+So at each side step it takes an X,
+a hidden states H and
+
+10
+00:00:40.059 --> 00:00:42.940
+makes a prediction Y hat.
+
+11
+00:00:42.940 --> 00:00:46.361
+Additionally, it propagates in new
+hidden state to the next time step.
+
+12
+00:00:47.540 --> 00:00:53.745
+The hidden states at every time T,
+is computed with an activation function G,
+
+13
+00:00:53.745 --> 00:00:59.103
+with arguments equal to the products
+between a premature matrix W,
+
+14
+00:00:59.103 --> 00:01:05.340
+subscript H and the previous hidden
+states H, superscript T minus 1.
+
+15
+00:01:05.340 --> 00:01:09.544
+These are concatenated with
+the input variable X superscript T,
+
+16
+00:01:09.544 --> 00:01:11.840
+plus the bias term.
+
+17
+00:01:11.840 --> 00:01:16.115
+The complete equation looks like this,
+where X superscript T and
+
+18
+00:01:16.115 --> 00:01:20.856
+H superscript T minus 1, are multiplied
+by different parameters, and
+
+19
+00:01:20.856 --> 00:01:24.295
+the resulting vectors
+are summed up element twice.
+
+20
+00:01:24.295 --> 00:01:29.543
+After computing the hidden state at time
+T, it's possible to get the prediction
+
+21
+00:01:29.543 --> 00:01:34.483
+Y hat by using an activation function G,
+with arguments equal to the product
+
+22
+00:01:34.483 --> 00:01:38.910
+between the head and state, and
+some parameters W plus a bias trim.
+
+23
+00:01:38.910 --> 00:01:43.542
+These two equations together represent all
+of the math behind a simple arnon, but
+
+24
+00:01:43.542 --> 00:01:47.651
+let's take a detailed look at the order
+in which competitions are made.
+
+25
+00:01:48.940 --> 00:01:52.140
+Let's focus on the first
+cell from the RNN.
+
+26
+00:01:52.140 --> 00:01:54.954
+It takes as input
+the previous hidden state and
+
+27
+00:01:54.954 --> 00:01:59.840
+the current variable X, which might
+be the first word in a sentence.
+
+28
+00:01:59.840 --> 00:02:05.400
+To get the current hidden states first,
+you have to get the products of X and
+
+29
+00:02:05.400 --> 00:02:09.725
+H, superscript T sub 0 with
+the respective parameters,
+
+30
+00:02:09.725 --> 00:02:12.918
+and then sum the vector's element twice.
+
+31
+00:02:12.918 --> 00:02:17.448
+Next, pass the resulting vector
+through an excavation function,
+
+32
+00:02:17.448 --> 00:02:21.427
+with the resulting value you
+can compute the current Y hat.
+
+33
+00:02:21.427 --> 00:02:26.421
+Now by multiplying the current hidden
+state, with a set of learnable
+
+34
+00:02:26.421 --> 00:02:32.117
+parameters W subscript YH, and
+going through another excavation function.
+
+35
+00:02:32.117 --> 00:02:35.731
+In the literature related to RNN
+you'll find similar diagrams to
+
+36
+00:02:35.731 --> 00:02:38.885
+what you see here,
+which show the order of computation,
+
+37
+00:02:38.885 --> 00:02:43.040
+and how information is propagated
+within a recurrent unit.
+
+38
+00:02:43.040 --> 00:02:47.573
+It is important for you to take away that
+hidden states are the variables that allow
+
+39
+00:02:47.573 --> 00:02:50.267
+RNNs to propagate
+information through time, or
+
+40
+00:02:50.267 --> 00:02:54.840
+in other words through different
+positions within the sequence.
+
+41
+00:02:54.840 --> 00:02:58.865
+As you saw at every step,
+recurrent units have two inputs.
+
+42
+00:02:58.865 --> 00:03:03.140
+You now know the feet forward equations
+and the cost function for an RNN.
+
+43
+00:03:03.140 --> 00:03:07.360
+In the next video, I'll show you how
+the cost function for the RNN works

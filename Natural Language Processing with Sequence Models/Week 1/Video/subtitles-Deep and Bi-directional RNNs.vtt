@@ -1,0 +1,473 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.040
+Deep recurrent neural networks
+
+2
+00:00:02.040 --> 00:00:04.200
+are useful because they
+allow you to capture
+
+3
+00:00:04.200 --> 00:00:06.180
+dependencies that
+you could not have
+
+4
+00:00:06.180 --> 00:00:08.745
+otherwise captured
+using shallow RNNs.
+
+5
+00:00:08.745 --> 00:00:11.070
+In this video, you
+will understand
+
+6
+00:00:11.070 --> 00:00:14.235
+the equations used when
+implementing these deep RNNs,
+
+7
+00:00:14.235 --> 00:00:16.740
+and I'll show you
+how that factors in,
+
+8
+00:00:16.740 --> 00:00:18.330
+into the cost function.
+
+9
+00:00:18.330 --> 00:00:22.350
+Let's dive in. I will show
+you how bidirectional
+
+10
+00:00:22.350 --> 00:00:24.540
+neural networks work
+and how stacking
+
+11
+00:00:24.540 --> 00:00:27.750
+RNNs together can produce
+a deep neural network.
+
+12
+00:00:27.750 --> 00:00:31.319
+To illustrate the importance
+of bidirectional RNNs,
+
+13
+00:00:31.319 --> 00:00:32.970
+take the following example.
+
+14
+00:00:32.970 --> 00:00:35.970
+I was trying really hard
+to get a hold of blank.
+
+15
+00:00:35.970 --> 00:00:39.585
+Louise finally answered when
+I was about to give up.
+
+16
+00:00:39.585 --> 00:00:41.175
+As a clever human,
+
+17
+00:00:41.175 --> 00:00:42.980
+you would able to
+fill in the blank
+
+18
+00:00:42.980 --> 00:00:44.845
+without having to
+think very hard.
+
+19
+00:00:44.845 --> 00:00:47.510
+An RNN that's
+propagates information
+
+20
+00:00:47.510 --> 00:00:49.910
+from the beginning to
+the end of sequences,
+
+21
+00:00:49.910 --> 00:00:52.445
+would be able to make
+a prediction tool.
+
+22
+00:00:52.445 --> 00:00:55.370
+It would take the
+words before the blank
+
+23
+00:00:55.370 --> 00:00:58.820
+as inputs and do its best to
+predict the missing word.
+
+24
+00:00:58.820 --> 00:01:01.175
+However, because Louise doesn't
+
+25
+00:01:01.175 --> 00:01:04.115
+appear until the beginning
+of the next sentence,
+
+26
+00:01:04.115 --> 00:01:07.930
+it would have to guess
+between her, him and them.
+
+27
+00:01:07.930 --> 00:01:10.445
+Bidirectional RNNs work in
+
+28
+00:01:10.445 --> 00:01:13.105
+much the same way
+that simple RNNs do.
+
+29
+00:01:13.105 --> 00:01:14.870
+They take an input sequence
+
+30
+00:01:14.870 --> 00:01:17.660
+x and make the
+predictions y hat.
+
+31
+00:01:17.660 --> 00:01:20.075
+In the RNNs I
+showed you earlier,
+
+32
+00:01:20.075 --> 00:01:21.710
+the information flows from
+
+33
+00:01:21.710 --> 00:01:24.140
+the beginning to the
+end of the sequence.
+
+34
+00:01:24.140 --> 00:01:25.960
+However, you could have
+
+35
+00:01:25.960 --> 00:01:28.329
+another architecture
+where the information
+
+36
+00:01:28.329 --> 00:01:30.310
+flowed from the end
+to the beginning.
+
+37
+00:01:30.310 --> 00:01:31.810
+Just imagine going from
+
+38
+00:01:31.810 --> 00:01:33.985
+the future to the
+present instead,
+
+39
+00:01:33.985 --> 00:01:36.925
+when information flows
+in both directions,
+
+40
+00:01:36.925 --> 00:01:38.965
+that's a bidirectional RNN.
+
+41
+00:01:38.965 --> 00:01:40.840
+It is important for you to note
+
+42
+00:01:40.840 --> 00:01:42.595
+that this is an acyclic graph,
+
+43
+00:01:42.595 --> 00:01:44.770
+which means that the
+information flows
+
+44
+00:01:44.770 --> 00:01:47.275
+independently in
+both directions.
+
+45
+00:01:47.275 --> 00:01:50.200
+The computations from
+left to right are
+
+46
+00:01:50.200 --> 00:01:52.975
+completely independent
+of the computations
+
+47
+00:01:52.975 --> 00:01:54.175
+from right to left.
+
+48
+00:01:54.175 --> 00:01:56.180
+To get the predictions y hat,
+
+49
+00:01:56.180 --> 00:01:58.330
+in a bidirectional RNN,
+
+50
+00:01:58.330 --> 00:02:00.130
+you have to start propagating
+
+51
+00:02:00.130 --> 00:02:02.409
+information from
+both directions.
+
+52
+00:02:02.409 --> 00:02:04.300
+When you have computed both of
+
+53
+00:02:04.300 --> 00:02:06.495
+the hidden states
+for a timestep,
+
+54
+00:02:06.495 --> 00:02:08.510
+you can get the
+prediction y-hat for
+
+55
+00:02:08.510 --> 00:02:11.165
+that time using this formula,
+
+56
+00:02:11.165 --> 00:02:12.935
+which is the same one used for
+
+57
+00:02:12.935 --> 00:02:16.460
+unidirectional or vanilla RNNs,
+
+58
+00:02:16.460 --> 00:02:18.980
+but appending both
+hidden states this time.
+
+59
+00:02:18.980 --> 00:02:21.380
+After you compute all
+the hidden states
+
+60
+00:02:21.380 --> 00:02:22.850
+for both directions,
+
+61
+00:02:22.850 --> 00:02:25.880
+you can get all of the
+remaining predictions.
+
+62
+00:02:25.880 --> 00:02:29.890
+Deep RNNs are similar to
+regular deep neural networks.
+
+63
+00:02:29.890 --> 00:02:32.330
+Deep RNNs have a
+layer which takes
+
+64
+00:02:32.330 --> 00:02:33.410
+the input sequence
+
+65
+00:02:33.410 --> 00:02:36.695
+x and multiple additional
+hidden layers.
+
+66
+00:02:36.695 --> 00:02:41.175
+As you can see, deep RNNs are
+just RNNs stack together.
+
+67
+00:02:41.175 --> 00:02:43.700
+The intermediates
+connections pass
+
+68
+00:02:43.700 --> 00:02:46.565
+information through the
+values of activations,
+
+69
+00:02:46.565 --> 00:02:49.355
+just as in conventional
+deep neural networks.
+
+70
+00:02:49.355 --> 00:02:51.095
+But for every timestep,
+
+71
+00:02:51.095 --> 00:02:53.344
+for vanilla deep RNNs,
+
+72
+00:02:53.344 --> 00:02:55.865
+you have the following
+two equations.
+
+73
+00:02:55.865 --> 00:02:58.940
+They're the same as the ones
+that you have seen before.
+
+74
+00:02:58.940 --> 00:03:02.860
+But let's see how information
+flows in this case.
+
+75
+00:03:02.860 --> 00:03:04.700
+First, you compute
+
+76
+00:03:04.700 --> 00:03:06.710
+the hidden states for
+the current layer.
+
+77
+00:03:06.710 --> 00:03:09.650
+Then you get the
+activations and pass
+
+78
+00:03:09.650 --> 00:03:11.735
+those values to the
+next hidden layer
+
+79
+00:03:11.735 --> 00:03:13.520
+and repeat this process.
+
+80
+00:03:13.520 --> 00:03:15.710
+In other words, at first
+
+81
+00:03:15.710 --> 00:03:18.050
+you propagate information
+through time.
+
+82
+00:03:18.050 --> 00:03:21.050
+Then you go deeper in
+the network and repeat
+
+83
+00:03:21.050 --> 00:03:22.745
+the process for each layer
+
+84
+00:03:22.745 --> 00:03:24.865
+until you get your predictions.
+
+85
+00:03:24.865 --> 00:03:26.690
+Now you've become familiar with
+
+86
+00:03:26.690 --> 00:03:30.800
+the two interesting and
+useful varieties of RNNs.
+
+87
+00:03:30.800 --> 00:03:33.769
+Bidirectional RNNs
+propagates information
+
+88
+00:03:33.769 --> 00:03:36.740
+through time from the
+future and from the past.
+
+89
+00:03:36.740 --> 00:03:38.630
+Deep RNNs can help you solve
+
+90
+00:03:38.630 --> 00:03:41.165
+more complex tasks
+than are possible,
+
+91
+00:03:41.165 --> 00:03:42.920
+which allow neural networks.
+
+92
+00:03:42.920 --> 00:03:46.445
+Both architectures are
+relatively simple compositions
+
+93
+00:03:46.445 --> 00:03:48.710
+derived from the
+vanilla RNN model
+
+94
+00:03:48.710 --> 00:03:50.025
+that you've already seen.
+
+95
+00:03:50.025 --> 00:03:52.520
+It isn't such a big
+conceptual leap
+
+96
+00:03:52.520 --> 00:03:54.365
+to understand their math.
+
+97
+00:03:54.365 --> 00:03:57.260
+Congratulations on
+completing this week.
+
+98
+00:03:57.260 --> 00:03:59.225
+You have learned about RNNs,
+
+99
+00:03:59.225 --> 00:04:03.205
+gated recurrent units by
+directional and deep RNNs.
+
+100
+00:04:03.205 --> 00:04:06.140
+In the assignments you
+will get to play with RNNs
+
+101
+00:04:06.140 --> 00:04:07.640
+and learn how they are actually
+
+102
+00:04:07.640 --> 00:04:10.440
+being implemented. Good luck.

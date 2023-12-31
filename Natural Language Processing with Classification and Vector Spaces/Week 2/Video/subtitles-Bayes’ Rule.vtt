@@ -1,0 +1,453 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.280
+Welcome. We will be looking at
+
+2
+00:00:02.280 --> 00:00:03.960
+conditional
+probabilities to help
+
+3
+00:00:03.960 --> 00:00:05.910
+us understand Bayes rule.
+
+4
+00:00:05.910 --> 00:00:07.920
+In other words, if I tell you,
+
+5
+00:00:07.920 --> 00:00:10.140
+you can guess what the
+weather is like given
+
+6
+00:00:10.140 --> 00:00:12.810
+that we are in California
+and it is winter,
+
+7
+00:00:12.810 --> 00:00:15.270
+then you'll have a much
+better guess than if
+
+8
+00:00:15.270 --> 00:00:18.045
+I just asked you to guess
+what the weather is like.
+
+9
+00:00:18.045 --> 00:00:20.190
+In order to derive Bayes rule,
+
+10
+00:00:20.190 --> 00:00:23.775
+let's first take a look at the
+conditional probabilities.
+
+11
+00:00:23.775 --> 00:00:26.190
+Now think about what happens if,
+
+12
+00:00:26.190 --> 00:00:28.214
+instead of the entire corpus,
+
+13
+00:00:28.214 --> 00:00:31.755
+you only consider tweets
+that contain the word happy.
+
+14
+00:00:31.755 --> 00:00:33.840
+This is the same as saying,
+
+15
+00:00:33.840 --> 00:00:37.860
+given that a tweet contains
+the word happy with that,
+
+16
+00:00:37.860 --> 00:00:39.115
+you would be considering
+
+17
+00:00:39.115 --> 00:00:41.615
+only the tweets inside
+the blue circle,
+
+18
+00:00:41.615 --> 00:00:44.915
+where many of the positive
+tweets are now excluded.
+
+19
+00:00:44.915 --> 00:00:49.340
+In this case, the probability
+that a tweet is positive,
+
+20
+00:00:49.340 --> 00:00:51.920
+given that it contains
+the word happy,
+
+21
+00:00:51.920 --> 00:00:54.380
+simply becomes the number
+of tweets that are
+
+22
+00:00:54.380 --> 00:00:57.955
+positive and also
+contain the word happy.
+
+23
+00:00:57.955 --> 00:01:01.970
+We divide that by the number
+that contain the word happy.
+
+24
+00:01:01.970 --> 00:01:04.355
+As you can see by
+this calculation,
+
+25
+00:01:04.355 --> 00:01:07.610
+your tweet has a 75
+percent likelihood
+
+26
+00:01:07.610 --> 00:01:10.985
+of being positive if it
+contains the word happy.
+
+27
+00:01:10.985 --> 00:01:14.285
+You could make the same
+case for positive tweets.
+
+28
+00:01:14.285 --> 00:01:17.105
+The purple area denotes
+the probability that
+
+29
+00:01:17.105 --> 00:01:20.345
+a positive tweet
+contains the word happy.
+
+30
+00:01:20.345 --> 00:01:23.020
+In this case, the probability is
+
+31
+00:01:23.020 --> 00:01:26.995
+3 over 13, which is 0.231.
+
+32
+00:01:26.995 --> 00:01:28.990
+With all of this discussion of
+
+33
+00:01:28.990 --> 00:01:31.570
+the probability of missing
+certain conditions,
+
+34
+00:01:31.570 --> 00:01:34.750
+we are talking about
+conditional probabilities.
+
+35
+00:01:34.750 --> 00:01:38.170
+Conditional probabilities
+could be interpreted as
+
+36
+00:01:38.170 --> 00:01:40.525
+the probability of an outcome B
+
+37
+00:01:40.525 --> 00:01:43.520
+knowing that event
+A already happened,
+
+38
+00:01:43.520 --> 00:01:47.650
+or given that I'm looking
+at an element from set A,
+
+39
+00:01:47.650 --> 00:01:50.770
+the probability that it's
+also belongs to set B.
+
+40
+00:01:50.770 --> 00:01:52.900
+Here's another way
+of looking at this
+
+41
+00:01:52.900 --> 00:01:55.135
+with a Venn diagram
+you saw before.
+
+42
+00:01:55.135 --> 00:01:57.370
+Using the previous example,
+
+43
+00:01:57.370 --> 00:02:00.700
+the probability of a
+tweet being positive,
+
+44
+00:02:00.700 --> 00:02:02.965
+given that it has
+the word happy,
+
+45
+00:02:02.965 --> 00:02:06.010
+is equal to the probability of
+
+46
+00:02:06.010 --> 00:02:08.830
+the intersection between
+the tweets that are
+
+47
+00:02:08.830 --> 00:02:10.840
+positive and the tweets that
+
+48
+00:02:10.840 --> 00:02:13.420
+have the word happy divided by
+
+49
+00:02:13.420 --> 00:02:15.955
+the probability of a tweet given
+
+50
+00:02:15.955 --> 00:02:18.905
+from the corpus having
+the word happy.
+
+51
+00:02:18.905 --> 00:02:20.770
+Let's take a closer look at
+
+52
+00:02:20.770 --> 00:02:22.780
+the equation from
+the previous slide.
+
+53
+00:02:22.780 --> 00:02:25.450
+You could write a
+similar equation by
+
+54
+00:02:25.450 --> 00:02:28.269
+simply swapping the position
+of the two conditions.
+
+55
+00:02:28.269 --> 00:02:31.195
+Now, you have the
+conditional probability
+
+56
+00:02:31.195 --> 00:02:33.535
+of a tweet containing
+the word happy,
+
+57
+00:02:33.535 --> 00:02:36.040
+given that it is
+a positive tweet.
+
+58
+00:02:36.040 --> 00:02:37.930
+Armed with both of
+these equations,
+
+59
+00:02:37.930 --> 00:02:40.105
+you're now ready to
+derive Bayes rule.
+
+60
+00:02:40.105 --> 00:02:41.995
+To combine these equations,
+
+61
+00:02:41.995 --> 00:02:45.284
+note that the intersection
+represents the same quantity,
+
+62
+00:02:45.284 --> 00:02:47.270
+no matter which
+way it's written.
+
+63
+00:02:47.270 --> 00:02:50.505
+Knowing that, you can remove
+it from the equation,
+
+64
+00:02:50.505 --> 00:02:53.195
+with a little algebraic
+manipulation,
+
+65
+00:02:53.195 --> 00:02:55.775
+you are able to arrive
+at this equation.
+
+66
+00:02:55.775 --> 00:02:58.520
+This is now an expression
+of Bayes rule in
+
+67
+00:02:58.520 --> 00:03:01.760
+the context of the previous
+sentiment analysis problem.
+
+68
+00:03:01.760 --> 00:03:05.060
+More generally, Bayes
+rule states that
+
+69
+00:03:05.060 --> 00:03:08.750
+the probability of
+x given y is equal
+
+70
+00:03:08.750 --> 00:03:12.680
+to the probability
+of y given x times
+
+71
+00:03:12.680 --> 00:03:14.480
+the ratio of the probability of
+
+72
+00:03:14.480 --> 00:03:17.495
+x over the probability of y.
+
+73
+00:03:17.495 --> 00:03:20.030
+That's it. You just arrived at
+
+74
+00:03:20.030 --> 00:03:23.600
+the basic formulation of
+Bayes rule, nicely done.
+
+75
+00:03:23.600 --> 00:03:26.420
+To wrap up, you just
+derive Bayes rule
+
+76
+00:03:26.420 --> 00:03:29.135
+from expressions of
+conditional probability.
+
+77
+00:03:29.135 --> 00:03:31.115
+Throughout the rest
+of this course,
+
+78
+00:03:31.115 --> 00:03:32.540
+you'll be using Bayes rule for
+
+79
+00:03:32.540 --> 00:03:34.595
+various applications in NLP.
+
+80
+00:03:34.595 --> 00:03:37.175
+The main takeaway
+for now is that,
+
+81
+00:03:37.175 --> 00:03:38.840
+Bayes rule is based on
+
+82
+00:03:38.840 --> 00:03:40.445
+the mathematical formulation
+
+83
+00:03:40.445 --> 00:03:42.425
+of conditional probabilities.
+
+84
+00:03:42.425 --> 00:03:44.820
+That's with Bayes rule,
+
+85
+00:03:44.820 --> 00:03:46.565
+you can calculate
+the probability of
+
+86
+00:03:46.565 --> 00:03:48.740
+x given y if you already know
+
+87
+00:03:48.740 --> 00:03:50.990
+the probability of y given x
+
+88
+00:03:50.990 --> 00:03:54.350
+and the ratio of the
+probabilities of x and y.
+
+89
+00:03:54.350 --> 00:03:57.685
+That's great work.
+I'll see you later.
+
+90
+00:03:57.685 --> 00:03:59.830
+Congratulations.
+
+91
+00:03:59.830 --> 00:04:02.600
+You now have a good
+understanding of Bayes rule.
+
+92
+00:04:02.600 --> 00:04:03.830
+In the next video,
+
+93
+00:04:03.830 --> 00:04:05.480
+you'll see how you
+can start applying
+
+94
+00:04:05.480 --> 00:04:08.600
+Bayes rule to a model
+known as Naive Bayes.
+
+95
+00:04:08.600 --> 00:04:10.640
+This will allow you
+to start building
+
+96
+00:04:10.640 --> 00:04:12.635
+your sentiment
+analysis classifier
+
+97
+00:04:12.635 --> 00:04:15.240
+using just probabilities.

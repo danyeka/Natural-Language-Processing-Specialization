@@ -1,0 +1,598 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.460
+Previously, I introduced you to
+
+2
+00:00:02.460 --> 00:00:03.990
+the BLEU score evaluation
+
+3
+00:00:03.990 --> 00:00:06.360
+metric and it's
+modified version.
+
+4
+00:00:06.360 --> 00:00:07.590
+I used it to assess
+
+5
+00:00:07.590 --> 00:00:10.170
+the performance of machine
+translation models.
+
+6
+00:00:10.170 --> 00:00:13.080
+I also showed you some
+drawbacks that's arise because
+
+7
+00:00:13.080 --> 00:00:16.095
+that metric ignores semantic
+and sentence structure.
+
+8
+00:00:16.095 --> 00:00:19.410
+In this video, I'll talk
+about the ROUGE score,
+
+9
+00:00:19.410 --> 00:00:21.810
+another performance
+metric that tends to
+
+10
+00:00:21.810 --> 00:00:25.605
+estimate the quality of
+machine translation systems.
+
+11
+00:00:25.605 --> 00:00:27.390
+I'll introduce You now to
+
+12
+00:00:27.390 --> 00:00:29.370
+a family of metrics
+called ROUGE.
+
+13
+00:00:29.370 --> 00:00:32.400
+It stands for
+Recall-Oriented Understudy
+
+14
+00:00:32.400 --> 00:00:34.305
+of Gisting Evaluation,
+
+15
+00:00:34.305 --> 00:00:35.895
+which is a mouthful.
+
+16
+00:00:35.895 --> 00:00:37.890
+But lets you know,
+right off the bat,
+
+17
+00:00:37.890 --> 00:00:40.440
+that it's more
+recall-oriented by default.
+
+18
+00:00:40.440 --> 00:00:44.090
+That means that ROUGE cares
+about how much of the human
+
+19
+00:00:44.090 --> 00:00:47.845
+created references appear in
+the candidate translation.
+
+20
+00:00:47.845 --> 00:00:51.165
+In contrast, BLEU is
+precision oriented.
+
+21
+00:00:51.165 --> 00:00:53.330
+Since you have to
+determine how many words
+
+22
+00:00:53.330 --> 00:00:56.125
+from the candidates
+appear on the references.
+
+23
+00:00:56.125 --> 00:00:58.670
+ROUGE was initially
+developed to evaluate
+
+24
+00:00:58.670 --> 00:01:01.070
+the quality of the
+machine summarized texts,
+
+25
+00:01:01.070 --> 00:01:02.930
+but is also helpful in
+
+26
+00:01:02.930 --> 00:01:05.615
+assessing the quality
+of machine translation.
+
+27
+00:01:05.615 --> 00:01:07.370
+It works by comparing
+
+28
+00:01:07.370 --> 00:01:09.860
+the machine candidates against
+
+29
+00:01:09.860 --> 00:01:12.695
+reference translations
+provided by humans.
+
+30
+00:01:12.695 --> 00:01:15.290
+There are many versions
+of the ROUGE score,
+
+31
+00:01:15.290 --> 00:01:19.830
+but also the one called
+ROUGE-N. For the ROUGE-N score,
+
+32
+00:01:19.830 --> 00:01:21.260
+You have to get the counts of
+
+33
+00:01:21.260 --> 00:01:23.030
+the n-gram overlaps between
+
+34
+00:01:23.030 --> 00:01:25.385
+the candidates and the
+reference translations,
+
+35
+00:01:25.385 --> 00:01:27.200
+which is somewhat
+similar to what
+
+36
+00:01:27.200 --> 00:01:29.470
+you have to do for
+the BLEU score.
+
+37
+00:01:29.470 --> 00:01:32.345
+To see the difference
+between the two metrics,
+
+38
+00:01:32.345 --> 00:01:33.920
+I'll show You an example of how
+
+39
+00:01:33.920 --> 00:01:36.660
+ROUGE-N works with uni-grams.
+
+40
+00:01:36.820 --> 00:01:38.990
+To get the basic version of
+
+41
+00:01:38.990 --> 00:01:41.240
+the ROUGE-N score based only on
+
+42
+00:01:41.240 --> 00:01:43.160
+recall so you must count
+
+43
+00:01:43.160 --> 00:01:46.040
+word matches between the
+reference and the candidates,
+
+44
+00:01:46.040 --> 00:01:48.875
+and divide by the number
+of words in the reference.
+
+45
+00:01:48.875 --> 00:01:51.005
+If you had multiple references,
+
+46
+00:01:51.005 --> 00:01:52.295
+you would need to get
+
+47
+00:01:52.295 --> 00:01:56.515
+a ROUGE-N score using each
+reference and get the maximum.
+
+48
+00:01:56.515 --> 00:01:58.260
+Now, let's go through
+the example that
+
+49
+00:01:58.260 --> 00:02:00.015
+you already solved
+for the BLEU score.
+
+50
+00:02:00.015 --> 00:02:03.090
+Your candidate has the
+words I two times,
+
+51
+00:02:03.090 --> 00:02:05.675
+the word M, and
+the word I again,
+
+52
+00:02:05.675 --> 00:02:08.405
+for a total of four words.
+
+53
+00:02:08.405 --> 00:02:11.385
+You also have a
+reference translation.
+
+54
+00:02:11.385 --> 00:02:13.430
+Younes said, "I am hungry" and
+
+55
+00:02:13.430 --> 00:02:15.515
+another slightly
+different reference.
+
+56
+00:02:15.515 --> 00:02:17.240
+He said, "I'm hungry."
+
+57
+00:02:17.240 --> 00:02:20.245
+Each reference has
+five words in total.
+
+58
+00:02:20.245 --> 00:02:22.490
+You have to count
+matches between
+
+59
+00:02:22.490 --> 00:02:25.010
+the references and the
+candidate translations,
+
+60
+00:02:25.010 --> 00:02:27.500
+similar to what you did
+for the BLEU score.
+
+61
+00:02:27.500 --> 00:02:29.995
+Let's start with the
+first reference.
+
+62
+00:02:29.995 --> 00:02:32.310
+The word Younes, doesn't
+
+63
+00:02:32.310 --> 00:02:34.820
+match any of the uni-grams
+in the candidates,
+
+64
+00:02:34.820 --> 00:02:37.285
+so you don't add
+anything to the counts.
+
+65
+00:02:37.285 --> 00:02:39.500
+The word said doesn't
+
+66
+00:02:39.500 --> 00:02:41.995
+match any word and the
+candidates either.
+
+67
+00:02:41.995 --> 00:02:44.730
+The word I, has
+multiple matches,
+
+68
+00:02:44.730 --> 00:02:46.380
+but you need the first one.
+
+69
+00:02:46.380 --> 00:02:49.605
+For this match, you add
+only one to your counts.
+
+70
+00:02:49.605 --> 00:02:51.780
+The word M has a match in
+
+71
+00:02:51.780 --> 00:02:54.735
+the candidates so your
+increment your counts.
+
+72
+00:02:54.735 --> 00:02:57.890
+Now, the final word of the
+first reference, hungry,
+
+73
+00:02:57.890 --> 00:03:01.734
+doesn't match any of the
+words from the candidates.
+
+74
+00:03:01.734 --> 00:03:05.340
+You don't add anything
+to your counts.
+
+75
+00:03:05.340 --> 00:03:08.300
+If you repeat this process
+for the second reference,
+
+76
+00:03:08.300 --> 00:03:10.175
+you get a counts equal to 2.
+
+77
+00:03:10.175 --> 00:03:13.340
+Finally, you divide these
+counts by the number of
+
+78
+00:03:13.340 --> 00:03:16.400
+words in each reference
+and get the maximum value,
+
+79
+00:03:16.400 --> 00:03:20.040
+which for this example
+is equal to 0.4.
+
+80
+00:03:20.090 --> 00:03:24.180
+This basic version of the
+ROUGE-N score is based on
+
+81
+00:03:24.180 --> 00:03:26.120
+recall while the BLEU score you
+
+82
+00:03:26.120 --> 00:03:28.505
+saw in the previous
+lectures is precision.
+
+83
+00:03:28.505 --> 00:03:30.620
+But why not combine both to get
+
+84
+00:03:30.620 --> 00:03:33.550
+a metric like an F1 score?
+
+85
+00:03:33.550 --> 00:03:35.970
+Recall, pun intended,
+
+86
+00:03:35.970 --> 00:03:38.300
+from your introductory
+machine learning courses that
+
+87
+00:03:38.300 --> 00:03:41.750
+the F1 score is given
+by this formula,
+
+88
+00:03:41.750 --> 00:03:44.945
+two times the product of
+precision and recall,
+
+89
+00:03:44.945 --> 00:03:47.680
+divided by the sum
+of both metrics.
+
+90
+00:03:47.680 --> 00:03:49.530
+You get the following formula,
+
+91
+00:03:49.530 --> 00:03:52.265
+if you replace precision
+by the modified version
+
+92
+00:03:52.265 --> 00:03:55.945
+of the BLEU score and recall
+by the ROUGE-N score.
+
+93
+00:03:55.945 --> 00:04:00.390
+For this example, you have
+a BLEU score equal to 0.5,
+
+94
+00:04:00.390 --> 00:04:02.895
+which you got in
+previous lectures.
+
+95
+00:04:02.895 --> 00:04:06.435
+You have a ROUGE-N score
+equivalent to 0.4,
+
+96
+00:04:06.435 --> 00:04:08.400
+that you calculated before.
+
+97
+00:04:08.400 --> 00:04:10.130
+With these values, you will have
+
+98
+00:04:10.130 --> 00:04:15.270
+an F1 score equal to 4
+over 9, close to 0.44.
+
+99
+00:04:15.730 --> 00:04:18.170
+You have now seen how to compute
+
+100
+00:04:18.170 --> 00:04:19.570
+the modified BLEU and
+
+101
+00:04:19.570 --> 00:04:22.250
+the sample ROUGE-N scores
+to evaluate your model.
+
+102
+00:04:22.250 --> 00:04:25.220
+You can view these metrics
+like precision and recall.
+
+103
+00:04:25.220 --> 00:04:26.900
+Therefore, you can use
+
+104
+00:04:26.900 --> 00:04:28.670
+both to get an F1
+score that's could
+
+105
+00:04:28.670 --> 00:04:30.440
+better assess the performance
+
+106
+00:04:30.440 --> 00:04:32.345
+of your machine
+translation model.
+
+107
+00:04:32.345 --> 00:04:35.300
+In many applications, you
+will see reported and
+
+108
+00:04:35.300 --> 00:04:38.410
+F-score along with the
+BLEU and ROUGE-N metric.
+
+109
+00:04:38.410 --> 00:04:39.950
+However, you must note that's
+
+110
+00:04:39.950 --> 00:04:42.935
+all the evaluation metrics
+you have seen so far,
+
+111
+00:04:42.935 --> 00:04:45.830
+don't consider the sentence
+structure and semantics,
+
+112
+00:04:45.830 --> 00:04:48.050
+only accounts for
+matching n-grams
+
+113
+00:04:48.050 --> 00:04:51.310
+between candidates and the
+reference translations.
+
+114
+00:04:51.310 --> 00:04:54.700
+You now have seen how to
+compute the modified BLEU
+
+115
+00:04:54.700 --> 00:04:57.830
+and the simple ROUGE-N scores
+to evaluate your model.
+
+116
+00:04:57.830 --> 00:05:01.235
+You can view these metrics
+like precision and recall.
+
+117
+00:05:01.235 --> 00:05:03.170
+Therefore, you can use both to
+
+118
+00:05:03.170 --> 00:05:05.000
+get an F1 score that's good,
+
+119
+00:05:05.000 --> 00:05:06.410
+better assess the performance
+
+120
+00:05:06.410 --> 00:05:08.330
+of your machine
+translation model.
+
+121
+00:05:08.330 --> 00:05:11.254
+In many applications,
+you'll see reported
+
+122
+00:05:11.254 --> 00:05:15.370
+an F-score along with the
+BLEU and the ROUGE-N metrics.
+
+123
+00:05:15.370 --> 00:05:17.240
+However, you must note
+
+124
+00:05:17.240 --> 00:05:19.220
+that all the evaluation
+metrics you have
+
+125
+00:05:19.220 --> 00:05:21.080
+seen so far don't consider
+
+126
+00:05:21.080 --> 00:05:23.000
+the sentence structure
+and semantics.
+
+127
+00:05:23.000 --> 00:05:25.940
+They only account
+for matching n-grams
+
+128
+00:05:25.940 --> 00:05:30.060
+between the candidates and
+reference translations.

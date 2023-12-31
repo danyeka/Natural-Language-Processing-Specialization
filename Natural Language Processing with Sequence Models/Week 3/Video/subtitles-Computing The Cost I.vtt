@@ -1,0 +1,599 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.160
+As promised, you'll see
+
+2
+00:00:02.160 --> 00:00:04.395
+how everything fits
+together right now.
+
+3
+00:00:04.395 --> 00:00:07.560
+You will start by building a
+cost function and then you
+
+4
+00:00:07.560 --> 00:00:10.815
+will use gradient descent to
+optimize this cost function.
+
+5
+00:00:10.815 --> 00:00:12.870
+Let's take a look
+at how this works.
+
+6
+00:00:12.870 --> 00:00:14.430
+To compute the cost,
+
+7
+00:00:14.430 --> 00:00:17.100
+begin by preparing
+the data in batches.
+
+8
+00:00:17.100 --> 00:00:18.990
+Here, you have the questions,
+
+9
+00:00:18.990 --> 00:00:21.315
+what is your age and
+how old are you?
+
+10
+00:00:21.315 --> 00:00:23.250
+You can see these are duplicates
+
+11
+00:00:23.250 --> 00:00:25.140
+because they mean
+the same thing.
+
+12
+00:00:25.140 --> 00:00:29.295
+Can you see me and are you
+seeing me are also duplicates.
+
+13
+00:00:29.295 --> 00:00:32.490
+Where are thou and where
+are you are duplicates
+
+14
+00:00:32.490 --> 00:00:37.645
+too as are when is the game
+and what time is the game.
+
+15
+00:00:37.645 --> 00:00:41.370
+With four pairs, you
+have batch size of four.
+
+16
+00:00:41.370 --> 00:00:46.075
+Here, we will use the letter
+b to stand for batch size.
+
+17
+00:00:46.075 --> 00:00:48.050
+Something that's
+very important to
+
+18
+00:00:48.050 --> 00:00:49.940
+note is that each question has
+
+19
+00:00:49.940 --> 00:00:53.660
+its corresponding duplicates
+to the left or right of it.
+
+20
+00:00:53.660 --> 00:00:55.460
+That is in each row,
+
+21
+00:00:55.460 --> 00:00:59.620
+all of the sentences in the
+columns are duplicates but
+
+22
+00:00:59.620 --> 00:01:01.490
+you'll notice that each question
+
+23
+00:01:01.490 --> 00:01:04.145
+has no duplicates
+above or below it.
+
+24
+00:01:04.145 --> 00:01:06.365
+That is for any column,
+
+25
+00:01:06.365 --> 00:01:07.820
+none of the rows and that's
+
+26
+00:01:07.820 --> 00:01:09.650
+column contain a sentence that
+
+27
+00:01:09.650 --> 00:01:13.130
+is a duplicate of another
+sentence in that column.
+
+28
+00:01:13.130 --> 00:01:15.710
+This is how you
+prepare the batches.
+
+29
+00:01:15.710 --> 00:01:17.870
+Now, let me show you how you
+
+30
+00:01:17.870 --> 00:01:20.465
+will want to organize
+the data in this way.
+
+31
+00:01:20.465 --> 00:01:22.220
+Given the first batch,
+
+32
+00:01:22.220 --> 00:01:24.635
+you're going to run it
+through this model to get
+
+33
+00:01:24.635 --> 00:01:29.480
+a vector v_1 with dimensions
+1 row by 5 columns.
+
+34
+00:01:29.480 --> 00:01:32.015
+The number of columns
+shown in this matrix
+
+35
+00:01:32.015 --> 00:01:35.330
+is equal to the dimension
+of your embedding layer,
+
+36
+00:01:35.330 --> 00:01:37.410
+which in this case is five.
+
+37
+00:01:37.410 --> 00:01:40.715
+I'll refer to this dimension
+of the embedding layer
+
+38
+00:01:40.715 --> 00:01:44.510
+as the model for each
+question in the batch.
+
+39
+00:01:44.510 --> 00:01:46.370
+I haven't talked
+about the dimension
+
+40
+00:01:46.370 --> 00:01:47.795
+of the embedding layer yet,
+
+41
+00:01:47.795 --> 00:01:49.700
+but don't worry, it will become
+
+42
+00:01:49.700 --> 00:01:52.180
+more clear once you're
+working with the code.
+
+43
+00:01:52.180 --> 00:01:54.050
+The important takeaway is that
+
+44
+00:01:54.050 --> 00:01:55.834
+the dimension of the embedding,
+
+45
+00:01:55.834 --> 00:01:58.130
+the model is a parameter that
+
+46
+00:01:58.130 --> 00:02:00.500
+determines the dimensions
+of the weights
+
+47
+00:02:00.500 --> 00:02:02.690
+through each layer
+in the model and
+
+48
+00:02:02.690 --> 00:02:05.495
+thus determines the size
+of the outputs vector.
+
+49
+00:02:05.495 --> 00:02:06.980
+The model is running
+
+50
+00:02:06.980 --> 00:02:09.100
+a batch size that
+is greater than 1,
+
+51
+00:02:09.100 --> 00:02:11.030
+so the v_1 output is
+
+52
+00:02:11.030 --> 00:02:14.675
+actually a matrix of
+stacked vectors like this.
+
+53
+00:02:14.675 --> 00:02:17.300
+In this visual example
+there are four rows in
+
+54
+00:02:17.300 --> 00:02:19.430
+this matrix to indicate that
+
+55
+00:02:19.430 --> 00:02:21.725
+there are four observations
+in this batch,
+
+56
+00:02:21.725 --> 00:02:23.750
+and the batch size is four.
+
+57
+00:02:23.750 --> 00:02:27.710
+I'll subscript the observations
+in the batch as v_11,
+
+58
+00:02:27.710 --> 00:02:30.500
+v_12, and so on corresponding to
+
+59
+00:02:30.500 --> 00:02:34.265
+the vector outputs for each
+question in the batch.
+
+60
+00:02:34.265 --> 00:02:38.150
+You'll do the same thing for
+the batch of v_2 vectors.
+
+61
+00:02:38.150 --> 00:02:40.580
+Each question in the Batch 1,
+
+62
+00:02:40.580 --> 00:02:43.925
+is a duplicate of its
+corresponding question in
+
+63
+00:02:43.925 --> 00:02:45.800
+Batch 2 but none of
+
+64
+00:02:45.800 --> 00:02:49.105
+the questions in Batch 1 are
+duplicates of each other,
+
+65
+00:02:49.105 --> 00:02:51.465
+and the same applies to Batch 2.
+
+66
+00:02:51.465 --> 00:02:56.110
+Here for example, the 11
+is a duplicate of v_21,
+
+67
+00:02:56.110 --> 00:02:59.435
+as are the rest of the
+respective row pairs but
+
+68
+00:02:59.435 --> 00:03:03.355
+v_11 is not a duplicates
+of any other rows in v_1.
+
+69
+00:03:03.355 --> 00:03:05.540
+The last step is to combine
+
+70
+00:03:05.540 --> 00:03:08.420
+the two branches of
+the Siamese network by
+
+71
+00:03:08.420 --> 00:03:10.355
+calculating the
+similarity between
+
+72
+00:03:10.355 --> 00:03:14.605
+all vector pair combinations
+of v_1 with v_2.
+
+73
+00:03:14.605 --> 00:03:18.260
+For this example with
+a batch size of 4,
+
+74
+00:03:18.260 --> 00:03:19.760
+you might get a matrix of
+
+75
+00:03:19.760 --> 00:03:21.905
+similarities that
+looks like this.
+
+76
+00:03:21.905 --> 00:03:25.130
+The diagonal is a
+key feature here.
+
+77
+00:03:25.130 --> 00:03:27.785
+These values are the
+similarities for
+
+78
+00:03:27.785 --> 00:03:31.160
+all your positive examples,
+the question duplicates.
+
+79
+00:03:31.160 --> 00:03:33.770
+Notice that all the
+values are generally
+
+80
+00:03:33.770 --> 00:03:36.975
+greater than the numbers
+in the off-diagonals.
+
+81
+00:03:36.975 --> 00:03:39.050
+The model is performing
+as you would
+
+82
+00:03:39.050 --> 00:03:41.720
+expect for duplicates
+questions because you
+
+83
+00:03:41.720 --> 00:03:44.120
+would expect the question
+duplicates to have
+
+84
+00:03:44.120 --> 00:03:47.449
+higher similarity compared
+to the non duplicates.
+
+85
+00:03:47.449 --> 00:03:49.690
+In the upper right
+and lower left,
+
+86
+00:03:49.690 --> 00:03:53.525
+you have the similarities for
+all the negative examples.
+
+87
+00:03:53.525 --> 00:03:56.600
+These are the results for
+the non duplicates pairs.
+
+88
+00:03:56.600 --> 00:03:59.750
+Notice that most of
+these numbers are lower
+
+89
+00:03:59.750 --> 00:04:03.140
+than the similarities that
+are along the diagonal.
+
+90
+00:04:03.140 --> 00:04:05.090
+Also notice that you can have
+
+91
+00:04:05.090 --> 00:04:07.400
+negative example
+question pairs that
+
+92
+00:04:07.400 --> 00:04:10.100
+still have a similarity
+greater than zero.
+
+93
+00:04:10.100 --> 00:04:12.350
+The range of
+similarity ranges from
+
+94
+00:04:12.350 --> 00:04:14.970
+negative 1 to positive 1 but
+
+95
+00:04:14.970 --> 00:04:17.530
+there isn't any special
+requirements that
+
+96
+00:04:17.530 --> 00:04:20.929
+a similarity greater than
+zero indicates duplicates,
+
+97
+00:04:20.929 --> 00:04:22.070
+or that's a similarity or
+
+98
+00:04:22.070 --> 00:04:24.970
+less than zero indicates
+not duplicates.
+
+99
+00:04:24.970 --> 00:04:28.010
+What matters for a
+properly functioning model
+
+100
+00:04:28.010 --> 00:04:29.270
+is that it generally
+
+101
+00:04:29.270 --> 00:04:31.060
+finds that duplicate have
+
+102
+00:04:31.060 --> 00:04:34.120
+a higher similarity
+relative to non duplicates.
+
+103
+00:04:34.120 --> 00:04:36.910
+Creating non duplicate
+pairs like this removes
+
+104
+00:04:36.910 --> 00:04:38.230
+the need for additional
+
+105
+00:04:38.230 --> 00:04:40.960
+non duplicates examples
+in the input data,
+
+106
+00:04:40.960 --> 00:04:43.245
+which turns out
+to be a big deal.
+
+107
+00:04:43.245 --> 00:04:44.860
+Instead of needing to set up
+
+108
+00:04:44.860 --> 00:04:47.350
+specific batches with
+negative examples,
+
+109
+00:04:47.350 --> 00:04:49.180
+your model can learn
+from them into
+
+110
+00:04:49.180 --> 00:04:51.805
+existing question
+duplicates, batches.
+
+111
+00:04:51.805 --> 00:04:54.700
+Now, you could just
+stop here and use
+
+112
+00:04:54.700 --> 00:04:56.860
+these similarities with
+the triplet loss-function
+
+113
+00:04:56.860 --> 00:04:58.855
+you already know shown here.
+
+114
+00:04:58.855 --> 00:05:01.540
+Then the overall costs for
+
+115
+00:05:01.540 --> 00:05:04.060
+your Siamese network
+will be the sum of
+
+116
+00:05:04.060 --> 00:05:07.115
+these individual losses
+over the training sets.
+
+117
+00:05:07.115 --> 00:05:11.110
+Here, you can see that
+superscripts i refers to
+
+118
+00:05:11.110 --> 00:05:15.125
+a specific training example
+and there are m observations,
+
+119
+00:05:15.125 --> 00:05:17.255
+but there are more
+techniques available.
+
+120
+00:05:17.255 --> 00:05:20.515
+This can vastly improve
+upon model performance.
+
+121
+00:05:20.515 --> 00:05:22.020
+I'll show you those next.
+
+122
+00:05:22.020 --> 00:05:23.945
+You have now seen
+
+123
+00:05:23.945 --> 00:05:26.090
+how hard negative
+mining is used when
+
+124
+00:05:26.090 --> 00:05:28.595
+computing the cost
+and during training.
+
+125
+00:05:28.595 --> 00:05:29.960
+You only need to have
+
+126
+00:05:29.960 --> 00:05:33.400
+two similar texts which
+you put on the diagonals,
+
+127
+00:05:33.400 --> 00:05:35.360
+and you use the off-diagonals
+
+128
+00:05:35.360 --> 00:05:38.220
+as the non-similar examples.

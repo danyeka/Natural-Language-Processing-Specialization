@@ -1,0 +1,258 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:04.064
+Welcome, this week I'll teach
+you about the transformer model.
+
+2
+00:00:04.064 --> 00:00:08.711
+It's a purely attention based model
+that was developed as Google to remedy
+
+3
+00:00:08.711 --> 00:00:10.342
+some problems with RNNs.
+
+4
+00:00:10.342 --> 00:00:13.007
+First, let me tell you
+what these problems are so
+
+5
+00:00:13.007 --> 00:00:15.937
+you understand why
+the transformer model is needed.
+
+6
+00:00:15.937 --> 00:00:17.322
+Let's dive in.
+
+7
+00:00:17.322 --> 00:00:20.000
+First, I will talk about
+some problems related to
+
+8
+00:00:20.000 --> 00:00:23.522
+recurrent neural networks using
+some familiar architectures.
+
+9
+00:00:23.522 --> 00:00:24.402
+After that,
+
+10
+00:00:24.402 --> 00:00:29.045
+I'll show you why pure attention
+models help us solve those issues.
+
+11
+00:00:29.045 --> 00:00:33.973
+In neural machine translation,
+you use a neural architecture to translate
+
+12
+00:00:33.973 --> 00:00:38.757
+from one language to another,
+in this example, from English to French.
+
+13
+00:00:38.757 --> 00:00:43.078
+Using an RNN, you have to take
+sequential steps to encode your inputs.
+
+14
+00:00:43.078 --> 00:00:45.679
+You start from the beginning
+of your input,
+
+15
+00:00:45.679 --> 00:00:49.203
+making computations at every
+step until you reach the end.
+
+16
+00:00:49.203 --> 00:00:54.583
+At that point, you decode the information
+following a similar sequential procedure.
+
+17
+00:00:54.583 --> 00:00:58.497
+As you can see here, you have to go
+through every word in your inputs,
+
+18
+00:00:58.497 --> 00:01:03.105
+starting with the first word, followed
+by the second word, one after another.
+
+19
+00:01:03.105 --> 00:01:07.162
+In a sequential matter in order to
+start the translation that is done in
+
+20
+00:01:07.162 --> 00:01:08.482
+a sequential way too.
+
+21
+00:01:08.482 --> 00:01:13.299
+For that reason, there is not much
+room for parallel computations here.
+
+22
+00:01:13.299 --> 00:01:15.762
+The more words you have
+in the input sentence,
+
+23
+00:01:15.762 --> 00:01:18.549
+the more time it will take
+to process that sentence.
+
+24
+00:01:18.549 --> 00:01:23.632
+Let's look closer at a more general
+sequence-to-sequence architecture.
+
+25
+00:01:23.632 --> 00:01:28.711
+In this case, to propagate information
+from your first word to the last output,
+
+26
+00:01:28.711 --> 00:01:31.934
+you have to go through
+capital T sequential steps.
+
+27
+00:01:31.934 --> 00:01:36.662
+Where capital T is an integer that
+stands for the number of time steps that
+
+28
+00:01:36.662 --> 00:01:41.483
+your model will go through to process
+the inputs of one example sentence.
+
+29
+00:01:41.483 --> 00:01:46.979
+If, for instance, you are inputting
+a sentence that consists of five words,
+
+30
+00:01:46.979 --> 00:01:51.641
+then the model will take five times
+steps to encode that sentence,
+
+31
+00:01:51.641 --> 00:01:54.241
+and in this example T equals to five.
+
+32
+00:01:54.241 --> 00:01:58.864
+And as you may recall from earlier in
+the specialization with large sequences,
+
+33
+00:01:58.864 --> 00:02:02.252
+the information tends to get
+lost within the network and.
+
+34
+00:02:02.252 --> 00:02:07.302
+Vanishing gradients problems arise related
+to the length of your input sequences.
+
+35
+00:02:07.302 --> 00:02:12.578
+LSCMs and GRUs help a little with these
+problems, but even those architectures
+
+36
+00:02:12.578 --> 00:02:17.065
+stop working well when they try to
+process very long sequences due to
+
+37
+00:02:17.065 --> 00:02:21.887
+the information bottleneck, as you
+saw in the last week of this course.
+
+38
+00:02:21.887 --> 00:02:24.975
+So to recap,
+we said we have a loss of information and
+
+39
+00:02:24.975 --> 00:02:27.796
+then we have the vanishing
+gradients problem.
+
+40
+00:02:27.796 --> 00:02:31.511
+Including attention in your model
+is a way to tackle these problems.
+
+41
+00:02:31.511 --> 00:02:35.849
+You already saw and implemented
+a sequence-to-sequence architecture with
+
+42
+00:02:35.849 --> 00:02:38.353
+attention similar to
+the one depicted here.
+
+43
+00:02:38.353 --> 00:02:43.272
+Recall that you relied on LSTMs for
+your encoder and decoder, but
+
+44
+00:02:43.272 --> 00:02:47.124
+you could also have used GRUs or
+just vanilla RNNs.
+
+45
+00:02:47.124 --> 00:02:52.138
+In contrast, transformers rely
+only on attention mechanisms and
+
+46
+00:02:52.138 --> 00:02:56.971
+don't require the use of recurrent
+networks in a transformer,
+
+47
+00:02:56.971 --> 00:02:59.042
+attention is all you need.
+
+48
+00:02:59.042 --> 00:03:03.767
+Well, some linear and non-linear
+transformations are usually included, but
+
+49
+00:03:03.767 --> 00:03:04.815
+you get the idea.
+
+50
+00:03:04.815 --> 00:03:10.244
+Now you understand why RNNs can be slow
+and can have big problems with contexts.
+
+51
+00:03:10.244 --> 00:03:13.183
+These are the cases where
+transformers can help.
+
+52
+00:03:13.183 --> 00:03:17.192
+Next, I'll show you a concrete
+overview of the transformers.
+
+53
+00:03:17.192 --> 00:03:18.420
+Let's go to the next video.

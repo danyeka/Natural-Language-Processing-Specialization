@@ -1,0 +1,227 @@
+WEBVTT
+
+1
+00:00:00.240 --> 00:00:04.425
+We have mainly been speaking about
+the CBOW model by using one example as
+
+2
+00:00:04.425 --> 00:00:05.640
+an input.
+
+3
+00:00:05.640 --> 00:00:09.420
+However, what happens if we decide
+to feed in several inputs and
+
+4
+00:00:09.420 --> 00:00:12.140
+get several outputs at the same time?
+
+5
+00:00:12.140 --> 00:00:12.788
+How do we vectorized?
+
+6
+00:00:12.788 --> 00:00:17.242
+&gt;&gt; By now you are familiar with
+the dimensions of the vectors and
+
+7
+00:00:17.242 --> 00:00:20.124
+matrices used in the neural network for
+
+8
+00:00:20.124 --> 00:00:25.123
+the continuous bag of words model
+when feeding in a single example.
+
+9
+00:00:25.123 --> 00:00:29.454
+Instead of passing input vectors
+representing individual examples you may
+
+10
+00:00:29.454 --> 00:00:31.897
+want to pass in several
+examples at a time.
+
+11
+00:00:31.897 --> 00:00:36.599
+This usually makes the learning
+process quicker for a few reasons.
+
+12
+00:00:36.599 --> 00:00:38.927
+For brevity,
+I won't get into them right now.
+
+13
+00:00:38.927 --> 00:00:42.701
+Feeding several examples into the neural
+net at the same time is known as a batch
+
+14
+00:00:42.701 --> 00:00:46.760
+processing and you're going to be doing
+it yourself in this week's assignment.
+
+15
+00:00:46.760 --> 00:00:51.569
+Say that you want to feed an input context
+toward vectors into the neural network
+
+16
+00:00:51.569 --> 00:00:53.210
+during each iteration.
+
+17
+00:00:53.210 --> 00:00:55.064
+M is called the batch size and
+
+18
+00:00:55.064 --> 00:00:59.633
+it's a hyper parameter of the model
+that you define at training time.
+
+19
+00:00:59.633 --> 00:01:04.698
+You can join these m column vectors side
+by side to form a matrix with zero's and
+
+20
+00:01:04.698 --> 00:01:07.478
+m columns, which I'll notice capital X.
+
+21
+00:01:07.478 --> 00:01:12.780
+You can then pass this matrix through
+the network and you will get capital H.
+
+22
+00:01:12.780 --> 00:01:17.746
+The matrix representing the values
+of the hidden layer equals ReLU
+
+23
+00:01:17.746 --> 00:01:22.454
+the weight matrix capital Z1,
+where Z1 is W1 times X+B1.
+
+24
+00:01:22.454 --> 00:01:26.477
+It's an N rows by m columns matrix.
+
+25
+00:01:26.477 --> 00:01:31.049
+Know that you need to replace the original
+b1 bias vector with a bias matrix capital
+
+26
+00:01:31.049 --> 00:01:35.052
+B1 where you duplicate the column vector
+M times to have an N by m matrix.
+
+27
+00:01:35.052 --> 00:01:39.902
+So that the bias germs are added to each
+
+28
+00:01:39.902 --> 00:01:44.304
+of the weighted sums just as a tip.
+
+29
+00:01:44.304 --> 00:01:49.272
+When you're working on the assignment,
+this is known as broadcasting the vector
+
+30
+00:01:49.272 --> 00:01:53.304
+to a matrix and it's performed
+automatically by numpy when adding
+
+31
+00:01:53.304 --> 00:01:56.689
+a matrix to a column vector
+with the same number of rows.
+
+32
+00:01:56.689 --> 00:02:01.805
+Next, capital Y hat,
+the matrix containing the m outputs.
+
+33
+00:02:01.805 --> 00:02:07.701
+It is equal to the softmax of W2H+B2.
+
+34
+00:02:07.701 --> 00:02:11.448
+And again you're replicating the bias
+vector lower case b2 M times to get
+
+35
+00:02:11.448 --> 00:02:12.969
+the bias matrix capital B2.
+
+36
+00:02:12.969 --> 00:02:17.177
+Y hat has zeros and m columns.
+
+37
+00:02:17.177 --> 00:02:21.600
+You can break Y hat down into m column
+vectors, each one corresponding to one of
+
+38
+00:02:21.600 --> 00:02:25.140
+the input context words
+vectors from the input matrix.
+
+39
+00:02:25.140 --> 00:02:30.070
+So the vector from the first column of
+the input matrix is transformed into
+
+40
+00:02:30.070 --> 00:02:34.840
+the vector corresponding to the first
+column of the output matrix, and
+
+41
+00:02:34.840 --> 00:02:37.567
+similarly for the other m-1 vectors.
+
+42
+00:02:37.567 --> 00:02:42.353
+Next, I'll introduce the activation
+functions used by the continuous
+
+43
+00:02:42.353 --> 00:02:43.700
+bag of words model.
+
+44
+00:02:43.700 --> 00:02:47.433
+You're getting closer to a working model.
+
+45
+00:02:47.433 --> 00:02:50.404
+&gt;&gt; You are an expert in figuring out
+the dimensions of the CBOW model and
+
+46
+00:02:50.404 --> 00:02:52.450
+can victories your inputs and outputs.
+
+47
+00:02:52.450 --> 00:02:54.702
+This is really exciting stuff.
+
+48
+00:02:54.702 --> 00:02:55.686
+In the next video,
+
+49
+00:02:55.686 --> 00:02:59.450
+you'll take a deep dive into the
+activation functions used by this model

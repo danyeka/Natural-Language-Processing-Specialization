@@ -1,0 +1,480 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.785
+In the previous video,
+
+2
+00:00:01.785 --> 00:00:03.510
+I briefly mentioned
+the four steps
+
+3
+00:00:03.510 --> 00:00:05.865
+required to implement
+auto-correct.
+
+4
+00:00:05.865 --> 00:00:09.945
+Now, you're going to take a
+deep dive into these steps.
+
+5
+00:00:09.945 --> 00:00:11.700
+You already know the four steps
+
+6
+00:00:11.700 --> 00:00:13.260
+inside the auto-correct model.
+
+7
+00:00:13.260 --> 00:00:16.080
+It's time to look at
+each step in detail.
+
+8
+00:00:16.080 --> 00:00:17.850
+You'll be implementing each of
+
+9
+00:00:17.850 --> 00:00:20.115
+these steps in this
+week's assignments.
+
+10
+00:00:20.115 --> 00:00:23.475
+Step 1, identify a
+misspelled word.
+
+11
+00:00:23.475 --> 00:00:26.145
+When the string there
+is encountered,
+
+12
+00:00:26.145 --> 00:00:28.515
+how do you know it's
+a misspelled word?
+
+13
+00:00:28.515 --> 00:00:31.054
+Well, if it's spelled correctly,
+
+14
+00:00:31.054 --> 00:00:33.035
+you will find it
+in the dictionary.
+
+15
+00:00:33.035 --> 00:00:36.545
+If not, then it's probably
+a misspelled word.
+
+16
+00:00:36.545 --> 00:00:39.035
+If a word is not given
+in a dictionary,
+
+17
+00:00:39.035 --> 00:00:40.645
+flag it for correction.
+
+18
+00:00:40.645 --> 00:00:42.590
+Recall that you're
+not searching for
+
+19
+00:00:42.590 --> 00:00:45.380
+contextual errors,
+just spelling errors.
+
+20
+00:00:45.380 --> 00:00:47.570
+There are much more
+sophisticated techniques
+
+21
+00:00:47.570 --> 00:00:48.740
+for identifying words
+
+22
+00:00:48.740 --> 00:00:50.360
+that are probably incorrect
+
+23
+00:00:50.360 --> 00:00:52.595
+by looking at the words
+surrounding them.
+
+24
+00:00:52.595 --> 00:00:55.085
+Some of which you'll visit
+later in the course.
+
+25
+00:00:55.085 --> 00:00:58.880
+But for now, quickly identifying
+a word as incorrect by
+
+26
+00:00:58.880 --> 00:01:00.710
+its appearance misspelling is a
+
+27
+00:01:00.710 --> 00:01:03.200
+simple and is a powerful
+model that works well.
+
+28
+00:01:03.200 --> 00:01:05.300
+Words like deer
+will pass through
+
+29
+00:01:05.300 --> 00:01:07.220
+this filter just fine as it is
+
+30
+00:01:07.220 --> 00:01:11.700
+spelled correctly regardless
+of how the context may seem.
+
+31
+00:01:11.700 --> 00:01:14.925
+Step two, find
+strings that are 1,
+
+32
+00:01:14.925 --> 00:01:18.950
+2, 3, or any number n
+edit distance away.
+
+33
+00:01:18.950 --> 00:01:21.260
+When saying n edit distance,
+
+34
+00:01:21.260 --> 00:01:23.810
+I'm referring to an
+edit distance of n,
+
+35
+00:01:23.810 --> 00:01:25.775
+such as edit distance of one,
+
+36
+00:01:25.775 --> 00:01:28.300
+edit distance of two, and so on.
+
+37
+00:01:28.300 --> 00:01:31.190
+An edit is a type of
+operation performed
+
+38
+00:01:31.190 --> 00:01:34.160
+on a string to change
+it into another string.
+
+39
+00:01:34.160 --> 00:01:36.350
+Edit distance counts
+the number of
+
+40
+00:01:36.350 --> 00:01:38.180
+these operations so that
+
+41
+00:01:38.180 --> 00:01:39.770
+the n edit distance tells you
+
+42
+00:01:39.770 --> 00:01:43.535
+how many operations away
+one string is from another.
+
+43
+00:01:43.535 --> 00:01:46.655
+Now consider an insert
+operation, for example.
+
+44
+00:01:46.655 --> 00:01:48.620
+This is a type of edit that adds
+
+45
+00:01:48.620 --> 00:01:50.930
+a letter to its string
+in any position.
+
+46
+00:01:50.930 --> 00:01:52.940
+For example, starting
+with the word
+
+47
+00:01:52.940 --> 00:01:55.220
+to insert P at the end
+
+48
+00:01:55.220 --> 00:01:56.900
+and you get top or
+
+49
+00:01:56.900 --> 00:01:59.555
+inserts W in the middle
+and you get two.
+
+50
+00:01:59.555 --> 00:02:02.240
+A delete operation
+removes the letter.
+
+51
+00:02:02.240 --> 00:02:04.880
+For example, starts
+with the word hat.
+
+52
+00:02:04.880 --> 00:02:06.950
+Delete T from the
+end and you get to
+
+53
+00:02:06.950 --> 00:02:09.800
+ha or delete H from
+the fronts and you
+
+54
+00:02:09.800 --> 00:02:13.475
+get at or delete A from the
+middle and you get the string
+
+55
+00:02:13.475 --> 00:02:17.565
+H-T. A switch edit swap
+two adjacent letters.
+
+56
+00:02:17.565 --> 00:02:20.325
+For example, the string E-T-A,
+
+57
+00:02:20.325 --> 00:02:22.935
+switch T and A and you get eat,
+
+58
+00:02:22.935 --> 00:02:26.440
+or switch E and T
+and you get tea.
+
+59
+00:02:26.440 --> 00:02:28.140
+Notice that you are switching
+
+60
+00:02:28.140 --> 00:02:30.300
+two letters that are
+next to each other.
+
+61
+00:02:30.300 --> 00:02:31.985
+This does not include switching
+
+62
+00:02:31.985 --> 00:02:34.205
+two letters that are
+not next to each other,
+
+63
+00:02:34.205 --> 00:02:38.275
+such as switching the E
+and the A to make ate.
+
+64
+00:02:38.275 --> 00:02:41.525
+A replace edit changes
+one letter to another.
+
+65
+00:02:41.525 --> 00:02:43.600
+For example, the word jaw,
+
+66
+00:02:43.600 --> 00:02:46.455
+change W to R and you get jar,
+
+67
+00:02:46.455 --> 00:02:49.530
+or change J to P
+and you get paw.
+
+68
+00:02:49.530 --> 00:02:52.185
+Using the four edits; insert,
+
+69
+00:02:52.185 --> 00:02:54.630
+delete, switch, and replace,
+
+70
+00:02:54.630 --> 00:02:56.525
+you can modify any string.
+
+71
+00:02:56.525 --> 00:02:58.655
+By combining these edits,
+
+72
+00:02:58.655 --> 00:03:00.020
+you can find a list of
+
+73
+00:03:00.020 --> 00:03:03.110
+all possible strings
+that's are n edits away.
+
+74
+00:03:03.110 --> 00:03:07.360
+For auto-correct, n
+is usually 1-3 edits.
+
+75
+00:03:07.360 --> 00:03:09.680
+You'll implement each
+of these edits in
+
+76
+00:03:09.680 --> 00:03:11.930
+this week's programming
+exercise and
+
+77
+00:03:11.930 --> 00:03:13.730
+combine edits to get a list of
+
+78
+00:03:13.730 --> 00:03:16.940
+two edit distances from
+the original input string.
+
+79
+00:03:16.940 --> 00:03:20.470
+Now Step 3, filter candidates.
+
+80
+00:03:20.470 --> 00:03:22.370
+Notice how many of
+the strings that are
+
+81
+00:03:22.370 --> 00:03:25.220
+generated do not look
+like actual words.
+
+82
+00:03:25.220 --> 00:03:26.945
+To filter these strings
+
+83
+00:03:26.945 --> 00:03:28.780
+and keep ones that
+are real words,
+
+84
+00:03:28.780 --> 00:03:30.320
+you only want to consider
+
+85
+00:03:30.320 --> 00:03:32.090
+real and correctly spelled words
+
+86
+00:03:32.090 --> 00:03:33.640
+from your candidate lists.
+
+87
+00:03:33.640 --> 00:03:37.310
+Again, compare it to a known
+dictionary or vocabulary,
+
+88
+00:03:37.310 --> 00:03:38.845
+just like in Step 1.
+
+89
+00:03:38.845 --> 00:03:40.410
+This time, if the string
+
+90
+00:03:40.410 --> 00:03:42.064
+does not appear in
+the dictionary,
+
+91
+00:03:42.064 --> 00:03:44.225
+remove it from the
+list of candidates.
+
+92
+00:03:44.225 --> 00:03:47.105
+When you're left with a
+list of actual words only,
+
+93
+00:03:47.105 --> 00:03:48.775
+then that is good progress.
+
+94
+00:03:48.775 --> 00:03:50.430
+That's the first three steps of
+
+95
+00:03:50.430 --> 00:03:52.305
+building the auto-correct model.
+
+96
+00:03:52.305 --> 00:03:53.645
+In the next lesson,
+
+97
+00:03:53.645 --> 00:03:56.500
+you'll see the fourth
+and final step.
+
+98
+00:03:56.500 --> 00:03:59.510
+You learned about three
+of the four steps
+
+99
+00:03:59.510 --> 00:04:02.795
+required to implement
+auto-correct for the first week.
+
+100
+00:04:02.795 --> 00:04:06.065
+The first step was identifying
+the misspelled word,
+
+101
+00:04:06.065 --> 00:04:10.430
+then finding the strings that
+are n edit distances away,
+
+102
+00:04:10.430 --> 00:04:14.300
+then filtering the candidates
+that are actual words.
+
+103
+00:04:14.300 --> 00:04:17.510
+Now the last step is
+calculating the probabilities,
+
+104
+00:04:17.510 --> 00:04:20.790
+which you will learn
+about in the next video.

@@ -1,0 +1,285 @@
+WEBVTT
+
+1
+00:00:00.640 --> 00:00:05.140
+The main operation and transformer
+is the scale bus product attention.
+
+2
+00:00:05.140 --> 00:00:08.311
+You've already seen attention in
+the first week of this course.
+
+3
+00:00:08.311 --> 00:00:11.806
+In this video,
+I'll remind you how it works.
+
+4
+00:00:11.806 --> 00:00:16.239
+First, I'll remind you of the formula
+used for scale dot products attention.
+
+5
+00:00:16.239 --> 00:00:18.739
+Then you'll see some
+details about the math and
+
+6
+00:00:18.739 --> 00:00:21.251
+the dimensions of the queries keys and
+values.
+
+7
+00:00:22.440 --> 00:00:26.809
+Recall that in scale dot-products
+attention, you have queries, keys and
+
+8
+00:00:26.809 --> 00:00:28.040
+values.
+
+9
+00:00:28.040 --> 00:00:31.810
+The attention layer outputs
+contacts vectors for each query.
+
+10
+00:00:31.810 --> 00:00:36.546
+And the context vectors are weighted
+sums of the values where the similarity
+
+11
+00:00:36.546 --> 00:00:41.361
+between the queries and keys determines
+the weights assigned to each value.
+
+12
+00:00:42.440 --> 00:00:47.510
+The SoftMax ensures that the weights add
+up to 1 and the division by the square
+
+13
+00:00:47.510 --> 00:00:52.361
+roots of the dimension of the key
+factors is used to improve performance.
+
+14
+00:00:53.440 --> 00:00:58.004
+The scale dot-product attention
+mechanism is very efficient since it
+
+15
+00:00:58.004 --> 00:01:01.940
+relies only on matrix multiplication and
+SoftMax.
+
+16
+00:01:01.940 --> 00:01:06.661
+Additionally, you could implement this
+attention mechanism to run on GPUs or
+
+17
+00:01:06.661 --> 00:01:08.317
+TPUs to speed up training.
+
+18
+00:01:08.317 --> 00:01:13.239
+To get the query, key and value matrices,
+you must first transform the words in your
+
+19
+00:01:13.239 --> 00:01:17.340
+sequences toward embedding's,
+let's take the sentence.
+
+20
+00:01:17.340 --> 00:01:20.293
+Je suis heureux are source for
+the queries.
+
+21
+00:01:20.293 --> 00:01:24.840
+You'll need to get the embedding
+vector for the word Je.
+
+22
+00:01:24.840 --> 00:01:28.929
+Then for the words suis and
+finally for the word heureux.
+
+23
+00:01:28.929 --> 00:01:33.728
+The query matrix will contain all
+of these embedding vectors as rows.
+
+24
+00:01:33.728 --> 00:01:37.646
+Not that the matrix sizes given by
+the size of the word embeddings and
+
+25
+00:01:37.646 --> 00:01:39.304
+the length of the sequence.
+
+26
+00:01:39.304 --> 00:01:44.940
+To get the key matrix let's use
+a source of the sentence I am happy.
+
+27
+00:01:44.940 --> 00:01:48.470
+You will get the embedding for
+each word in the sentence and
+
+28
+00:01:48.470 --> 00:01:51.740
+stack them together to
+form the key matrix.
+
+29
+00:01:51.740 --> 00:01:55.095
+You will generally use the same
+vectors used for the key matrix for
+
+30
+00:01:55.095 --> 00:01:56.076
+the value matrix.
+
+31
+00:01:56.076 --> 00:01:58.580
+But you could also transform them first.
+
+32
+00:01:58.580 --> 00:02:02.691
+Nodes however, that the number of
+vectors used to form the key and
+
+33
+00:02:02.691 --> 00:02:05.540
+value matrix must be the same.
+
+34
+00:02:05.540 --> 00:02:09.980
+Now you can revisit the scale attention
+formula that I showed you before
+
+35
+00:02:09.980 --> 00:02:14.727
+to get a sense of the dimensions of
+the matrices involved at every time step.
+
+36
+00:02:14.727 --> 00:02:18.384
+First, you compute the matrix
+products between the query and
+
+37
+00:02:18.384 --> 00:02:21.040
+the transpose of the key matrix.
+
+38
+00:02:21.040 --> 00:02:25.924
+You scale it by the inverse of the square
+of the dimension of the key vectors,
+
+39
+00:02:25.924 --> 00:02:28.151
+D sub K and calculate the SoftMax.
+
+40
+00:02:29.240 --> 00:02:34.554
+This competition will give you a matrix
+with the weights for each keeper query.
+
+41
+00:02:34.554 --> 00:02:38.707
+Therefore the weight matrix
+will have a total number of
+
+42
+00:02:38.707 --> 00:02:43.682
+elements equal to the number of
+queries times the number of keys.
+
+43
+00:02:43.682 --> 00:02:48.440
+And thus matrix, the third element in
+the second row would correspond to
+
+44
+00:02:48.440 --> 00:02:52.351
+the weights assigned to the third key for
+the second query.
+
+45
+00:02:53.640 --> 00:02:56.514
+After the computation
+of the weights matrix,
+
+46
+00:02:56.514 --> 00:03:00.935
+you can multiply it with the value
+matrix to get a matrix that has rows and
+
+47
+00:03:00.935 --> 00:03:04.046
+the context vector
+corresponding to each query.
+
+48
+00:03:04.046 --> 00:03:09.146
+And the number of columns on this matrix
+is equal to the size of the value vectors,
+
+49
+00:03:09.146 --> 00:03:12.161
+which is often the same
+as the embedding sites.
+
+50
+00:03:13.940 --> 00:03:18.540
+Scale dot-product attention is
+the heart and soul of transformers.
+
+51
+00:03:18.540 --> 00:03:22.079
+In general terms,
+this mechanism takes queries, keys and
+
+52
+00:03:22.079 --> 00:03:24.940
+values as matrices of embedding's.
+
+53
+00:03:24.940 --> 00:03:30.140
+It is composed of just two matrix
+multiplication and a SoftMax function.
+
+54
+00:03:30.140 --> 00:03:32.901
+Therefore, you could
+consider using GPUs and
+
+55
+00:03:32.901 --> 00:03:37.440
+TPUs to speed up the training of
+models that rely on this mechanism.
+
+56
+00:03:37.440 --> 00:03:40.640
+Now you understand that
+products attention very well.
+
+57
+00:03:40.640 --> 00:03:42.204
+In the transformer decoder,
+
+58
+00:03:42.204 --> 00:03:46.040
+we need an extended version
+called the self-masked attention.
+
+59
+00:03:46.040 --> 00:03:48.051
+I'll teach you about it in the next video.

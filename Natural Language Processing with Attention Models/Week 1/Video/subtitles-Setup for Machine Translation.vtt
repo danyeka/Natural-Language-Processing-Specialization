@@ -1,0 +1,226 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.840
+You will now learn about
+how words are being
+
+2
+00:00:02.840 --> 00:00:05.920
+represented in the neural
+machine translation setting.
+
+3
+00:00:05.920 --> 00:00:09.050
+You will also see what
+the dataset looks like.
+
+4
+00:00:09.050 --> 00:00:11.100
+When implementing
+the systems I'll
+
+5
+00:00:11.100 --> 00:00:13.720
+show you that you need to
+keep track of a few things.
+
+6
+00:00:13.720 --> 00:00:17.220
+For example, which words
+correspond to what sectors.
+
+7
+00:00:17.220 --> 00:00:19.615
+With that said let's dive in.
+
+8
+00:00:19.615 --> 00:00:21.640
+This is an example
+of the type of
+
+9
+00:00:21.640 --> 00:00:22.920
+input data that you will
+
+10
+00:00:22.920 --> 00:00:24.860
+have for your
+assignments this week.
+
+11
+00:00:24.860 --> 00:00:28.200
+Over here you have the
+sequence, I'm hungry,
+
+12
+00:00:28.200 --> 00:00:29.880
+and on the right
+
+13
+00:00:29.880 --> 00:00:32.520
+you have the corresponding
+French equivalent.
+
+14
+00:00:32.520 --> 00:00:34.460
+Further down, I watch
+
+15
+00:00:34.460 --> 00:00:37.680
+the soccer game and the
+corresponding French equivalent.
+
+16
+00:00:37.680 --> 00:00:40.240
+You're going to have a
+great many of these inputs.
+
+17
+00:00:40.240 --> 00:00:41.660
+You should know
+that the state of
+
+18
+00:00:41.660 --> 00:00:43.900
+the art models use
+pretrained vectors.
+
+19
+00:00:43.900 --> 00:00:46.400
+But otherwise, the first
+thing you'll do is
+
+20
+00:00:46.400 --> 00:00:49.420
+to use a one-hot vector
+to represent the words.
+
+21
+00:00:49.420 --> 00:00:51.520
+Usually you'll keep track of
+
+22
+00:00:51.520 --> 00:00:53.360
+your mappings with
+the word to index,
+
+23
+00:00:53.360 --> 00:00:55.160
+and index to word dictionary.
+
+24
+00:00:55.160 --> 00:00:57.880
+Given any input, you
+transform it into
+
+25
+00:00:57.880 --> 00:00:59.000
+indices and then vice
+
+26
+00:00:59.000 --> 00:01:01.110
+versa when you make
+the predictions.
+
+27
+00:01:01.110 --> 00:01:04.820
+You'll also normally use
+an end of sequence token.
+
+28
+00:01:04.820 --> 00:01:06.780
+You will pad your token vectors
+
+29
+00:01:06.780 --> 00:01:08.380
+with zeros to match the length
+
+30
+00:01:08.380 --> 00:01:12.040
+of the longest sequence.
+Here's an example.
+
+31
+00:01:12.040 --> 00:01:13.820
+This is an English sentence and
+
+32
+00:01:13.820 --> 00:01:16.180
+the tokenized version of
+the English sentence.
+
+33
+00:01:16.180 --> 00:01:18.380
+You can see that
+it has an index of
+
+34
+00:01:18.380 --> 00:01:21.860
+4,546 for the word both.
+
+35
+00:01:21.860 --> 00:01:24.360
+After the initial tokenization,
+
+36
+00:01:24.360 --> 00:01:27.415
+just add EOS token
+shown here is one,
+
+37
+00:01:27.415 --> 00:01:29.080
+and pad with zeros to
+
+38
+00:01:29.080 --> 00:01:31.120
+match the length of
+the longest sequence.
+
+39
+00:01:31.120 --> 00:01:33.340
+Now let's go to the
+French translation of
+
+40
+00:01:33.340 --> 00:01:34.760
+that sequence along with
+
+41
+00:01:34.760 --> 00:01:37.420
+the tokenized version of
+the French translation.
+
+42
+00:01:37.420 --> 00:01:41.700
+Notice that one is the end
+of sentence token here to.
+
+43
+00:01:41.700 --> 00:01:45.115
+It's also followed by a
+series of padding zeros.
+
+44
+00:01:45.115 --> 00:01:47.960
+Given now that you know
+how to represent words,
+
+45
+00:01:47.960 --> 00:01:49.700
+how to initialize your model,
+
+46
+00:01:49.700 --> 00:01:52.000
+and how to structure
+your dataset,
+
+47
+00:01:52.000 --> 00:01:54.360
+you can go ahead and start
+training your model.
+
+48
+00:01:54.360 --> 00:01:58.600
+In the next video, I'll show
+you how you can do this.

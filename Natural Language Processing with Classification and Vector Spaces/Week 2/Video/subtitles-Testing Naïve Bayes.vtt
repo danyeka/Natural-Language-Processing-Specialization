@@ -1,0 +1,484 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.580
+This part will be fun
+as you will apply
+
+2
+00:00:02.580 --> 00:00:06.225
+the Naive Bayes classifier
+on real test examples.
+
+3
+00:00:06.225 --> 00:00:07.860
+It is similar to what you did
+
+4
+00:00:07.860 --> 00:00:09.525
+in the first video of the week,
+
+5
+00:00:09.525 --> 00:00:12.660
+but we'll cover some
+special corner cases.
+
+6
+00:00:12.660 --> 00:00:14.790
+Once you have
+trained your model,
+
+7
+00:00:14.790 --> 00:00:16.700
+the next step is to test it.
+
+8
+00:00:16.700 --> 00:00:18.300
+You do so by taking
+
+9
+00:00:18.300 --> 00:00:21.015
+the conditional probabilities
+you just derived.
+
+10
+00:00:21.015 --> 00:00:22.380
+You use them to predict
+
+11
+00:00:22.380 --> 00:00:25.275
+the sentiments of
+new unseen tweets.
+
+12
+00:00:25.275 --> 00:00:28.845
+After that, you'll evaluate
+your model performance,
+
+13
+00:00:28.845 --> 00:00:30.270
+and you will do so just like
+
+14
+00:00:30.270 --> 00:00:31.920
+how you did it in the last week.
+
+15
+00:00:31.920 --> 00:00:35.130
+You use your test sets
+of annotated tweets.
+
+16
+00:00:35.130 --> 00:00:37.575
+With the calculations
+you've done already,
+
+17
+00:00:37.575 --> 00:00:39.690
+you have a table with
+the Lambda score
+
+18
+00:00:39.690 --> 00:00:42.235
+for each unique word
+in your vocabulary.
+
+19
+00:00:42.235 --> 00:00:44.680
+With your estimation
+of the logprior,
+
+20
+00:00:44.680 --> 00:00:47.945
+you can predict sentiments
+on a new tweet.
+
+21
+00:00:47.945 --> 00:00:49.540
+This new tweet says,
+
+22
+00:00:49.540 --> 00:00:51.685
+"I passed the NLP interview."
+
+23
+00:00:51.685 --> 00:00:54.110
+You can use your model
+to predict if this is
+
+24
+00:00:54.110 --> 00:00:56.740
+a positive or negative tweet.
+
+25
+00:00:56.740 --> 00:01:00.415
+Before anything else, you
+must pre-process this text,
+
+26
+00:01:00.415 --> 00:01:03.605
+removing the punctuation,
+stemming the words,
+
+27
+00:01:03.605 --> 00:01:05.225
+and tokenizing to produce
+
+28
+00:01:05.225 --> 00:01:07.460
+a vector of words like this one.
+
+29
+00:01:07.460 --> 00:01:09.980
+Now, you look up each word from
+
+30
+00:01:09.980 --> 00:01:12.335
+the vector in your
+log-likelihood table.
+
+31
+00:01:12.335 --> 00:01:13.760
+If the word is found,
+
+32
+00:01:13.760 --> 00:01:16.085
+such as I pass, the,
+
+33
+00:01:16.085 --> 00:01:20.855
+and NLP, you sum over all the
+corresponding Lambda terms.
+
+34
+00:01:20.855 --> 00:01:24.320
+The values that don't show
+up in the table of Lambdas,
+
+35
+00:01:24.320 --> 00:01:26.390
+like interview, are considered
+
+36
+00:01:26.390 --> 00:01:29.840
+neutral and don't contribute
+anything to the score.
+
+37
+00:01:29.840 --> 00:01:31.640
+Your model can only give
+
+38
+00:01:31.640 --> 00:01:34.255
+a score for words
+it's seen before.
+
+39
+00:01:34.255 --> 00:01:37.130
+Now, you add the log
+prior to account for
+
+40
+00:01:37.130 --> 00:01:40.700
+the balance or imbalance of
+the classes in the datasets.
+
+41
+00:01:40.700 --> 00:01:43.565
+This score sums up to 0.48.
+
+42
+00:01:43.565 --> 00:01:46.700
+Remember, if this score
+is bigger than 0,
+
+43
+00:01:46.700 --> 00:01:49.825
+then this tweet has a
+positive sentiment.
+
+44
+00:01:49.825 --> 00:01:53.165
+Yes, in your model
+and in real life,
+
+45
+00:01:53.165 --> 00:01:57.095
+passing the NLP interview
+is a very positive thing.
+
+46
+00:01:57.095 --> 00:01:59.149
+You just predicted the sentiment
+
+47
+00:01:59.149 --> 00:02:01.705
+of a new tweet, and
+that's awesome.
+
+48
+00:02:01.705 --> 00:02:03.620
+It's time to test
+the performance of
+
+49
+00:02:03.620 --> 00:02:06.110
+your classifier on unseen data,
+
+50
+00:02:06.110 --> 00:02:07.790
+just like you already did for
+
+51
+00:02:07.790 --> 00:02:10.130
+a different scenario in
+the previous module.
+
+52
+00:02:10.130 --> 00:02:12.695
+Let's quickly
+review that process
+
+53
+00:02:12.695 --> 00:02:14.525
+as applied to Naive Bayes.
+
+54
+00:02:14.525 --> 00:02:17.690
+This week's assignments
+includes a validation set.
+
+55
+00:02:17.690 --> 00:02:19.505
+This data was set aside during
+
+56
+00:02:19.505 --> 00:02:23.120
+training and is composed
+of a set of raw tweets,
+
+57
+00:02:23.120 --> 00:02:27.130
+so X_val and their
+corresponding sentiments Y_val.
+
+58
+00:02:27.130 --> 00:02:29.600
+You'll have to implement
+the accuracy function
+
+59
+00:02:29.600 --> 00:02:31.880
+to measure the performance
+of your trained model,
+
+60
+00:02:31.880 --> 00:02:34.085
+represented by the Lambda table
+
+61
+00:02:34.085 --> 00:02:36.500
+and the logprior
+using these data.
+
+62
+00:02:36.500 --> 00:02:40.070
+First, compute the score
+of each entry in X_val,
+
+63
+00:02:40.070 --> 00:02:41.860
+like you just did previously.
+
+64
+00:02:41.860 --> 00:02:45.980
+Then evaluate whether each
+score is greater than 0.
+
+65
+00:02:45.980 --> 00:02:49.910
+This produces a vector
+populated with zeros and ones,
+
+66
+00:02:49.910 --> 00:02:52.504
+indicating if the
+predicted sentiment
+
+67
+00:02:52.504 --> 00:02:55.100
+is negative or
+positive respectively.
+
+68
+00:02:55.100 --> 00:02:57.725
+For each tweet in
+the validation sets.
+
+69
+00:02:57.725 --> 00:02:59.870
+With your new
+predictions vector,
+
+70
+00:02:59.870 --> 00:03:01.520
+you can compute the accuracy of
+
+71
+00:03:01.520 --> 00:03:03.905
+your model over the
+validation sets.
+
+72
+00:03:03.905 --> 00:03:05.375
+To do this part,
+
+73
+00:03:05.375 --> 00:03:08.540
+you will compare your predictions
+against the true value
+
+74
+00:03:08.540 --> 00:03:12.565
+for each observation from
+your validation data, Y-val.
+
+75
+00:03:12.565 --> 00:03:15.860
+If the values are equal and
+your prediction is correct,
+
+76
+00:03:15.860 --> 00:03:19.580
+you'll get a value of one
+and zero if incorrect.
+
+77
+00:03:19.580 --> 00:03:21.725
+Once you have compared
+the values of
+
+78
+00:03:21.725 --> 00:03:23.960
+every prediction
+with the true labels
+
+79
+00:03:23.960 --> 00:03:25.260
+of your validation sets,
+
+80
+00:03:25.260 --> 00:03:28.370
+you can compute the
+accuracy as the sum of
+
+81
+00:03:28.370 --> 00:03:30.260
+this vector divided
+by the number of
+
+82
+00:03:30.260 --> 00:03:32.615
+examples in the validation sets,
+
+83
+00:03:32.615 --> 00:03:35.635
+just like you did for
+the logistic regression.
+
+84
+00:03:35.635 --> 00:03:38.105
+Let's revisit everything
+you just did.
+
+85
+00:03:38.105 --> 00:03:40.790
+To test the performance of
+your Naive Bayes model,
+
+86
+00:03:40.790 --> 00:03:43.760
+you use a validation set
+to allow you to predict
+
+87
+00:03:43.760 --> 00:03:45.380
+the sentiment score for
+
+88
+00:03:45.380 --> 00:03:48.860
+an unseen tweet using
+your newly trained model.
+
+89
+00:03:48.860 --> 00:03:51.320
+Then you compared
+your predictions with
+
+90
+00:03:51.320 --> 00:03:53.540
+the true labels provided in
+
+91
+00:03:53.540 --> 00:03:56.105
+the validation sets
+to get the percentage
+
+92
+00:03:56.105 --> 00:03:59.360
+of tweets that were correctly
+predicted by your label.
+
+93
+00:03:59.360 --> 00:04:01.820
+Then you compared
+your predictions with
+
+94
+00:04:01.820 --> 00:04:04.625
+the true labels provided
+in the validation sets.
+
+95
+00:04:04.625 --> 00:04:06.770
+This allowed you to
+get the percentage of
+
+96
+00:04:06.770 --> 00:04:09.995
+tweets that were correctly
+predicted by your model.
+
+97
+00:04:09.995 --> 00:04:12.230
+You also saw that words
+that don't appear in
+
+98
+00:04:12.230 --> 00:04:15.905
+the Lambda table are
+treated as neutral words.
+
+99
+00:04:15.905 --> 00:04:17.720
+Now you know how to apply
+
+100
+00:04:17.720 --> 00:04:20.585
+the Naive Bayes method
+to test examples.
+
+101
+00:04:20.585 --> 00:04:23.165
+In the coding exercise
+at the end of the week,
+
+102
+00:04:23.165 --> 00:04:25.580
+you will use it to
+classify tweets.
+
+103
+00:04:25.580 --> 00:04:29.010
+Next, I'll show you
+other things it can do.

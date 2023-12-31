@@ -1,0 +1,373 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.120
+One key operation needed
+to find a matching word in
+
+2
+00:00:03.120 --> 00:00:05.160
+the previous video was finding
+
+3
+00:00:05.160 --> 00:00:07.545
+the k nearest
+neighbors of a vector.
+
+4
+00:00:07.545 --> 00:00:10.770
+We will focus on this operation
+in the next few videos,
+
+5
+00:00:10.770 --> 00:00:14.550
+as it's a basic building block
+for many NLP techniques.
+
+6
+00:00:14.550 --> 00:00:16.590
+Notice that a transform or the
+
+7
+00:00:16.590 --> 00:00:18.630
+vector after the transformation,
+
+8
+00:00:18.630 --> 00:00:21.315
+if it's embedding
+through an R matrix,
+
+9
+00:00:21.315 --> 00:00:24.075
+would be in the French
+word vector space.
+
+10
+00:00:24.075 --> 00:00:27.569
+But it is not going to
+be necessarily identical
+
+11
+00:00:27.569 --> 00:00:29.145
+to any of the word vectors
+
+12
+00:00:29.145 --> 00:00:31.155
+in the French word vector space.
+
+13
+00:00:31.155 --> 00:00:32.670
+You need to search through
+
+14
+00:00:32.670 --> 00:00:35.445
+the actual French
+word vectors to find
+
+15
+00:00:35.445 --> 00:00:37.560
+a French word that is similar to
+
+16
+00:00:37.560 --> 00:00:40.105
+the one that you created
+from the transformation.
+
+17
+00:00:40.105 --> 00:00:43.070
+You may find words
+such as salut or
+
+18
+00:00:43.070 --> 00:00:45.110
+bonjour which you can return
+
+19
+00:00:45.110 --> 00:00:47.555
+as the French translation
+of the word hello.
+
+20
+00:00:47.555 --> 00:00:49.190
+So the question is,
+
+21
+00:00:49.190 --> 00:00:52.010
+how do you find
+similar word vectors?
+
+22
+00:00:52.010 --> 00:00:54.950
+To understand how to find
+similar word vectors,
+
+23
+00:00:54.950 --> 00:00:57.260
+let's look at a
+related question.
+
+24
+00:00:57.260 --> 00:01:00.445
+How do you find your friends
+who are living nearby?
+
+25
+00:01:00.445 --> 00:01:04.070
+Let's pretend that you are
+visiting San Francisco in
+
+26
+00:01:04.070 --> 00:01:05.690
+the United States and
+
+27
+00:01:05.690 --> 00:01:07.925
+you're visiting your
+dear friend Andrew.
+
+28
+00:01:07.925 --> 00:01:09.470
+You also want to visit
+
+29
+00:01:09.470 --> 00:01:11.330
+your other friends
+over the weekend,
+
+30
+00:01:11.330 --> 00:01:13.775
+preferably those
+who live nearby.
+
+31
+00:01:13.775 --> 00:01:17.195
+One way to do this is to go
+through your address book,
+
+32
+00:01:17.195 --> 00:01:19.940
+and for each friend,
+get their address,
+
+33
+00:01:19.940 --> 00:01:23.110
+calculate how far they
+are from San Francisco.
+
+34
+00:01:23.110 --> 00:01:25.210
+One friend is in Shanghai,
+
+35
+00:01:25.210 --> 00:01:27.635
+the other friend
+is in Bangalore,
+
+36
+00:01:27.635 --> 00:01:30.080
+and another friend
+is in Los Angeles.
+
+37
+00:01:30.080 --> 00:01:31.520
+You can sort your friends by
+
+38
+00:01:31.520 --> 00:01:33.560
+their distances
+to San Francisco,
+
+39
+00:01:33.560 --> 00:01:36.040
+then rank them by
+how close they are.
+
+40
+00:01:36.040 --> 00:01:38.615
+Notice that if you
+have a lot of friends,
+
+41
+00:01:38.615 --> 00:01:40.160
+which I'm sure you do,
+
+42
+00:01:40.160 --> 00:01:43.115
+this is a very time
+intensive process.
+
+43
+00:01:43.115 --> 00:01:45.680
+Is there a more efficient
+way to do this?
+
+44
+00:01:45.680 --> 00:01:47.540
+Notice that two of these friends
+
+45
+00:01:47.540 --> 00:01:49.265
+live in another continent,
+
+46
+00:01:49.265 --> 00:01:52.150
+while the third friend
+lives in the United States.
+
+47
+00:01:52.150 --> 00:01:53.960
+Could you have just searched for
+
+48
+00:01:53.960 --> 00:01:57.775
+a subset of friends who
+live in the United States.
+
+49
+00:01:57.775 --> 00:01:59.990
+You might have realized
+that it may not have
+
+50
+00:01:59.990 --> 00:02:02.120
+been necessary to
+go through all of
+
+51
+00:02:02.120 --> 00:02:04.100
+your friends in your address in
+
+52
+00:02:04.100 --> 00:02:06.650
+order to find the
+ones closest to you.
+
+53
+00:02:06.650 --> 00:02:08.345
+You might have imagined
+
+54
+00:02:08.345 --> 00:02:10.340
+if you somehow could
+filter on which
+
+55
+00:02:10.340 --> 00:02:11.360
+friends were all in
+
+56
+00:02:11.360 --> 00:02:14.285
+a general region such
+as North America,
+
+57
+00:02:14.285 --> 00:02:15.680
+then you could just search
+
+58
+00:02:15.680 --> 00:02:17.405
+within that subgroup of friends.
+
+59
+00:02:17.405 --> 00:02:19.370
+If there is a way to slice up
+
+60
+00:02:19.370 --> 00:02:22.189
+the geographic
+space into regions,
+
+61
+00:02:22.189 --> 00:02:24.965
+you could search just
+within those regions.
+
+62
+00:02:24.965 --> 00:02:26.780
+When you think about organizing
+
+63
+00:02:26.780 --> 00:02:29.375
+subsets of a data-set
+efficiently,
+
+64
+00:02:29.375 --> 00:02:33.605
+you may think about placing
+your data into buckets.
+
+65
+00:02:33.605 --> 00:02:35.375
+If you think about buckets,
+
+66
+00:02:35.375 --> 00:02:38.585
+then you'll definitely want
+to think about hash tables.
+
+67
+00:02:38.585 --> 00:02:40.820
+Hash tables are useful tools
+
+68
+00:02:40.820 --> 00:02:43.460
+for any kind of work
+involving data.
+
+69
+00:02:43.460 --> 00:02:46.135
+You'll learn about
+hash tables next.
+
+70
+00:02:46.135 --> 00:02:47.910
+In this video, I showed you
+
+71
+00:02:47.910 --> 00:02:50.045
+how using K-nearest neighbors,
+
+72
+00:02:50.045 --> 00:02:53.150
+you could translate a word
+even if it's transformation
+
+73
+00:02:53.150 --> 00:02:54.950
+doesn't exactly match the word
+
+74
+00:02:54.950 --> 00:02:57.095
+embedding in the
+desired language.
+
+75
+00:02:57.095 --> 00:02:59.330
+I introduced you to hash tables,
+
+76
+00:02:59.330 --> 00:03:01.235
+a useful data structure
+
+77
+00:03:01.235 --> 00:03:04.465
+that you will learn
+about in the next video.
+
+78
+00:03:04.465 --> 00:03:08.615
+Great. Now you are ready
+to learn about hashing.
+
+79
+00:03:08.615 --> 00:03:10.445
+This is an effective technique
+
+80
+00:03:10.445 --> 00:03:11.960
+that would allow you to look up
+
+81
+00:03:11.960 --> 00:03:16.380
+queries in a much faster way
+than simple linear search.

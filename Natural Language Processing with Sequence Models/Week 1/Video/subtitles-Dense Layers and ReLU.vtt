@@ -1,0 +1,245 @@
+WEBVTT
+
+1
+00:00:00.200 --> 00:00:02.940
+There are two main
+layers that are very
+
+2
+00:00:02.940 --> 00:00:05.320
+commonly used in most
+neural networks.
+
+3
+00:00:05.320 --> 00:00:08.060
+There is a dense layer
+which allows you to go
+
+4
+00:00:08.060 --> 00:00:11.225
+from one layer to another
+inside the network,
+
+5
+00:00:11.225 --> 00:00:12.640
+and then there is a ReLu,
+
+6
+00:00:12.640 --> 00:00:15.080
+layer that keeps
+your network stable.
+
+7
+00:00:15.080 --> 00:00:17.600
+Let's explore them
+in more detail.
+
+8
+00:00:17.600 --> 00:00:20.520
+First, I'll revisit
+the dense layer
+
+9
+00:00:20.520 --> 00:00:22.970
+that I already mentioned
+in the previous videos,
+
+10
+00:00:22.970 --> 00:00:26.820
+and then I'll show you how
+the ReLu, layer works.
+
+11
+00:00:27.040 --> 00:00:29.880
+Recall that within
+a hidden unit J,
+
+12
+00:00:29.880 --> 00:00:32.600
+two computations are
+happening sequentially.
+
+13
+00:00:32.600 --> 00:00:36.180
+First, a dot product between
+the weights associated
+
+14
+00:00:36.180 --> 00:00:37.720
+with that hidden unit and
+
+15
+00:00:37.720 --> 00:00:40.550
+the activations from
+the previous layer.
+
+16
+00:00:40.550 --> 00:00:43.380
+Then a non-linear function is
+
+17
+00:00:43.380 --> 00:00:45.990
+applied to the results
+of that dot product.
+
+18
+00:00:45.990 --> 00:00:48.660
+Looking at a hidden layer I,
+
+19
+00:00:48.660 --> 00:00:51.340
+from a vanilla neural network,
+
+20
+00:00:51.340 --> 00:00:53.400
+you will have multiple units
+
+21
+00:00:53.400 --> 00:00:54.940
+where the first computation is
+
+22
+00:00:54.940 --> 00:00:58.660
+a dot product
+superscript I sub j.
+
+23
+00:00:58.660 --> 00:01:02.220
+The dense layer computes all
+of these products at once by
+
+24
+00:01:02.220 --> 00:01:07.060
+multiplying the weight
+matrix W superscript I,
+
+25
+00:01:07.060 --> 00:01:09.920
+with the activations
+from the previous layer,
+
+26
+00:01:09.920 --> 00:01:12.360
+a superscript I minus one,
+
+27
+00:01:12.360 --> 00:01:15.080
+where the weight matrix
+contains a set of
+
+28
+00:01:15.080 --> 00:01:16.960
+parameters that can be
+
+29
+00:01:16.960 --> 00:01:19.125
+learned during the
+training process.
+
+30
+00:01:19.125 --> 00:01:21.270
+After a dense layer,
+
+31
+00:01:21.270 --> 00:01:23.700
+a non-linear function
+G is typically
+
+32
+00:01:23.700 --> 00:01:26.740
+applied to the z values
+in each hidden unit.
+
+33
+00:01:26.740 --> 00:01:30.080
+The ReLu function is a
+typical choice for this task.
+
+34
+00:01:30.080 --> 00:01:32.220
+It maps any negative values to
+
+35
+00:01:32.220 --> 00:01:35.180
+zero before sending them
+onto the next layer.
+
+36
+00:01:35.180 --> 00:01:37.420
+It computes a
+function that returns
+
+37
+00:01:37.420 --> 00:01:40.160
+a value of zero for
+negative values of
+
+38
+00:01:40.160 --> 00:01:42.720
+z sub j and does nothing to
+
+39
+00:01:42.720 --> 00:01:45.760
+the z subscript js
+that are positive.
+
+40
+00:01:45.760 --> 00:01:47.980
+This is equivalent to
+taking the maximum
+
+41
+00:01:47.980 --> 00:01:50.870
+between zero and z
+for each hidden unit.
+
+42
+00:01:50.870 --> 00:01:53.850
+ReLu stands for
+rectified linear units,
+
+43
+00:01:53.850 --> 00:01:55.420
+which makes sense when you are
+
+44
+00:01:55.420 --> 00:01:57.440
+taking a look at the graph where
+
+45
+00:01:57.440 --> 00:01:59.420
+the negative parts of
+the function have been
+
+46
+00:01:59.420 --> 00:02:02.380
+rectified to match
+the horizontal axis,
+
+47
+00:02:02.380 --> 00:02:04.980
+as you can see over here.
+
+48
+00:02:05.060 --> 00:02:08.470
+You've now seen the dense
+layer in more detail,
+
+49
+00:02:08.470 --> 00:02:11.005
+and I showed you how
+the ReLu, layer works.
+
+50
+00:02:11.005 --> 00:02:15.000
+Next, I'll discuss how
+to put a model together.
+
+51
+00:02:15.000 --> 00:02:16.900
+You are now familiar with
+
+52
+00:02:16.900 --> 00:02:20.700
+two main components of any
+common neural network.

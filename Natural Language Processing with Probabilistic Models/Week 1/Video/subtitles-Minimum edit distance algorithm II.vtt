@@ -1,0 +1,340 @@
+WEBVTT
+
+1
+00:00:00.140 --> 00:00:04.979
+In this video, we are going to translate
+how to populate the table mentioned
+
+2
+00:00:04.979 --> 00:00:09.379
+previously used to change from one
+word into another with some code.
+
+3
+00:00:09.379 --> 00:00:12.454
+By the end of the video,
+you'll see the finished product.
+
+4
+00:00:12.454 --> 00:00:17.044
+Earlier, you used an intuitive approach
+to fill out the upper left corner of
+
+5
+00:00:17.044 --> 00:00:19.136
+the minimum edit distance table.
+
+6
+00:00:19.136 --> 00:00:24.062
+Now, I'll show you how to use a formulaic
+approach to fill out the rest.
+
+7
+00:00:24.062 --> 00:00:28.011
+So you filled out some of the table
+already and it looks like this.
+
+8
+00:00:28.011 --> 00:00:30.420
+Now, to fill out the rest of the table,
+
+9
+00:00:30.420 --> 00:00:35.247
+you must first fill out the remaining
+cells of the left most column and top row.
+
+10
+00:00:35.247 --> 00:00:39.258
+In fact, you know that to transform
+play into an empty string,
+
+11
+00:00:39.258 --> 00:00:41.386
+you can just delete each letter.
+
+12
+00:00:41.386 --> 00:00:42.937
+So let's try that.
+
+13
+00:00:42.937 --> 00:00:47.558
+You can fill out these cells top to
+bottom by following this formula.
+
+14
+00:00:47.558 --> 00:00:50.822
+For each cell, look at the cell above and
+
+15
+00:00:50.822 --> 00:00:55.143
+at the cost of an extra delete edit,
+which will be 1.
+
+16
+00:00:55.143 --> 00:01:01.339
+This means that to make the string p into
+the empty string do one delete operation.
+
+17
+00:01:01.339 --> 00:01:05.475
+As shown in the previous example,
+to turn the string p,
+
+18
+00:01:05.475 --> 00:01:08.997
+l into the empty string,
+delete p and delete l.
+
+19
+00:01:08.997 --> 00:01:12.876
+Which are two delete operations,
+and so on.
+
+20
+00:01:12.876 --> 00:01:17.011
+Now at D[4,0],
+you have the minimum edit distance for
+
+21
+00:01:17.011 --> 00:01:22.397
+play to the empty string, which of
+course is just the cost of 4 deletes, 4.
+
+22
+00:01:23.397 --> 00:01:28.461
+You can use the same idea in
+the first row by transforming
+
+23
+00:01:28.461 --> 00:01:33.758
+the empty string to stay by
+inserting one letter at a time.
+
+24
+00:01:33.758 --> 00:01:37.521
+You do that by following this
+slightly different formula,
+
+25
+00:01:37.521 --> 00:01:39.787
+working from the left to the right.
+
+26
+00:01:39.787 --> 00:01:43.265
+Look at the previous cell and
+add a further insert cost one.
+
+27
+00:01:43.265 --> 00:01:44.297
+Looks good so far.
+
+28
+00:01:44.297 --> 00:01:49.756
+In the previous example, I showed you how
+to calculate this cell without formulas.
+
+29
+00:01:49.756 --> 00:01:55.281
+But you can also find the solution by
+applying this big, scary-looking formula.
+
+30
+00:01:55.281 --> 00:02:00.215
+It builds upon the computations you've
+already made in just the same way as
+
+31
+00:02:00.215 --> 00:02:02.185
+using the no formula method.
+
+32
+00:02:02.185 --> 00:02:05.264
+Some of this might feel like it's
+repeating what you just learned.
+
+33
+00:02:05.264 --> 00:02:09.907
+But it's valuable to see the formulas too,
+especially when getting ready for
+
+34
+00:02:09.907 --> 00:02:11.605
+the end of week assignment.
+
+35
+00:02:11.605 --> 00:02:16.231
+So the distance to this orange cell is
+going to be the minimum distance to reach
+
+36
+00:02:16.231 --> 00:02:20.091
+it from any of the previous three cells,
+interesting, right?
+
+37
+00:02:20.091 --> 00:02:22.916
+It might seem a little
+bit abstract at first but
+
+38
+00:02:22.916 --> 00:02:25.462
+you can break it down into smaller parts.
+
+39
+00:02:25.462 --> 00:02:30.005
+For example, if you come from the cell
+above you will add a delete cost,
+
+40
+00:02:30.005 --> 00:02:32.447
+just like you did in the first column.
+
+41
+00:02:32.447 --> 00:02:36.775
+If you come from the cell to the left,
+you will add an insert cost,
+
+42
+00:02:36.775 --> 00:02:38.919
+just like you did in the top row.
+
+43
+00:02:38.919 --> 00:02:43.585
+And if you come from the cell to the upper
+left, you'll do one of two things.
+
+44
+00:02:43.585 --> 00:02:46.721
+Either add a replace costs if
+the two letters, source i and
+
+45
+00:02:46.721 --> 00:02:48.135
+target j, don't match.
+
+46
+00:02:48.135 --> 00:02:50.332
+Or add nothing if they do.
+
+47
+00:02:50.332 --> 00:02:55.239
+Because there is no edit to be done for
+letters that are already the same.
+
+48
+00:02:55.239 --> 00:03:00.695
+So here for this cell you have
+the minimum of 1 + 1 which is 2.
+
+49
+00:03:00.695 --> 00:03:03.973
+Another 1 + 1 which is 2.
+
+50
+00:03:03.973 --> 00:03:09.534
+Since these two letters don't match,
+you have 0 plus 2 which is also 2.
+
+51
+00:03:09.534 --> 00:03:14.085
+Then you take the minimum of all three
+of these, which is a 2 in this case.
+
+52
+00:03:14.085 --> 00:03:15.862
+Place that value in the cell.
+
+53
+00:03:15.862 --> 00:03:21.292
+This is the minimum edit distance
+from p two s by using the formula and
+
+54
+00:03:21.292 --> 00:03:22.635
+costs defined.
+
+55
+00:03:22.635 --> 00:03:25.900
+You can then fill out the rest
+of the table the same way.
+
+56
+00:03:25.900 --> 00:03:30.382
+With the m, n entry in the bottom
+right corner being the minimum edit
+
+57
+00:03:30.382 --> 00:03:33.146
+distance from play to stay, which is 4.
+
+58
+00:03:33.146 --> 00:03:38.287
+I think color coding or a heat map
+reveals some interesting patterns.
+
+59
+00:03:38.287 --> 00:03:41.468
+Can you see what's happened
+from the middle square?
+
+60
+00:03:41.468 --> 00:03:42.751
+That's right.
+
+61
+00:03:42.751 --> 00:03:48.878
+Once you get from p, l to s, d the suffix
+of both words is the same, a, y.
+
+62
+00:03:48.878 --> 00:03:50.747
+So there are no more edits needed.
+
+63
+00:03:50.747 --> 00:03:53.789
+And that's why this 4
+carries down the diagonal.
+
+64
+00:03:53.789 --> 00:03:57.405
+Now, you know how to build a minimum
+edit distance algorithm efficiently
+
+65
+00:03:57.405 --> 00:03:58.172
+using a table.
+
+66
+00:03:58.172 --> 00:04:00.253
+Well done.
+
+67
+00:04:00.253 --> 00:04:04.186
+There are a few things worth noting about
+the style of implementation before you go.
+
+68
+00:04:04.186 --> 00:04:06.908
+I'll show you those next.
+
+69
+00:04:06.908 --> 00:04:08.650
+Congratulations.
+
+70
+00:04:08.650 --> 00:04:13.073
+Now, you have seen some code that you will
+be using in the programming assignments.
+
+71
+00:04:13.073 --> 00:04:14.033
+In the next video,
+
+72
+00:04:14.033 --> 00:04:18.357
+I will show you some more tricks that will
+help you with the programming assignments.
+
+73
+00:04:18.357 --> 00:04:19.260
+See you soon.

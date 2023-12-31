@@ -1,0 +1,294 @@
+WEBVTT
+
+1
+00:00:00.640 --> 00:00:04.240
+In this video,
+you're going to learn about Markov chains.
+
+2
+00:00:04.240 --> 00:00:08.779
+Markov chains are really important because
+they are used in speech recognition.
+
+3
+00:00:08.779 --> 00:00:11.652
+And they're also used for
+parts of speech tagging.
+
+4
+00:00:11.652 --> 00:00:15.854
+In this video, we're going to learn
+about transition probabilities, and
+
+5
+00:00:15.854 --> 00:00:17.771
+you will also learn about states.
+
+6
+00:00:17.771 --> 00:00:20.767
+&gt;&gt; Before jumping in let's
+start with a small example,
+
+7
+00:00:20.767 --> 00:00:22.850
+to show what you want to accomplish.
+
+8
+00:00:22.850 --> 00:00:27.640
+And then you will see how Markov
+chains can help accomplish the task.
+
+9
+00:00:27.640 --> 00:00:32.640
+If you look at the sentence,
+why not learn, the word learn is a verb.
+
+10
+00:00:32.640 --> 00:00:37.245
+The question you want to answer is whether
+the following word in the sentence is
+
+11
+00:00:37.245 --> 00:00:40.740
+a noun, a verb, or
+some other parts of speech.
+
+12
+00:00:40.740 --> 00:00:44.628
+If you're familiar with the English
+language, you might guess that if you
+
+13
+00:00:44.628 --> 00:00:48.465
+see a verb in the sentence, the following
+word is more likely to be a noun.
+
+14
+00:00:48.465 --> 00:00:50.540
+Rather than another verb.
+
+15
+00:00:50.540 --> 00:00:55.779
+So the idea here, is that the likelihood
+of the next words part of speech tag
+
+16
+00:00:55.779 --> 00:01:01.038
+in a sentence tends to depend on the part
+of speech tag of the previous word.
+
+17
+00:01:01.038 --> 00:01:02.840
+Makes sense, right?
+
+18
+00:01:02.840 --> 00:01:05.774
+You can represent a different
+likelihoods visually.
+
+19
+00:01:05.774 --> 00:01:09.485
+Here you have a circle
+representing a verb.
+
+20
+00:01:09.485 --> 00:01:14.040
+And over here you have
+a circle representing a noun.
+
+21
+00:01:14.040 --> 00:01:17.481
+You can draw an arrow that goes from
+the verb circle to the noun circle.
+
+22
+00:01:17.481 --> 00:01:18.929
+So the following arrow.
+
+23
+00:01:18.929 --> 00:01:22.779
+You can draw another arrow that
+goes from the verb circle, and
+
+24
+00:01:22.779 --> 00:01:25.640
+loops around back to point at itself.
+
+25
+00:01:25.640 --> 00:01:28.462
+You can associate numbers
+with each of these arrows.
+
+26
+00:01:28.462 --> 00:01:31.776
+Where a larger number means that
+there is a higher likelihood,
+
+27
+00:01:31.776 --> 00:01:34.640
+you're moving from one
+circle to the other.
+
+28
+00:01:34.640 --> 00:01:39.946
+In this example, the arrow that goes
+from the verb so the noun maybe 0.6.
+
+29
+00:01:39.946 --> 00:01:45.540
+Whereas the arrow that goes from the verb,
+back to the verb has a 0.2.
+
+30
+00:01:45.540 --> 00:01:50.712
+The higher number of 0.6, means that it's
+more likely to go from a verb to a noun.
+
+31
+00:01:50.712 --> 00:01:54.040
+As opposed to from a verb,
+to another verb.
+
+32
+00:01:54.040 --> 00:01:58.340
+This is a great example of how Markov
+chains work on a very small scale.
+
+33
+00:01:58.340 --> 00:02:00.340
+So what's our Markov chains?
+
+34
+00:02:00.340 --> 00:02:05.540
+They're a type of stochastic model that
+describes a sequence of possible events.
+
+35
+00:02:05.540 --> 00:02:07.732
+To get the probability for each event,
+
+36
+00:02:07.732 --> 00:02:10.940
+it needs only the states
+of the previous events.
+
+37
+00:02:10.940 --> 00:02:14.640
+The word stochastic just means random or
+randomness.
+
+38
+00:02:14.640 --> 00:02:16.180
+So a stochastic model,
+
+39
+00:02:16.180 --> 00:02:21.640
+incorporates and models processes
+does have a random component to them.
+
+40
+00:02:21.640 --> 00:02:25.840
+A Markov chain,
+can be depicted as a directed graph.
+
+41
+00:02:25.840 --> 00:02:30.931
+So in the context of Computer Science,
+a graph is a kind of data structure
+
+42
+00:02:30.931 --> 00:02:36.540
+that is visually represented,
+as a set of circles connected by lines.
+
+43
+00:02:36.540 --> 00:02:40.771
+When the lines that connect the circles
+have arrows that indicates a certain
+
+44
+00:02:40.771 --> 00:02:43.740
+direction, this is
+called a directed graph.
+
+45
+00:02:43.740 --> 00:02:48.040
+The circles of the graph,
+represents states of our model.
+
+46
+00:02:48.040 --> 00:02:51.590
+A state refers to a certain
+condition of the present moment.
+
+47
+00:02:51.590 --> 00:02:57.457
+For example, if you are using a graph to
+model whether water is in a frozen state,
+
+48
+00:02:57.457 --> 00:02:59.798
+a liquid state, or a gas state.
+
+49
+00:02:59.798 --> 00:03:03.877
+Then you would draw a circle, for each
+of these states to represent the three
+
+50
+00:03:03.877 --> 00:03:07.080
+possible states that water
+can be at the present moment.
+
+51
+00:03:07.080 --> 00:03:11.631
+I'm labeling each state as q1, q2, q3 etc.
+
+52
+00:03:11.631 --> 00:03:13.860
+To give them each a unique name.
+
+53
+00:03:13.860 --> 00:03:17.610
+Then referring to the set of all
+states with a capital letter Q.
+
+54
+00:03:17.610 --> 00:03:22.940
+For this graph there are three states,
+q1, q2, and q3.
+
+55
+00:03:22.940 --> 00:03:27.461
+Next up, get ready to use Markov
+chains to tag parts of speech.
+
+56
+00:03:28.940 --> 00:03:31.512
+&gt;&gt; You now learned about
+the states in your model.
+
+57
+00:03:31.512 --> 00:03:36.140
+And we said that the states represent
+the condition, or the present moments.
+
+58
+00:03:36.140 --> 00:03:39.640
+These states, could be thought
+of as part of speech tags.
+
+59
+00:03:39.640 --> 00:03:41.940
+Maybe one states could
+correspond to the verbs.
+
+60
+00:03:41.940 --> 00:03:45.140
+Another one could correspond
+to the nouns and so forth.
+
+61
+00:03:45.140 --> 00:03:48.760
+So in the next video,
+we will learn about parts of speech tags

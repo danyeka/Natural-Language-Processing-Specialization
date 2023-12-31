@@ -1,0 +1,406 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.460
+In this video, I
+will tell you about
+
+2
+00:00:02.460 --> 00:00:05.820
+named entity recognition,
+NER for short.
+
+3
+00:00:05.820 --> 00:00:07.590
+It's an important problem and
+
+4
+00:00:07.590 --> 00:00:11.655
+many NLP systems make
+use of NER components.
+
+5
+00:00:11.655 --> 00:00:13.725
+Let me tell you what it is.
+
+6
+00:00:13.725 --> 00:00:15.960
+Named entity recognition is
+
+7
+00:00:15.960 --> 00:00:17.730
+a fast and efficient way to scan
+
+8
+00:00:17.730 --> 00:00:19.830
+text for certain
+kinds of information.
+
+9
+00:00:19.830 --> 00:00:24.300
+NER systems locate and extract
+named entities from text.
+
+10
+00:00:24.300 --> 00:00:26.610
+Named entities can
+be anything from
+
+11
+00:00:26.610 --> 00:00:30.645
+a place to an organization
+to a person's name.
+
+12
+00:00:30.645 --> 00:00:33.180
+They can even be
+times and dates.
+
+13
+00:00:33.180 --> 00:00:36.870
+Let's discuss labels
+used by NER systems in
+
+14
+00:00:36.870 --> 00:00:38.880
+a little more detail as they
+
+15
+00:00:38.880 --> 00:00:41.545
+relate to your programming
+assignment this week.
+
+16
+00:00:41.545 --> 00:00:44.060
+Some possible classes
+you might run across
+
+17
+00:00:44.060 --> 00:00:47.870
+include geographical
+entities like Thailand,
+
+18
+00:00:47.870 --> 00:00:50.090
+organizations like Google,
+
+19
+00:00:50.090 --> 00:00:53.110
+or geopolitical
+entities like Indian.
+
+20
+00:00:53.110 --> 00:00:55.445
+A few more classes
+you might encounter
+
+21
+00:00:55.445 --> 00:00:59.105
+include time indicators
+like the month of December,
+
+22
+00:00:59.105 --> 00:01:03.020
+artifacts like this
+ancient Egyptian statue,
+
+23
+00:01:03.020 --> 00:01:05.660
+or a person such
+as Barack Obama.
+
+24
+00:01:05.660 --> 00:01:08.240
+As you can see,
+named entities can
+
+25
+00:01:08.240 --> 00:01:11.030
+capture and identify
+all kinds of things.
+
+26
+00:01:11.030 --> 00:01:13.280
+Say you have the
+following sentence;
+
+27
+00:01:13.280 --> 00:01:16.385
+Sharon flew to
+Miami last Friday.
+
+28
+00:01:16.385 --> 00:01:19.190
+A named entity
+recognition system would
+
+29
+00:01:19.190 --> 00:01:22.430
+extract and classify
+Sharon as a personal name,
+
+30
+00:01:22.430 --> 00:01:25.325
+Miami as a geographical entity,
+
+31
+00:01:25.325 --> 00:01:28.475
+and Friday as a time indicator.
+
+32
+00:01:28.475 --> 00:01:30.575
+You'll notice that here,
+
+33
+00:01:30.575 --> 00:01:33.935
+B dash denotes an
+entity of some kind,
+
+34
+00:01:33.935 --> 00:01:35.690
+and all the other words are
+
+35
+00:01:35.690 --> 00:01:39.035
+classified O, for a filler word.
+
+36
+00:01:39.035 --> 00:01:41.420
+You can probably already see how
+
+37
+00:01:41.420 --> 00:01:44.320
+useful this is for
+content classification.
+
+38
+00:01:44.320 --> 00:01:46.580
+In a scenario where
+you need to search
+
+39
+00:01:46.580 --> 00:01:49.040
+large amounts of texts
+for certain words,
+
+40
+00:01:49.040 --> 00:01:51.050
+say Manhattan and Brooklyn,
+
+41
+00:01:51.050 --> 00:01:53.180
+or Toyota and Subaru,
+
+42
+00:01:53.180 --> 00:01:56.135
+this becomes handy very quickly.
+
+43
+00:01:56.135 --> 00:01:58.565
+Here are some
+real-world applications
+
+44
+00:01:58.565 --> 00:02:00.845
+of named entity
+recognition systems.
+
+45
+00:02:00.845 --> 00:02:02.990
+I mentioned their
+ability to scan
+
+46
+00:02:02.990 --> 00:02:05.135
+documents for certain
+things quickly.
+
+47
+00:02:05.135 --> 00:02:07.235
+Just imagine how NERs
+
+48
+00:02:07.235 --> 00:02:09.904
+can optimize search
+engine efficiency.
+
+49
+00:02:09.904 --> 00:02:13.610
+In this case, the NER
+model scans millions of
+
+50
+00:02:13.610 --> 00:02:15.560
+websites once and stores
+
+51
+00:02:15.560 --> 00:02:18.725
+the entities it's
+identified in the process.
+
+52
+00:02:18.725 --> 00:02:21.170
+Then the tags from
+your search query are
+
+53
+00:02:21.170 --> 00:02:23.870
+simply matched against
+the website tags.
+
+54
+00:02:23.870 --> 00:02:27.575
+The same concept extends
+to making recommendations,
+
+55
+00:02:27.575 --> 00:02:29.540
+where the tags might instead be
+
+56
+00:02:29.540 --> 00:02:32.090
+extracted from your
+history and compare it
+
+57
+00:02:32.090 --> 00:02:34.100
+to similar user histories in
+
+58
+00:02:34.100 --> 00:02:36.895
+order to recommend things
+you might want to check out.
+
+59
+00:02:36.895 --> 00:02:39.320
+This also applies to
+matching customers
+
+60
+00:02:39.320 --> 00:02:41.810
+to an appropriate
+customer service agent.
+
+61
+00:02:41.810 --> 00:02:44.180
+This works similarly
+to a phone tree,
+
+62
+00:02:44.180 --> 00:02:45.860
+where you would be
+prompted to provide
+
+63
+00:02:45.860 --> 00:02:48.035
+some information
+about your request.
+
+64
+00:02:48.035 --> 00:02:49.790
+If you are using an app to
+
+65
+00:02:49.790 --> 00:02:52.310
+communicate with your
+car insurance company,
+
+66
+00:02:52.310 --> 00:02:54.110
+you might provide some spoken or
+
+67
+00:02:54.110 --> 00:02:56.270
+typed information, such as,
+
+68
+00:02:56.270 --> 00:02:58.730
+I need to add another vehicle or
+
+69
+00:02:58.730 --> 00:03:01.400
+my car was destroyed by
+a giant flying squirrel.
+
+70
+00:03:01.400 --> 00:03:03.050
+You'll then be matched to
+
+71
+00:03:03.050 --> 00:03:05.750
+the appropriate
+agent accordingly.
+
+72
+00:03:05.750 --> 00:03:09.310
+Another interesting use
+case is automatic trading.
+
+73
+00:03:09.310 --> 00:03:10.970
+For example, you could imagine
+
+74
+00:03:10.970 --> 00:03:12.770
+building a web scraper to get
+
+75
+00:03:12.770 --> 00:03:14.360
+news articles of the names of
+
+76
+00:03:14.360 --> 00:03:17.660
+certain CEOs, stocks,
+or cryptocurrencies.
+
+77
+00:03:17.660 --> 00:03:19.790
+Then feeding those articles
+
+78
+00:03:19.790 --> 00:03:21.995
+into a sentiments
+classification system,
+
+79
+00:03:21.995 --> 00:03:24.235
+and making your
+trades accordingly.
+
+80
+00:03:24.235 --> 00:03:26.825
+NER systems have
+many applications
+
+81
+00:03:26.825 --> 00:03:28.295
+in the field of deep learning.
+
+82
+00:03:28.295 --> 00:03:31.170
+I just gave you one potential
+moneymaker for free.
+
+83
+00:03:31.170 --> 00:03:34.175
+Now you know what named
+entity recognition is.
+
+84
+00:03:34.175 --> 00:03:35.990
+I think it's really
+interesting to
+
+85
+00:03:35.990 --> 00:03:38.120
+see the many places
+where it is used.
+
+86
+00:03:38.120 --> 00:03:39.560
+In the next video,
+
+87
+00:03:39.560 --> 00:03:42.900
+you will implement
+your own NER system.

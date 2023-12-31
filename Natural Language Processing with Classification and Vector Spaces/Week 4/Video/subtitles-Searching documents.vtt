@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.240 --> 00:00:05.048
+I will finish this week by showing you how
+you can use fast k-nearest neighbor to
+
+2
+00:00:05.048 --> 00:00:09.990
+search for pieces of text related to a
+query in a large collection of documents.
+
+3
+00:00:09.990 --> 00:00:14.640
+You simply create vectors for
+both and find the nearest neighbors.
+
+4
+00:00:14.640 --> 00:00:17.877
+>> To get ready to perform
+document search, first,
+
+5
+00:00:17.877 --> 00:00:24.240
+think about how to represent documents as
+vectors instead of just words as vectors.
+
+6
+00:00:24.240 --> 00:00:27.440
+Let's say you have these
+documents composed of three words.
+
+7
+00:00:27.440 --> 00:00:29.340
+I love learning.
+
+8
+00:00:29.340 --> 00:00:32.251
+How can you represent this
+entire document as a vector?
+
+9
+00:00:33.340 --> 00:00:37.440
+Well, you can find the word vectors for
+each individual word.
+
+10
+00:00:37.440 --> 00:00:43.001
+I love learning then
+just add them together.
+
+11
+00:00:43.001 --> 00:00:47.592
+So the sum of all these word vectors
+becomes a document vector with the same
+
+12
+00:00:47.592 --> 00:00:49.610
+dimension as the word vectors.
+
+13
+00:00:49.610 --> 00:00:52.840
+In this case, three dimensions.
+
+14
+00:00:52.840 --> 00:00:56.651
+You can then apply document search
+by using k-nearest neighbors.
+
+15
+00:00:58.240 --> 00:01:02.736
+Let's go this up, create a mini
+dictionary for word embeddings.
+
+16
+00:01:02.736 --> 00:01:06.640
+Here is the list of words
+contained in the document.
+
+17
+00:01:06.640 --> 00:01:11.340
+You're going to initialize the document
+embedding as an area of zeros.
+
+18
+00:01:11.340 --> 00:01:16.665
+Now for each word in a document, you'll
+get the word vector if the word exists in
+
+19
+00:01:16.665 --> 00:01:23.040
+the dictionary else zero, you add this all
+up and return the documents embedding.
+
+20
+00:01:23.040 --> 00:01:25.040
+Please try it out.
+
+21
+00:01:25.040 --> 00:01:29.639
+>> You learned in this video an example
+of a very general method that text can be
+
+22
+00:01:29.639 --> 00:01:31.537
+embedded into vector spaces so
+
+23
+00:01:31.537 --> 00:01:35.510
+that nearest neighbors refer
+to text with similar meaning.
+
+24
+00:01:35.510 --> 00:01:38.950
+Well, you'll learn more
+advanced ways to embed text.
+
+25
+00:01:38.950 --> 00:01:42.221
+This basic structure will
+reappear again and again and
+
+26
+00:01:42.221 --> 00:01:44.860
+again as it's used throughout modern NLP.

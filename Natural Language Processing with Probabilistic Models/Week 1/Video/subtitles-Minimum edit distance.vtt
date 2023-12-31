@@ -1,0 +1,246 @@
+WEBVTT
+
+1
+00:00:00.740 --> 00:00:04.940
+Minimum Edit Distance has
+a wide variety of applications.
+
+2
+00:00:04.940 --> 00:00:08.216
+It allows you to implement
+spelling correction,
+
+3
+00:00:08.216 --> 00:00:13.640
+document similarity, machine translation,
+DNA sequencing and more.
+
+4
+00:00:13.640 --> 00:00:17.123
+I will also show you
+the different types of edits.
+
+5
+00:00:17.123 --> 00:00:21.130
+You have already seen how to build
+autocorrect using edit distance.
+
+6
+00:00:21.130 --> 00:00:24.440
+Let's consider a slightly
+different problem.
+
+7
+00:00:24.440 --> 00:00:28.401
+What if you are given two words strings or
+even whole documents and
+
+8
+00:00:28.401 --> 00:00:31.148
+you wanted to evaluate
+how similar they are.
+
+9
+00:00:31.148 --> 00:00:33.833
+Minimum edit distance
+can be used to do this.
+
+10
+00:00:33.833 --> 00:00:37.864
+Given two strings, the minimum edit
+distance is the lowest number of
+
+11
+00:00:37.864 --> 00:00:42.140
+operations needed to transform
+one string into the other.
+
+12
+00:00:42.140 --> 00:00:43.948
+It has many applications.
+
+13
+00:00:43.948 --> 00:00:47.663
+In an LP for example,
+it could be used in spelling correction,
+
+14
+00:00:47.663 --> 00:00:51.240
+document similarity and
+machine translation.
+
+15
+00:00:51.240 --> 00:00:55.465
+It can also be found in computational
+biology and DNA sequencing.
+
+16
+00:00:55.465 --> 00:01:01.340
+For calculating minimum at a distance you
+will use three types of edits operations.
+
+17
+00:01:01.340 --> 00:01:06.650
+All three operations that you
+already know inserts delite and
+
+18
+00:01:06.650 --> 00:01:10.936
+replace for example to turn play and
+to stay what is
+
+19
+00:01:10.936 --> 00:01:17.040
+the minimum number of credits
+required to make this happen?
+
+20
+00:01:17.040 --> 00:01:21.609
+So to turn p into s,
+you replace p with an s and
+
+21
+00:01:21.609 --> 00:01:26.440
+to turn l into t you replace l with a t.
+
+22
+00:01:26.440 --> 00:01:28.571
+Both a and a are the same.
+
+23
+00:01:28.571 --> 00:01:31.951
+So do nothing and
+it's the same with y and y.
+
+24
+00:01:33.040 --> 00:01:35.640
+So the total number of edits is 2.
+
+25
+00:01:35.640 --> 00:01:40.540
+Until this point you've considered all
+edits operations to cost the same.
+
+26
+00:01:40.540 --> 00:01:44.436
+That is a cost of one but
+now you will consider a different cost for
+
+27
+00:01:44.436 --> 00:01:46.640
+each type of operation.
+
+28
+00:01:46.640 --> 00:01:50.892
+You will use these costs to calculate
+the edit distance which now represents
+
+29
+00:01:50.892 --> 00:01:52.640
+the total edit costs.
+
+30
+00:01:52.640 --> 00:01:55.040
+This is what you are trying to minimize.
+
+31
+00:01:55.040 --> 00:01:58.699
+It is simply the sum of costs for
+the edits that were made.
+
+32
+00:01:58.699 --> 00:02:03.740
+Inserts and deletes will have a cost
+of 1 and replace has a cost of 2.
+
+33
+00:02:03.740 --> 00:02:07.033
+This makes intuitive sense if
+you think of replacement as
+
+34
+00:02:07.033 --> 00:02:09.028
+it deletes followed by an insert.
+
+35
+00:02:09.028 --> 00:02:10.839
+Calculate for this example.
+
+36
+00:02:10.839 --> 00:02:17.840
+You have to replace edit at a cost of 2
+each for a total added distance of 4.
+
+37
+00:02:17.840 --> 00:02:20.150
+This is a relatively simple example and
+
+38
+00:02:20.150 --> 00:02:24.940
+it was possible to find the minimum
+edit distance just by looking at it.
+
+39
+00:02:24.940 --> 00:02:30.190
+But imagine the number of operations
+between much longer strings and
+
+40
+00:02:30.190 --> 00:02:34.240
+large couple of texts or even DNA strings.
+
+41
+00:02:34.240 --> 00:02:35.016
+You can try and
+
+42
+00:02:35.016 --> 00:02:38.965
+solve these problems by brute force
+adding one edit distance at a time and
+
+43
+00:02:38.965 --> 00:02:43.840
+enumerating for all possibilities
+until one string changes to the other.
+
+44
+00:02:43.840 --> 00:02:46.740
+But this could take a very,
+very long time.
+
+45
+00:02:46.740 --> 00:02:50.561
+In fact by solving this way,
+the computational complexity increases
+
+46
+00:02:50.561 --> 00:02:53.840
+exponentially as each
+string grows in length.
+
+47
+00:02:53.840 --> 00:02:58.561
+A much faster way is by using a tabular
+approach, you will implement this next.
+
+48
+00:03:00.040 --> 00:03:05.027
+The tabular approach I spoke about
+allows you to speed up the enumeration
+
+49
+00:03:05.027 --> 00:03:07.490
+of all possible strings and edits.
+
+50
+00:03:07.490 --> 00:03:08.377
+In doing so,
+
+51
+00:03:08.377 --> 00:03:14.240
+you will also be learning about a new
+concept known as dynamic programming.
+
+52
+00:03:14.240 --> 00:03:16.250
+We'll see about this in the next video

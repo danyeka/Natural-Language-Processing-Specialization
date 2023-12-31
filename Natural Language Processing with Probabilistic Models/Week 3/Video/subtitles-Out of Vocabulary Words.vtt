@@ -1,0 +1,487 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.430
+In some applications
+of language models,
+
+2
+00:00:02.430 --> 00:00:03.900
+you will encounter
+words that you
+
+3
+00:00:03.900 --> 00:00:05.565
+did not see during the training.
+
+4
+00:00:05.565 --> 00:00:09.345
+In this video, I'll teach you
+what to do in such cases.
+
+5
+00:00:09.345 --> 00:00:11.385
+First, I'll explain what's
+
+6
+00:00:11.385 --> 00:00:13.634
+unknown words mean
+in this context,
+
+7
+00:00:13.634 --> 00:00:17.445
+otherwise known as out
+of vocabulary words.
+
+8
+00:00:17.445 --> 00:00:19.935
+Then you'll add a
+new special word
+
+9
+00:00:19.935 --> 00:00:22.560
+UNK to your probability
+calculations
+
+10
+00:00:22.560 --> 00:00:23.985
+from the training corpus.
+
+11
+00:00:23.985 --> 00:00:27.015
+I will also share a few
+techniques to help you choose
+
+12
+00:00:27.015 --> 00:00:28.590
+which words are considered
+
+13
+00:00:28.590 --> 00:00:30.990
+known by building a vocabulary.
+
+14
+00:00:30.990 --> 00:00:33.820
+What are out of
+vocabulary words?
+
+15
+00:00:33.820 --> 00:00:36.680
+First, if vocabulary is a set of
+
+16
+00:00:36.680 --> 00:00:39.755
+unique words supported
+by your language model.
+
+17
+00:00:39.755 --> 00:00:41.120
+In some tasks like
+
+18
+00:00:41.120 --> 00:00:43.430
+speech recognition or
+question answering,
+
+19
+00:00:43.430 --> 00:00:45.290
+you will encounter and generate
+
+20
+00:00:45.290 --> 00:00:47.840
+only words from a
+fixed sets of words.
+
+21
+00:00:47.840 --> 00:00:50.180
+For example, a chatbots
+
+22
+00:00:50.180 --> 00:00:52.940
+can only answer in limited
+sets of questions.
+
+23
+00:00:52.940 --> 00:00:55.340
+This fixed list of words is
+
+24
+00:00:55.340 --> 00:00:57.845
+also called closed vocabulary.
+
+25
+00:00:57.845 --> 00:01:00.440
+However, using a fixed set of
+
+26
+00:01:00.440 --> 00:01:03.590
+words is not always
+sufficient for the task.
+
+27
+00:01:03.590 --> 00:01:05.570
+Often, you have to deal
+
+28
+00:01:05.570 --> 00:01:07.685
+with words you
+haven't seen before,
+
+29
+00:01:07.685 --> 00:01:10.265
+which results in an
+open vocabulary.
+
+30
+00:01:10.265 --> 00:01:12.680
+Open vocabulary simply
+means that you may
+
+31
+00:01:12.680 --> 00:01:15.920
+encounter words from
+outside the vocabulary,
+
+32
+00:01:15.920 --> 00:01:19.415
+like a name of a new city
+in the training sets.
+
+33
+00:01:19.415 --> 00:01:22.850
+The unknown words are
+also called out of
+
+34
+00:01:22.850 --> 00:01:26.465
+vocabulary words
+or OOV for short.
+
+35
+00:01:26.465 --> 00:01:28.820
+One way to deal with
+the unknown words is to
+
+36
+00:01:28.820 --> 00:01:31.280
+model them by a
+special word, UNK.
+
+37
+00:01:31.280 --> 00:01:33.080
+To do this, you simply replace
+
+38
+00:01:33.080 --> 00:01:35.285
+every unknown word with UNK.
+
+39
+00:01:35.285 --> 00:01:37.250
+Here, you will process
+
+40
+00:01:37.250 --> 00:01:40.610
+your training corpus to
+generalize it for unknown words.
+
+41
+00:01:40.610 --> 00:01:44.470
+First, define which words
+belong to the vocabulary.
+
+42
+00:01:44.470 --> 00:01:47.060
+Any word in the training
+corpus that's not in
+
+43
+00:01:47.060 --> 00:01:50.155
+the vocabulary will
+be replaced with UNK.
+
+44
+00:01:50.155 --> 00:01:51.890
+Now you can apply
+
+45
+00:01:51.890 --> 00:01:54.950
+the n-gram language model
+probability calculations
+
+46
+00:01:54.950 --> 00:01:56.555
+in the same way as before,
+
+47
+00:01:56.555 --> 00:01:58.895
+just with the addition of UNK.
+
+48
+00:01:58.895 --> 00:02:00.940
+Here's an example of
+how you can create
+
+49
+00:02:00.940 --> 00:02:04.015
+the vocabulary and replace
+rare words with UNK.
+
+50
+00:02:04.015 --> 00:02:06.565
+This is your input
+training corpus,
+
+51
+00:02:06.565 --> 00:02:10.030
+where you've decided that a
+vocabulary and vocabulary
+
+52
+00:02:10.030 --> 00:02:13.720
+needs to appear in your
+corpus at least twice.
+
+53
+00:02:13.720 --> 00:02:17.380
+In other words, the minimum
+frequency of the word is two.
+
+54
+00:02:17.380 --> 00:02:19.900
+This is your updated
+corpus after replacing
+
+55
+00:02:19.900 --> 00:02:23.480
+all words with frequencies
+smaller than two with UNK.
+
+56
+00:02:23.480 --> 00:02:25.630
+Vocabulary is then a set of
+
+57
+00:02:25.630 --> 00:02:29.035
+words with frequency greater
+than or equal to two.
+
+58
+00:02:29.035 --> 00:02:32.575
+When using the language
+model on an input query,
+
+59
+00:02:32.575 --> 00:02:35.155
+any words in the query
+that are outside
+
+60
+00:02:35.155 --> 00:02:38.325
+the vocabulary are also
+replaced with UNK.
+
+61
+00:02:38.325 --> 00:02:39.340
+As you see here,
+
+62
+00:02:39.340 --> 00:02:42.225
+the probability
+calculation is applied to
+
+63
+00:02:42.225 --> 00:02:44.120
+the input query with UNK
+
+64
+00:02:44.120 --> 00:02:47.350
+replacing the outer
+vocabulary word, Adam.
+
+65
+00:02:47.350 --> 00:02:49.685
+Later in this specialization,
+
+66
+00:02:49.685 --> 00:02:51.860
+I will show you
+some other methods
+
+67
+00:02:51.860 --> 00:02:53.450
+to deal with unknown words.
+
+68
+00:02:53.450 --> 00:02:56.420
+For example, you could
+spell them out character by
+
+69
+00:02:56.420 --> 00:03:00.375
+character using deep-learning,
+all in good time.
+
+70
+00:03:00.375 --> 00:03:02.960
+Let's talk about
+how to decide on
+
+71
+00:03:02.960 --> 00:03:05.330
+the words you want
+included in vocabulary
+
+72
+00:03:05.330 --> 00:03:07.640
+V. You can create
+the vocabulary from
+
+73
+00:03:07.640 --> 00:03:10.540
+the training corpus based
+on different criteria.
+
+74
+00:03:10.540 --> 00:03:12.500
+For example, you could choose
+
+75
+00:03:12.500 --> 00:03:14.555
+the minimum word frequency f,
+
+76
+00:03:14.555 --> 00:03:17.045
+that is usually a small number.
+
+77
+00:03:17.045 --> 00:03:19.535
+The words that occur
+more than f times
+
+78
+00:03:19.535 --> 00:03:22.100
+in the corpus will
+become parts of
+
+79
+00:03:22.100 --> 00:03:24.770
+the vocabulary V. Then
+
+80
+00:03:24.770 --> 00:03:28.825
+replace all other words not
+in the vocabulary with UNK.
+
+81
+00:03:28.825 --> 00:03:31.030
+This is a simple heuristic.
+
+82
+00:03:31.030 --> 00:03:33.685
+What is guaranteed is that
+the words you care about,
+
+83
+00:03:33.685 --> 00:03:37.130
+the ones that repeats a lot
+are parts of the vocabulary.
+
+84
+00:03:37.130 --> 00:03:39.460
+Alternatively, you can decide
+
+85
+00:03:39.460 --> 00:03:41.590
+what the maximum size
+of your vocabulary
+
+86
+00:03:41.590 --> 00:03:43.570
+is and only include words with
+
+87
+00:03:43.570 --> 00:03:46.990
+the highest frequency up to
+the maximum vocabulary size.
+
+88
+00:03:46.990 --> 00:03:48.640
+One thing to consider is
+
+89
+00:03:48.640 --> 00:03:51.740
+the influence of UNKs
+on the perplexity.
+
+90
+00:03:51.740 --> 00:03:54.655
+Is it's going to make
+it lower or higher?
+
+91
+00:03:54.655 --> 00:03:57.430
+Actually, it's usually lower.
+
+92
+00:03:57.430 --> 00:03:59.785
+It will look like
+your language model
+
+93
+00:03:59.785 --> 00:04:01.510
+is getting better and better.
+
+94
+00:04:01.510 --> 00:04:05.775
+But watch out, you might
+just have a lot of UNKs.
+
+95
+00:04:05.775 --> 00:04:08.870
+The model will then generate
+a sequence of UNK words with
+
+96
+00:04:08.870 --> 00:04:12.445
+high probability and set
+of meaningful sentences.
+
+97
+00:04:12.445 --> 00:04:14.270
+Due to this limitation,
+
+98
+00:04:14.270 --> 00:04:17.180
+I would recommend
+using UNKs sparingly.
+
+99
+00:04:17.180 --> 00:04:20.600
+Finally, when using
+the perplexity metric,
+
+100
+00:04:20.600 --> 00:04:22.070
+remember to only compare
+
+101
+00:04:22.070 --> 00:04:24.955
+language models that have
+the same vocabulary.
+
+102
+00:04:24.955 --> 00:04:26.895
+Now you know how to deal with
+
+103
+00:04:26.895 --> 00:04:28.705
+out of word vocabulary words.
+
+104
+00:04:28.705 --> 00:04:30.710
+Next, I'll show you a method
+
+105
+00:04:30.710 --> 00:04:33.840
+to improve performance
+on rare words.

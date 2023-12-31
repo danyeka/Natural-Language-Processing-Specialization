@@ -1,0 +1,492 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.010
+You will now bring
+everything together
+
+2
+00:00:02.010 --> 00:00:04.455
+and see how the Viterbi
+algorithm works.
+
+3
+00:00:04.455 --> 00:00:08.400
+Just a heads up, this video
+is a little bit complicated,
+
+4
+00:00:08.400 --> 00:00:09.810
+but I'll walk you through it
+
+5
+00:00:09.810 --> 00:00:12.045
+step-by-step, and by the end,
+
+6
+00:00:12.045 --> 00:00:13.590
+you'll be able to understand
+
+7
+00:00:13.590 --> 00:00:16.125
+exactly how the Viterbi
+algorithm works.
+
+8
+00:00:16.125 --> 00:00:18.360
+Let's dive in. So far
+
+9
+00:00:18.360 --> 00:00:20.160
+you've calculated
+the transition and
+
+10
+00:00:20.160 --> 00:00:22.830
+emission probabilities
+for the Markov chain
+
+11
+00:00:22.830 --> 00:00:24.375
+and the hidden Markov model.
+
+12
+00:00:24.375 --> 00:00:27.100
+Given a part of speech tag
+and these probabilities,
+
+13
+00:00:27.100 --> 00:00:28.640
+you can easily select
+
+14
+00:00:28.640 --> 00:00:30.050
+the most likely next parts of
+
+15
+00:00:30.050 --> 00:00:32.490
+speech tag or the
+most probable word.
+
+16
+00:00:32.490 --> 00:00:35.330
+You can do so by looking
+up the correct entry in
+
+17
+00:00:35.330 --> 00:00:39.040
+the respective row of the
+transition or emission matrix.
+
+18
+00:00:39.040 --> 00:00:41.555
+But what if you're
+given a sentence like,
+
+19
+00:00:41.555 --> 00:00:43.175
+why not learn something?
+
+20
+00:00:43.175 --> 00:00:45.620
+What is the most likely
+sequence of parts of
+
+21
+00:00:45.620 --> 00:00:48.250
+speech tags given the
+sentence and your model.
+
+22
+00:00:48.250 --> 00:00:51.875
+The sequence can be computed
+using the Viterbi algorithm.
+
+23
+00:00:51.875 --> 00:00:53.210
+You're about to see lots of
+
+24
+00:00:53.210 --> 00:00:54.860
+formulas which are all based on
+
+25
+00:00:54.860 --> 00:00:58.125
+matrices representing
+our hidden Markov model,
+
+26
+00:00:58.125 --> 00:01:01.670
+but the Viterbi algorithm is
+actually a graph algorithm.
+
+27
+00:01:01.670 --> 00:01:04.610
+Picturing the problem we
+want to solve on the graph,
+
+28
+00:01:04.610 --> 00:01:06.380
+will make it much
+easier for us to
+
+29
+00:01:06.380 --> 00:01:09.020
+understand the formulas
+and the algorithm.
+
+30
+00:01:09.020 --> 00:01:11.845
+Let's look at this toy
+model and the sentence,
+
+31
+00:01:11.845 --> 00:01:15.220
+I love to learn, with
+a leading start token.
+
+32
+00:01:15.220 --> 00:01:16.910
+You want to find the sequence of
+
+33
+00:01:16.910 --> 00:01:18.590
+hidden states or parts of
+
+34
+00:01:18.590 --> 00:01:20.210
+speech tags that have
+
+35
+00:01:20.210 --> 00:01:22.550
+the highest probability
+for this sequence.
+
+36
+00:01:22.550 --> 00:01:25.955
+Be aware that the word love
+can be emitted by both
+
+37
+00:01:25.955 --> 00:01:29.890
+the noun states NN and
+the verb states NN.
+
+38
+00:01:29.890 --> 00:01:32.780
+You're starting from
+the initial states Pi,
+
+39
+00:01:32.780 --> 00:01:35.450
+selecting the next most
+probable hidden state,
+
+40
+00:01:35.450 --> 00:01:38.555
+which here is the O
+state as the word I,
+
+41
+00:01:38.555 --> 00:01:39.935
+cannot be emitted from
+
+42
+00:01:39.935 --> 00:01:42.175
+any other states
+in this toy model.
+
+43
+00:01:42.175 --> 00:01:44.600
+This involves the
+transition probabilities
+
+44
+00:01:44.600 --> 00:01:47.195
+shown in green with 0.3,
+
+45
+00:01:47.195 --> 00:01:51.265
+and the emission probability
+in orange with 0.5.
+
+46
+00:01:51.265 --> 00:01:53.860
+The joint probability
+for observing the word
+
+47
+00:01:53.860 --> 00:01:58.615
+I and with a transition
+through the 0 state is 0.15,
+
+48
+00:01:58.615 --> 00:02:01.150
+which you can calculate
+by multiplying
+
+49
+00:02:01.150 --> 00:02:04.405
+the transition probability 0.3
+
+50
+00:02:04.405 --> 00:02:07.670
+and the emission
+probability of 0.5.
+
+51
+00:02:07.670 --> 00:02:09.850
+Now, there are two
+possibilities of
+
+52
+00:02:09.850 --> 00:02:12.130
+having observed the word love.
+
+53
+00:02:12.130 --> 00:02:14.200
+It is either by
+traversing through
+
+54
+00:02:14.200 --> 00:02:18.035
+the hidden states NN or
+the hidden states VB.
+
+55
+00:02:18.035 --> 00:02:20.620
+The transition
+probabilities are the
+
+56
+00:02:20.620 --> 00:02:23.800
+same for going through either
+of the two hidden states.
+
+57
+00:02:23.800 --> 00:02:25.480
+The emission probability for
+
+58
+00:02:25.480 --> 00:02:28.940
+the word love is higher
+from the VB state,
+
+59
+00:02:28.940 --> 00:02:30.605
+so you should choose that spot,
+
+60
+00:02:30.605 --> 00:02:34.150
+with a combined
+probability of 0.25.
+
+61
+00:02:34.150 --> 00:02:36.710
+Next you return to the 0 state,
+
+62
+00:02:36.710 --> 00:02:38.495
+as there is no other
+hidden states with
+
+63
+00:02:38.495 --> 00:02:42.010
+a non-zero emission
+probability for the word to.
+
+64
+00:02:42.010 --> 00:02:45.635
+The combined probability
+here is 0.08.
+
+65
+00:02:45.635 --> 00:02:48.830
+At last, return to
+the VB states again,
+
+66
+00:02:48.830 --> 00:02:51.760
+as there is no other
+option for this toy model.
+
+67
+00:02:51.760 --> 00:02:55.505
+This step has a combined
+probability of 0.1.
+
+68
+00:02:55.505 --> 00:02:58.610
+The total probability
+is the product of
+
+69
+00:02:58.610 --> 00:03:02.060
+all the probabilities for the
+single steps you've chosen,
+
+70
+00:03:02.060 --> 00:03:06.550
+which is 0.0003 here.
+
+71
+00:03:06.550 --> 00:03:08.960
+The Viterbi algorithm actually
+
+72
+00:03:08.960 --> 00:03:10.850
+computes several such paths at
+
+73
+00:03:10.850 --> 00:03:12.755
+the same time in order to find
+
+74
+00:03:12.755 --> 00:03:15.680
+the most likely sequence
+of hidden states.
+
+75
+00:03:15.680 --> 00:03:18.065
+It uses the matrix
+representation
+
+76
+00:03:18.065 --> 00:03:19.955
+of the hidden Markov model.
+
+77
+00:03:19.955 --> 00:03:21.890
+The algorithm can be split into
+
+78
+00:03:21.890 --> 00:03:25.190
+three main steps: The
+initialization step,
+
+79
+00:03:25.190 --> 00:03:26.885
+the forward pass,
+
+80
+00:03:26.885 --> 00:03:28.585
+and the backward pass.
+
+81
+00:03:28.585 --> 00:03:31.475
+Given your transition and
+emission probabilities,
+
+82
+00:03:31.475 --> 00:03:33.230
+you first populate and then use
+
+83
+00:03:33.230 --> 00:03:37.910
+the auxiliary matrices
+C and D. The matrix C
+
+84
+00:03:37.910 --> 00:03:41.120
+holds the intermediate
+optimal probabilities and
+
+85
+00:03:41.120 --> 00:03:44.465
+matrix B the indices
+of the visited states.
+
+86
+00:03:44.465 --> 00:03:46.580
+As you're traversing
+the model graph to find
+
+87
+00:03:46.580 --> 00:03:48.740
+the most likely
+sequence of parts of
+
+88
+00:03:48.740 --> 00:03:51.380
+speech tags for the
+given sequence of words,
+
+89
+00:03:51.380 --> 00:03:53.905
+W_1, all the way to W_K.
+
+90
+00:03:53.905 --> 00:03:56.375
+These two matrices have n rows,
+
+91
+00:03:56.375 --> 00:03:58.400
+where n is the
+number of parts of
+
+92
+00:03:58.400 --> 00:04:01.090
+speech tags or hidden
+states in our model,
+
+93
+00:04:01.090 --> 00:04:03.395
+and k columns, where k
+
+94
+00:04:03.395 --> 00:04:06.260
+is the number of words
+in the given sequence.
+
+95
+00:04:06.260 --> 00:04:07.820
+You now know the three steps
+
+96
+00:04:07.820 --> 00:04:09.980
+required to implement
+the Viterbi.
+
+97
+00:04:09.980 --> 00:04:11.780
+You also saw the two matrices
+
+98
+00:04:11.780 --> 00:04:13.535
+that you will be populating.
+
+99
+00:04:13.535 --> 00:04:15.380
+One will allow you to compute
+
+100
+00:04:15.380 --> 00:04:17.615
+the probabilities of
+each path and the
+
+101
+00:04:17.615 --> 00:04:19.460
+other will tell you its path you
+
+102
+00:04:19.460 --> 00:04:21.800
+ended up taking. To recap.
+
+103
+00:04:21.800 --> 00:04:24.710
+The three steps required
+are the initialization,
+
+104
+00:04:24.710 --> 00:04:27.370
+the forward pass, and
+the backward pass.
+
+105
+00:04:27.370 --> 00:04:28.835
+In the next video,
+
+106
+00:04:28.835 --> 00:04:31.770
+we will start with
+the initialization.

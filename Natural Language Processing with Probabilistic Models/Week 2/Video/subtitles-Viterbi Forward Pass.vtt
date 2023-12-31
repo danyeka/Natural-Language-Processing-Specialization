@@ -1,0 +1,166 @@
+WEBVTT
+
+1
+00:00:00.602 --> 00:00:01.854
+Hi again.
+
+2
+00:00:01.854 --> 00:00:06.729
+You will now use the Viterbi algorithm to
+continue populating the two matrices you
+
+3
+00:00:06.729 --> 00:00:08.927
+initialized in the previous video.
+
+4
+00:00:08.927 --> 00:00:12.942
+You'll see how you can assign part
+of speech tags to certain words in
+
+5
+00:00:12.942 --> 00:00:13.866
+the sentence.
+
+6
+00:00:13.866 --> 00:00:16.030
+Let's take a look at how you can do this.
+
+7
+00:00:16.030 --> 00:00:22.718
+&gt;&gt; The forward pass is the second of three
+steps to populate your matrices, C and D.
+
+8
+00:00:22.718 --> 00:00:26.351
+Now that you have initialized
+the matrices, C and D,
+
+9
+00:00:26.351 --> 00:00:29.582
+all the remaining entries
+in the two matrices,
+
+10
+00:00:29.582 --> 00:00:33.806
+C&amp;D are populated column by
+column during the forward pass.
+
+11
+00:00:33.806 --> 00:00:34.836
+For the C matrix,
+
+12
+00:00:34.836 --> 00:00:38.762
+the entries are calculated by this
+complicated looking function.
+
+13
+00:00:38.762 --> 00:00:43.061
+Let's picture the next step on the graph,
+so this becomes clear.
+
+14
+00:00:43.061 --> 00:00:46.637
+Let's say you want to
+calculate the entry C1,2,
+
+15
+00:00:46.637 --> 00:00:51.685
+then you can fill in the values to
+the formula starting from the last term.
+
+16
+00:00:51.685 --> 00:00:54.837
+The last term of the formula is simply
+
+17
+00:00:54.837 --> 00:00:59.318
+the emission probability
+from tag t1 towards w2.
+
+18
+00:00:59.318 --> 00:01:04.236
+You have the ak,1,
+which is the transition probability from
+
+19
+00:01:04.236 --> 00:01:08.593
+the part of speech tag tk to
+the current tag t1 and tk1,
+
+20
+00:01:08.593 --> 00:01:14.748
+which represents the probability for
+the preceding path you've traversed.
+
+21
+00:01:14.748 --> 00:01:18.629
+You choose the k which
+maximizes the entire formula.
+
+22
+00:01:18.629 --> 00:01:22.801
+In this case, there are three states
+that are not the initial state.
+
+23
+00:01:22.801 --> 00:01:26.458
+So k is either one, two or three.
+
+24
+00:01:26.458 --> 00:01:33.160
+In each di,j, you simply save the k
+which maximizes the entry and ci,j.
+
+25
+00:01:33.160 --> 00:01:36.734
+Here, there are three states
+that are not the initial state.
+
+26
+00:01:36.734 --> 00:01:40.919
+So, k is either one, two, or three.
+
+27
+00:01:40.919 --> 00:01:44.351
+This is defined by
+the scary looking formula,
+
+28
+00:01:44.351 --> 00:01:48.761
+which is the same as for ci,j,
+except the leading argmax.
+
+29
+00:01:48.761 --> 00:01:50.884
+The argmax function returns the k,
+
+30
+00:01:50.884 --> 00:01:55.141
+which maximizes the function arguments
+instead of the maximum value.
+
+31
+00:01:55.141 --> 00:01:57.872
+Almost there, just one more step.
+
+32
+00:01:57.872 --> 00:02:02.233
+&gt;&gt; You now computed the probability
+matrix using the Viterbi algorithm.
+
+33
+00:02:02.233 --> 00:02:06.507
+In the next video, you're going to see
+how you can use this probability matrix
+
+34
+00:02:06.507 --> 00:02:09.227
+that you just created to
+reconstruct the path, so
+
+35
+00:02:09.227 --> 00:02:12.361
+that you can identify each
+word with the parts of speech.

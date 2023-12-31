@@ -1,0 +1,354 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.775
+The two types of
+evaluation metrics are
+
+2
+00:00:02.775 --> 00:00:06.405
+intrinsic evaluation and
+extrinsic evaluation.
+
+3
+00:00:06.405 --> 00:00:09.255
+Depending on the task you're
+trying to optimize for,
+
+4
+00:00:09.255 --> 00:00:10.595
+you can choose one of them.
+
+5
+00:00:10.595 --> 00:00:12.870
+Let's dive in. Allow me
+
+6
+00:00:12.870 --> 00:00:15.630
+to introduce
+intrinsic evaluation.
+
+7
+00:00:15.630 --> 00:00:18.210
+Intrinsic evaluation
+methods assess
+
+8
+00:00:18.210 --> 00:00:20.040
+how well the word embeddings
+
+9
+00:00:20.040 --> 00:00:21.420
+inherently capture
+
+10
+00:00:21.420 --> 00:00:24.255
+the semantic or
+syntactic relationships
+
+11
+00:00:24.255 --> 00:00:25.635
+between the words.
+
+12
+00:00:25.635 --> 00:00:28.230
+Semantics refers
+to the meaning of
+
+13
+00:00:28.230 --> 00:00:31.485
+words whereas syntax
+refers to the grammar.
+
+14
+00:00:31.485 --> 00:00:33.270
+You could do this by testing
+
+15
+00:00:33.270 --> 00:00:35.790
+the word embeddings
+on analogies.
+
+16
+00:00:35.790 --> 00:00:38.700
+You could test semantic
+analogies as in
+
+17
+00:00:38.700 --> 00:00:41.660
+finding the missing word
+in France is to Paris,
+
+18
+00:00:41.660 --> 00:00:44.390
+as Italy is to blank.
+
+19
+00:00:44.390 --> 00:00:46.010
+You could also evaluate
+
+20
+00:00:46.010 --> 00:00:48.515
+the embeddings on
+syntactic analogies,
+
+21
+00:00:48.515 --> 00:00:52.645
+such as plurals, tenses,
+and comparatives.
+
+22
+00:00:52.645 --> 00:00:56.920
+As in, seen is to
+saw as been is to?
+
+23
+00:00:56.920 --> 00:00:59.930
+One consideration you
+should be aware of for
+
+24
+00:00:59.930 --> 00:01:01.730
+this approach is
+that there could be
+
+25
+00:01:01.730 --> 00:01:04.205
+several possible
+correct answers.
+
+26
+00:01:04.205 --> 00:01:09.610
+As in, wolf is to pack
+as bee is to blank.
+
+27
+00:01:09.610 --> 00:01:12.440
+Where the collective noun
+and the missing word could,
+
+28
+00:01:12.440 --> 00:01:15.530
+for instance, be
+swarm or colony.
+
+29
+00:01:15.530 --> 00:01:16.970
+Here's an example from
+
+30
+00:01:16.970 --> 00:01:19.700
+the original Word2vec
+research publication
+
+31
+00:01:19.700 --> 00:01:21.080
+with the word embeddings
+
+32
+00:01:21.080 --> 00:01:23.450
+created from a huge
+training sets.
+
+33
+00:01:23.450 --> 00:01:27.035
+I should mention that the word
+embeddings were created by
+
+34
+00:01:27.035 --> 00:01:28.895
+a continuous skip ground model
+
+35
+00:01:28.895 --> 00:01:31.625
+and not a continuous
+bag-of-words model.
+
+36
+00:01:31.625 --> 00:01:34.275
+But evaluation
+principle is the same.
+
+37
+00:01:34.275 --> 00:01:37.655
+Note that the analogies
+are not perfect.
+
+38
+00:01:37.655 --> 00:01:39.590
+For example, the word embeddings
+
+39
+00:01:39.590 --> 00:01:41.150
+fail to completely capture
+
+40
+00:01:41.150 --> 00:01:42.740
+the relationship between
+
+41
+00:01:42.740 --> 00:01:45.395
+chemical elements
+and their symbols.
+
+42
+00:01:45.395 --> 00:01:47.930
+The symbol for copper is CU.
+
+43
+00:01:47.930 --> 00:01:50.330
+The symbol for Zinc is ZN.
+
+44
+00:01:50.330 --> 00:01:53.105
+The symbol for gold is AU.
+
+45
+00:01:53.105 --> 00:01:56.000
+The symbol for uranium is U.
+
+46
+00:01:56.000 --> 00:01:57.955
+But the word2vec
+embedding outputs
+
+47
+00:01:57.955 --> 00:02:00.440
+the word plutonium instead of U.
+
+48
+00:02:00.440 --> 00:02:02.030
+You could also perform
+
+49
+00:02:02.030 --> 00:02:04.025
+intrinsic evaluation by using
+
+50
+00:02:04.025 --> 00:02:05.840
+a clustering algorithm to group
+
+51
+00:02:05.840 --> 00:02:08.270
+similar word
+embedding vectors and
+
+52
+00:02:08.270 --> 00:02:11.135
+determining of the clusters
+capture related towards.
+
+53
+00:02:11.135 --> 00:02:13.055
+This could be automated using
+
+54
+00:02:13.055 --> 00:02:16.460
+a human-made reference
+such as a thesaurus.
+
+55
+00:02:16.460 --> 00:02:19.220
+Here's a visualization
+of clusters taken from
+
+56
+00:02:19.220 --> 00:02:22.555
+a paper on the evaluation
+of word embeddings.
+
+57
+00:02:22.555 --> 00:02:24.560
+If you look at the word cluster,
+
+58
+00:02:24.560 --> 00:02:27.080
+you can see that the
+words fights and
+
+59
+00:02:27.080 --> 00:02:29.810
+agitates are close
+to each other.
+
+60
+00:02:29.810 --> 00:02:32.675
+Similarly, the word hair care
+
+61
+00:02:32.675 --> 00:02:35.800
+and hairdressing are also
+close to each other.
+
+62
+00:02:35.800 --> 00:02:39.650
+Interesting. In this
+week's assignment,
+
+63
+00:02:39.650 --> 00:02:41.900
+you'll visualize the
+word embedding vectors,
+
+64
+00:02:41.900 --> 00:02:43.280
+which qualifies as
+
+65
+00:02:43.280 --> 00:02:46.325
+a basic intrinsic
+evaluation of the vectors
+
+66
+00:02:46.325 --> 00:02:48.410
+that rely on human judgment
+
+67
+00:02:48.410 --> 00:02:51.274
+to assess the quality
+of the embeddings.
+
+68
+00:02:51.274 --> 00:02:54.650
+But first, I'll show you one
+more approach to evaluate
+
+69
+00:02:54.650 --> 00:02:58.675
+the quality of word embeddings,
+extrinsic evaluation.
+
+70
+00:02:58.675 --> 00:03:01.350
+Here is a recap of
+what you have learned.
+
+71
+00:03:01.350 --> 00:03:03.770
+Intrinsic evaluation allows you
+
+72
+00:03:03.770 --> 00:03:05.480
+to test relationships between
+
+73
+00:03:05.480 --> 00:03:06.980
+words you can use for
+
+74
+00:03:06.980 --> 00:03:09.695
+clustering, analogies
+and visualization.
+
+75
+00:03:09.695 --> 00:03:11.195
+In the next video,
+
+76
+00:03:11.195 --> 00:03:13.400
+you will learn about
+something slightly different,
+
+77
+00:03:13.400 --> 00:03:16.800
+known as extrinsic evaluation.

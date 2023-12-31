@@ -1,0 +1,302 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.655
+I will be talking about
+the BERT objective.
+
+2
+00:00:02.655 --> 00:00:04.845
+You'll see what you are
+trying to minimize.
+
+3
+00:00:04.845 --> 00:00:06.720
+Specifically, I'll show you
+
+4
+00:00:06.720 --> 00:00:08.624
+how you can combine
+word embeddings,
+
+5
+00:00:08.624 --> 00:00:12.200
+sentence embeddings, and
+positional embeddings as inputs.
+
+6
+00:00:12.200 --> 00:00:14.730
+Let's take a look at
+how you can do this.
+
+7
+00:00:14.730 --> 00:00:18.300
+You're going to learn how
+BERT inputs are fed into
+
+8
+00:00:18.300 --> 00:00:20.130
+the model and the
+different types
+
+9
+00:00:20.130 --> 00:00:22.035
+of inputs and their structures.
+
+10
+00:00:22.035 --> 00:00:25.590
+Then you're going to visualize
+the output and finally,
+
+11
+00:00:25.590 --> 00:00:28.920
+you're going to learn
+about the BERT objective.
+
+12
+00:00:28.920 --> 00:00:31.590
+Formalizing the input,
+
+13
+00:00:31.590 --> 00:00:35.085
+this is the BERT
+input representation.
+
+14
+00:00:35.085 --> 00:00:37.625
+You start with
+position embeddings.
+
+15
+00:00:37.625 --> 00:00:41.360
+They allow you to indicate
+the position in the sentence
+
+16
+00:00:41.360 --> 00:00:43.325
+of the word where each word
+
+17
+00:00:43.325 --> 00:00:45.460
+is in the corresponding
+sentence.
+
+18
+00:00:45.460 --> 00:00:47.190
+So you have this.
+
+19
+00:00:47.190 --> 00:00:50.415
+Then you have the
+segment embeddings.
+
+20
+00:00:50.415 --> 00:00:53.480
+They allow you to indicate
+whether it's a sentence A or
+
+21
+00:00:53.480 --> 00:00:55.320
+sentence B because remember
+
+22
+00:00:55.320 --> 00:00:57.825
+in BERT you also use next
+sentence prediction.
+
+23
+00:00:57.825 --> 00:01:00.920
+Then you have the
+token embeddings
+
+24
+00:01:00.920 --> 00:01:02.914
+or the input embeddings.
+
+25
+00:01:02.914 --> 00:01:05.570
+You also have a CLS token,
+
+26
+00:01:05.570 --> 00:01:08.300
+which is used to indicate the
+beginning of the sentence,
+
+27
+00:01:08.300 --> 00:01:10.025
+and a SEP token,
+
+28
+00:01:10.025 --> 00:01:13.935
+which is used to indicate
+the end of the sentence.
+
+29
+00:01:13.935 --> 00:01:15.520
+Then what you do, you just
+
+30
+00:01:15.520 --> 00:01:17.210
+take the sum of the
+token embeddings,
+
+31
+00:01:17.210 --> 00:01:18.815
+the segmentation embeddings,
+
+32
+00:01:18.815 --> 00:01:20.575
+and the position embeddings,
+
+33
+00:01:20.575 --> 00:01:23.000
+and then you get your new input.
+
+34
+00:01:23.000 --> 00:01:26.175
+Over here you can see you
+have masked sentence A,
+
+35
+00:01:26.175 --> 00:01:28.230
+you have masked sentence B,
+
+36
+00:01:28.230 --> 00:01:29.955
+they go into tokens,
+
+37
+00:01:29.955 --> 00:01:32.600
+and then you have the CLS token,
+
+38
+00:01:32.600 --> 00:01:35.000
+which is a special
+classification symbol
+
+39
+00:01:35.000 --> 00:01:37.685
+added in front of every input.
+
+40
+00:01:37.685 --> 00:01:39.350
+Then you have the SEP token,
+
+41
+00:01:39.350 --> 00:01:42.160
+which is the special
+separator token.
+
+42
+00:01:42.160 --> 00:01:44.760
+You convert them into
+the embeddings so
+
+43
+00:01:44.760 --> 00:01:47.445
+then you get your
+transformer blocks.
+
+44
+00:01:47.445 --> 00:01:51.085
+Then you can see at the end
+you get your T_1 to T_N,
+
+45
+00:01:51.085 --> 00:01:54.555
+your T_1 prime to T_M prime.
+
+46
+00:01:54.555 --> 00:01:57.770
+Each T_I embedding
+will be used to
+
+47
+00:01:57.770 --> 00:02:01.450
+predict the masked word
+via a simple softmax.
+
+48
+00:02:01.450 --> 00:02:03.945
+You have this C also,
+
+49
+00:02:03.945 --> 00:02:05.390
+embedding, which can be
+
+50
+00:02:05.390 --> 00:02:07.355
+used for next
+sentence prediction.
+
+51
+00:02:07.355 --> 00:02:09.815
+Let's look at the
+BERT objective now.
+
+52
+00:02:09.815 --> 00:02:11.840
+For the Multi-Mask
+language model,
+
+53
+00:02:11.840 --> 00:02:14.240
+you use a cross-entropy
+loss to predict the word
+
+54
+00:02:14.240 --> 00:02:17.300
+that's being masked or the
+words that are being masked,
+
+55
+00:02:17.300 --> 00:02:20.480
+and then you add this
+to a binary loss for
+
+56
+00:02:20.480 --> 00:02:22.000
+the next sentence
+prediction so given
+
+57
+00:02:22.000 --> 00:02:25.170
+the two sentences do they
+follow one another or not?
+
+58
+00:02:25.170 --> 00:02:27.575
+In summary, you've seen
+the BERT objective
+
+59
+00:02:27.575 --> 00:02:30.625
+and you've seen the model
+inputs and outputs.
+
+60
+00:02:30.625 --> 00:02:32.075
+In the next video,
+
+61
+00:02:32.075 --> 00:02:33.290
+I will show you how you can
+
+62
+00:02:33.290 --> 00:02:35.450
+fine-tune this
+pre-trained model.
+
+63
+00:02:35.450 --> 00:02:38.120
+Specifically, I'll show
+you how you can use
+
+64
+00:02:38.120 --> 00:02:40.870
+it to your own tasks
+for your own projects.
+
+65
+00:02:40.870 --> 00:02:43.550
+Please go on to the next video.

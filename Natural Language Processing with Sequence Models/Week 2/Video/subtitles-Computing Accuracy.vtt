@@ -1,0 +1,196 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.600
+Now that you have
+trained your NER system,
+
+2
+00:00:02.600 --> 00:00:05.040
+you need to find a
+way to evaluate it.
+
+3
+00:00:05.040 --> 00:00:08.080
+In this video, I'll show
+you how to do that.
+
+4
+00:00:08.080 --> 00:00:09.800
+To evaluate your model,
+
+5
+00:00:09.800 --> 00:00:11.240
+you'll want to start by passing
+
+6
+00:00:11.240 --> 00:00:13.740
+the test sets through it
+to get your predictions.
+
+7
+00:00:13.740 --> 00:00:16.660
+Then compute the arg
+max or the point where
+
+8
+00:00:16.660 --> 00:00:18.440
+your function
+reaches its maximum
+
+9
+00:00:18.440 --> 00:00:20.340
+across the prediction array.
+
+10
+00:00:20.340 --> 00:00:22.360
+You'll also need to make sure
+
+11
+00:00:22.360 --> 00:00:24.820
+your arrays are padded
+using the pad token,
+
+12
+00:00:24.820 --> 00:00:27.400
+which makes your arrays
+the same length.
+
+13
+00:00:27.400 --> 00:00:30.380
+At last, compare
+the outputs against
+
+14
+00:00:30.380 --> 00:00:33.520
+your test labels to see how
+accurate your model is.
+
+15
+00:00:33.520 --> 00:00:35.820
+This is how those
+operations might look.
+
+16
+00:00:35.820 --> 00:00:37.040
+In Python, note that
+
+17
+00:00:37.040 --> 00:00:40.100
+the arg max function
+takes an axis parameter.
+
+18
+00:00:40.100 --> 00:00:42.040
+To indicate this accurately,
+
+19
+00:00:42.040 --> 00:00:45.140
+you'll need to consider the
+dimensions of your array.
+
+20
+00:00:45.140 --> 00:00:47.940
+The mask variable is
+where you'll identify
+
+21
+00:00:47.940 --> 00:00:51.580
+any token IDs you need to
+skip over during evaluation.
+
+22
+00:00:51.580 --> 00:00:54.820
+One token you might want
+to skip is your pad token.
+
+23
+00:00:54.820 --> 00:00:58.440
+Think about how you might
+write this quickly and simply.
+
+24
+00:00:58.440 --> 00:01:01.020
+Finally, the accuracy metric
+
+25
+00:01:01.020 --> 00:01:03.240
+is computed by taking the sum
+
+26
+00:01:03.240 --> 00:01:05.480
+of all your test
+labels and dividing
+
+27
+00:01:05.480 --> 00:01:08.340
+it by the sum of all
+your mask tokens.
+
+28
+00:01:08.340 --> 00:01:11.570
+Nice, we've now reached the
+conclusion of this week.
+
+29
+00:01:11.570 --> 00:01:15.700
+Congratulations and remember
+when you pad your tokens,
+
+30
+00:01:15.700 --> 00:01:18.720
+you should mask them
+before computing accuracy.
+
+31
+00:01:18.720 --> 00:01:21.560
+Now you're able to
+process your data,
+
+32
+00:01:21.560 --> 00:01:23.260
+generate it in batches,
+
+33
+00:01:23.260 --> 00:01:25.320
+and test it for accuracy.
+
+34
+00:01:25.320 --> 00:01:26.920
+You should have everything you
+
+35
+00:01:26.920 --> 00:01:28.700
+need for the coding assignment.
+
+36
+00:01:28.700 --> 00:01:30.620
+Best of luck with
+the assignments,
+
+37
+00:01:30.620 --> 00:01:32.315
+and remember to have fun.
+
+38
+00:01:32.315 --> 00:01:35.580
+To recap, you have to
+predict on the test set,
+
+39
+00:01:35.580 --> 00:01:37.335
+guess the arg max,
+
+40
+00:01:37.335 --> 00:01:39.040
+mask the padded tokens,
+
+41
+00:01:39.040 --> 00:01:41.240
+and then compare with
+the true labels.
+
+42
+00:01:41.240 --> 00:01:45.190
+Now you are ready to implement
+this in the assignment.

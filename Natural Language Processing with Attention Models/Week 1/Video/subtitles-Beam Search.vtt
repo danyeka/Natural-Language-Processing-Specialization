@@ -1,0 +1,448 @@
+WEBVTT
+
+1
+00:00:00.540 --> 00:00:05.187
+Beam search is a technique that allows
+you to find the best sequences over
+
+2
+00:00:05.187 --> 00:00:08.540
+a fixed window size
+known as the beam with.
+
+3
+00:00:08.540 --> 00:00:12.871
+Since taking the output with the highest
+probability at each time step is
+
+4
+00:00:12.871 --> 00:00:13.650
+not ideal.
+
+5
+00:00:13.650 --> 00:00:16.840
+I will show you how to
+use beam search instead.
+
+6
+00:00:16.840 --> 00:00:22.740
+So far the methods I've presented only
+consider word probabilities one at a time.
+
+7
+00:00:22.740 --> 00:00:26.934
+These ways of sampling might not result
+in the highest probability sequences and
+
+8
+00:00:26.934 --> 00:00:30.780
+the sentence is produced Using
+these methods could not make sense.
+
+9
+00:00:30.780 --> 00:00:33.963
+The overall most probable
+translation given an input
+
+10
+00:00:33.963 --> 00:00:38.540
+sentence is not necessarily the most
+probable word at each step.
+
+11
+00:00:38.540 --> 00:00:42.979
+For example, it's possible that choosing
+the most probable words at the start of
+
+12
+00:00:42.979 --> 00:00:46.131
+the sequence could lead to
+a worse translation compared to
+
+13
+00:00:46.131 --> 00:00:48.340
+choosing in other words.
+
+14
+00:00:48.340 --> 00:00:52.445
+If you had infinite computational power,
+you could calculate
+
+15
+00:00:52.445 --> 00:00:57.569
+the probabilities of every possible
+output sentence and choose the best one.
+
+16
+00:00:57.569 --> 00:01:00.540
+In the real world we use beam search.
+
+17
+00:01:00.540 --> 00:01:04.793
+This method attempts to find the most
+likely outsports sentence by choosing some
+
+18
+00:01:04.793 --> 00:01:08.422
+number of best sequences based on
+conditional probabilities at each
+
+19
+00:01:08.422 --> 00:01:09.061
+time step.
+
+20
+00:01:10.340 --> 00:01:14.533
+Now at each time step with beam search
+you have to calculate the probability of
+
+21
+00:01:14.533 --> 00:01:18.161
+potential sequences given the outputs
+of the previous time step.
+
+22
+00:01:19.540 --> 00:01:21.999
+To avoid computing the probability for
+
+23
+00:01:21.999 --> 00:01:26.478
+every possible sequence you have
+armature beam called the beam width.
+
+24
+00:01:26.478 --> 00:01:32.240
+At each step, you only keep the most
+probable sequences and drop all others.
+
+25
+00:01:32.240 --> 00:01:39.340
+You generate a new word until all be most
+probable sentences and with the US token.
+
+26
+00:01:39.340 --> 00:01:42.196
+So beam search consumes
+a lot of memory and
+
+27
+00:01:42.196 --> 00:01:46.937
+could be computationally costly
+depending on your choice for beam.
+
+28
+00:01:46.937 --> 00:01:51.679
+As an interesting side note,
+greedy decoding is just a particular
+
+29
+00:01:51.679 --> 00:01:56.261
+case of beam search where you set
+the beam with B to be equal to 1.
+
+30
+00:01:57.740 --> 00:02:02.297
+To illustrate this method,
+consider a small vocabulary consisting
+
+31
+00:02:02.297 --> 00:02:06.540
+of the words I am hungry and
+an end of sentence token.
+
+32
+00:02:06.540 --> 00:02:10.340
+And let's say the beam
+with B is equal to 2.
+
+33
+00:02:10.340 --> 00:02:15.043
+As with the other methods beam search
+starts with the start of sentence
+
+34
+00:02:15.043 --> 00:02:19.679
+token and gets the probabilities for
+the first word in the sequence.
+
+35
+00:02:19.679 --> 00:02:25.680
+Here I has a probability of 0.5,
+am has a probability of 0.4 and
+
+36
+00:02:25.680 --> 00:02:31.440
+hungry has a probability of 0.1 and
+in the eos is at 0.
+
+37
+00:02:31.440 --> 00:02:37.340
+Since the beam with is 2 you keep
+the two highest probabilities I and am.
+
+38
+00:02:37.340 --> 00:02:42.131
+Then you calculate the conditional
+probability of all other words
+
+39
+00:02:42.131 --> 00:02:46.249
+Given the two sequences that
+you have kept so far I and am.
+
+40
+00:02:46.249 --> 00:02:51.956
+Given the word I, the model returns
+am with a probability of 0.5 and
+
+41
+00:02:51.956 --> 00:02:53.710
+hungry with 0.3.
+
+42
+00:02:53.710 --> 00:02:58.837
+Given the words am,
+the model returns the probability of word
+
+43
+00:02:58.837 --> 00:03:05.440
+I with a probability of 0.7 and
+hungry with a probability of 0.2.
+
+44
+00:03:05.440 --> 00:03:09.874
+These are the two conditional
+probabilities given the two previous
+
+45
+00:03:09.874 --> 00:03:13.140
+sequences of B of word 2 given word 1.
+
+46
+00:03:13.140 --> 00:03:18.726
+Next you calculate the probability
+by multiplying the conditional
+
+47
+00:03:18.726 --> 00:03:24.319
+probability for 2 given the word I
+with the probability of words I.
+
+48
+00:03:24.319 --> 00:03:28.948
+For instance if the sequence
+of II has a probability of 0.5
+
+49
+00:03:28.948 --> 00:03:32.840
+times 0.1 this is equal to 0.05.
+
+50
+00:03:32.840 --> 00:03:39.951
+The sequence I am has a probability of
+0.5 times 0.5 which is equal to 0.25.
+
+51
+00:03:41.040 --> 00:03:44.719
+You have to do the same with
+the sequences starting with the word am.
+
+52
+00:03:44.719 --> 00:03:53.240
+Here the sequence MI has a probability
+of 0.4 times 0.7 which is equal to 0.28.
+
+53
+00:03:53.240 --> 00:03:58.043
+At this point there is possible sequences
+but with the beam width B=2 you only
+
+54
+00:03:58.043 --> 00:04:02.340
+keep the two sequences with
+the highest probabilities.
+
+55
+00:04:02.340 --> 00:04:06.551
+So you keep the sequence I am and
+am I and drop all others.
+
+56
+00:04:07.940 --> 00:04:13.101
+Then for the next step you use am as
+the inputs were to get the conditional
+
+57
+00:04:13.101 --> 00:04:17.675
+probabilities for the I am sequence and
+I for the am I sequence.
+
+58
+00:04:17.675 --> 00:04:22.094
+You repeat the process to calculate
+the joints probabilities and
+
+59
+00:04:22.094 --> 00:04:25.140
+again choose the best sequence.
+
+60
+00:04:25.140 --> 00:04:29.788
+This process stops with the model
+predicts an end of sentence token for
+
+61
+00:04:29.788 --> 00:04:32.169
+all, be most probable sequences.
+
+62
+00:04:32.169 --> 00:04:37.509
+At the end, the sequence with the largest
+probability is chosen as the outputs.
+
+63
+00:04:37.509 --> 00:04:42.713
+To get the conditional probabilities at
+each step you have to use your model.
+
+64
+00:04:42.713 --> 00:04:47.631
+For now let's focus on the decoder parts
+of the model ignoring the encoder and
+
+65
+00:04:47.631 --> 00:04:49.155
+attention mechanism.
+
+66
+00:04:49.155 --> 00:04:53.418
+At the start of the sequence
+you will use your decoder to as
+
+67
+00:04:53.418 --> 00:04:58.540
+a vector of probabilities for
+each of the words and the vocabulary.
+
+68
+00:04:58.540 --> 00:05:01.843
+This is equivalent to computing
+the conditional probability
+
+69
+00:05:01.843 --> 00:05:04.940
+of every word given
+the start of sequence token.
+
+70
+00:05:04.940 --> 00:05:09.605
+Then you select the most probable
+B outputs from the model and
+
+71
+00:05:09.605 --> 00:05:13.040
+discard all other possibilities.
+
+72
+00:05:13.040 --> 00:05:17.836
+After that you use your model B times to
+find the conditional probabilities of
+
+73
+00:05:17.836 --> 00:05:21.967
+all the words in the vocabulary
+given the sequences that you kept in
+
+74
+00:05:21.967 --> 00:05:24.040
+the previous step.
+
+75
+00:05:24.040 --> 00:05:29.702
+Then you compute the sequence probability
+and keep the B most probable sequences.
+
+76
+00:05:29.702 --> 00:05:34.016
+And you keep doing this until the B
+most probable sequences gets to
+
+77
+00:05:34.016 --> 00:05:36.061
+the end of the sequence token.
+
+78
+00:05:37.140 --> 00:05:41.327
+Notes that at each step after
+the one where your sequence is
+
+79
+00:05:41.327 --> 00:05:45.956
+only composed by the SOS token you
+have to run your model B times.
+
+80
+00:05:45.956 --> 00:05:50.440
+The vanilla version of beam
+search has some disadvantages.
+
+81
+00:05:50.440 --> 00:05:51.356
+For instance,
+
+82
+00:05:51.356 --> 00:05:55.583
+it penalizes the choice of long wear
+sequences because the probability
+
+83
+00:05:55.583 --> 00:06:01.040
+of a sequence is computed as the product
+of multiple conditional probabilities.
+
+84
+00:06:01.040 --> 00:06:05.495
+However, you could normalize the
+probability of each sequence by its number
+
+85
+00:06:05.495 --> 00:06:07.287
+four is to avoid this problem.
+
+86
+00:06:07.287 --> 00:06:11.386
+Beam search also requires you to store
+the b most probable sequences and
+
+87
+00:06:11.386 --> 00:06:16.040
+computes conditional probabilities
+given all of those sequences.
+
+88
+00:06:16.040 --> 00:06:19.622
+Therefore, this method could be
+computationally expensive and
+
+89
+00:06:19.622 --> 00:06:21.640
+consumes lots of memory.
+
+90
+00:06:21.640 --> 00:06:26.158
+You have a new tool that you can add to
+your toolkit beam search has been widely
+
+91
+00:06:26.158 --> 00:06:29.840
+used for quiet a period of time and
+is still used a lot.
+
+92
+00:06:29.840 --> 00:06:34.189
+In the next video, I will show you
+another technique that you can use,
+
+93
+00:06:34.189 --> 00:06:36.561
+known as NBR, or minimum based risk.

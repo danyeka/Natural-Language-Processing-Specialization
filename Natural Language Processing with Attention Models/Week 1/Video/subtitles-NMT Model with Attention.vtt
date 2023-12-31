@@ -1,0 +1,453 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.760
+Welcome. I will now
+show you how to
+
+2
+00:00:02.760 --> 00:00:06.090
+train a neural machine
+translation system from scratch.
+
+3
+00:00:06.090 --> 00:00:09.120
+I'll go through every step
+slowly so you can understand
+
+4
+00:00:09.120 --> 00:00:12.850
+what is going on behind the
+scenes. Let's get started.
+
+5
+00:00:12.850 --> 00:00:15.150
+In this video, I'll show you
+
+6
+00:00:15.150 --> 00:00:17.040
+how everything you have
+seen this week fits
+
+7
+00:00:17.040 --> 00:00:19.020
+together into the
+model architecture
+
+8
+00:00:19.020 --> 00:00:21.255
+you will implement in
+this week's assignments.
+
+9
+00:00:21.255 --> 00:00:24.000
+First, I'll give you
+a general overview
+
+10
+00:00:24.000 --> 00:00:27.070
+before I go into the
+more intricate details.
+
+11
+00:00:27.070 --> 00:00:29.450
+You will implement
+a model similar to
+
+12
+00:00:29.450 --> 00:00:31.700
+the one you have seen
+in previous lectures.
+
+13
+00:00:31.700 --> 00:00:35.000
+You will have an encoder that
+gets the input sequence,
+
+14
+00:00:35.000 --> 00:00:38.225
+a decoder which is supposed
+to do the translation,
+
+15
+00:00:38.225 --> 00:00:40.940
+and an Attention Mechanism
+which would help
+
+16
+00:00:40.940 --> 00:00:42.290
+the decoder focus on
+
+17
+00:00:42.290 --> 00:00:45.065
+the important parts of
+the input sequence.
+
+18
+00:00:45.065 --> 00:00:48.180
+Recall that the decoder
+is supposed to pass
+
+19
+00:00:48.180 --> 00:00:50.309
+hidden states to the
+Attention Mechanism
+
+20
+00:00:50.309 --> 00:00:52.185
+to get context vectors.
+
+21
+00:00:52.185 --> 00:00:55.010
+The pass of the hidden
+states from the decoder to
+
+22
+00:00:55.010 --> 00:00:58.460
+the Attention Mechanism could
+not be easy to implement.
+
+23
+00:00:58.460 --> 00:01:01.605
+Instead, you will be
+using two decoders,
+
+24
+00:01:01.605 --> 00:01:04.715
+a pre-attention decoder
+to provide hidden states,
+
+25
+00:01:04.715 --> 00:01:06.620
+and a post-attention decoder
+
+26
+00:01:06.620 --> 00:01:09.190
+which will provide
+the translation.
+
+27
+00:01:09.190 --> 00:01:11.630
+A general overview of
+
+28
+00:01:11.630 --> 00:01:13.865
+the modified model
+looks as follows.
+
+29
+00:01:13.865 --> 00:01:17.060
+You will have the encoder
+and a pre-attention decoder
+
+30
+00:01:17.060 --> 00:01:20.575
+that's got the inputs
+and target sequences.
+
+31
+00:01:20.575 --> 00:01:23.180
+Then for the
+pre-attention decoder,
+
+32
+00:01:23.180 --> 00:01:25.730
+the target sequence
+is shifted right,
+
+33
+00:01:25.730 --> 00:01:28.430
+which is how you'll be
+implementing the teacher forcing.
+
+34
+00:01:28.430 --> 00:01:31.300
+From the encoder and
+pre-attention decoder,
+
+35
+00:01:31.300 --> 00:01:33.950
+you will retrieve
+the hidden states at
+
+36
+00:01:33.950 --> 00:01:35.660
+each step and use them
+
+37
+00:01:35.660 --> 00:01:38.015
+as inputs for the
+Attention Mechanism.
+
+38
+00:01:38.015 --> 00:01:39.800
+You will use the
+hidden states from
+
+39
+00:01:39.800 --> 00:01:42.530
+the encoder as the
+keys and values,
+
+40
+00:01:42.530 --> 00:01:45.320
+while those from the
+decoder are the queries.
+
+41
+00:01:45.320 --> 00:01:47.480
+As you have seen in
+previous lectures,
+
+42
+00:01:47.480 --> 00:01:49.550
+the Attention Mechanism will
+
+43
+00:01:49.550 --> 00:01:52.455
+use these values to compute
+the context vectors.
+
+44
+00:01:52.455 --> 00:01:56.200
+Finally, the post-attention
+decoder will
+
+45
+00:01:56.200 --> 00:01:57.610
+use the context vectors as
+
+46
+00:01:57.610 --> 00:02:00.380
+inputs to provide the
+predicted sequence.
+
+47
+00:02:00.380 --> 00:02:02.230
+Now, let's take a closer look
+
+48
+00:02:02.230 --> 00:02:04.255
+at each piece of the model.
+
+49
+00:02:04.255 --> 00:02:07.120
+The initial step is
+to make two copies of
+
+50
+00:02:07.120 --> 00:02:09.520
+the input tokens and
+the target tokens
+
+51
+00:02:09.520 --> 00:02:10.720
+because you will need them in
+
+52
+00:02:10.720 --> 00:02:12.235
+different places of the model.
+
+53
+00:02:12.235 --> 00:02:15.745
+One copy of the input tokens
+is fed into the encoder,
+
+54
+00:02:15.745 --> 00:02:17.260
+which is used to transform
+
+55
+00:02:17.260 --> 00:02:19.675
+them into the key
+and value vectors,
+
+56
+00:02:19.675 --> 00:02:22.315
+while a copy of
+the target tokens
+
+57
+00:02:22.315 --> 00:02:24.890
+goes into the
+pre-attention decoder.
+
+58
+00:02:24.890 --> 00:02:27.570
+Note that the
+computations done in
+
+59
+00:02:27.570 --> 00:02:29.700
+the encoder and
+pre-attention decoder
+
+60
+00:02:29.700 --> 00:02:31.040
+could be done in parallel,
+
+61
+00:02:31.040 --> 00:02:32.875
+since they don't
+depend on each other.
+
+62
+00:02:32.875 --> 00:02:35.095
+Within the
+pre-attention decoder,
+
+63
+00:02:35.095 --> 00:02:37.025
+you shift each
+sequence to the right
+
+64
+00:02:37.025 --> 00:02:39.445
+and add a start of
+sentence token.
+
+65
+00:02:39.445 --> 00:02:42.375
+In the encoder and
+pre-attention decoder,
+
+66
+00:02:42.375 --> 00:02:44.780
+the inputs and
+targets go through
+
+67
+00:02:44.780 --> 00:02:47.690
+an embedding layer
+before going to LSTMs.
+
+68
+00:02:47.690 --> 00:02:50.795
+After getting the query
+key and value vectors,
+
+69
+00:02:50.795 --> 00:02:53.485
+you have to prepare them
+for the attention layer.
+
+70
+00:02:53.485 --> 00:02:55.730
+You'll use a function
+to help you get
+
+71
+00:02:55.730 --> 00:02:57.260
+a padding mask to help
+
+72
+00:02:57.260 --> 00:02:59.915
+the attention layer determine
+the padding tokens.
+
+73
+00:02:59.915 --> 00:03:01.760
+This step is where you will
+
+74
+00:03:01.760 --> 00:03:04.165
+use the copy of
+the input tokens.
+
+75
+00:03:04.165 --> 00:03:06.560
+Now, everything is
+ready for attention.
+
+76
+00:03:06.560 --> 00:03:08.705
+You pass the queries,
+keys, values,
+
+77
+00:03:08.705 --> 00:03:10.430
+and the mask to the
+attention layer
+
+78
+00:03:10.430 --> 00:03:13.705
+that outputs the context
+vector and the mask.
+
+79
+00:03:13.705 --> 00:03:17.360
+Before going through the
+decoder, you drop the mask.
+
+80
+00:03:17.360 --> 00:03:19.520
+You then pass the
+context vectors through
+
+81
+00:03:19.520 --> 00:03:22.160
+the decoder composed of an LSTM,
+
+82
+00:03:22.160 --> 00:03:24.790
+a dense layer, and a LogSoftmax.
+
+83
+00:03:24.790 --> 00:03:27.200
+In the end, your model returns
+
+84
+00:03:27.200 --> 00:03:29.525
+log probabilities and the copy
+
+85
+00:03:29.525 --> 00:03:32.270
+of the target tokens that
+you made at the beginning.
+
+86
+00:03:32.270 --> 00:03:34.850
+There you have it,
+the model you'll be
+
+87
+00:03:34.850 --> 00:03:37.670
+building and the intuition
+behind all the steps.
+
+88
+00:03:37.670 --> 00:03:41.140
+Take a break and just
+let all that sink in.
+
+89
+00:03:41.140 --> 00:03:45.470
+You now have an overview
+of how NMT is implemented.
+
+90
+00:03:45.470 --> 00:03:47.675
+If you did not
+understand everything,
+
+91
+00:03:47.675 --> 00:03:49.130
+do not worry about it.
+
+92
+00:03:49.130 --> 00:03:50.870
+We will go in more detail in
+
+93
+00:03:50.870 --> 00:03:52.805
+this week's programming
+assignments.
+
+94
+00:03:52.805 --> 00:03:54.290
+In the next video,
+
+95
+00:03:54.290 --> 00:03:58.020
+I will talk about how to
+evaluate your system.

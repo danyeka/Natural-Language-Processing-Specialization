@@ -1,0 +1,344 @@
+WEBVTT
+
+1
+00:00:00.040 --> 00:00:02.925
+I'll now show you the cost function for
+the Softmax.
+
+2
+00:00:02.925 --> 00:00:05.487
+You'll understand why it
+is a cost function and
+
+3
+00:00:05.487 --> 00:00:07.478
+you'll see why you are learning it.
+
+4
+00:00:07.478 --> 00:00:10.873
+You basically have to predict
+one of the possible words.
+
+5
+00:00:10.873 --> 00:00:14.609
+In order for you to be able to
+predict one of these V possible words,
+
+6
+00:00:14.609 --> 00:00:17.234
+you need to minimize
+a certain cost function.
+
+7
+00:00:17.234 --> 00:00:21.377
+In this video, you'll understand what
+cost function you are minimizing and
+
+8
+00:00:21.377 --> 00:00:24.065
+while you're doing that,
+so let's take a look.
+
+9
+00:00:24.065 --> 00:00:26.134
+Consider a machine learning model.
+
+10
+00:00:26.134 --> 00:00:29.917
+A single training example made of
+an input and a true target and
+
+11
+00:00:29.917 --> 00:00:33.130
+the value predicted by
+the model based on the input.
+
+12
+00:00:33.130 --> 00:00:37.597
+It has a loss function which measures
+the air between the prediction and
+
+13
+00:00:37.597 --> 00:00:42.362
+the true value for a single input training
+example with the continuous bag of
+
+14
+00:00:42.362 --> 00:00:46.702
+words model for a set of input
+context words represented by vector X.
+
+15
+00:00:46.702 --> 00:00:52.113
+For which the actual value is the vector Y
+that represents the actual central word.
+
+16
+00:00:52.113 --> 00:00:54.603
+The prediction is the vector white hat.
+
+17
+00:00:54.603 --> 00:00:59.562
+The objective of the learning process
+is to find the parameters that minimize
+
+18
+00:00:59.562 --> 00:01:02.012
+the loss given the training data set.
+
+19
+00:01:02.012 --> 00:01:05.523
+In the case of the continuous
+bag of words model,
+
+20
+00:01:05.523 --> 00:01:11.436
+the parameters being adjusted by the
+learning process are the waiting matrices,
+
+21
+00:01:11.436 --> 00:01:14.966
+W1 and W2 and
+also the bias factors B1 and B2.
+
+22
+00:01:14.966 --> 00:01:18.321
+The last function you'll be
+using is the cross entropy loss.
+
+23
+00:01:18.321 --> 00:01:19.924
+I won't get into the theory.
+
+24
+00:01:19.924 --> 00:01:22.986
+You should just know that
+the cross entropy loss function
+
+25
+00:01:22.986 --> 00:01:26.367
+is often used with classification
+models which often go hand in
+
+26
+00:01:26.367 --> 00:01:29.620
+hand with the softmax output
+player in your own networks just
+
+27
+00:01:29.620 --> 00:01:33.101
+like the one you're using in
+the continuous bag of words model.
+
+28
+00:01:33.101 --> 00:01:37.776
+If you've already worked with logistic
+regression, you probably already
+
+29
+00:01:37.776 --> 00:01:42.024
+know a simple form of the cross
+entropy loss function, AKA log loss.
+
+30
+00:01:42.024 --> 00:01:45.086
+When there are just two classes
+with the notation I used for
+
+31
+00:01:45.086 --> 00:01:46.972
+the continuous bag of words model.
+
+32
+00:01:46.972 --> 00:01:51.958
+The formula for cross entropy loss for
+a training example is J
+
+33
+00:01:51.958 --> 00:01:56.841
+equals the negative of the sum over
+K from one to V P of Y K times
+
+34
+00:01:56.841 --> 00:02:01.824
+the log of Y hat K, as an example,
+consider the input context
+
+35
+00:02:01.824 --> 00:02:06.861
+towards I am because I were
+the actual central word is happy.
+
+36
+00:02:06.861 --> 00:02:11.657
+The corresponding vector is this vector
+Y with A1 in the royal correspondence
+
+37
+00:02:11.657 --> 00:02:13.263
+with you weren't happy.
+
+38
+00:02:13.263 --> 00:02:17.618
+The prediction could be this vector Y
+hat as the largest value is in the Euro
+
+39
+00:02:17.618 --> 00:02:19.664
+corresponding to the word happy.
+
+40
+00:02:19.664 --> 00:02:24.157
+This vector would be interpreted as
+predicting happy as the central word which
+
+41
+00:02:24.157 --> 00:02:26.483
+is the correct prediction in this case.
+
+42
+00:02:26.483 --> 00:02:28.822
+So let's calculate the cross entropy loss.
+
+43
+00:02:28.822 --> 00:02:32.526
+The log of Y hat is this vector
+multiplying each element by
+
+44
+00:02:32.526 --> 00:02:36.077
+the corresponding element of
+Y gives us this vector and
+
+45
+00:02:36.077 --> 00:02:40.342
+I'm using the circle dot to
+the note element Ys multiplication.
+
+46
+00:02:40.342 --> 00:02:45.263
+No, there's only one non zero
+value which is negative 0.49.
+
+47
+00:02:45.263 --> 00:02:51.901
+The sum is therefore this value and
+the loss is minus the sum, so 0.49.
+
+48
+00:02:51.901 --> 00:02:54.362
+Now, what if the prediction was wrong?
+
+49
+00:02:54.362 --> 00:02:59.507
+Say that the predicted vector was 0.96,
+0.01, 0.01,
+
+50
+00:02:59.507 --> 00:03:04.209
+0.01 predicting am Instead of happy,
+the log would be this
+
+51
+00:03:04.209 --> 00:03:09.106
+factor multiplying element twice
+by Y would give us this vector.
+
+52
+00:03:09.106 --> 00:03:14.665
+Then the sum is negative 4.61 and
+the loss is negative 1 times this.
+
+53
+00:03:14.665 --> 00:03:16.940
+So positive 4.61.
+
+54
+00:03:16.940 --> 00:03:21.001
+So you can see that the losses larger
+when the prediction is incorrect,
+
+55
+00:03:21.001 --> 00:03:25.401
+more generally the cross entropy loss
+boils down to negative one times the log
+
+56
+00:03:25.401 --> 00:03:30.023
+of the value of the prediction element
+corresponding to the actual center word.
+
+57
+00:03:30.023 --> 00:03:34.936
+So if you plot the cross entropy loss as
+a function of the value of the prediction
+
+58
+00:03:34.936 --> 00:03:39.402
+for the actual central word, you can
+see that if the model is predicting
+
+59
+00:03:39.402 --> 00:03:44.413
+correctly with a Y hat value closer to 1,
+then your loss will be closer to zero.
+
+60
+00:03:44.413 --> 00:03:47.232
+This is because log of 1 is equal to zero.
+
+61
+00:03:47.232 --> 00:03:52.803
+If on the other hand, the model is
+predicting incorrectly, then the Y hat for
+
+62
+00:03:52.803 --> 00:03:57.963
+the actual word will be closer to zero,
+resulting in a high lost value.
+
+63
+00:03:57.963 --> 00:03:58.955
+The reason for
+
+64
+00:03:58.955 --> 00:04:03.844
+this is that the limits of log X as
+X approaches zero is minus infinity.
+
+65
+00:04:03.844 --> 00:04:09.202
+So for the loss which uses negative 1
+times the log as Y hat approaches zero.
+
+66
+00:04:09.202 --> 00:04:11.603
+The loss approaches positive infinity.
+
+67
+00:04:11.603 --> 00:04:14.744
+So the loss is rewarding
+correct predictions and
+
+68
+00:04:14.744 --> 00:04:17.202
+penalizing incorrect predictions.
+
+69
+00:04:17.202 --> 00:04:21.191
+You have computed the cross entropy
+loss for one training example, and
+
+70
+00:04:21.191 --> 00:04:25.461
+have seen the plots of the cross entropy
+loss versus the actual prediction.
+
+71
+00:04:25.461 --> 00:04:26.585
+In the next video,
+
+72
+00:04:26.585 --> 00:04:30.461
+we will be looking at the forward
+propagation of the Cibao model.

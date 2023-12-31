@@ -1,0 +1,261 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:04.676
+Sometimes I find it easier to understand
+how models work by looking at
+
+2
+00:00:04.676 --> 00:00:06.861
+their dimensions at each step.
+
+3
+00:00:06.861 --> 00:00:10.860
+I personally find it easier to follow
+along the equations while keeping
+
+4
+00:00:10.860 --> 00:00:12.269
+the dimensions in mind.
+
+5
+00:00:12.269 --> 00:00:14.585
+So I thought this would help you too,
+
+6
+00:00:14.585 --> 00:00:19.309
+let's take a look at the dimensions of
+the layers at each step of the model.
+
+7
+00:00:19.309 --> 00:00:22.995
+You just saw the architecture of
+the continuous bag of words model, and
+
+8
+00:00:22.995 --> 00:00:26.819
+the vectors, and matrices that
+are involved to make calculations on it.
+
+9
+00:00:26.819 --> 00:00:31.239
+Now I'll introduce you to the dimensions
+of these vectors, and matrices.
+
+10
+00:00:31.239 --> 00:00:35.419
+Here is the architecture of
+the neural network, again, first,
+
+11
+00:00:35.419 --> 00:00:38.611
+the input layer is
+represented by lowercase, x,
+
+12
+00:00:38.611 --> 00:00:43.400
+a column vector with zeros where capital
+V, is the size of the vocabulary.
+
+13
+00:00:43.400 --> 00:00:47.885
+To get the values that will be stored in
+the hidden layer, you first calculate
+
+14
+00:00:47.885 --> 00:00:51.959
+the weighted sum of the values from
+the input layer, and add the bias.
+
+15
+00:00:51.959 --> 00:00:57.213
+So W1x+b1, and
+I'll call the results z1, lower case h,
+
+16
+00:00:57.213 --> 00:01:02.470
+refers to the column of values stored,
+and the hidden layer,
+
+17
+00:01:02.470 --> 00:01:07.539
+to get h, you pass the values
+of z1 into a ReLU activation.
+
+18
+00:01:07.539 --> 00:01:09.880
+So in terms of dimensions, W1,
+
+19
+00:01:09.880 --> 00:01:14.816
+the weighting matrix between the input
+layer, and the hidden layer,
+
+20
+00:01:14.816 --> 00:01:19.772
+has n rows, and V columns, where n
+is the size of the word embeddings.
+
+21
+00:01:19.772 --> 00:01:24.315
+b1, the bias vector for
+the hidden layer, has one row for
+
+22
+00:01:24.315 --> 00:01:28.040
+each neuron in the hidden layer,
+so n in total.
+
+23
+00:01:28.040 --> 00:01:33.090
+So when you multiply W1 by x, and
+add bias vector b1, you get a column
+
+24
+00:01:33.090 --> 00:01:38.580
+vector with n rows, and passing it
+through ReLU preserves the dimensions.
+
+25
+00:01:38.580 --> 00:01:39.812
+So as expected,
+
+26
+00:01:39.812 --> 00:01:44.478
+the hidden layer is represented
+by a column vector with n rows.
+
+27
+00:01:44.478 --> 00:01:49.218
+Next to get the values of the output
+player, you first need to calculate
+
+28
+00:01:49.218 --> 00:01:53.959
+the weighted sum of the values from
+the hidden layer, and add the bias.
+
+29
+00:01:53.959 --> 00:01:57.607
+So W2h+b2, which I'll call z2,
+
+30
+00:01:57.607 --> 00:02:03.086
+the values in z2 are sometimes
+referred to as loggings.
+
+31
+00:02:03.086 --> 00:02:04.454
+To get the output y hat,
+
+32
+00:02:04.454 --> 00:02:08.979
+you pass the values of the z2 logging
+through a softmax activation function.
+
+33
+00:02:08.979 --> 00:02:12.067
+Again, you'll see details of
+the activation functions,
+
+34
+00:02:12.067 --> 00:02:13.249
+later in the lecture.
+
+35
+00:02:13.249 --> 00:02:17.715
+W2, the weighting matrix
+between the hidden layer, and
+
+36
+00:02:17.715 --> 00:02:23.182
+the output layer, has V rows, and
+n columns, b2, the bias vector for
+
+37
+00:02:23.182 --> 00:02:28.316
+the output layer, has one role for
+each output neuron, so V rows.
+
+38
+00:02:28.316 --> 00:02:32.406
+When you multiply W2 by the vector for
+the hidden layer h, and
+
+39
+00:02:32.406 --> 00:02:37.203
+the add bias vector b2, you get
+a column vector with V rows, and again,
+
+40
+00:02:37.203 --> 00:02:40.922
+no change when you pass it
+through softmax activation.
+
+41
+00:02:40.922 --> 00:02:46.051
+So finally, you get the output
+column vector y hat with V rows..
+
+42
+00:02:46.051 --> 00:02:50.637
+If you have a situation where instead of
+column vectors you're working with row
+
+43
+00:02:50.637 --> 00:02:55.567
+vectors, then you'll need to perform
+the calculations with transposed matrices,
+
+44
+00:02:55.567 --> 00:02:58.529
+and inverted terms in
+the matrix multiplication.
+
+45
+00:02:58.529 --> 00:03:03.369
+So for instance,
+instead of calculating h=W1x + b1,
+
+46
+00:03:03.369 --> 00:03:08.896
+as you did with the column vectors,
+if x, and b1 are row vectors,
+
+47
+00:03:08.896 --> 00:03:14.032
+then you would calculate xW1
+transposed plus b1 to get z1,
+
+48
+00:03:14.032 --> 00:03:16.433
+and then h, as a row vector.
+
+49
+00:03:16.433 --> 00:03:20.960
+Next, I'll show you how to use
+the neural network with batches of
+
+50
+00:03:20.960 --> 00:03:24.845
+several examples instead of
+just one example at a time.
+
+51
+00:03:24.845 --> 00:03:26.586
+Now that you know the dimensions,
+
+52
+00:03:26.586 --> 00:03:29.299
+this will help you in your
+programming assignments.
+
+53
+00:03:29.299 --> 00:03:33.859
+Hopefully, you'll not get the famous
+dimension mismatch anymore.
+
+54
+00:03:33.859 --> 00:03:36.651
+Let's look into this model a little
+bit more in the next video.

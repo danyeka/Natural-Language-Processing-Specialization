@@ -1,0 +1,353 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.160
+I'm going to show
+you how the cost
+
+2
+00:00:02.160 --> 00:00:04.640
+function for a Siamese
+network works.
+
+3
+00:00:04.640 --> 00:00:07.160
+This is known as
+the triplet loss.
+
+4
+00:00:07.160 --> 00:00:09.760
+Let's dive in, I'll now show you
+
+5
+00:00:09.760 --> 00:00:11.140
+a simple loss function you
+
+6
+00:00:11.140 --> 00:00:13.220
+can use in your Siamese network.
+
+7
+00:00:13.220 --> 00:00:16.680
+Just as a recap, this is
+the overall structure of
+
+8
+00:00:16.680 --> 00:00:19.360
+the Siamese network
+which enables you to
+
+9
+00:00:19.360 --> 00:00:22.780
+predict whether two questions
+are similar or different.
+
+10
+00:00:22.780 --> 00:00:24.540
+With the outputs of the network,
+
+11
+00:00:24.540 --> 00:00:26.740
+you are able to calculate Y hat,
+
+12
+00:00:26.740 --> 00:00:29.890
+which is the similarity
+between the two questions.
+
+13
+00:00:29.890 --> 00:00:34.680
+Now I'll show you a loss
+function for a Siamese network.
+
+14
+00:00:34.680 --> 00:00:37.220
+I'll start by looking
+at this first question,
+
+15
+00:00:37.220 --> 00:00:39.120
+which is how old are you?
+
+16
+00:00:39.120 --> 00:00:41.520
+I'll call this first
+question the anchor,
+
+17
+00:00:41.520 --> 00:00:43.700
+which I'm going to use
+to compare against
+
+18
+00:00:43.700 --> 00:00:46.500
+two other questions
+relative to the anchor.
+
+19
+00:00:46.500 --> 00:00:48.820
+Other questions that
+have the same meaning as
+
+20
+00:00:48.820 --> 00:00:51.660
+the anchor are called
+positive questions.
+
+21
+00:00:51.660 --> 00:00:53.740
+Whereas questions
+that do not have
+
+22
+00:00:53.740 --> 00:00:55.640
+the same meaning as the anchor
+
+23
+00:00:55.640 --> 00:00:57.620
+are called negative questions.
+
+24
+00:00:57.620 --> 00:00:59.540
+Note that the meaning
+of positive and
+
+25
+00:00:59.540 --> 00:01:01.980
+negative in the context
+of finding question
+
+26
+00:01:01.980 --> 00:01:04.140
+duplicate is
+referring to whether
+
+27
+00:01:04.140 --> 00:01:07.260
+a question is similar
+to the anchor or not.
+
+28
+00:01:07.260 --> 00:01:10.045
+Or not whether it has a
+positive or negative sentiment.
+
+29
+00:01:10.045 --> 00:01:11.900
+The question, what is
+
+30
+00:01:11.900 --> 00:01:14.740
+your age is considered
+a positive question
+
+31
+00:01:14.740 --> 00:01:17.040
+relative to the anchor
+because how old
+
+32
+00:01:17.040 --> 00:01:19.920
+are you and what is your
+age mean the same thing.
+
+33
+00:01:19.920 --> 00:01:22.340
+This other question,
+where are you from,
+
+34
+00:01:22.340 --> 00:01:25.240
+is considered a negative
+question because it
+
+35
+00:01:25.240 --> 00:01:28.420
+does not have the same meaning
+as the anchor question.
+
+36
+00:01:28.420 --> 00:01:30.000
+Here's a definition of
+
+37
+00:01:30.000 --> 00:01:32.380
+cosine similarity
+between two vectors.
+
+38
+00:01:32.380 --> 00:01:34.615
+That will be the
+similarity of function
+
+39
+00:01:34.615 --> 00:01:37.120
+S. To train your model,
+
+40
+00:01:37.120 --> 00:01:39.680
+you'll be comparing
+the vectors that are
+
+41
+00:01:39.680 --> 00:01:43.140
+output by each sub
+network using similarity.
+
+42
+00:01:43.140 --> 00:01:45.380
+For this example,
+you're going to take
+
+43
+00:01:45.380 --> 00:01:48.100
+the similarity between A and P,
+
+44
+00:01:48.100 --> 00:01:49.700
+where a refers to
+
+45
+00:01:49.700 --> 00:01:51.120
+the anchor question and
+
+46
+00:01:51.120 --> 00:01:53.620
+P refers to the
+positive question.
+
+47
+00:01:53.620 --> 00:01:57.315
+Similarity is bounded between
+negative one and one.
+
+48
+00:01:57.315 --> 00:01:59.700
+For vectors that are
+completely different,
+
+49
+00:01:59.700 --> 00:02:02.105
+the similarity is
+near negative one.
+
+50
+00:02:02.105 --> 00:02:04.700
+For vectors that are
+nearly identical,
+
+51
+00:02:04.700 --> 00:02:07.860
+their similarity is
+close to positive one.
+
+52
+00:02:07.860 --> 00:02:09.980
+For a well trained model,
+
+53
+00:02:09.980 --> 00:02:12.800
+you'd like to see a
+similarity close to one
+
+54
+00:02:12.800 --> 00:02:16.300
+when comparing the anchor
+and a positive example.
+
+55
+00:02:16.300 --> 00:02:20.240
+Similarly, when
+comparing the anchor
+
+56
+00:02:20.240 --> 00:02:21.800
+to the negative example,
+
+57
+00:02:21.800 --> 00:02:24.140
+a successful model should yield
+
+58
+00:02:24.140 --> 00:02:27.020
+a similarity close
+to negative one.
+
+59
+00:02:27.020 --> 00:02:29.440
+To begin building
+a loss function,
+
+60
+00:02:29.440 --> 00:02:33.120
+you start with the
+similarity of A and N and
+
+61
+00:02:33.120 --> 00:02:35.020
+subtract the similarity of A
+
+62
+00:02:35.020 --> 00:02:38.420
+and B to calculate
+the difference.
+
+63
+00:02:39.060 --> 00:02:43.280
+What you have here is a loss
+function that allows you to
+
+64
+00:02:43.280 --> 00:02:45.000
+determine whether your model
+
+65
+00:02:45.000 --> 00:02:47.200
+is roughly doing what
+you hope it will do.
+
+66
+00:02:47.200 --> 00:02:49.540
+Namely, finding that the anchor
+
+67
+00:02:49.540 --> 00:02:52.140
+and the positive
+example are similar,
+
+68
+00:02:52.140 --> 00:02:53.380
+and that the anchor and
+
+69
+00:02:53.380 --> 00:02:55.580
+the negative example
+are different.
+
+70
+00:02:55.580 --> 00:02:57.580
+As the difference gets bigger or
+
+71
+00:02:57.580 --> 00:02:59.580
+smaller along the X axis,
+
+72
+00:02:59.580 --> 00:03:03.660
+the loss gets bigger or
+smaller along the Y axis.
+
+73
+00:03:03.660 --> 00:03:06.100
+When minimizing the
+loss in training,
+
+74
+00:03:06.100 --> 00:03:09.260
+you are, in effect,
+minimizing the difference.
+
+75
+00:03:09.260 --> 00:03:13.140
+In the next video, I'll
+introduce triplets.

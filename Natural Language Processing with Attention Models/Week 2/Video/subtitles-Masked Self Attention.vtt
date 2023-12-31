@@ -1,0 +1,342 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.430
+In this video, I'll review
+
+2
+00:00:02.430 --> 00:00:03.450
+the different types of
+
+3
+00:00:03.450 --> 00:00:06.165
+attention mechanisms in
+the transformer model,
+
+4
+00:00:06.165 --> 00:00:09.465
+and you will see how to
+compute masked self-attention.
+
+5
+00:00:09.465 --> 00:00:11.310
+First, you will see what
+
+6
+00:00:11.310 --> 00:00:12.900
+the three main ways of
+
+7
+00:00:12.900 --> 00:00:15.570
+attention in the
+transformer model are.
+
+8
+00:00:15.570 --> 00:00:17.865
+Afterwards, I'll show you
+
+9
+00:00:17.865 --> 00:00:20.905
+a brief overview of
+masked self-attention.
+
+10
+00:00:20.905 --> 00:00:23.370
+One of the attention
+mechanisms in
+
+11
+00:00:23.370 --> 00:00:24.810
+a transformer model is
+
+12
+00:00:24.810 --> 00:00:27.390
+the familiar
+encoder-decoder attention.
+
+13
+00:00:27.390 --> 00:00:29.175
+In that mechanism,
+
+14
+00:00:29.175 --> 00:00:31.230
+the words in one sentence attend
+
+15
+00:00:31.230 --> 00:00:33.345
+to all other words
+in another one.
+
+16
+00:00:33.345 --> 00:00:35.420
+That is, the queries come from
+
+17
+00:00:35.420 --> 00:00:38.980
+one sentence while the keys
+and values come from another.
+
+18
+00:00:38.980 --> 00:00:41.540
+You've already used this
+kind of attention in
+
+19
+00:00:41.540 --> 00:00:43.610
+the translation task
+from last week,
+
+20
+00:00:43.610 --> 00:00:46.385
+where the words from
+sentences in French
+
+21
+00:00:46.385 --> 00:00:49.915
+attended towards from
+sentences in English.
+
+22
+00:00:49.915 --> 00:00:52.730
+Self-attention, the queries,
+
+23
+00:00:52.730 --> 00:00:55.490
+keys, and values come
+from the same sentence.
+
+24
+00:00:55.490 --> 00:00:59.255
+Every word attends to every
+other word in the sequence.
+
+25
+00:00:59.255 --> 00:01:01.400
+This type of attention
+lets you get
+
+26
+00:01:01.400 --> 00:01:04.810
+contextual representations
+of your words.
+
+27
+00:01:04.810 --> 00:01:08.540
+In other terms,
+self-attention gives you
+
+28
+00:01:08.540 --> 00:01:10.400
+a representation of the meaning
+
+29
+00:01:10.400 --> 00:01:13.100
+of each word within
+the sentence.
+
+30
+00:01:13.100 --> 00:01:16.420
+Finally, in masked
+self-attention queries,
+
+31
+00:01:16.420 --> 00:01:19.525
+keys and values also come
+from the same sentence,
+
+32
+00:01:19.525 --> 00:01:23.725
+but each query cannot attend
+to keys on future positions.
+
+33
+00:01:23.725 --> 00:01:26.110
+This attention
+mechanism is present
+
+34
+00:01:26.110 --> 00:01:28.480
+in the decoder from
+the transformer model
+
+35
+00:01:28.480 --> 00:01:30.640
+and ensures that predictions at
+
+36
+00:01:30.640 --> 00:01:34.415
+each position depend only
+on the known outputs.
+
+37
+00:01:34.415 --> 00:01:37.510
+Mathematically,
+self-attention works
+
+38
+00:01:37.510 --> 00:01:40.360
+precisely as the
+encoder-decoder attention.
+
+39
+00:01:40.360 --> 00:01:42.460
+The only difference
+is the nature of
+
+40
+00:01:42.460 --> 00:01:44.725
+the inputs for each mechanism.
+
+41
+00:01:44.725 --> 00:01:47.425
+Let's focus on masked
+self-attention.
+
+42
+00:01:47.425 --> 00:01:50.410
+Recall that the scale
+dot-product attention
+
+43
+00:01:50.410 --> 00:01:52.345
+requires the calculation of
+
+44
+00:01:52.345 --> 00:01:54.985
+the softmax of the
+scaled products
+
+45
+00:01:54.985 --> 00:01:58.895
+between the queries and the
+transpose of the key matrix.
+
+46
+00:01:58.895 --> 00:02:01.550
+Then for mask self-attention,
+
+47
+00:02:01.550 --> 00:02:04.985
+you add a mask matrix
+within the softmax.
+
+48
+00:02:04.985 --> 00:02:08.600
+The mask has a zero on
+all of its positions,
+
+49
+00:02:08.600 --> 00:02:11.135
+except for the elements
+above the diagonal,
+
+50
+00:02:11.135 --> 00:02:13.265
+which are set to minus infinity.
+
+51
+00:02:13.265 --> 00:02:16.360
+Or in practice, a
+huge negative number.
+
+52
+00:02:16.360 --> 00:02:18.590
+After taking the softmax,
+
+53
+00:02:18.590 --> 00:02:21.470
+this addition ensures
+that the elements in
+
+54
+00:02:21.470 --> 00:02:23.120
+the weights matrix are zero for
+
+55
+00:02:23.120 --> 00:02:26.200
+all the keys and the subsequent
+positions to the query.
+
+56
+00:02:26.200 --> 00:02:29.855
+In the end, as with the
+other types of attention,
+
+57
+00:02:29.855 --> 00:02:33.035
+you multiply the weights
+matrix by the value matrix
+
+58
+00:02:33.035 --> 00:02:36.595
+to get the context vector for
+each query, and that's it.
+
+59
+00:02:36.595 --> 00:02:39.260
+You only need to
+add a matrix within
+
+60
+00:02:39.260 --> 00:02:41.270
+the softmax to ensure
+
+61
+00:02:41.270 --> 00:02:44.540
+that the queries don't
+attend to future positions.
+
+62
+00:02:44.540 --> 00:02:46.460
+In this video, I showed you
+
+63
+00:02:46.460 --> 00:02:48.215
+the three main
+ways of attention.
+
+64
+00:02:48.215 --> 00:02:50.180
+Encoder-decoder attention,
+
+65
+00:02:50.180 --> 00:02:53.275
+self-attention, and
+masked self-attention.
+
+66
+00:02:53.275 --> 00:02:55.155
+In masked self-attention,
+
+67
+00:02:55.155 --> 00:02:58.250
+queries and keys are contained
+in the same sentence,
+
+68
+00:02:58.250 --> 00:03:01.295
+but queries can not attend
+to future positions.
+
+69
+00:03:01.295 --> 00:03:04.445
+You have seen many types
+of attention so far.
+
+70
+00:03:04.445 --> 00:03:06.065
+In the next video,
+
+71
+00:03:06.065 --> 00:03:08.449
+I'll show you the
+multi-headed attention.
+
+72
+00:03:08.449 --> 00:03:10.250
+It is a very powerful form of
+
+73
+00:03:10.250 --> 00:03:13.650
+attention that allows
+for parallel computing.

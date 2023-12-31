@@ -1,0 +1,256 @@
+WEBVTT
+
+1
+00:00:00.340 --> 00:00:05.343
+It is often the case that you'll end up
+having vectors in very high dimensions.
+
+2
+00:00:05.343 --> 00:00:09.041
+You want to find a way to reduce
+the dimension of these vectors to two
+
+3
+00:00:09.041 --> 00:00:09.842
+dimensions.
+
+4
+00:00:09.842 --> 00:00:12.866
+So you can plot it on an XY axis.
+
+5
+00:00:12.866 --> 00:00:17.073
+You will now learn about principal
+components analysis which will
+
+6
+00:00:17.073 --> 00:00:18.281
+allow you to do so.
+
+7
+00:00:18.281 --> 00:00:22.410
+You are going to be using principal
+component analysis to visualize vector
+
+8
+00:00:22.410 --> 00:00:24.967
+representations with
+higher dimensions than
+
+9
+00:00:24.967 --> 00:00:27.339
+the ones that you've seen plotted so far.
+
+10
+00:00:27.339 --> 00:00:31.142
+To get started, I'll give you some
+intuition on the motivation for
+
+11
+00:00:31.142 --> 00:00:35.546
+visualizing vector representation of
+words and you will see for yourself with
+
+12
+00:00:35.546 --> 00:00:40.367
+principal component analysis does and how
+it is used for dimensionality reduction.
+
+13
+00:00:40.367 --> 00:00:43.103
+Imagine you have the following
+representation for
+
+14
+00:00:43.103 --> 00:00:44.697
+your words in a vector space.
+
+15
+00:00:44.697 --> 00:00:49.290
+In this scenario, your vector space
+dimension is higher than two that
+
+16
+00:00:49.290 --> 00:00:52.864
+the words oil and gas and
+city and town are related.
+
+17
+00:00:52.864 --> 00:00:57.658
+And you want to see if that relationship
+is captured by the representation of your
+
+18
+00:00:57.658 --> 00:00:58.160
+words.
+
+19
+00:00:58.160 --> 00:01:03.107
+So how could you visualize your words
+in order to see this and other possible
+
+20
+00:01:03.107 --> 00:01:08.382
+relationships, dimensionality reduction
+is a perfect choice for this task.
+
+21
+00:01:08.382 --> 00:01:13.188
+When you have a representation of your
+words in a high dimensional space,
+
+22
+00:01:13.188 --> 00:01:18.070
+you could use an algorithm like PCA to
+get a representation on a vector space
+
+23
+00:01:18.070 --> 00:01:19.714
+with fewer dimensions.
+
+24
+00:01:19.714 --> 00:01:22.251
+If you want to visualize your data,
+
+25
+00:01:22.251 --> 00:01:27.083
+you can get a reduced representation
+with three or fewer features.
+
+26
+00:01:27.083 --> 00:01:31.048
+If you perform principal component
+analysis on your data and
+
+27
+00:01:31.048 --> 00:01:36.348
+get a two dimensional representation,
+you can then plot a visual of your words.
+
+28
+00:01:36.348 --> 00:01:41.318
+In this case, you might find that
+your initial representation captured
+
+29
+00:01:41.318 --> 00:01:45.803
+the relationship between the words oil and
+gas and city and town.
+
+30
+00:01:45.803 --> 00:01:51.154
+Because in your two dimensional space they
+appear to be clustered with related words.
+
+31
+00:01:51.154 --> 00:01:55.359
+You can even find other relationships
+among your words that you didn't expect.
+
+32
+00:01:55.359 --> 00:01:59.133
+Which is a fun and useful possibility.
+
+33
+00:01:59.133 --> 00:02:01.947
+Now, that you know what
+PCA can help you achieve.
+
+34
+00:02:01.947 --> 00:02:04.467
+Let's go into detail on how it works.
+
+35
+00:02:04.467 --> 00:02:06.248
+For the sake of simplicity.
+
+36
+00:02:06.248 --> 00:02:08.920
+I'll begin with a two
+dimensional vector space.
+
+37
+00:02:08.920 --> 00:02:12.491
+Say that you want your data to
+be represented by one feature.
+
+38
+00:02:12.491 --> 00:02:14.577
+Instead using PCA.
+
+39
+00:02:14.577 --> 00:02:19.643
+First, you'll find a set of un correlated
+features and then project your
+
+40
+00:02:19.643 --> 00:02:25.297
+data to a one dimensional space trying to
+retain as much information as possible.
+
+41
+00:02:25.297 --> 00:02:29.096
+As you can see,
+this process is quite straightforward.
+
+42
+00:02:29.096 --> 00:02:32.783
+Coming up, you'll see for
+yourself the details of how this
+
+43
+00:02:32.783 --> 00:02:36.704
+algorithm works along with how
+to get uncorrelated features.
+
+44
+00:02:36.704 --> 00:02:41.010
+You'll also project your data for
+a representation in a lower
+
+45
+00:02:41.010 --> 00:02:45.334
+dimension while retaining as
+much information as possible.
+
+46
+00:02:45.334 --> 00:02:47.759
+Let's do a quick review before you go.
+
+47
+00:02:47.759 --> 00:02:49.593
+PCA Is an algorithm used for
+
+48
+00:02:49.593 --> 00:02:55.032
+dimensionality reduction that can find
+uncorrelated features for your data.
+
+49
+00:02:55.032 --> 00:02:58.648
+It's very helpful for
+visualizing your data to check
+
+50
+00:02:58.648 --> 00:03:03.162
+if your representation is capturing
+relationships among words.
+
+51
+00:03:03.162 --> 00:03:06.194
+You learned how to visualize
+components using PCA.
+
+52
+00:03:06.194 --> 00:03:11.163
+So given any d dimensional vector, you
+can transform it into two dimensions and
+
+53
+00:03:11.163 --> 00:03:12.882
+then you can create a plot.
+
+54
+00:03:12.882 --> 00:03:16.861
+In the next video, we will go over
+how the algorithm actually works.

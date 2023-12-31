@@ -1,0 +1,412 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.250
+This week, I'll show you how to
+
+2
+00:00:02.250 --> 00:00:04.245
+train the Naive
+Bayes classifier.
+
+3
+00:00:04.245 --> 00:00:06.690
+In this context, we
+train in something
+
+4
+00:00:06.690 --> 00:00:09.405
+different than in logistic
+regression or deep learning.
+
+5
+00:00:09.405 --> 00:00:11.205
+There is no gradient descent.
+
+6
+00:00:11.205 --> 00:00:14.535
+We're just counting frequencies
+of words in the corpus.
+
+7
+00:00:14.535 --> 00:00:17.570
+You will now be
+creating step-by-step,
+
+8
+00:00:17.570 --> 00:00:20.585
+a Naive Bayes model for
+sentiment analysis using
+
+9
+00:00:20.585 --> 00:00:22.160
+a corpus of tweets that you've
+
+10
+00:00:22.160 --> 00:00:24.535
+already collected.
+That's awesome.
+
+11
+00:00:24.535 --> 00:00:25.640
+The first step for
+
+12
+00:00:25.640 --> 00:00:27.980
+any supervised machine
+learning project
+
+13
+00:00:27.980 --> 00:00:30.710
+is to gather the data to
+train and test your model.
+
+14
+00:00:30.710 --> 00:00:32.895
+For sentiment
+analysis of tweets,
+
+15
+00:00:32.895 --> 00:00:35.270
+this step involves
+getting a corpus of
+
+16
+00:00:35.270 --> 00:00:38.015
+tweets and dividing
+it into two groups;
+
+17
+00:00:38.015 --> 00:00:40.615
+positive and negative tweets.
+
+18
+00:00:40.615 --> 00:00:43.895
+The next step is fundamental
+to your model success.
+
+19
+00:00:43.895 --> 00:00:45.605
+The preprocessing step,
+
+20
+00:00:45.605 --> 00:00:47.900
+as described in the
+previous module,
+
+21
+00:00:47.900 --> 00:00:50.260
+consists of five smaller steps.
+
+22
+00:00:50.260 --> 00:00:53.430
+One, lowercase the texts, 2,
+
+23
+00:00:53.430 --> 00:00:55.380
+remove punctuation, URLs,
+
+24
+00:00:55.380 --> 00:00:57.075
+and handles, 3,
+
+25
+00:00:57.075 --> 00:00:58.575
+remove stop words,
+
+26
+00:00:58.575 --> 00:01:02.280
+4, stemming or reducing
+words to their common stem,
+
+27
+00:01:02.280 --> 00:01:03.980
+and 5, finally,
+
+28
+00:01:03.980 --> 00:01:06.305
+tokenizing or splitting
+your document
+
+29
+00:01:06.305 --> 00:01:08.345
+into single words or tokens.
+
+30
+00:01:08.345 --> 00:01:10.445
+For the assignments
+in this week,
+
+31
+00:01:10.445 --> 00:01:12.440
+it will be relatively
+straightforward
+
+32
+00:01:12.440 --> 00:01:14.780
+to implement this
+processing pipeline.
+
+33
+00:01:14.780 --> 00:01:16.910
+In the real-world, you might
+
+34
+00:01:16.910 --> 00:01:18.650
+find the gathering
+and processing
+
+35
+00:01:18.650 --> 00:01:22.535
+of texts takes up a big chunk
+of your project's hours.
+
+36
+00:01:22.535 --> 00:01:25.640
+Once you have a clean
+corpus of processed tweets,
+
+37
+00:01:25.640 --> 00:01:27.620
+you will start by computing
+
+38
+00:01:27.620 --> 00:01:30.005
+the vocabulary for
+each word in class,
+
+39
+00:01:30.005 --> 00:01:32.270
+like you did in
+the previous week.
+
+40
+00:01:32.270 --> 00:01:33.875
+This process will produce
+
+41
+00:01:33.875 --> 00:01:35.720
+a table like the one shown here.
+
+42
+00:01:35.720 --> 00:01:38.060
+You can compute the
+sum of words and
+
+43
+00:01:38.060 --> 00:01:41.375
+class in each corpus
+in the same step.
+
+44
+00:01:41.375 --> 00:01:43.670
+From this table of frequencies,
+
+45
+00:01:43.670 --> 00:01:47.240
+you get the conditional
+probability or probability of
+
+46
+00:01:47.240 --> 00:01:48.890
+word given class by
+
+47
+00:01:48.890 --> 00:01:51.290
+using the Laplacian
+smoothing formula.
+
+48
+00:01:51.290 --> 00:01:53.420
+See how the number
+of unique words in
+
+49
+00:01:53.420 --> 00:01:55.805
+V class is equal to 6.
+
+50
+00:01:55.805 --> 00:01:58.595
+You only account for
+the words in the table,
+
+51
+00:01:58.595 --> 00:02:02.120
+not the total number of words
+in the original corpus.
+
+52
+00:02:02.120 --> 00:02:04.070
+This produces a table of
+
+53
+00:02:04.070 --> 00:02:07.760
+conditional probabilities for
+each word and each class.
+
+54
+00:02:07.760 --> 00:02:11.720
+This table only contains
+values greater than 0.
+
+55
+00:02:11.720 --> 00:02:13.850
+For the forth step, you'll
+
+56
+00:02:13.850 --> 00:02:16.055
+get the Lambda score
+for each word,
+
+57
+00:02:16.055 --> 00:02:18.185
+which is the log of the ratio
+
+58
+00:02:18.185 --> 00:02:20.315
+of your conditional
+probabilities.
+
+59
+00:02:20.315 --> 00:02:23.795
+The fifth step is the
+estimation of the log prior.
+
+60
+00:02:23.795 --> 00:02:25.880
+To do this, you'll need to count
+
+61
+00:02:25.880 --> 00:02:28.390
+the number of positive
+and negative tweets.
+
+62
+00:02:28.390 --> 00:02:32.225
+Then the log prior is the log
+of the ratio of the number
+
+63
+00:02:32.225 --> 00:02:35.980
+of positive tweets over the
+number of negative tweets.
+
+64
+00:02:35.980 --> 00:02:37.820
+In the upcoming assignments,
+
+65
+00:02:37.820 --> 00:02:40.855
+you'll be working with
+a balanced datasets.
+
+66
+00:02:40.855 --> 00:02:43.515
+The log prior is equal to 0.
+
+67
+00:02:43.515 --> 00:02:47.810
+For unbalanced datasets, this
+term will become important.
+
+68
+00:02:47.810 --> 00:02:51.110
+In summary, training
+a Naive Bayes model
+
+69
+00:02:51.110 --> 00:02:53.905
+can be divided into
+six logical steps.
+
+70
+00:02:53.905 --> 00:02:55.280
+You get to annotate
+
+71
+00:02:55.280 --> 00:02:57.965
+a dataset with positive
+and negative tweets.
+
+72
+00:02:57.965 --> 00:03:00.590
+Typically, it's better
+if your tweets match
+
+73
+00:03:00.590 --> 00:03:03.740
+the same context that you want
+to use in the final model.
+
+74
+00:03:03.740 --> 00:03:06.005
+Then you process the
+raw texts to get
+
+75
+00:03:06.005 --> 00:03:09.440
+a corpus of clean
+standardized tokens.
+
+76
+00:03:09.440 --> 00:03:11.389
+You compute the
+dictionary frequencies
+
+77
+00:03:11.389 --> 00:03:12.815
+for each word in class,
+
+78
+00:03:12.815 --> 00:03:15.200
+then compute the
+conditional probabilities
+
+79
+00:03:15.200 --> 00:03:18.155
+of each word using the
+Laplacian smoothing formula,
+
+80
+00:03:18.155 --> 00:03:19.790
+you compute the lambda factor
+
+81
+00:03:19.790 --> 00:03:21.830
+for each word, and finally,
+
+82
+00:03:21.830 --> 00:03:25.055
+you estimate the log
+prior of the model or
+
+83
+00:03:25.055 --> 00:03:26.750
+how likely it is to see
+
+84
+00:03:26.750 --> 00:03:29.575
+a positive tweet
+in your accounts.
+
+85
+00:03:29.575 --> 00:03:32.235
+That was quite a lot.
+
+86
+00:03:32.235 --> 00:03:35.000
+Now, you have seen how to build
+
+87
+00:03:35.000 --> 00:03:38.195
+a probability table needed
+to apply Naive Bayes.
+
+88
+00:03:38.195 --> 00:03:39.890
+The next exciting thing we'll
+
+89
+00:03:39.890 --> 00:03:43.170
+do is to classify
+your sentences.

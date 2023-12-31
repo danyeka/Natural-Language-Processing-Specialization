@@ -1,0 +1,298 @@
+WEBVTT
+
+1
+00:00:00.104 --> 00:00:01.898
+When creating word embeddings,
+
+2
+00:00:01.898 --> 00:00:05.876
+the corpus you are using to create
+them will affect your word embeddings.
+
+3
+00:00:05.876 --> 00:00:09.559
+This is something we will
+explore later in the weeks, but
+
+4
+00:00:09.559 --> 00:00:13.564
+first let us see what is required
+to create these embeddings.
+
+5
+00:00:13.564 --> 00:00:18.558
+To create word embeddings, you always
+need two things, a corpus of text,
+
+6
+00:00:18.558 --> 00:00:20.315
+and an embedding method.
+
+7
+00:00:20.315 --> 00:00:23.288
+The corpus contains
+the words you want to embed,
+
+8
+00:00:23.288 --> 00:00:27.797
+organized in the same way as they would
+be used in the context of interest.
+
+9
+00:00:27.797 --> 00:00:32.467
+For example, if you want to generate
+towards embeddings based on Shakespeare,
+
+10
+00:00:32.467 --> 00:00:36.657
+then your corpus would be the full,
+and original text of Shakespeare and
+
+11
+00:00:36.657 --> 00:00:40.862
+not study notes, side presentations,
+or keywords from Shakespeare.
+
+12
+00:00:40.862 --> 00:00:43.984
+The context of a word refers
+to what other words or
+
+13
+00:00:43.984 --> 00:00:48.175
+combination of words tend to occur
+around that particular word,
+
+14
+00:00:48.175 --> 00:00:53.448
+the context is important as this is what
+will give meaning to each word embedding.
+
+15
+00:00:53.448 --> 00:00:57.539
+A simple vocabulary list of
+Shakespeare's most common words,
+
+16
+00:00:57.539 --> 00:01:00.274
+would not be enough to create embeddings.
+
+17
+00:01:00.274 --> 00:01:04.673
+The corpus would be a general
+purpose sets of documents such as,
+
+18
+00:01:04.673 --> 00:01:09.889
+Wikipedia articles, or it could be
+more specialist such as, an industry,
+
+19
+00:01:09.889 --> 00:01:14.710
+or enterprise specific corpus to
+capture the nuances of the context.
+
+20
+00:01:14.710 --> 00:01:19.294
+For NLP use cases on legal topics,
+you could use contracts, and law books as
+
+21
+00:01:19.294 --> 00:01:24.175
+the corpus, the embedding method creates
+the word embeddings from the corpus.
+
+22
+00:01:24.175 --> 00:01:27.009
+There are many types of possible methods,
+but
+
+23
+00:01:27.009 --> 00:01:31.296
+in this course I will focus on modern
+methods based on machine learning
+
+24
+00:01:31.296 --> 00:01:34.436
+models which are set to
+learn the word embeddings.
+
+25
+00:01:34.436 --> 00:01:37.719
+The machine learning model
+performs a learning task, and
+
+26
+00:01:37.719 --> 00:01:41.011
+the main by products of this
+task are the word embeddings.
+
+27
+00:01:41.011 --> 00:01:45.526
+For instance, the task could be to learn
+to predict a word based on the surrounding
+
+28
+00:01:45.526 --> 00:01:49.780
+words, any sentence of the corpus as in
+the case of the continuous bag of words
+
+29
+00:01:49.780 --> 00:01:54.375
+approach that I will describe in the next
+videos that you will implement this week.
+
+30
+00:01:54.375 --> 00:01:55.996
+The specific of the task,
+
+31
+00:01:55.996 --> 00:02:00.351
+are what will ultimately define
+the meaning of the individual words.
+
+32
+00:02:00.351 --> 00:02:03.791
+I'll get back to this in
+one of the next videos,
+
+33
+00:02:03.791 --> 00:02:06.631
+the task is said to be self supervised.
+
+34
+00:02:06.631 --> 00:02:10.527
+It is both unsupervised in
+the sense that the input data,
+
+35
+00:02:10.527 --> 00:02:15.558
+the corpus is unlabeled, and supervised
+in the sense that the data itself
+
+36
+00:02:15.558 --> 00:02:20.772
+provides the necessary context which
+would ordinarily make up the labels.
+
+37
+00:02:20.772 --> 00:02:26.180
+So the corpus is a self contained data
+set that contains both the training data,
+
+38
+00:02:26.180 --> 00:02:29.907
+and the data that enables
+the supervision of the task.
+
+39
+00:02:29.907 --> 00:02:34.547
+Word embeddings can be tuned by a number
+of hyper parameters just like in any
+
+40
+00:02:34.547 --> 00:02:36.176
+machine learning model.
+
+41
+00:02:36.176 --> 00:02:40.878
+One of these hyper parameters is the
+dimension of the word embedding vectors.
+
+42
+00:02:40.878 --> 00:02:41.715
+In practice,
+
+43
+00:02:41.715 --> 00:02:46.057
+this dimension typically ranges from
+a few hundred to the low thousands.
+
+44
+00:02:46.057 --> 00:02:50.407
+Using higher dimensions, captures
+more nuanced meanings, but is more
+
+45
+00:02:50.407 --> 00:02:55.184
+computational expensive, both as training
+time, and later down the line when
+
+46
+00:02:55.184 --> 00:03:00.266
+using the word embedding vectors, this
+eventually leads to diminishing returns.
+
+47
+00:03:00.266 --> 00:03:04.457
+Finally, to feed the corpus into
+the machine learning model,
+
+48
+00:03:04.457 --> 00:03:08.964
+the contents of the corpus must
+first be transformed into a suitable
+
+49
+00:03:08.964 --> 00:03:12.776
+mathematical representation
+from words into numbers.
+
+50
+00:03:12.776 --> 00:03:17.881
+The representation depends on the
+specifics of the model, but it is usually
+
+51
+00:03:17.881 --> 00:03:23.067
+based on the simple representations
+that I presented in the previous video,
+
+52
+00:03:23.067 --> 00:03:27.077
+such as integer base towards indices,
+or one hot vectors.
+
+53
+00:03:27.077 --> 00:03:27.954
+In this video,
+
+54
+00:03:27.954 --> 00:03:31.875
+you learned about high level process
+to create context embeddings.
+
+55
+00:03:31.875 --> 00:03:35.855
+For the next step, I'll introduce you
+to several word embedding methods,
+
+56
+00:03:35.855 --> 00:03:38.591
+including the continuous
+bag of words approach that
+
+57
+00:03:38.591 --> 00:03:41.469
+you will be implementing
+in this week's assignment.
+
+58
+00:03:41.469 --> 00:03:45.924
+So far, we have learned a new term
+known as self supervised learning,
+
+59
+00:03:45.924 --> 00:03:50.466
+this term will show up again and
+again in the field of machine learning.
+
+60
+00:03:50.466 --> 00:03:54.327
+It is a mix of unsupervised learning,
+and supervised learning.
+
+61
+00:03:54.327 --> 00:03:58.561
+Now in the next video we will see some
+of the methods used for word embeddings.

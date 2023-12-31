@@ -1,0 +1,718 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.365
+Good to see you again.
+
+2
+00:00:01.365 --> 00:00:04.050
+In this week, you will learn
+about transfer learning,
+
+3
+00:00:04.050 --> 00:00:06.330
+which is a new concept
+in this course.
+
+4
+00:00:06.330 --> 00:00:08.430
+Transfer learning
+allows you to get
+
+5
+00:00:08.430 --> 00:00:10.800
+better results and
+speeds up training.
+
+6
+00:00:10.800 --> 00:00:13.305
+You'll also be looking
+at question answering.
+
+7
+00:00:13.305 --> 00:00:14.910
+Let's dive in.
+
+8
+00:00:14.910 --> 00:00:16.710
+In Week 3 of Course 4,
+
+9
+00:00:16.710 --> 00:00:20.280
+you're going to cover many
+different applications of NLP.
+
+10
+00:00:20.280 --> 00:00:23.655
+One thing you are going to
+look at is question answering.
+
+11
+00:00:23.655 --> 00:00:26.145
+Given the question
+and some context,
+
+12
+00:00:26.145 --> 00:00:28.095
+can you tell us what the answer
+
+13
+00:00:28.095 --> 00:00:30.660
+is going to be
+inside that context?
+
+14
+00:00:30.660 --> 00:00:33.570
+Another thing you're going to
+cover is transfer learning.
+
+15
+00:00:33.570 --> 00:00:34.895
+For example,
+
+16
+00:00:34.895 --> 00:00:38.450
+knowing some information by
+
+17
+00:00:38.450 --> 00:00:40.760
+training something
+in a specific task,
+
+18
+00:00:40.760 --> 00:00:42.290
+how can you make use of
+
+19
+00:00:42.290 --> 00:00:45.700
+that information and apply
+it to a different task?
+
+20
+00:00:45.700 --> 00:00:47.500
+You're going to look at BERT,
+
+21
+00:00:47.500 --> 00:00:48.800
+which is known as
+
+22
+00:00:48.800 --> 00:00:51.230
+the Bidirectional
+Encoder Representation
+
+23
+00:00:51.230 --> 00:00:53.275
+which makes use of transformers.
+
+24
+00:00:53.275 --> 00:00:55.545
+You'll see how you can use
+
+25
+00:00:55.545 --> 00:00:59.115
+bi-directionality to
+improve performance.
+
+26
+00:00:59.115 --> 00:01:01.715
+Then you're going to
+look at the T5 model.
+
+27
+00:01:01.715 --> 00:01:04.355
+Basically, what this model
+does, you can see here,
+
+28
+00:01:04.355 --> 00:01:07.269
+it has several possible inputs.
+
+29
+00:01:07.269 --> 00:01:09.740
+It could be a question,
+you get an answer.
+
+30
+00:01:09.740 --> 00:01:11.180
+It could be a review,
+
+31
+00:01:11.180 --> 00:01:13.520
+and you'll get the
+rating over here.
+
+32
+00:01:13.520 --> 00:01:16.450
+It's all being fed
+into one model.
+
+33
+00:01:16.450 --> 00:01:19.440
+Let's look at
+question answering.
+
+34
+00:01:19.440 --> 00:01:23.440
+Over here you have context-based
+question answering,
+
+35
+00:01:23.440 --> 00:01:26.690
+meaning you take
+in a question and
+
+36
+00:01:26.690 --> 00:01:28.940
+the context and it
+tells you where
+
+37
+00:01:28.940 --> 00:01:31.995
+the answer is inside
+that context over here.
+
+38
+00:01:31.995 --> 00:01:35.010
+This is the highlighted
+stuff which is the answer.
+
+39
+00:01:35.010 --> 00:01:36.440
+Then you have closed book
+
+40
+00:01:36.440 --> 00:01:37.970
+question answering
+which only takes
+
+41
+00:01:37.970 --> 00:01:39.830
+the question and it returns
+
+42
+00:01:39.830 --> 00:01:42.470
+the answer without having
+access to a context,
+
+43
+00:01:42.470 --> 00:01:45.085
+so it comes up with
+its own answer.
+
+44
+00:01:45.085 --> 00:01:48.110
+Previously we've
+seen how innovations
+
+45
+00:01:48.110 --> 00:01:50.540
+in model architecture improve
+
+46
+00:01:50.540 --> 00:01:52.460
+performance and we've also seen
+
+47
+00:01:52.460 --> 00:01:55.620
+how data preparation could help.
+
+48
+00:01:55.620 --> 00:01:59.150
+But over here, you're going
+to see that innovations in
+
+49
+00:01:59.150 --> 00:02:00.500
+the way the training is being
+
+50
+00:02:00.500 --> 00:02:02.900
+done also improves performance.
+
+51
+00:02:02.900 --> 00:02:04.490
+In which case, you will see how
+
+52
+00:02:04.490 --> 00:02:08.520
+transfer learning will
+improve performance.
+
+53
+00:02:08.520 --> 00:02:10.460
+This is the classical training
+
+54
+00:02:10.460 --> 00:02:11.855
+that you're used to seeing.
+
+55
+00:02:11.855 --> 00:02:13.445
+You have a course review,
+
+56
+00:02:13.445 --> 00:02:14.750
+this goes through a model,
+
+57
+00:02:14.750 --> 00:02:17.075
+and let's say you
+predict the rating.
+
+58
+00:02:17.075 --> 00:02:19.430
+Then you just predict
+the rating the
+
+59
+00:02:19.430 --> 00:02:21.845
+same way as you've
+always been doing.
+
+60
+00:02:21.845 --> 00:02:23.180
+Nothing changed here, this is
+
+61
+00:02:23.180 --> 00:02:24.560
+just an overview of
+
+62
+00:02:24.560 --> 00:02:26.900
+the classical training
+that you're used to.
+
+63
+00:02:26.900 --> 00:02:28.550
+Now, in transfer learning,
+
+64
+00:02:28.550 --> 00:02:29.990
+let's look at this example.
+
+65
+00:02:29.990 --> 00:02:32.794
+Let's say that you
+have movie reviews
+
+66
+00:02:32.794 --> 00:02:34.250
+and then you feed them into
+
+67
+00:02:34.250 --> 00:02:36.545
+your model and you
+predict a rating.
+
+68
+00:02:36.545 --> 00:02:39.065
+Over here you have
+the pre-train task,
+
+69
+00:02:39.065 --> 00:02:40.940
+which is on movie reviews.
+
+70
+00:02:40.940 --> 00:02:42.530
+Now, in training,
+
+71
+00:02:42.530 --> 00:02:44.075
+you're going to take
+
+72
+00:02:44.075 --> 00:02:46.790
+the existing model
+for movie reviews,
+
+73
+00:02:46.790 --> 00:02:48.110
+and then you're going to find
+
+74
+00:02:48.110 --> 00:02:49.870
+two units or train it again,
+
+75
+00:02:49.870 --> 00:02:51.780
+on course reviews,
+
+76
+00:02:51.780 --> 00:02:54.465
+and you'll predict the
+rating for that review.
+
+77
+00:02:54.465 --> 00:02:56.285
+As you can see over here,
+
+78
+00:02:56.285 --> 00:02:59.000
+instead of initializing
+the weights from scratch,
+
+79
+00:02:59.000 --> 00:03:00.470
+you start with the
+weights that you
+
+80
+00:03:00.470 --> 00:03:02.650
+got from the movie reviews,
+
+81
+00:03:02.650 --> 00:03:04.015
+and you use them as
+
+82
+00:03:04.015 --> 00:03:07.430
+the starter points when training
+for the course reviews.
+
+83
+00:03:07.430 --> 00:03:10.115
+At the end, you do some
+inference over here,
+
+84
+00:03:10.115 --> 00:03:11.420
+and you do the inference the
+
+85
+00:03:11.420 --> 00:03:12.800
+same way you're used to doing.
+
+86
+00:03:12.800 --> 00:03:14.300
+You just take the course review,
+
+87
+00:03:14.300 --> 00:03:16.040
+you feed this into your model,
+
+88
+00:03:16.040 --> 00:03:18.110
+and you get your prediction.
+
+89
+00:03:18.110 --> 00:03:21.180
+You can also use transfer
+learning on different tasks.
+
+90
+00:03:21.180 --> 00:03:23.540
+This is another
+example where you
+
+91
+00:03:23.540 --> 00:03:26.765
+feed in the ratings
+and some review,
+
+92
+00:03:26.765 --> 00:03:29.425
+and this gives you
+sentiment classification.
+
+93
+00:03:29.425 --> 00:03:31.460
+Then you can train it on
+
+94
+00:03:31.460 --> 00:03:33.770
+a downstream task like
+question answering,
+
+95
+00:03:33.770 --> 00:03:35.900
+where you take the
+initial weights over here
+
+96
+00:03:35.900 --> 00:03:39.770
+and you train it on question
+answering. When is Pi day.
+
+97
+00:03:39.770 --> 00:03:43.315
+The model answers March 14th.
+
+98
+00:03:43.315 --> 00:03:46.815
+Then you can ask them
+model the same question.
+
+99
+00:03:46.815 --> 00:03:49.230
+When's my birthday over here?
+
+100
+00:03:49.230 --> 00:03:51.195
+It does not know the answer.
+
+101
+00:03:51.195 --> 00:03:54.230
+But this is just
+another example of how
+
+102
+00:03:54.230 --> 00:03:57.760
+you can use transfer
+learning on different tasks.
+
+103
+00:03:57.760 --> 00:03:59.775
+Now we're going to look at BERT,
+
+104
+00:03:59.775 --> 00:04:02.595
+which makes use of
+bi-directional context.
+
+105
+00:04:02.595 --> 00:04:05.645
+In this case, you have
+learning from deeplearning.ai,
+
+106
+00:04:05.645 --> 00:04:08.300
+is like watching the sunset
+with my best friend.
+
+107
+00:04:08.300 --> 00:04:11.750
+Over here the context is
+everything that comes before.
+
+108
+00:04:11.750 --> 00:04:13.250
+Then let's say you're
+trying to predict
+
+109
+00:04:13.250 --> 00:04:15.295
+the next word, deeplearning.ai.
+
+110
+00:04:15.295 --> 00:04:19.040
+Now, when doing bi-directional
+representations,
+
+111
+00:04:19.040 --> 00:04:22.370
+you'll be looking at the
+context from this side and
+
+112
+00:04:22.370 --> 00:04:26.305
+from this side to
+predict the middle word.
+
+113
+00:04:26.305 --> 00:04:32.270
+This is one of the main
+takeaways for bi-directionality.
+
+114
+00:04:32.270 --> 00:04:35.630
+Now let's look at single
+task versus multitask.
+
+115
+00:04:35.630 --> 00:04:38.975
+Over here you have a single
+model which takes in
+
+116
+00:04:38.975 --> 00:04:42.795
+a review and then
+predicts a rating.
+
+117
+00:04:42.795 --> 00:04:45.020
+Over here you have
+another model which takes
+
+118
+00:04:45.020 --> 00:04:47.285
+in a question and
+predicts an answer.
+
+119
+00:04:47.285 --> 00:04:48.740
+This is a single task each,
+
+120
+00:04:48.740 --> 00:04:50.315
+like one model per task.
+
+121
+00:04:50.315 --> 00:04:54.460
+Now, what you can
+do here with T5 is,
+
+122
+00:04:54.460 --> 00:04:56.120
+it is the same
+model that's being
+
+123
+00:04:56.120 --> 00:04:58.580
+used to take the review,
+
+124
+00:04:58.580 --> 00:05:02.665
+predict the rating, and
+then take the question,
+
+125
+00:05:02.665 --> 00:05:04.830
+and predict the answer.
+
+126
+00:05:04.830 --> 00:05:07.880
+Instead of having two
+independent models,
+
+127
+00:05:07.880 --> 00:05:10.135
+you end up having one model.
+
+128
+00:05:10.135 --> 00:05:12.540
+Let's look at T5.
+
+129
+00:05:12.540 --> 00:05:14.960
+Over here, the main takeaway
+
+130
+00:05:14.960 --> 00:05:16.715
+is that the more data you have,
+
+131
+00:05:16.715 --> 00:05:19.440
+generally the better
+performance there is.
+
+132
+00:05:19.440 --> 00:05:23.540
+For example, the English
+Wikipedia dataset is
+
+133
+00:05:23.540 --> 00:05:27.840
+around 13 gigabytes
+compared to the C4,
+
+134
+00:05:27.840 --> 00:05:31.595
+Colossal Clean Crawled Corpus
+is about 800 gigabytes,
+
+135
+00:05:31.595 --> 00:05:33.935
+which is what T5 was trained on.
+
+136
+00:05:33.935 --> 00:05:37.100
+This is just to
+give you like how
+
+137
+00:05:37.100 --> 00:05:40.400
+much larger the C4 dataset is,
+
+138
+00:05:40.400 --> 00:05:43.225
+when compared to the
+English Wikipedia.
+
+139
+00:05:43.225 --> 00:05:46.865
+What are the desirable goals
+for transfer learning?
+
+140
+00:05:46.865 --> 00:05:48.560
+First of all, you want to reduce
+
+141
+00:05:48.560 --> 00:05:49.730
+training time because you
+
+142
+00:05:49.730 --> 00:05:51.710
+already had a pre-trained model.
+
+143
+00:05:51.710 --> 00:05:54.725
+Hopefully, once you
+use transfer learning,
+
+144
+00:05:54.725 --> 00:05:56.585
+you'll get faster convergence.
+
+145
+00:05:56.585 --> 00:05:58.760
+It will also improve
+predictions because you'll
+
+146
+00:05:58.760 --> 00:06:01.040
+learn a few things from
+different tasks that
+
+147
+00:06:01.040 --> 00:06:03.140
+might be helpful and useful for
+
+148
+00:06:03.140 --> 00:06:05.770
+your currents predictions on
+the task you're training on.
+
+149
+00:06:05.770 --> 00:06:10.235
+Finally, you might
+require or need less data
+
+150
+00:06:10.235 --> 00:06:12.410
+because your model
+has already learned
+
+151
+00:06:12.410 --> 00:06:15.095
+a lot from other tasks.
+
+152
+00:06:15.095 --> 00:06:16.850
+If you have a smaller dataset,
+
+153
+00:06:16.850 --> 00:06:20.160
+then transfer learning
+might help you.
+
+154
+00:06:20.300 --> 00:06:23.310
+You now know what
+you're about to learn.
+
+155
+00:06:23.310 --> 00:06:26.300
+I'm very excited to show
+you all these new concepts.
+
+156
+00:06:26.300 --> 00:06:27.680
+In the next video,
+
+157
+00:06:27.680 --> 00:06:31.320
+we'll start by exploring
+transfer learning.

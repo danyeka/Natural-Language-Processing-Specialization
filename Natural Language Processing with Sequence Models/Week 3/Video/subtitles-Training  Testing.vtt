@@ -1,0 +1,392 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.400
+Welcome to the last
+video of the week.
+
+2
+00:00:02.400 --> 00:00:03.630
+You're going to see what
+
+3
+00:00:03.630 --> 00:00:06.495
+the datasets would look
+like for a Siamese network.
+
+4
+00:00:06.495 --> 00:00:09.270
+I'll show you how you can
+train your model and then
+
+5
+00:00:09.270 --> 00:00:12.140
+you can use that model to
+test your Siamese network.
+
+6
+00:00:12.140 --> 00:00:14.640
+Let's take a look at
+how you can do this.
+
+7
+00:00:14.640 --> 00:00:18.150
+You'll be using the Quora
+question duplicate datasets for
+
+8
+00:00:18.150 --> 00:00:20.115
+this week's programming
+assignments
+
+9
+00:00:20.115 --> 00:00:21.825
+and it looks like this.
+
+10
+00:00:21.825 --> 00:00:23.940
+It consists of a collection of
+
+11
+00:00:23.940 --> 00:00:25.380
+question pairs within is
+
+12
+00:00:25.380 --> 00:00:27.600
+duplicates Boolean
+for each question.
+
+13
+00:00:27.600 --> 00:00:30.555
+For example, for question
+1 and question 2,
+
+14
+00:00:30.555 --> 00:00:32.655
+what is your age,
+and how old are you?
+
+15
+00:00:32.655 --> 00:00:35.010
+Is_duplicate equals true because
+
+16
+00:00:35.010 --> 00:00:36.955
+these two questions
+are duplicates?
+
+17
+00:00:36.955 --> 00:00:38.630
+Where are you from
+and where are you
+
+18
+00:00:38.630 --> 00:00:40.430
+going are not duplicates,
+
+19
+00:00:40.430 --> 00:00:42.290
+so it's false and so on.
+
+20
+00:00:42.290 --> 00:00:44.600
+These datasets gives your model
+
+21
+00:00:44.600 --> 00:00:46.610
+plenty of examples
+to learn from.
+
+22
+00:00:46.610 --> 00:00:48.020
+First, you will process
+
+23
+00:00:48.020 --> 00:00:50.435
+the dataset so that
+it looks like this.
+
+24
+00:00:50.435 --> 00:00:54.575
+You will preprocess the data
+into batches of size b.
+
+25
+00:00:54.575 --> 00:00:56.360
+The corresponding questions from
+
+26
+00:00:56.360 --> 00:00:57.950
+each batch are duplicates.
+
+27
+00:00:57.950 --> 00:01:01.445
+For example, the first
+question in Batch 1,
+
+28
+00:01:01.445 --> 00:01:03.620
+what is your age,
+is a duplicate of
+
+29
+00:01:03.620 --> 00:01:06.855
+the first question in
+Batch 2. How old are you?
+
+30
+00:01:06.855 --> 00:01:08.990
+The second question
+in Batch 1 is
+
+31
+00:01:08.990 --> 00:01:12.680
+a duplicate of the second
+question in Batch 2 and so on.
+
+32
+00:01:12.680 --> 00:01:14.720
+Note, however, that there are
+
+33
+00:01:14.720 --> 00:01:17.665
+no duplicates within
+an individual batch.
+
+34
+00:01:17.665 --> 00:01:21.855
+If I call this q1_a
+and this q2_a,
+
+35
+00:01:21.855 --> 00:01:24.820
+then q1_a and q2_a
+are duplicates.
+
+36
+00:01:24.820 --> 00:01:28.285
+If this was q1_b
+and this was q2_b,
+
+37
+00:01:28.285 --> 00:01:32.235
+then q1_b and q2_b
+are duplicates.
+
+38
+00:01:32.235 --> 00:01:36.525
+However, q1_a and q1_b
+are not duplicates.
+
+39
+00:01:36.525 --> 00:01:40.590
+Similarly, q2_a and q2_b
+are not duplicates.
+
+40
+00:01:40.590 --> 00:01:42.700
+I'll show you how to
+prepare the batches in
+
+41
+00:01:42.700 --> 00:01:44.470
+such a way that no question
+
+42
+00:01:44.470 --> 00:01:46.615
+within the same
+batch is duplicated.
+
+43
+00:01:46.615 --> 00:01:49.330
+Finally, you'll use
+
+44
+00:01:49.330 --> 00:01:52.225
+these inputs to get outputs
+vectors for each batch.
+
+45
+00:01:52.225 --> 00:01:53.590
+Then you can calculate
+
+46
+00:01:53.590 --> 00:01:55.075
+the cosine similarity between
+
+47
+00:01:55.075 --> 00:01:56.905
+each pair of outputs vectors.
+
+48
+00:01:56.905 --> 00:01:58.660
+This is the Siamese
+model that you'll
+
+49
+00:01:58.660 --> 00:02:00.575
+be implementing in
+the assignments.
+
+50
+00:02:00.575 --> 00:02:02.675
+You'll create a subnetwork,
+
+51
+00:02:02.675 --> 00:02:04.145
+which is then duplicated,
+
+52
+00:02:04.145 --> 00:02:05.510
+and drawn in parallel.
+
+53
+00:02:05.510 --> 00:02:06.710
+In each subnetwork,
+
+54
+00:02:06.710 --> 00:02:07.925
+you get the embedding,
+
+55
+00:02:07.925 --> 00:02:09.755
+run it through the LSTM,
+
+56
+00:02:09.755 --> 00:02:11.915
+take your vector outputs,
+
+57
+00:02:11.915 --> 00:02:14.600
+and then use them to find
+the cosine similarity.
+
+58
+00:02:14.600 --> 00:02:18.320
+An important note here is that
+the learned parameters of
+
+59
+00:02:18.320 --> 00:02:20.450
+the subnetworks are exactly
+
+60
+00:02:20.450 --> 00:02:22.625
+the same between the
+two subnetworks.
+
+61
+00:02:22.625 --> 00:02:24.350
+You are actually only training
+
+62
+00:02:24.350 --> 00:02:26.300
+one set of weights, not two.
+
+63
+00:02:26.300 --> 00:02:27.650
+When testing the model,
+
+64
+00:02:27.650 --> 00:02:29.545
+you will perform
+one-shot learning.
+
+65
+00:02:29.545 --> 00:02:30.875
+The goal is to find
+
+66
+00:02:30.875 --> 00:02:33.920
+a similarity score between
+two inputs questions.
+
+67
+00:02:33.920 --> 00:02:37.445
+First, convert each input
+into an array of numbers,
+
+68
+00:02:37.445 --> 00:02:39.230
+feed these into your model,
+
+69
+00:02:39.230 --> 00:02:41.860
+compare the subnetwork
+outputs v_1 and
+
+70
+00:02:41.860 --> 00:02:45.545
+v_2 using cosine similarity
+for a similarity score.
+
+71
+00:02:45.545 --> 00:02:49.170
+Then test the score
+against some threshold Tau
+
+72
+00:02:49.170 --> 00:02:52.490
+and if the cosine similarity
+is greater than Tau,
+
+73
+00:02:52.490 --> 00:02:55.435
+then the questions are
+classified as duplicates.
+
+74
+00:02:55.435 --> 00:02:58.610
+Note that both Tau and
+the margin Alpha from
+
+75
+00:02:58.610 --> 00:03:02.075
+the loss function are
+tunable hyperparameters.
+
+76
+00:03:02.075 --> 00:03:03.680
+Congratulations.
+
+77
+00:03:03.680 --> 00:03:04.970
+You now know how to train
+
+78
+00:03:04.970 --> 00:03:08.015
+your Siamese network and
+you know how to test it.
+
+79
+00:03:08.015 --> 00:03:10.085
+In this week's
+programming exercise,
+
+80
+00:03:10.085 --> 00:03:12.560
+you'll be using a
+Siamese network to
+
+81
+00:03:12.560 --> 00:03:15.875
+identify whether a question
+is a duplicate or not.
+
+82
+00:03:15.875 --> 00:03:18.020
+Specifically, you'll be using
+
+83
+00:03:18.020 --> 00:03:20.320
+the Quora question
+duplicate datasets,
+
+84
+00:03:20.320 --> 00:03:21.950
+and using that you'll be
+
+85
+00:03:21.950 --> 00:03:24.990
+able to get a very
+good accuracy.

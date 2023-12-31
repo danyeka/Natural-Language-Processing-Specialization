@@ -1,0 +1,234 @@
+WEBVTT
+
+1
+00:00:00.640 --> 00:00:01.342
+[MUSIC]
+
+2
+00:00:01.342 --> 00:00:05.748
+Hi, I'm Lysander from the open
+source team at hugging face.
+
+3
+00:00:05.748 --> 00:00:06.938
+At hugging face, We specialize in
+democratizing machine learning.
+
+4
+00:00:06.938 --> 00:00:14.770
+We want to make machine learning
+as accessible as possible.
+
+5
+00:00:14.770 --> 00:00:19.120
+And we firmly believe the only way to
+do so, is to throw open source and
+
+6
+00:00:19.120 --> 00:00:20.940
+open science.
+
+7
+00:00:20.940 --> 00:00:25.636
+We develop and create tools that centers
+on the machine learning community.
+
+8
+00:00:25.636 --> 00:00:28.809
+Tools like the transformers
+library which supports dozens
+
+9
+00:00:28.809 --> 00:00:30.589
+of transformer architectures.
+
+10
+00:00:30.589 --> 00:00:34.552
+That can be easily used in any
+natural language processing,
+
+11
+00:00:34.552 --> 00:00:36.970
+computer vision or speech project.
+
+12
+00:00:36.970 --> 00:00:40.222
+Tools like the datasets
+library to easily download and
+
+13
+00:00:40.222 --> 00:00:43.482
+pre process more than
+a 1000 different data sets.
+
+14
+00:00:43.482 --> 00:00:48.241
+And tools like accelerate tokenizer and
+others to simplify machine learning.
+
+15
+00:00:48.241 --> 00:00:53.020
+From data handling to modeling,
+training and post processing.
+
+16
+00:00:53.020 --> 00:00:55.726
+These tools make up
+the hugging face ecosystem,
+
+17
+00:00:55.726 --> 00:00:58.450
+an ecosystem connected
+by the hugging face hub.
+
+18
+00:00:58.450 --> 00:01:02.535
+A platform to collaborate on machine
+learning models and datasets.
+
+19
+00:01:02.535 --> 00:01:05.689
+Before you get started with
+this lab by deployment,
+
+20
+00:01:05.689 --> 00:01:10.361
+okay, let me introduce you to the hub
+which will leverage in the next videos.
+
+21
+00:01:13.130 --> 00:01:18.325
+The model hub is host to more than
+15,000 community contributed models,
+
+22
+00:01:18.325 --> 00:01:21.990
+and it offers a way to select
+a model according to a task.
+
+23
+00:01:21.990 --> 00:01:22.847
+A library,
+
+24
+00:01:22.847 --> 00:01:29.040
+trained on a specific data set on
+a specific language with a given license.
+
+25
+00:01:29.040 --> 00:01:31.626
+Models can be from the hugging
+face transformers library but
+
+26
+00:01:31.626 --> 00:01:33.240
+they're not limited to it.
+
+27
+00:01:33.240 --> 00:01:37.788
+And the library can easily add hops
+support, and some like Spacey or Allen,
+
+28
+00:01:37.788 --> 00:01:39.576
+NLP among others already do.
+
+29
+00:01:39.576 --> 00:01:43.164
+Furthermore, we offer tools
+to push your own model and
+
+30
+00:01:43.164 --> 00:01:46.051
+waits with no requirements on the library.
+
+31
+00:01:47.140 --> 00:01:49.832
+Models can be further described
+by their model cards.
+
+32
+00:01:49.832 --> 00:01:52.312
+And other members of the community,
+
+33
+00:01:52.312 --> 00:01:56.981
+may play with the model using
+the hosted inference API.
+
+34
+00:01:56.981 --> 00:01:59.891
+The dataset hub is
+similar to the model hub
+
+35
+00:01:59.891 --> 00:02:02.811
+hosting thousands of data sets here too.
+
+36
+00:02:02.811 --> 00:02:07.762
+Mostly community contributed, these
+data sets can then be selected by task,
+
+37
+00:02:07.762 --> 00:02:10.696
+language, number of examples and licenses.
+
+38
+00:02:10.696 --> 00:02:12.092
+These data sets off for
+
+39
+00:02:12.092 --> 00:02:16.588
+a comprehensive data set card explaining
+how the data set was designed.
+
+40
+00:02:16.588 --> 00:02:21.219
+Where the data came from and
+considerations when using the data,
+
+41
+00:02:21.219 --> 00:02:24.740
+both in terms of social impact and biases.
+
+42
+00:02:24.740 --> 00:02:27.941
+Additionally, it offers a quick
+link to models fine tuned or
+
+43
+00:02:27.941 --> 00:02:30.440
+trained on these data sets.
+
+44
+00:02:30.440 --> 00:02:34.271
+We're very excited to partner with
+deploying data on discourse focused on
+
+45
+00:02:34.271 --> 00:02:35.136
+transformers.
+
+46
+00:02:35.136 --> 00:02:36.209
+In the upcoming labs,
+
+47
+00:02:36.209 --> 00:02:39.547
+you'll get a chance to practice using
+some of the hugging face tools.
+
+48
+00:02:39.547 --> 00:02:41.594
+Like transformers, data sets and
+
+49
+00:02:41.594 --> 00:02:45.640
+the hugging face hub to find
+you in a pre trained model.
+
+50
+00:02:45.640 --> 00:02:52.656
+Have fun and looking forward to
+seeing your fine tune models.

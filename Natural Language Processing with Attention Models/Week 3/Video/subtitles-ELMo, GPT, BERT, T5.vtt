@@ -1,0 +1,821 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.600
+I'll show you a
+chronological order
+
+2
+00:00:02.600 --> 00:00:04.540
+of when the models
+were discovered.
+
+3
+00:00:04.540 --> 00:00:06.700
+We will also see the advantages
+
+4
+00:00:06.700 --> 00:00:09.080
+and the disadvantages
+of each model.
+
+5
+00:00:09.080 --> 00:00:11.340
+Let's start. This is
+
+6
+00:00:11.340 --> 00:00:13.780
+a quick outline where you can
+
+7
+00:00:13.780 --> 00:00:16.740
+see we start here with
+continuous bag of words model,
+
+8
+00:00:16.740 --> 00:00:18.130
+then we got ELMo,
+
+9
+00:00:18.130 --> 00:00:19.735
+then we got GPT,
+
+10
+00:00:19.735 --> 00:00:22.230
+then we got BERT AND finally
+
+11
+00:00:22.230 --> 00:00:24.735
+we ended up having
+T5 and so more.
+
+12
+00:00:24.735 --> 00:00:27.435
+Like over here we're
+going to end up having
+
+13
+00:00:27.435 --> 00:00:30.780
+many more models coming
+up, hopefully soon.
+
+14
+00:00:30.780 --> 00:00:33.080
+This is not a
+complete history of
+
+15
+00:00:33.080 --> 00:00:35.640
+all relevant models
+and research findings,
+
+16
+00:00:35.640 --> 00:00:39.280
+but it's useful to see
+what problems arise with
+
+17
+00:00:39.280 --> 00:00:44.325
+each model and what
+problems each model solves.
+
+18
+00:00:44.325 --> 00:00:47.070
+Let's look at context over here.
+
+19
+00:00:47.070 --> 00:00:49.095
+Let's say we have
+the word right.
+
+20
+00:00:49.095 --> 00:00:52.830
+Ideally, we want to see
+what this word means.
+
+21
+00:00:52.830 --> 00:00:55.545
+We can look at the
+context before it.
+
+22
+00:00:55.545 --> 00:00:58.785
+Then we can also look at
+the context after it.
+
+23
+00:00:58.785 --> 00:01:00.920
+That's how we've been
+
+24
+00:01:00.920 --> 00:01:03.915
+able to train word
+embeddings so far.
+
+25
+00:01:03.915 --> 00:01:06.630
+The continuous bag
+of words over here,
+
+26
+00:01:06.630 --> 00:01:08.490
+you have the word right.
+
+27
+00:01:08.490 --> 00:01:10.260
+Previously what
+you've been doing,
+
+28
+00:01:10.260 --> 00:01:11.860
+you would take a fixed window,
+
+29
+00:01:11.860 --> 00:01:14.620
+say two before and two
+after, or three or four,
+
+30
+00:01:14.620 --> 00:01:17.860
+whatever as CS is
+for the window size.
+
+31
+00:01:17.860 --> 00:01:20.140
+Then you'll take the
+corresponding words,
+
+32
+00:01:20.140 --> 00:01:22.140
+feed them into a neural network,
+
+33
+00:01:22.140 --> 00:01:24.140
+and predict the central word
+
+34
+00:01:24.140 --> 00:01:25.840
+in this case, which is right.
+
+35
+00:01:25.840 --> 00:01:28.620
+Now the issue over here is that,
+
+36
+00:01:28.620 --> 00:01:32.560
+what if we wanted to look at
+not only the fixed window,
+
+37
+00:01:32.560 --> 00:01:35.440
+but all the words before
+and all the words after.
+
+38
+00:01:35.440 --> 00:01:39.180
+How can we do that? If
+you want more context.
+
+39
+00:01:39.180 --> 00:01:42.080
+They were on D over here.
+
+40
+00:01:42.080 --> 00:01:45.040
+This is the first left part
+
+41
+00:01:45.040 --> 00:01:46.350
+of the sentence and then
+
+42
+00:01:46.350 --> 00:01:48.630
+all the right parts
+of the sentence.
+
+43
+00:01:48.630 --> 00:01:50.625
+Instead of having
+the fixed window,
+
+44
+00:01:50.625 --> 00:01:55.230
+we want to add the streets
+or history for example.
+
+45
+00:01:55.230 --> 00:01:57.855
+To use all of the context words,
+
+46
+00:01:57.855 --> 00:01:59.700
+what researchers have done,
+
+47
+00:01:59.700 --> 00:02:03.300
+they explored the
+following using RNN.
+
+48
+00:02:03.300 --> 00:02:07.115
+They would use an RNN from
+the right and from the left.
+
+49
+00:02:07.115 --> 00:02:11.620
+Then they would have a
+bi-directional LSTM,
+
+50
+00:02:11.620 --> 00:02:15.480
+which is a version of
+recurrent neural network.
+
+51
+00:02:15.480 --> 00:02:17.940
+You feed both of them in.
+
+52
+00:02:17.940 --> 00:02:20.910
+Then you can predict
+the center word right.
+
+53
+00:02:20.910 --> 00:02:25.310
+That gives you the word
+embedding for the word, right.
+
+54
+00:02:25.310 --> 00:02:28.380
+Now, open AI GPT what it did.
+
+55
+00:02:28.380 --> 00:02:30.220
+We had transformer,
+
+56
+00:02:30.220 --> 00:02:31.700
+the encoder decoder
+
+57
+00:02:31.700 --> 00:02:33.760
+architecture that
+you're familiar with.
+
+58
+00:02:33.760 --> 00:02:36.665
+Then we ended up having
+this GPT which makes use
+
+59
+00:02:36.665 --> 00:02:39.500
+of a decoder of stacks only.
+
+60
+00:02:39.500 --> 00:02:41.320
+In this case we only
+have one decoder,
+
+61
+00:02:41.320 --> 00:02:44.270
+but you can have several
+decoders in the picture.
+
+62
+00:02:44.270 --> 00:02:47.955
+ELMo made use of RNNs or LSTMs.
+
+63
+00:02:47.955 --> 00:02:51.900
+We would use these models to
+predict the central word.
+
+64
+00:02:51.900 --> 00:02:54.820
+Why not use a
+bi-directional model?
+
+65
+00:02:54.820 --> 00:02:56.820
+In this case, this
+is the transformer,
+
+66
+00:02:56.820 --> 00:03:00.495
+and you can see that in
+the transformer over here,
+
+67
+00:03:00.495 --> 00:03:03.545
+each word can peek at itself.
+
+68
+00:03:03.545 --> 00:03:05.880
+If we were to use it for under,
+
+69
+00:03:05.880 --> 00:03:07.920
+right, you can only
+look at itself.
+
+70
+00:03:07.920 --> 00:03:12.400
+But the issue is that
+you cannot peek forward.
+
+71
+00:03:12.400 --> 00:03:16.400
+Remember, you've seen
+this in causal attention
+
+72
+00:03:16.400 --> 00:03:18.130
+where you don't look
+forward you only
+
+73
+00:03:18.130 --> 00:03:20.390
+look at the previous ones.
+
+74
+00:03:20.390 --> 00:03:23.645
+BERT came and helped
+us solve this problem.
+
+75
+00:03:23.645 --> 00:03:25.310
+This is a recap.
+
+76
+00:03:25.310 --> 00:03:27.480
+Transformers, encoder decoder,
+
+77
+00:03:27.480 --> 00:03:29.745
+GPT makes use of decoders
+
+78
+00:03:29.745 --> 00:03:33.235
+and BERTs makes use of encoders.
+
+79
+00:03:33.235 --> 00:03:36.120
+Over here you have
+the Legislature
+
+80
+00:03:36.120 --> 00:03:38.780
+believed that they were on
+the blank side of history,
+
+81
+00:03:38.780 --> 00:03:40.600
+so they changed the law.
+
+82
+00:03:40.600 --> 00:03:43.080
+Over here we can make use of
+
+83
+00:03:43.080 --> 00:03:46.080
+bi-directional encoder
+representations from
+
+84
+00:03:46.080 --> 00:03:49.420
+transformers and this will
+help us solve this issue.
+
+85
+00:03:49.420 --> 00:03:52.020
+This is an example
+of a transformer
+
+86
+00:03:52.020 --> 00:03:54.140
+plus bi-directional context.
+
+87
+00:03:54.140 --> 00:03:56.100
+You feed this into your model
+
+88
+00:03:56.100 --> 00:03:58.415
+and then you get right and of.
+
+89
+00:03:58.415 --> 00:04:00.540
+Because of this,
+you're able to look
+
+90
+00:04:00.540 --> 00:04:02.640
+at the sentence from
+the beginning and from
+
+91
+00:04:02.640 --> 00:04:04.360
+the end and make use of
+
+92
+00:04:04.360 --> 00:04:08.095
+the context to predict
+the corresponding words.
+
+93
+00:04:08.095 --> 00:04:11.100
+If we're to look at
+words to sentences,
+
+94
+00:04:11.100 --> 00:04:13.600
+meaning instead of trying
+to predict just the word,
+
+95
+00:04:13.600 --> 00:04:16.660
+we'll try to predict what
+the next sentence is.
+
+96
+00:04:16.660 --> 00:04:19.200
+Given the sentence over here,
+
+97
+00:04:19.200 --> 00:04:21.000
+the legislators believed that
+
+98
+00:04:21.000 --> 00:04:23.040
+they were on the right
+side of history.
+
+99
+00:04:23.040 --> 00:04:26.960
+Is this the next sentence or
+is this the next sentence?
+
+100
+00:04:26.960 --> 00:04:30.200
+You have a sentence A and
+
+101
+00:04:30.200 --> 00:04:33.100
+then you try to predict
+the next sentence B.
+
+102
+00:04:33.100 --> 00:04:37.050
+In this case it's obviously
+so they changed the law.
+
+103
+00:04:37.050 --> 00:04:39.810
+BERT pre-training tasks makes
+
+104
+00:04:39.810 --> 00:04:42.840
+use of multi-mask
+language modeling.
+
+105
+00:04:42.840 --> 00:04:45.720
+The same thing that
+you've seen before and
+
+106
+00:04:45.720 --> 00:04:48.420
+it makes use of the next
+sentence prediction.
+
+107
+00:04:48.420 --> 00:04:51.100
+It takes two sentences
+and it predicts
+
+108
+00:04:51.100 --> 00:04:52.640
+whether it's a yes
+meaning sentence
+
+109
+00:04:52.640 --> 00:04:54.240
+two follow sentence one,
+
+110
+00:04:54.240 --> 00:04:57.460
+or sentence B follow
+sentence A or not.
+
+111
+00:04:57.460 --> 00:05:01.500
+Let's look at encoder
+versus encoder decoder.
+
+112
+00:05:01.500 --> 00:05:04.080
+Over here you have
+the transformer,
+
+113
+00:05:04.080 --> 00:05:06.660
+which had the encoder
+and the decoder stack.
+
+114
+00:05:06.660 --> 00:05:08.260
+Then you had GPT,
+
+115
+00:05:08.260 --> 00:05:10.100
+which just had decoder stack,
+
+116
+00:05:10.100 --> 00:05:12.750
+and then BERT, just
+the encoder stack.
+
+117
+00:05:12.750 --> 00:05:15.520
+T5 tested the
+performance when using
+
+118
+00:05:15.520 --> 00:05:19.440
+the encoder decoder as in the
+original transformer model.
+
+119
+00:05:19.440 --> 00:05:21.400
+The researchers
+found that the model
+
+120
+00:05:21.400 --> 00:05:22.740
+performed better when it
+
+121
+00:05:22.740 --> 00:05:26.325
+contained both the encoder
+and the decoder stacks.
+
+122
+00:05:26.325 --> 00:05:30.060
+Let's look at the multi-task
+training strategy
+
+123
+00:05:30.060 --> 00:05:33.765
+over here so you have studying
+with deeplearning.ai was.
+
+124
+00:05:33.765 --> 00:05:36.080
+It's being fed into the model
+
+125
+00:05:36.080 --> 00:05:38.540
+and it gives you a
+five star rating.
+
+126
+00:05:38.540 --> 00:05:41.600
+Hopefully it's a
+five star rating.
+
+127
+00:05:41.600 --> 00:05:45.000
+Then you have a question and
+then you get the answer.
+
+128
+00:05:45.000 --> 00:05:47.180
+But the question here is,
+
+129
+00:05:47.180 --> 00:05:48.840
+how do you make sure that
+
+130
+00:05:48.840 --> 00:05:51.560
+the model knows which
+task it's performing in?
+
+131
+00:05:51.560 --> 00:05:55.340
+Because you can feed
+in a review over here.
+
+132
+00:05:55.340 --> 00:05:57.500
+How do you know
+that it's not going
+
+133
+00:05:57.500 --> 00:05:58.990
+to return an answer instead?
+
+134
+00:05:58.990 --> 00:06:01.280
+How do you know it's
+going to return a rating?
+
+135
+00:06:01.280 --> 00:06:03.060
+Or if you feed in a question,
+
+136
+00:06:03.060 --> 00:06:05.060
+how do you know it's
+not going to return
+
+137
+00:06:05.060 --> 00:06:07.105
+some numerical outputs or
+
+138
+00:06:07.105 --> 00:06:10.800
+some text version of
+a numerical output?
+
+139
+00:06:10.800 --> 00:06:15.640
+Let's see how to do this. Over
+here is an example where,
+
+140
+00:06:15.640 --> 00:06:18.280
+let's say you're trying
+to classify whether this
+
+141
+00:06:18.280 --> 00:06:21.790
+is five stars or four
+stars or three stars.
+
+142
+00:06:21.790 --> 00:06:25.360
+You append the string,
+classify for example.
+
+143
+00:06:25.360 --> 00:06:28.740
+Then it classifies it
+and you get five stars.
+
+144
+00:06:28.740 --> 00:06:30.545
+Let's say you want to summarize,
+
+145
+00:06:30.545 --> 00:06:33.860
+so you add the string
+summarize colon.
+
+146
+00:06:33.860 --> 00:06:35.700
+It goes into the model.
+
+147
+00:06:35.700 --> 00:06:37.980
+It's automatically identifies
+that you're trying to
+
+148
+00:06:37.980 --> 00:06:40.840
+summarize and it says
+that it was all right.
+
+149
+00:06:40.840 --> 00:06:44.375
+You have a question you
+append question string.
+
+150
+00:06:44.375 --> 00:06:47.460
+It knows that it's a question
+and it returns the answer.
+
+151
+00:06:47.460 --> 00:06:48.660
+Now, this might not be
+
+152
+00:06:48.660 --> 00:06:51.930
+the exact text that
+you'll find in the paper,
+
+153
+00:06:51.930 --> 00:06:56.595
+but it gives you the
+overall sense of the idea.
+
+154
+00:06:56.595 --> 00:06:57.840
+In summary, you've seen
+
+155
+00:06:57.840 --> 00:06:59.680
+the continuous bag
+of words model,
+
+156
+00:06:59.680 --> 00:07:02.700
+which makes use of a
+fixed context window.
+
+157
+00:07:02.700 --> 00:07:04.000
+You've seen ELMo,
+
+158
+00:07:04.000 --> 00:07:06.940
+which makes use of a
+bi-directional LSTM.
+
+159
+00:07:06.940 --> 00:07:10.625
+You've seen GPT, which
+is just a decoder stack,
+
+160
+00:07:10.625 --> 00:07:15.340
+and you can see
+uni-directional in context.
+
+161
+00:07:15.340 --> 00:07:17.435
+Then you've seen BERT,
+
+162
+00:07:17.435 --> 00:07:18.945
+which makes use of
+
+163
+00:07:18.945 --> 00:07:21.140
+bi-directional encoder
+representation
+
+164
+00:07:21.140 --> 00:07:22.530
+from the transformer,
+
+165
+00:07:22.530 --> 00:07:24.165
+and it also makes use of
+
+166
+00:07:24.165 --> 00:07:26.680
+multi-mask language modeling
+
+167
+00:07:26.680 --> 00:07:28.380
+and next sentence prediction.
+
+168
+00:07:28.380 --> 00:07:31.040
+Then you've seen the
+T5 which makes use of
+
+169
+00:07:31.040 --> 00:07:33.360
+the encode decoder
+stack and also
+
+170
+00:07:33.360 --> 00:07:36.840
+makes use of mask and
+multi-task training.
+
+171
+00:07:36.840 --> 00:07:39.520
+You have now seen an
+overview of the models.
+
+172
+00:07:39.520 --> 00:07:42.805
+You have seen how the text
+to text model has a prefix.
+
+173
+00:07:42.805 --> 00:07:45.640
+With the same model, you
+can solve several tasks.
+
+174
+00:07:45.640 --> 00:07:47.580
+In the next video, we will be
+
+175
+00:07:47.580 --> 00:07:49.900
+looking at the birth
+model in more detail,
+
+176
+00:07:49.900 --> 00:07:52.120
+also known as the Bidirectional
+
+177
+00:07:52.120 --> 00:07:55.320
+Encoder representation
+for Transformers.

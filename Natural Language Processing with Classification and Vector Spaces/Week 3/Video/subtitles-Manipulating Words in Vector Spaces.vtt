@@ -1,0 +1,348 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.490
+Hello. In this video,
+
+2
+00:00:02.490 --> 00:00:04.740
+you're going to learn to
+manipulate vectors by
+
+3
+00:00:04.740 --> 00:00:07.410
+performing some simple
+vector arithmetic.
+
+4
+00:00:07.410 --> 00:00:10.530
+Meaning by adding vectors
+or subtracting vectors,
+
+5
+00:00:10.530 --> 00:00:12.720
+you'll be able to
+predict the countries of
+
+6
+00:00:12.720 --> 00:00:15.720
+certain capitals. Let's dive in.
+
+7
+00:00:15.720 --> 00:00:19.410
+I'll show you how to manipulate
+vector representations
+
+8
+00:00:19.410 --> 00:00:22.680
+in order to infer unknown
+relations among words.
+
+9
+00:00:22.680 --> 00:00:25.110
+Suppose that you
+have a vector space
+
+10
+00:00:25.110 --> 00:00:27.660
+with countries and
+their capital cities.
+
+11
+00:00:27.660 --> 00:00:29.340
+You know that the capital of
+
+12
+00:00:29.340 --> 00:00:31.665
+the United States
+is Washington DC,
+
+13
+00:00:31.665 --> 00:00:34.275
+and you don't know the
+capital of Russia.
+
+14
+00:00:34.275 --> 00:00:36.840
+But you'd like to use the
+known relationship between
+
+15
+00:00:36.840 --> 00:00:40.095
+Washington DC and the
+USA to figure it out.
+
+16
+00:00:40.095 --> 00:00:43.605
+For that, you'll just
+use some vector algebra.
+
+17
+00:00:43.605 --> 00:00:45.270
+For this example,
+
+18
+00:00:45.270 --> 00:00:47.150
+you are in a hypothetical
+
+19
+00:00:47.150 --> 00:00:49.370
+two-dimensional
+vector space that
+
+20
+00:00:49.370 --> 00:00:51.140
+has different
+representations for
+
+21
+00:00:51.140 --> 00:00:54.110
+different countries
+and capitals cities.
+
+22
+00:00:54.110 --> 00:00:56.250
+First, you will have to find
+
+23
+00:00:56.250 --> 00:00:58.785
+the relationship between
+the Washington DC,
+
+24
+00:00:58.785 --> 00:01:01.275
+and USA vector representations.
+
+25
+00:01:01.275 --> 00:01:04.360
+In other words, which
+vector connects them?
+
+26
+00:01:04.360 --> 00:01:07.505
+To do that, get the difference
+between the two vectors.
+
+27
+00:01:07.505 --> 00:01:10.955
+The values from that will
+tell you how many units on
+
+28
+00:01:10.955 --> 00:01:13.490
+each dimension you
+should move in order to
+
+29
+00:01:13.490 --> 00:01:16.910
+find a country's capital
+in that vector space.
+
+30
+00:01:16.910 --> 00:01:19.415
+To find the capital
+city of Russia,
+
+31
+00:01:19.415 --> 00:01:22.100
+you will have to sum its
+vector representation
+
+32
+00:01:22.100 --> 00:01:25.405
+with the vector that you
+also got in the last step.
+
+33
+00:01:25.405 --> 00:01:28.370
+At the end, you should
+deduce that the capital of
+
+34
+00:01:28.370 --> 00:01:32.225
+Russia has a vector
+representation of 10, 4.
+
+35
+00:01:32.225 --> 00:01:35.915
+However, there are no cities
+with that representation,
+
+36
+00:01:35.915 --> 00:01:37.850
+so you'll have to take the one
+
+37
+00:01:37.850 --> 00:01:39.770
+that is the most
+similar to it's by
+
+38
+00:01:39.770 --> 00:01:42.080
+comparing each vector with
+
+39
+00:01:42.080 --> 00:01:45.225
+a Euclidean distances
+or cosine similarities.
+
+40
+00:01:45.225 --> 00:01:46.720
+In this case, the vector
+
+41
+00:01:46.720 --> 00:01:49.180
+representation that
+is closest to the 10,
+
+42
+00:01:49.180 --> 00:01:51.465
+4 is the one for Moscow.
+
+43
+00:01:51.465 --> 00:01:53.274
+Using the simple process,
+
+44
+00:01:53.274 --> 00:01:55.060
+you could have predicted
+the capital of
+
+45
+00:01:55.060 --> 00:01:57.905
+Russia if you knew the
+capital of the USA.
+
+46
+00:01:57.905 --> 00:02:01.405
+The only catch here is that
+you need a vector space
+
+47
+00:02:01.405 --> 00:02:03.295
+where the
+representations capture
+
+48
+00:02:03.295 --> 00:02:05.530
+the relative meaning of words.
+
+49
+00:02:05.530 --> 00:02:08.005
+Now you have a simple
+process to get
+
+50
+00:02:08.005 --> 00:02:10.090
+unknown relationships
+between words,
+
+51
+00:02:10.090 --> 00:02:12.800
+by the use of known
+relationships between others.
+
+52
+00:02:12.800 --> 00:02:16.270
+You now know the importance
+of having vector spaces where
+
+53
+00:02:16.270 --> 00:02:18.205
+the representations of words
+
+54
+00:02:18.205 --> 00:02:21.310
+capture their relative
+meaning in natural language.
+
+55
+00:02:21.310 --> 00:02:23.770
+In upcoming parts of
+this specialization,
+
+56
+00:02:23.770 --> 00:02:26.140
+you'll perform more
+sophisticated tasks
+
+57
+00:02:26.140 --> 00:02:29.085
+taking advantage of
+this representation.
+
+58
+00:02:29.085 --> 00:02:30.800
+You have now seen
+the clustering of
+
+59
+00:02:30.800 --> 00:02:33.215
+all vectors when
+plotted on two axes.
+
+60
+00:02:33.215 --> 00:02:35.510
+You have also seen that
+the vectors of the words
+
+61
+00:02:35.510 --> 00:02:37.850
+that occur in similar
+places in the sentence,
+
+62
+00:02:37.850 --> 00:02:40.085
+will be encoded
+in a similar way.
+
+63
+00:02:40.085 --> 00:02:41.960
+You can take advantage
+of this type of
+
+64
+00:02:41.960 --> 00:02:44.680
+consistency encoding
+to identify patterns.
+
+65
+00:02:44.680 --> 00:02:46.380
+For example, if you have
+
+66
+00:02:46.380 --> 00:02:48.410
+the word doctor and
+you are to find
+
+67
+00:02:48.410 --> 00:02:50.120
+the closest words
+that are closest to
+
+68
+00:02:50.120 --> 00:02:52.235
+it by computing
+cosine similarity,
+
+69
+00:02:52.235 --> 00:02:54.230
+you might get the word doctors,
+
+70
+00:02:54.230 --> 00:02:57.385
+nurse, cardiologist,
+surgeon, etc.
+
+71
+00:02:57.385 --> 00:02:58.890
+In the next video,
+
+72
+00:02:58.890 --> 00:03:00.140
+you will learn how to to plot
+
+73
+00:03:00.140 --> 00:03:03.870
+these d-dimensional
+vectors on a 2D plane.

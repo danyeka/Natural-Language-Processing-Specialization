@@ -1,0 +1,314 @@
+WEBVTT
+
+1
+00:00:01.040 --> 00:00:03.757
+In this video,
+I'll introduce you to hugging face.
+
+2
+00:00:03.757 --> 00:00:08.177
+I'll show you what this can provide you
+and how you can use it for your projects.
+
+3
+00:00:08.177 --> 00:00:10.196
+Hugging face is very well documented.
+
+4
+00:00:10.196 --> 00:00:12.706
+And they even have a course
+on their websites.
+
+5
+00:00:12.706 --> 00:00:17.740
+That I recommend you check out if you
+want to dig deeper into their ecosystem.
+
+6
+00:00:17.740 --> 00:00:21.581
+Hugging face offers a wide range
+of solutions for organizations.
+
+7
+00:00:21.581 --> 00:00:25.540
+Builds community and has tools for
+collaborative research.
+
+8
+00:00:25.540 --> 00:00:29.205
+However, I'll be focusing on their
+transformers python library.
+
+9
+00:00:29.205 --> 00:00:33.161
+Which is a great tool for
+using transformer models in your projects.
+
+10
+00:00:34.540 --> 00:00:38.649
+You can use hugging face transformers
+library alongside PyTorch tensor flow
+
+11
+00:00:38.649 --> 00:00:39.540
+or flax.
+
+12
+00:00:39.540 --> 00:00:42.289
+So, you can leverage everything
+the talking face has to offer.
+
+13
+00:00:42.289 --> 00:00:45.240
+Without the need to change
+your favorite framework.
+
+14
+00:00:45.240 --> 00:00:47.901
+There is also a growing support for flax.
+
+15
+00:00:47.901 --> 00:00:52.340
+Which is a neural network library and
+ecosystem based on Jax.
+
+16
+00:00:52.340 --> 00:00:56.976
+You can use hugging face transformers
+library for basically two things.
+
+17
+00:00:56.976 --> 00:01:01.071
+You can use it applying state of
+the art transformer models for
+
+18
+00:01:01.071 --> 00:01:02.657
+a variety of NLP tasks.
+
+19
+00:01:02.657 --> 00:01:06.519
+And two, fine tuning,
+pretrained models using your data sets.
+
+20
+00:01:06.519 --> 00:01:08.861
+Or the ones provided by hugging face.
+
+21
+00:01:09.940 --> 00:01:13.918
+The transformers library has
+the pipeline object that encapsulates.
+
+22
+00:01:13.918 --> 00:01:16.838
+Everything you need to run
+a model on your examples.
+
+23
+00:01:16.838 --> 00:01:21.482
+With pipelines, you can easily use state
+of the art transformer models right out of
+
+24
+00:01:21.482 --> 00:01:23.840
+the box for different NLP tasks.
+
+25
+00:01:23.840 --> 00:01:27.199
+I'll go through pipelines in
+more detail in a later video.
+
+26
+00:01:27.199 --> 00:01:30.732
+But let's go through a very
+general overview of what they do.
+
+27
+00:01:30.732 --> 00:01:33.771
+Pipelines, take care of,
+pre-processing your inputs.
+
+28
+00:01:33.771 --> 00:01:37.640
+Running the model and
+post processing the outpost for you.
+
+29
+00:01:37.640 --> 00:01:41.197
+So, you have to provide
+the appropriate input for your task.
+
+30
+00:01:41.197 --> 00:01:43.094
+To get a human readable results.
+
+31
+00:01:43.094 --> 00:01:46.765
+Moreover, if you don't know what's
+model to use for your task,
+
+32
+00:01:46.765 --> 00:01:48.480
+you don't have to worry.
+
+33
+00:01:48.480 --> 00:01:50.621
+Every pipeline has a default model.
+
+34
+00:01:50.621 --> 00:01:54.170
+For instance, with a pipeline for
+question answering task.
+
+35
+00:01:54.170 --> 00:01:58.846
+You can use a transformer to answer
+different questions, provided a context.
+
+36
+00:01:58.846 --> 00:02:01.554
+You only need to specify
+the pipelines task.
+
+37
+00:02:01.554 --> 00:02:05.640
+And provide a context with
+the questions you want to ask.
+
+38
+00:02:05.640 --> 00:02:10.240
+The pipeline, takes care of everything
+else and gives you human readable answers.
+
+39
+00:02:10.240 --> 00:02:12.505
+So, you can use transformer models for
+
+40
+00:02:12.505 --> 00:02:15.531
+virtually any NLP task with
+hugging face pipeline.
+
+41
+00:02:15.531 --> 00:02:18.072
+And if you want to find
+tuning pre-trained model.
+
+42
+00:02:18.072 --> 00:02:21.769
+The transformers library provides
+you different tools to do so.
+
+43
+00:02:21.769 --> 00:02:24.713
+And without any complications of course.
+
+44
+00:02:24.713 --> 00:02:27.243
+Hugging face has a growing
+library with more than
+
+45
+00:02:27.243 --> 00:02:29.841
+15,000 pre-trained model checkpoints.
+
+46
+00:02:29.841 --> 00:02:34.193
+That you can use to fine tune the most
+popular transformer architectures.
+
+47
+00:02:34.193 --> 00:02:36.540
+A checkpoint for any given model.
+
+48
+00:02:36.540 --> 00:02:39.382
+It's just the set of parameters
+learned for a specific model.
+
+49
+00:02:39.382 --> 00:02:44.518
+That was trained with a particular data
+set for some task like question answering.
+
+50
+00:02:44.518 --> 00:02:47.602
+You can find tuning model
+from a starting checkpoints.
+
+51
+00:02:47.602 --> 00:02:52.940
+Using one of the 1000 datasets available
+as hugging face or with your own data.
+
+52
+00:02:52.940 --> 00:02:57.320
+The transformers library offers tokenizers
+associated with every checkpoint to
+
+53
+00:02:57.320 --> 00:02:59.140
+pre-process the data.
+
+54
+00:02:59.140 --> 00:03:03.459
+The tokenizers do the heavy lifting for
+you by translating your text.
+
+55
+00:03:03.459 --> 00:03:06.839
+So, readable inputs for
+the model, you want to find tune.
+
+56
+00:03:06.839 --> 00:03:08.064
+If you use PyTorch,
+
+57
+00:03:08.064 --> 00:03:11.962
+you can use the trainer included
+anti-transformers library.
+
+58
+00:03:11.962 --> 00:03:14.592
+Or create a custom one to train the model.
+
+59
+00:03:14.592 --> 00:03:19.111
+For TensorFlow, it is recommended to use
+traditional carers methods like fits.
+
+60
+00:03:19.111 --> 00:03:21.892
+Hugging face,
+also provides metrics like Google.
+
+61
+00:03:21.892 --> 00:03:26.295
+That seamlessly integrates into the
+training process to evaluate your model.
+
+62
+00:03:26.295 --> 00:03:30.351
+And when you have a fine tuned model,
+you can run it to get an output.
+
+63
+00:03:30.351 --> 00:03:34.140
+That tokenizer is can help you
+transform into a human readable text.
+
+64
+00:03:34.140 --> 00:03:38.716
+So, hugging face and the transformers
+library give you everything you need to
+
+65
+00:03:38.716 --> 00:03:40.740
+fine tune a transformer.
+
+66
+00:03:40.740 --> 00:03:43.561
+However, you can customize
+any of the steps.

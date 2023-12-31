@@ -1,0 +1,400 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.080
+Welcome to the third course
+of this specialization.
+
+2
+00:00:03.080 --> 00:00:04.920
+This course is called Natural
+
+3
+00:00:04.920 --> 00:00:07.660
+Language Processing
+with Sequence Models.
+
+4
+00:00:07.660 --> 00:00:11.420
+In this course, here are some
+things you get to build.
+
+5
+00:00:11.420 --> 00:00:14.200
+First, you take
+sentiment analysis
+
+6
+00:00:14.200 --> 00:00:17.260
+to the next level with
+deep neuron networks.
+
+7
+00:00:17.260 --> 00:00:20.120
+You also build a
+language generator
+
+8
+00:00:20.120 --> 00:00:24.060
+using RNNs or recurrent
+neuron networks.
+
+9
+00:00:24.060 --> 00:00:26.640
+You apply LSTM units.
+
+10
+00:00:26.640 --> 00:00:29.900
+LSTM stands for Long
+Short-Term Memory.
+
+11
+00:00:29.900 --> 00:00:32.040
+You apply LSTM units to
+
+12
+00:00:32.040 --> 00:00:35.055
+the problem of named
+entity recognition.
+
+13
+00:00:35.055 --> 00:00:37.540
+Finally, you use
+
+14
+00:00:37.540 --> 00:00:41.660
+Siamese networks to identify
+duplicate questions.
+
+15
+00:00:41.660 --> 00:00:44.340
+Like say if there's an
+online discussion forum
+
+16
+00:00:44.340 --> 00:00:46.340
+and different people
+are asking questions,
+
+17
+00:00:46.340 --> 00:00:48.900
+can you figure out if
+two different people
+
+18
+00:00:48.900 --> 00:00:50.580
+ask essentially
+the same question,
+
+19
+00:00:50.580 --> 00:00:51.860
+but with different wording?
+
+20
+00:00:51.860 --> 00:00:54.080
+With the skills you
+develop in this course,
+
+21
+00:00:54.080 --> 00:00:57.400
+you'll be able to build
+powerful NLP systems to
+
+22
+00:00:57.400 --> 00:01:01.125
+solve problems across a
+wide range of industries.
+
+23
+00:01:01.125 --> 00:01:03.975
+It is my pleasure
+to welcome Lucasz
+
+24
+00:01:03.975 --> 00:01:07.340
+and Younes as your
+instructors for this course,
+
+25
+00:01:07.340 --> 00:01:11.160
+and they are thrilled to dive
+into these topics with you.
+
+26
+00:01:11.160 --> 00:01:13.760
+Younes, perhaps you could
+say a bit more about
+
+27
+00:01:13.760 --> 00:01:17.130
+the applications that learners
+will build in this course?
+
+28
+00:01:17.130 --> 00:01:19.360
+Sure thing, thanks Andrew.
+
+29
+00:01:19.360 --> 00:01:22.140
+Well, I'd like to
+start by saying
+
+30
+00:01:22.140 --> 00:01:24.980
+that in the first two courses
+of this specialization,
+
+31
+00:01:24.980 --> 00:01:27.060
+you built a powerful foundation
+
+32
+00:01:27.060 --> 00:01:28.460
+that will provide you with
+
+33
+00:01:28.460 --> 00:01:29.940
+both the context and
+
+34
+00:01:29.940 --> 00:01:32.740
+the fundamental skills you
+need to tackle this course.
+
+35
+00:01:32.740 --> 00:01:34.780
+For example, you've already
+
+36
+00:01:34.780 --> 00:01:37.055
+done sentiment
+analysis in Course 1,
+
+37
+00:01:37.055 --> 00:01:39.670
+with a simple naive
+bayes classifier.
+
+38
+00:01:39.670 --> 00:01:42.480
+But now you, will
+leverage the power of
+
+39
+00:01:42.480 --> 00:01:44.120
+deep neural networks to build
+
+40
+00:01:44.120 --> 00:01:47.180
+a much more robust sentiment
+analysis classifier.
+
+41
+00:01:47.180 --> 00:01:48.580
+You've also seen how to do
+
+42
+00:01:48.580 --> 00:01:50.260
+things like predict
+the next word in
+
+43
+00:01:50.260 --> 00:01:51.700
+a sequence using
+
+44
+00:01:51.700 --> 00:01:55.050
+relatively simple n-gram
+language models in Course 2.
+
+45
+00:01:55.050 --> 00:01:57.340
+In this course, you'll create
+
+46
+00:01:57.340 --> 00:01:58.700
+an advanced model using
+
+47
+00:01:58.700 --> 00:02:01.520
+recurrent neural networks
+to generate texts.
+
+48
+00:02:01.520 --> 00:02:04.400
+You can think of this course
+as taking the step from
+
+49
+00:02:04.400 --> 00:02:06.600
+foundational skills
+into building
+
+50
+00:02:06.600 --> 00:02:08.700
+real world NLP applications.
+
+51
+00:02:08.700 --> 00:02:10.210
+Very cool, Younes.
+
+52
+00:02:10.210 --> 00:02:12.750
+I think that's a great
+way to think about it.
+
+53
+00:02:12.750 --> 00:02:15.600
+Lucasz, maybe you
+could say a bit
+
+54
+00:02:15.600 --> 00:02:18.930
+more about the applications
+learners will get to build?
+
+55
+00:02:18.930 --> 00:02:21.090
+Sure. Thank you, Andrew.
+
+56
+00:02:21.090 --> 00:02:23.380
+Well, as you saw in
+the first course,
+
+57
+00:02:23.380 --> 00:02:26.680
+the problem of sentiment
+analysis is a really tricky one.
+
+58
+00:02:26.680 --> 00:02:28.260
+But in many applications,
+
+59
+00:02:28.260 --> 00:02:30.520
+you want to determine the
+sentiment of a sentence,
+
+60
+00:02:30.520 --> 00:02:33.320
+so it's a really good
+problem to work on as well.
+
+61
+00:02:33.320 --> 00:02:34.660
+With language modeling,
+
+62
+00:02:34.660 --> 00:02:36.940
+the problems you can solve
+are almost infinite.
+
+63
+00:02:36.940 --> 00:02:39.580
+From translation
+to autocomplete,
+
+64
+00:02:39.580 --> 00:02:41.580
+to generating text from scratch.
+
+65
+00:02:41.580 --> 00:02:43.240
+In Week 2 of this course,
+
+66
+00:02:43.240 --> 00:02:45.540
+you'll work on named
+Entity Recognition,
+
+67
+00:02:45.540 --> 00:02:47.780
+which is the problem of
+separating named entity
+
+68
+00:02:47.780 --> 00:02:51.300
+in sentences like
+people and places.
+
+69
+00:02:51.300 --> 00:02:54.765
+This is a building block of
+many important NLP systems.
+
+70
+00:02:54.765 --> 00:02:57.185
+Finally, in Week
+3 of this course,
+
+71
+00:02:57.185 --> 00:03:00.125
+we will tackle the problem
+of identifying duplicates.
+
+72
+00:03:00.125 --> 00:03:02.540
+The question of whether
+two pieces of texts or
+
+73
+00:03:02.540 --> 00:03:03.980
+duplicates of each other might
+
+74
+00:03:03.980 --> 00:03:05.960
+not sound very
+interesting at first,
+
+75
+00:03:05.960 --> 00:03:07.720
+but as you'll see, it's actually
+
+76
+00:03:07.720 --> 00:03:09.340
+core building block
+of things like
+
+77
+00:03:09.340 --> 00:03:11.215
+online forms and search engines,
+
+78
+00:03:11.215 --> 00:03:13.120
+and we'll show you
+how to solve it.
+
+79
+00:03:13.120 --> 00:03:15.000
+We're really excited to show you
+
+80
+00:03:15.000 --> 00:03:16.280
+these applications and bring
+
+81
+00:03:16.280 --> 00:03:17.875
+your skills to the next level.
+
+82
+00:03:17.875 --> 00:03:20.185
+Thank you, Lucasz and
+thank you, Younes.
+
+83
+00:03:20.185 --> 00:03:23.050
+This is going to be
+an exciting course.
+
+84
+00:03:23.050 --> 00:03:24.595
+Let's get started.
+
+85
+00:03:24.595 --> 00:03:25.420
+Good luck.
+
+86
+00:03:25.420 --> 00:03:27.020
+Have fun.

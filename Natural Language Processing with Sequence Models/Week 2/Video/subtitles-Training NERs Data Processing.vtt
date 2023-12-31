@@ -1,0 +1,452 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.180
+To train a NER system,
+
+2
+00:00:02.180 --> 00:00:04.240
+you have to follow several steps
+
+3
+00:00:04.240 --> 00:00:06.280
+for converting text to numbers,
+
+4
+00:00:06.280 --> 00:00:08.480
+all the way to making
+the prediction.
+
+5
+00:00:08.480 --> 00:00:10.240
+In this video, we will
+
+6
+00:00:10.240 --> 00:00:13.025
+explore all these
+steps. Let's dive in.
+
+7
+00:00:13.025 --> 00:00:16.060
+I'll show you how to
+convert entity classes and
+
+8
+00:00:16.060 --> 00:00:18.280
+label data into a arrays of
+
+9
+00:00:18.280 --> 00:00:20.950
+numbers that correspond
+to one another,
+
+10
+00:00:20.950 --> 00:00:23.380
+and how to create
+a data generator
+
+11
+00:00:23.380 --> 00:00:25.600
+to process your data in batches,
+
+12
+00:00:25.600 --> 00:00:27.940
+saving you time and resources.
+
+13
+00:00:27.940 --> 00:00:30.700
+Let's begin. First, you
+
+14
+00:00:30.700 --> 00:00:33.660
+will assign each entity
+class a unique number.
+
+15
+00:00:33.660 --> 00:00:36.940
+For example, a personal
+name might be 1,
+
+16
+00:00:36.940 --> 00:00:39.895
+geographical
+location might be 2,
+
+17
+00:00:39.895 --> 00:00:42.935
+and the time
+indicator might be 3.
+
+18
+00:00:42.935 --> 00:00:45.650
+Next, assign each word
+
+19
+00:00:45.650 --> 00:00:49.165
+a number that corresponds to
+its assigned entity class.
+
+20
+00:00:49.165 --> 00:00:53.870
+Given a sentence like Sharon
+flew to Miami last Friday,
+
+21
+00:00:53.870 --> 00:00:57.430
+you get a corresponding
+tokenized sentence where
+
+22
+00:00:57.430 --> 00:01:02.245
+4,282 corresponds to
+the index of Sharon.
+
+23
+00:01:02.245 --> 00:01:05.530
+853, corresponds to flew,
+
+24
+00:01:05.530 --> 00:01:09.715
+187 corresponds with
+2, and so forth.
+
+25
+00:01:09.715 --> 00:01:12.070
+The O corresponds to the O class
+
+26
+00:01:12.070 --> 00:01:15.590
+which denotes a filler
+or unrecognized word.
+
+27
+00:01:15.590 --> 00:01:18.370
+Note also that the
+numbers you see here are
+
+28
+00:01:18.370 --> 00:01:21.595
+random and are assigned
+when you process your data.
+
+29
+00:01:21.595 --> 00:01:24.190
+From this point, each sequence
+
+30
+00:01:24.190 --> 00:01:26.230
+is then transformed
+into an array of
+
+31
+00:01:26.230 --> 00:01:28.190
+numbers where each number
+
+32
+00:01:28.190 --> 00:01:31.400
+corresponds to the index
+of the labeled word.
+
+33
+00:01:31.400 --> 00:01:34.090
+From a labeled sentence
+that looks like this,
+
+34
+00:01:34.090 --> 00:01:37.470
+you'll be transforming it
+into a numerical array.
+
+35
+00:01:37.470 --> 00:01:39.790
+When processing the dataset,
+
+36
+00:01:39.790 --> 00:01:41.850
+you need to represent each word
+
+37
+00:01:41.850 --> 00:01:43.830
+in the vocabulary as a number.
+
+38
+00:01:43.830 --> 00:01:47.530
+As you just saw, this gives
+you numerical arrays.
+
+39
+00:01:47.530 --> 00:01:48.810
+But if the arrays are
+
+40
+00:01:48.810 --> 00:01:51.150
+different sizes, you'll
+need to handle that.
+
+41
+00:01:51.150 --> 00:01:52.950
+To assist with this, you
+
+42
+00:01:52.950 --> 00:01:54.890
+can set the length
+of your sequences to
+
+43
+00:01:54.890 --> 00:01:56.870
+a certain number and add
+
+44
+00:01:56.870 --> 00:02:00.570
+a generic pad token to
+fill all the empty spaces.
+
+45
+00:02:00.570 --> 00:02:03.385
+You'll be implementing
+this in the assignment,
+
+46
+00:02:03.385 --> 00:02:05.590
+but don't worry about it.
+
+47
+00:02:05.590 --> 00:02:07.790
+It's a relatively simple process
+
+48
+00:02:07.790 --> 00:02:10.395
+and I'll show you
+exactly how to do it.
+
+49
+00:02:10.395 --> 00:02:14.190
+In order to train this named
+entity recognition system,
+
+50
+00:02:14.190 --> 00:02:16.270
+you'll first create a tensor
+
+51
+00:02:16.270 --> 00:02:18.990
+for each input and its
+corresponding label,
+
+52
+00:02:18.990 --> 00:02:20.520
+as you saw before.
+
+53
+00:02:20.520 --> 00:02:25.370
+Then create a data generator
+to output them in batches.
+
+54
+00:02:25.370 --> 00:02:28.010
+The batch size can be
+anything you want,
+
+55
+00:02:28.010 --> 00:02:29.770
+but normally you'd want
+
+56
+00:02:29.770 --> 00:02:32.205
+a batch size that is
+in a power of two.
+
+57
+00:02:32.205 --> 00:02:35.070
+Something like 64, 128,
+
+58
+00:02:35.070 --> 00:02:38.410
+256, 512 and so forth.
+
+59
+00:02:38.410 --> 00:02:40.090
+Doing this will speed up
+
+60
+00:02:40.090 --> 00:02:42.150
+your processing
+time considerably.
+
+61
+00:02:42.150 --> 00:02:44.430
+If you felt alarmed
+by the words,
+
+62
+00:02:44.430 --> 00:02:48.110
+create a data generator,
+don't worry about it.
+
+63
+00:02:48.110 --> 00:02:50.610
+There will be more
+on this to come.
+
+64
+00:02:50.610 --> 00:02:52.750
+After the batches are generated,
+
+65
+00:02:52.750 --> 00:02:55.170
+feed them into an LSTM unit.
+
+66
+00:02:55.170 --> 00:02:57.390
+You'll run the outputs
+from this through
+
+67
+00:02:57.390 --> 00:02:59.890
+a dense or fully
+connected layer.
+
+68
+00:02:59.890 --> 00:03:04.190
+Then predict using a LogSoftmax
+over K possible classes,
+
+69
+00:03:04.190 --> 00:03:08.130
+where K corresponds to the
+number of possible outputs.
+
+70
+00:03:08.130 --> 00:03:11.665
+Using LogSoftmax instead of
+softmax is important here.
+
+71
+00:03:11.665 --> 00:03:13.730
+Because LogSoftmax gives
+
+72
+00:03:13.730 --> 00:03:17.570
+better numerical performance
+and gradient optimization.
+
+73
+00:03:17.570 --> 00:03:20.810
+Let's take a look at a
+visual of this process.
+
+74
+00:03:20.810 --> 00:03:23.350
+Here are the inputs,
+which include
+
+75
+00:03:23.350 --> 00:03:26.060
+the arrays you created
+when processing the data.
+
+76
+00:03:26.060 --> 00:03:29.170
+You'll feed them through
+an LSTM layer with
+
+77
+00:03:29.170 --> 00:03:32.690
+its series of activations
+and element wise operations.
+
+78
+00:03:32.690 --> 00:03:34.630
+Run the outputs of through
+
+79
+00:03:34.630 --> 00:03:36.510
+a final dense layer which is
+
+80
+00:03:36.510 --> 00:03:39.370
+a linear operation on
+the input vectors.
+
+81
+00:03:39.370 --> 00:03:41.570
+Then you compute a LogSoftmax
+
+82
+00:03:41.570 --> 00:03:43.510
+to get the corresponding output.
+
+83
+00:03:43.510 --> 00:03:46.050
+Here's what the layers
+might look like when you're
+
+84
+00:03:46.050 --> 00:03:48.470
+implementing them in
+this week's assignment.
+
+85
+00:03:48.470 --> 00:03:50.030
+For your dense layer,
+
+86
+00:03:50.030 --> 00:03:52.030
+you'll want to pass
+in the dimensions
+
+87
+00:03:52.030 --> 00:03:54.550
+of the tag arrays
+you just created.
+
+88
+00:03:54.550 --> 00:03:57.530
+Now you're ready to
+accomplish some mighty tasks
+
+89
+00:03:57.530 --> 00:04:00.410
+like numerical array
+conversion with token padding,
+
+90
+00:04:00.410 --> 00:04:03.770
+training in batches for
+faster processing and running
+
+91
+00:04:03.770 --> 00:04:05.830
+your model through
+its final dense layer
+
+92
+00:04:05.830 --> 00:04:07.490
+and activation function.
+
+93
+00:04:07.490 --> 00:04:08.850
+You've come a long way
+
+94
+00:04:08.850 --> 00:04:10.315
+since the beginning
+of this course.
+
+95
+00:04:10.315 --> 00:04:12.310
+There's a bit more to go.
+
+96
+00:04:12.310 --> 00:04:16.390
+You finally know how to train
+a NER system from scratch.
+
+97
+00:04:16.390 --> 00:04:18.250
+In the next video, I will
+
+98
+00:04:18.250 --> 00:04:21.210
+show you how to
+evaluate your system.

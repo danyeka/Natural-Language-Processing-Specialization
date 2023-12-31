@@ -1,0 +1,456 @@
+WEBVTT
+
+1
+00:00:00.240 --> 00:00:04.932
+This week rather than classifying an input
+using multiple categories, you're
+
+2
+00:00:04.932 --> 00:00:09.770
+going to build a model that will allow you
+to identify if two inputs are equivalent.
+
+3
+00:00:09.770 --> 00:00:13.428
+In this video you will explore
+triplets and how to use them for
+
+4
+00:00:13.428 --> 00:00:15.090
+training your model.
+
+5
+00:00:15.090 --> 00:00:16.361
+Let's see how this works.
+
+6
+00:00:17.840 --> 00:00:22.046
+Here are three questions where
+the first one is, how old are you and
+
+7
+00:00:22.046 --> 00:00:23.640
+it is the anchor A.
+
+8
+00:00:23.640 --> 00:00:26.970
+The second one is a positive example,
+P, what is your age.
+
+9
+00:00:26.970 --> 00:00:30.386
+And the third one, where are you from,
+is a negative example N.
+
+10
+00:00:30.386 --> 00:00:34.305
+Recall that here positive and
+negative are related to
+
+11
+00:00:34.305 --> 00:00:38.761
+whether a question has the same
+meaning as the anchor or not.
+
+12
+00:00:40.040 --> 00:00:44.492
+These three components give rise to
+triplets which are groups of anchors,
+
+13
+00:00:44.492 --> 00:00:46.551
+positive and negative examples.
+
+14
+00:00:46.551 --> 00:00:49.110
+Accordingly, triplet loss is the name for
+
+15
+00:00:49.110 --> 00:00:52.640
+a loss function that
+uses these components.
+
+16
+00:00:52.640 --> 00:00:56.350
+The intuition behind the simplest
+loss function that uses
+
+17
+00:00:56.350 --> 00:01:01.440
+triplets is to minimize the difference
+between the similarity of A and N.
+
+18
+00:01:01.440 --> 00:01:04.340
+And the similarity of A and P.
+
+19
+00:01:04.340 --> 00:01:08.317
+This is equivalent to maximizing
+the similarity between the anchor and
+
+20
+00:01:08.317 --> 00:01:10.040
+the positive example.
+
+21
+00:01:10.040 --> 00:01:13.102
+While minimizing the similarity
+between the anchor and
+
+22
+00:01:13.102 --> 00:01:15.840
+their associated negative examples.
+
+23
+00:01:15.840 --> 00:01:21.134
+You already know that as a difference
+gets bigger or smaller along the x axis,
+
+24
+00:01:21.134 --> 00:01:25.940
+the loss gets respectively bigger or
+smaller along the y axis.
+
+25
+00:01:25.940 --> 00:01:28.761
+But no doubt when the diff
+is less than zero,
+
+26
+00:01:28.761 --> 00:01:32.140
+the loss decreases
+towards negative values.
+
+27
+00:01:32.140 --> 00:01:34.145
+And for some similarity functions,
+
+28
+00:01:34.145 --> 00:01:38.140
+this simple loss function can
+even go to negative infinity.
+
+29
+00:01:38.140 --> 00:01:42.291
+However, you want your model to tell
+apart positive from negative examples.
+
+30
+00:01:42.291 --> 00:01:47.540
+And at some point it is not essential for
+the difference to continue decreasing.
+
+31
+00:01:47.540 --> 00:01:52.098
+So you could constrain the loss
+function to take values greater than or
+
+32
+00:01:52.098 --> 00:01:56.578
+equal to zero, ensuring that learning
+happens until the difference
+
+33
+00:01:56.578 --> 00:02:00.340
+between similarities is close or
+equal to zero.
+
+34
+00:02:00.340 --> 00:02:04.040
+With this, the loss function now
+doesn't take negative values.
+
+35
+00:02:04.040 --> 00:02:08.840
+However, you don't want your model to
+have a barely acceptable performance.
+
+36
+00:02:08.840 --> 00:02:13.195
+You need your model to be confident enough
+and distinguish between negative and
+
+37
+00:02:13.195 --> 00:02:15.340
+positive values with ease.
+
+38
+00:02:15.340 --> 00:02:19.791
+So you need your model to learn until
+the model achieves a specific value for
+
+39
+00:02:19.791 --> 00:02:22.206
+the difference between similarities.
+
+40
+00:02:22.206 --> 00:02:26.237
+That's why you would want to use
+a margin alpha in the triplet loss.
+
+41
+00:02:26.237 --> 00:02:29.513
+It ensures that learning
+goes on until the difference
+
+42
+00:02:29.513 --> 00:02:34.040
+between the similarities is equal or
+close to the margin value.
+
+43
+00:02:34.040 --> 00:02:39.073
+You can think of all these as shifting
+the loss function a little to the left.
+
+44
+00:02:39.073 --> 00:02:42.040
+Let's say you chose alpha to be 0.2.
+
+45
+00:02:42.040 --> 00:02:46.805
+If the difference between similarities
+is minimal, like negative 0.1, and
+
+46
+00:02:46.805 --> 00:02:52.440
+then if you add it to alpha equal to 0.2,
+the result is still greater than zero.
+
+47
+00:02:52.440 --> 00:02:56.798
+This sum of the diff plus alpha results
+any positive loss that tells the model to
+
+48
+00:02:56.798 --> 00:02:58.940
+learn from that example.
+
+49
+00:02:58.940 --> 00:03:02.786
+You can see this visually in the line
+charts where the loss function is shifted
+
+50
+00:03:02.786 --> 00:03:04.740
+to the left by alpha units.
+
+51
+00:03:04.740 --> 00:03:07.640
+The diff is along the horizontal axis.
+
+52
+00:03:07.640 --> 00:03:11.316
+When the difference is less than zero but
+small in magnitude,
+
+53
+00:03:11.316 --> 00:03:13.161
+the loss is greater than zero.
+
+54
+00:03:14.340 --> 00:03:17.486
+So if the difference is smaller
+in magnitude than alpha,
+
+55
+00:03:17.486 --> 00:03:19.581
+then the loss function is positive and
+
+56
+00:03:19.581 --> 00:03:24.040
+the model gets the message that it
+can still improve its performance.
+
+57
+00:03:24.040 --> 00:03:27.840
+In practice, alpha is hyper parameter.
+
+58
+00:03:27.840 --> 00:03:32.672
+You will implement the triplet loss with
+a margin alpha for this week's assignment,
+
+59
+00:03:32.672 --> 00:03:34.496
+which follows the simple form.
+
+60
+00:03:34.496 --> 00:03:37.518
+Know that it is a function of the anchor,
+positive and
+
+61
+00:03:37.518 --> 00:03:41.561
+negative example representations
+derived from your neural network.
+
+62
+00:03:43.140 --> 00:03:46.380
+A small detail worth noting
+in these explanations.
+
+63
+00:03:46.380 --> 00:03:49.596
+I've been using cosine similarity
+because that's what you'll be using in
+
+64
+00:03:49.596 --> 00:03:51.340
+the programming assignments.
+
+65
+00:03:51.340 --> 00:03:55.791
+However, you could also use a distance
+metric or other similarity functions
+
+66
+00:03:55.791 --> 00:04:00.461
+with appropriate modifications to the loss
+function but you have to be careful.
+
+67
+00:04:01.940 --> 00:04:06.540
+You must interpret distance metrics as
+the opposite of similarity functions.
+
+68
+00:04:06.540 --> 00:04:10.272
+The lower the distance between the two
+vectors the more similar they are.
+
+69
+00:04:10.272 --> 00:04:14.955
+Recall that one example of a distance
+metric is the Euclidean distance,
+
+70
+00:04:14.955 --> 00:04:18.267
+what you saw in previous
+specialization courses.
+
+71
+00:04:18.267 --> 00:04:22.840
+Selecting triplets, A, P, and
+N for training involves two steps.
+
+72
+00:04:22.840 --> 00:04:26.557
+First, select a pair of questions
+that are known to be duplicates
+
+73
+00:04:26.557 --> 00:04:30.840
+to serve as the anchor and
+positive example from the training set.
+
+74
+00:04:30.840 --> 00:04:35.618
+Second, select a question that is known to
+be different in meaning from the anchor
+
+75
+00:04:35.618 --> 00:04:38.840
+to form the anchor and the negative pair.
+
+76
+00:04:38.840 --> 00:04:42.834
+If you were to select triplets randomly,
+you would be likely to choose anchors,
+
+77
+00:04:42.834 --> 00:04:47.240
+positives, and negative examples that
+will lead to losses close to zero.
+
+78
+00:04:47.240 --> 00:04:50.594
+And remember that the network
+will have nothing to learn from
+
+79
+00:04:50.594 --> 00:04:52.971
+those triplets when the loss gets to zero.
+
+80
+00:04:52.971 --> 00:04:57.446
+So you can train more efficiently if you
+choose triplets that create a challenge
+
+81
+00:04:57.446 --> 00:04:58.740
+to the model.
+
+82
+00:04:58.740 --> 00:05:03.006
+So instead of selecting random triplets,
+you specifically select so
+
+83
+00:05:03.006 --> 00:05:05.040
+called hard triplets.
+
+84
+00:05:05.040 --> 00:05:07.694
+These are triplets that
+are more difficult for
+
+85
+00:05:07.694 --> 00:05:11.310
+the model to tell apart the negative and
+the positive example.
+
+86
+00:05:11.310 --> 00:05:15.160
+In those, the similarity between anchor
+and negative is very close too but
+
+87
+00:05:15.160 --> 00:05:19.840
+they are still smaller than the similarity
+between anchor and positive.
+
+88
+00:05:19.840 --> 00:05:23.517
+When the model encounters a hard triplet,
+it needs to adjust its weight
+
+89
+00:05:23.517 --> 00:05:27.440
+to yield similarities that line
+up with the real world labels.
+
+90
+00:05:27.440 --> 00:05:31.080
+So by selecting hard triplets,
+you focus the training process and
+
+91
+00:05:31.080 --> 00:05:32.840
+the problematic cases.
+
+92
+00:05:32.840 --> 00:05:37.717
+So the model gets the most information
+on how to improve its performance.
+
+93
+00:05:37.717 --> 00:05:43.540
+Here, I spoke about how hard triplets
+are a way to improve the training process.
+
+94
+00:05:43.540 --> 00:05:47.540
+I also talked about the margin alpha and
+the triplet loss function.
+
+95
+00:05:47.540 --> 00:05:52.257
+In the following video, you'll see how all
+these concepts come together to help you
+
+96
+00:05:52.257 --> 00:05:54.860
+create a cost function for
+training your model

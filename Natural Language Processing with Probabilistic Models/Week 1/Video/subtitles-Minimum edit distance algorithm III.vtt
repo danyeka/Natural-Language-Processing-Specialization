@@ -1,0 +1,368 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:04.470
+This video gives you a
+complete overview of
+
+2
+00:00:04.470 --> 00:00:07.530
+minimum edit distance and
+shows you what to do if you
+
+3
+00:00:07.530 --> 00:00:09.150
+want to reconstruct the path you
+
+4
+00:00:09.150 --> 00:00:11.070
+took when doing the edits.
+
+5
+00:00:11.070 --> 00:00:14.085
+Let's dive in. A few quick notes
+
+6
+00:00:14.085 --> 00:00:16.860
+on the minimum edit distance
+implementation you learned.
+
+7
+00:00:16.860 --> 00:00:19.380
+Measuring the edit
+distance by using
+
+8
+00:00:19.380 --> 00:00:21.720
+the three edits; insert, delete,
+
+9
+00:00:21.720 --> 00:00:24.480
+and replace with costs 1,
+
+10
+00:00:24.480 --> 00:00:29.775
+1 and 2 respectively is known
+as levenshtein distance.
+
+11
+00:00:29.775 --> 00:00:31.405
+That's what you've used here.
+
+12
+00:00:31.405 --> 00:00:33.920
+You can look it up for
+more details if you like.
+
+13
+00:00:33.920 --> 00:00:36.200
+There are also
+well-known alternatives
+
+14
+00:00:36.200 --> 00:00:38.150
+that have difference
+at its rules.
+
+15
+00:00:38.150 --> 00:00:40.850
+Finding the minimum
+edit distance on its
+
+16
+00:00:40.850 --> 00:00:43.775
+own doesn't always solve
+the whole problem.
+
+17
+00:00:43.775 --> 00:00:46.880
+You sometimes need to know
+how you got there too.
+
+18
+00:00:46.880 --> 00:00:49.700
+You do this by
+keeping a backtrace,
+
+19
+00:00:49.700 --> 00:00:52.025
+which is simply a pointer in
+
+20
+00:00:52.025 --> 00:00:54.290
+each cell letting you know
+where you came from to
+
+21
+00:00:54.290 --> 00:00:56.960
+get there so you know
+the path taken across
+
+22
+00:00:56.960 --> 00:00:59.075
+the table from the
+top left corner
+
+23
+00:00:59.075 --> 00:01:00.880
+to the bottom right corner.
+
+24
+00:01:00.880 --> 00:01:03.410
+This tells you the
+edits taken and is
+
+25
+00:01:03.410 --> 00:01:05.420
+particularly useful in problems
+
+26
+00:01:05.420 --> 00:01:07.205
+dealing with string alignment.
+
+27
+00:01:07.205 --> 00:01:09.620
+But that's a discussion
+for another time.
+
+28
+00:01:09.620 --> 00:01:12.170
+Finally, this tabular method
+
+29
+00:01:12.170 --> 00:01:14.465
+for computation instead
+of brute force,
+
+30
+00:01:14.465 --> 00:01:17.290
+is a technique known as
+dynamic programming.
+
+31
+00:01:17.290 --> 00:01:19.280
+Intuitively, this just
+
+32
+00:01:19.280 --> 00:01:21.710
+means that solving the
+smallest subproblem
+
+33
+00:01:21.710 --> 00:01:23.450
+first and then reusing
+
+34
+00:01:23.450 --> 00:01:26.465
+that result to solve the
+next biggest subproblem,
+
+35
+00:01:26.465 --> 00:01:27.860
+saving that result,
+
+36
+00:01:27.860 --> 00:01:30.280
+reusing it again and so on.
+
+37
+00:01:30.280 --> 00:01:33.515
+This is what you did here by
+solving each cell in order.
+
+38
+00:01:33.515 --> 00:01:36.620
+It's a well-known technique
+in computer science and will
+
+39
+00:01:36.620 --> 00:01:37.910
+appear again and again
+
+40
+00:01:37.910 --> 00:01:40.070
+in the coming weeks
+of this course.
+
+41
+00:01:40.070 --> 00:01:43.715
+That's it. This was a long
+lesson, so well done.
+
+42
+00:01:43.715 --> 00:01:45.455
+You should be proud of yourself.
+
+43
+00:01:45.455 --> 00:01:47.030
+You took the problem of solving
+
+44
+00:01:47.030 --> 00:01:49.970
+minimum edit distance and
+broke it down into parts.
+
+45
+00:01:49.970 --> 00:01:52.610
+Then use the tabular
+based approach
+
+46
+00:01:52.610 --> 00:01:53.960
+step-by-step for
+
+47
+00:01:53.960 --> 00:01:57.000
+a very efficient
+implementation. Great work.
+
+48
+00:01:57.000 --> 00:01:59.840
+Now try the programming
+assignment where you will code up
+
+49
+00:01:59.840 --> 00:02:02.330
+this example with an
+optional challenge
+
+50
+00:02:02.330 --> 00:02:03.620
+to build a backtrace tool.
+
+51
+00:02:03.620 --> 00:02:05.525
+What a journey,
+
+52
+00:02:05.525 --> 00:02:07.450
+and you're just
+getting started here.
+
+53
+00:02:07.450 --> 00:02:10.475
+The weeks ahead are loaded
+with more exciting stuff.
+
+54
+00:02:10.475 --> 00:02:12.920
+But before you go,
+a quick recap.
+
+55
+00:02:12.920 --> 00:02:14.450
+In the past few lessons,
+
+56
+00:02:14.450 --> 00:02:15.650
+you learned a lot about
+
+57
+00:02:15.650 --> 00:02:17.420
+some real-world applications of
+
+58
+00:02:17.420 --> 00:02:19.775
+NLP that you're probably
+using every day.
+
+59
+00:02:19.775 --> 00:02:22.755
+You learned about auto
+correct and what it is,
+
+60
+00:02:22.755 --> 00:02:24.480
+and how it works its magic.
+
+61
+00:02:24.480 --> 00:02:26.645
+You went step-by-step
+through how to build
+
+62
+00:02:26.645 --> 00:02:28.715
+a working auto
+correct model using
+
+63
+00:02:28.715 --> 00:02:31.220
+edit distance and
+worth probabilities.
+
+64
+00:02:31.220 --> 00:02:32.840
+You learned about the problem of
+
+65
+00:02:32.840 --> 00:02:37.055
+string similarity and metric
+of minimum edit distance.
+
+66
+00:02:37.055 --> 00:02:38.885
+Finally, you learned
+
+67
+00:02:38.885 --> 00:02:41.510
+a really cool way to solve
+minimum edit distance
+
+68
+00:02:41.510 --> 00:02:44.210
+using a tabular
+algorithmic technique
+
+69
+00:02:44.210 --> 00:02:46.430
+known as dynamic programming.
+
+70
+00:02:46.430 --> 00:02:48.725
+You now have the
+know-how to practice
+
+71
+00:02:48.725 --> 00:02:49.880
+all these new skills in
+
+72
+00:02:49.880 --> 00:02:51.880
+the Week 1 programming
+assignment.
+
+73
+00:02:51.880 --> 00:02:53.580
+Have fun and good luck.
+
+74
+00:02:53.580 --> 00:02:56.340
+Congratulations on
+finishing the week.
+
+75
+00:02:56.340 --> 00:02:58.670
+Minimum edit distance introduces
+
+76
+00:02:58.670 --> 00:03:01.735
+your first application
+of dynamic programming.
+
+77
+00:03:01.735 --> 00:03:03.680
+In the next week, you'll
+
+78
+00:03:03.680 --> 00:03:05.795
+learn about the
+Viterbi algorithm,
+
+79
+00:03:05.795 --> 00:03:07.070
+which also makes use of
+
+80
+00:03:07.070 --> 00:03:10.380
+dynamic programming.
+See you soon.

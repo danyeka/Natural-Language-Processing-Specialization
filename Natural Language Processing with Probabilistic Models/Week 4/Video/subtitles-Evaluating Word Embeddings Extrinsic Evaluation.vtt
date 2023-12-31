@@ -1,0 +1,311 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:04.185
+To test your word embedding
+evaluation on external tasks,
+
+2
+00:00:04.185 --> 00:00:07.200
+you'll probably resort
+to extrinsic evaluation.
+
+3
+00:00:07.200 --> 00:00:09.060
+For example, if you build
+
+4
+00:00:09.060 --> 00:00:11.115
+a system that does
+speech recognition,
+
+5
+00:00:11.115 --> 00:00:13.860
+then the only way to
+know if it works is to
+
+6
+00:00:13.860 --> 00:00:16.920
+actually test the system
+as a whole on its task.
+
+7
+00:00:16.920 --> 00:00:19.980
+This might be more effective
+than intrinsic evaluation.
+
+8
+00:00:19.980 --> 00:00:22.575
+Let's get started. By now
+
+9
+00:00:22.575 --> 00:00:24.975
+you have used
+intrinsic evaluation.
+
+10
+00:00:24.975 --> 00:00:27.000
+Your first method for evaluating
+
+11
+00:00:27.000 --> 00:00:29.370
+word embeddings
+based on how well
+
+12
+00:00:29.370 --> 00:00:31.290
+they capture the semantic or
+
+13
+00:00:31.290 --> 00:00:33.765
+syntactic relationships
+between the words.
+
+14
+00:00:33.765 --> 00:00:37.340
+To evaluate word embeddings
+with extrinsic evaluation,
+
+15
+00:00:37.340 --> 00:00:40.640
+you use the word embeddings
+to perform on external task,
+
+16
+00:00:40.640 --> 00:00:43.100
+which is typically the
+real-world task that
+
+17
+00:00:43.100 --> 00:00:45.830
+you initially needed the
+word embeddings for.
+
+18
+00:00:45.830 --> 00:00:48.500
+Then use the
+performance metric of
+
+19
+00:00:48.500 --> 00:00:50.210
+this task as a proxy for
+
+20
+00:00:50.210 --> 00:00:52.265
+the quality of the
+word embeddings.
+
+21
+00:00:52.265 --> 00:00:55.295
+Examples of useful word
+level tasks include
+
+22
+00:00:55.295 --> 00:00:58.955
+named entity recognition or
+parts-of-speech tagging.
+
+23
+00:00:58.955 --> 00:01:01.040
+A named entity is
+something that can
+
+24
+00:01:01.040 --> 00:01:03.000
+be referred to by a proper name.
+
+25
+00:01:03.000 --> 00:01:05.510
+For example, in the sentence,
+
+26
+00:01:05.510 --> 00:01:07.790
+Andrew works at deeplearning.ai.
+
+27
+00:01:07.790 --> 00:01:09.725
+The word Andrew is
+
+28
+00:01:09.725 --> 00:01:13.620
+a named entity and is
+categorized as a person.
+
+29
+00:01:13.620 --> 00:01:16.440
+The word deeplearning.ai is
+
+30
+00:01:16.440 --> 00:01:18.410
+another named entity and
+
+31
+00:01:18.410 --> 00:01:20.915
+is categorized as
+an organization.
+
+32
+00:01:20.915 --> 00:01:24.200
+A useful task may be to train
+a model that can help you
+
+33
+00:01:24.200 --> 00:01:28.280
+identify and categorize named
+entities in a sentence.
+
+34
+00:01:28.280 --> 00:01:31.070
+You can then evaluate
+this classifier on
+
+35
+00:01:31.070 --> 00:01:34.265
+a test set with some
+selected evaluation metric,
+
+36
+00:01:34.265 --> 00:01:37.085
+such as accuracy
+or the F1 score.
+
+37
+00:01:37.085 --> 00:01:39.050
+The classifier's performance on
+
+38
+00:01:39.050 --> 00:01:41.360
+the evaluation metric represents
+
+39
+00:01:41.360 --> 00:01:43.220
+the combined performance of
+
+40
+00:01:43.220 --> 00:01:46.475
+both the embedding and
+classification tasks.
+
+41
+00:01:46.475 --> 00:01:48.650
+Extrinsic evaluation methods are
+
+42
+00:01:48.650 --> 00:01:50.090
+the ultimate tests to ensure
+
+43
+00:01:50.090 --> 00:01:52.580
+that word embeddings
+are actually useful.
+
+44
+00:01:52.580 --> 00:01:54.920
+However, their main drawbacks
+
+45
+00:01:54.920 --> 00:01:57.290
+are that the evaluation
+will be more
+
+46
+00:01:57.290 --> 00:02:00.590
+time-consuming than in
+intrinsic evaluation
+
+47
+00:02:00.590 --> 00:02:02.770
+and that if the
+performance is poor,
+
+48
+00:02:02.770 --> 00:02:06.430
+then the performance metrics
+provides no information as
+
+49
+00:02:06.430 --> 00:02:08.185
+to which specific parts of the
+
+50
+00:02:08.185 --> 00:02:10.495
+end-to-end process
+is responsible.
+
+51
+00:02:10.495 --> 00:02:12.550
+The word embeddings
+themselves or the
+
+52
+00:02:12.550 --> 00:02:14.710
+external task used to test them.
+
+53
+00:02:14.710 --> 00:02:17.380
+So far you've evaluated
+the word embeddings using
+
+54
+00:02:17.380 --> 00:02:20.480
+intrinsic and extrinsic
+evaluation methods.
+
+55
+00:02:20.480 --> 00:02:22.570
+That's very nice. If you want to
+
+56
+00:02:22.570 --> 00:02:24.550
+dive deeper into this topic,
+
+57
+00:02:24.550 --> 00:02:26.035
+I've included the reference to
+
+58
+00:02:26.035 --> 00:02:28.555
+a comprehensive and
+very readable paper
+
+59
+00:02:28.555 --> 00:02:30.910
+on evaluating word embeddings.
+
+60
+00:02:30.910 --> 00:02:33.565
+You've just acquired
+quite a few new skills.
+
+61
+00:02:33.565 --> 00:02:36.735
+It's a good time to
+review. That's up next.
+
+62
+00:02:36.735 --> 00:02:39.070
+Before moving on
+to the next video,
+
+63
+00:02:39.070 --> 00:02:41.510
+here are these short summary
+of what you learned.
+
+64
+00:02:41.510 --> 00:02:44.929
+Extrinsic evaluation
+evaluates actual usefulness
+
+65
+00:02:44.929 --> 00:02:46.310
+of the word embedding.
+
+66
+00:02:46.310 --> 00:02:48.560
+However, it is more difficult to
+
+67
+00:02:48.560 --> 00:02:51.840
+troubleshoot and is
+more time-consuming.

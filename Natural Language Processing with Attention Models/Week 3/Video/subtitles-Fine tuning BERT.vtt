@@ -1,0 +1,187 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:05.836
+Using BERT can get you state of the art
+results on many tasks or problems.
+
+2
+00:00:05.836 --> 00:00:09.877
+In this video, I'm going to show you
+how you can fine tune this model so
+
+3
+00:00:09.877 --> 00:00:12.870
+that you can get it to work
+on your own data sets.
+
+4
+00:00:12.870 --> 00:00:15.440
+Let's take a look at how you can do this.
+
+5
+00:00:15.440 --> 00:00:18.894
+So right now you're going to
+see how you fine tune BERT.
+
+6
+00:00:18.894 --> 00:00:22.921
+So during pre training remember you
+had sentence A and sentence B, and
+
+7
+00:00:22.921 --> 00:00:25.311
+then you use next sentence prediction and
+
+8
+00:00:25.311 --> 00:00:29.930
+use the mask tokens to predict the mask
+tokens that you mask from each sentence.
+
+9
+00:00:29.930 --> 00:00:31.946
+So that's in pre training.
+
+10
+00:00:31.946 --> 00:00:36.762
+Now if you want to go on to MNLI or
+like hypothesis premise scenario,
+
+11
+00:00:36.762 --> 00:00:40.374
+then instead of having sentence A and
+sentence B,
+
+12
+00:00:40.374 --> 00:00:46.057
+you're going to feed in the hypothesis
+over here, and the premise over here.
+
+13
+00:00:46.057 --> 00:00:50.308
+For NER you going to feed in
+the sentence A over here, and
+
+14
+00:00:50.308 --> 00:00:53.535
+then the corresponding tags over here.
+
+15
+00:00:53.535 --> 00:00:57.750
+For question answering,
+you will have SQuAD, for example,
+
+16
+00:00:57.750 --> 00:01:02.461
+you'll have your question over here and
+then your answer over here.
+
+17
+00:01:03.840 --> 00:01:07.131
+So visually what does this look like?
+
+18
+00:01:07.131 --> 00:01:10.740
+So remember this image
+from the BERT paper.
+
+19
+00:01:10.740 --> 00:01:12.584
+So this is what ends up happening.
+
+20
+00:01:12.584 --> 00:01:16.786
+Over here you have the question,
+over here you'll have the paragraph and
+
+21
+00:01:16.786 --> 00:01:21.077
+this will give you like your answer,
+that starts in the end for the answer.
+
+22
+00:01:21.077 --> 00:01:24.398
+Then for NER again,
+you'll have the sentence and
+
+23
+00:01:24.398 --> 00:01:26.859
+the correspondent named entities.
+
+24
+00:01:26.859 --> 00:01:31.495
+For MNLI you'll have the hypothesis and
+then the premise and so forth.
+
+25
+00:01:31.495 --> 00:01:36.071
+So in summary, given the place
+of sentence A and sentence B,
+
+26
+00:01:36.071 --> 00:01:40.197
+you can fill it with a text
+in parts four sentence A, and
+
+27
+00:01:40.197 --> 00:01:44.864
+then say like a no symbol to say
+that you're trying to classify
+
+28
+00:01:44.864 --> 00:01:50.019
+the text whether it's for
+sentiment analysis, like happy or sad.
+
+29
+00:01:50.019 --> 00:01:51.240
+So that's the only way to do it.
+
+30
+00:01:51.240 --> 00:01:54.056
+Question passage for question answering.
+
+31
+00:01:54.056 --> 00:01:57.134
+You could have hypothesis premise for
+MNLI.
+
+32
+00:01:57.134 --> 00:02:00.479
+You could have sentence with
+the named entities for NER,
+
+33
+00:02:00.479 --> 00:02:04.140
+you can have sentence and
+a paraphrase of the sentence.
+
+34
+00:02:04.140 --> 00:02:08.440
+You could have an article in
+the summary and so forth.
+
+35
+00:02:08.440 --> 00:02:11.505
+So this is just the inputs
+into your BERT model.
+
+36
+00:02:11.505 --> 00:02:15.882
+Now that you know how to fine tune
+your model on classification tasks,
+
+37
+00:02:15.882 --> 00:02:20.705
+question answering, summarization and
+many more things, we'll take it to
+
+38
+00:02:20.705 --> 00:02:25.340
+the next level and introduce you
+to a new model known as the T5.
+
+39
+00:02:25.340 --> 00:02:28.361
+Please go onto the next video
+to learn about the T5 model.

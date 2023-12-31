@@ -1,0 +1,363 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.230
+Earlier in the week,
+
+2
+00:00:01.230 --> 00:00:04.680
+you used a Naive Bayes
+method to classify tweets.
+
+3
+00:00:04.680 --> 00:00:06.780
+But that's going to be
+used to do a number of
+
+4
+00:00:06.780 --> 00:00:10.020
+things like identify who's
+an author of a text.
+
+5
+00:00:10.020 --> 00:00:13.650
+I'll give you a few ideas of
+what those things may be.
+
+6
+00:00:13.650 --> 00:00:16.020
+When you use Naive Bayes to
+
+7
+00:00:16.020 --> 00:00:17.955
+predict the sentiment
+of a tweet,
+
+8
+00:00:17.955 --> 00:00:19.440
+what you're actually doing is
+
+9
+00:00:19.440 --> 00:00:21.120
+estimating the probability for
+
+10
+00:00:21.120 --> 00:00:22.590
+each class by using
+
+11
+00:00:22.590 --> 00:00:25.515
+the joint probability of
+the words in classes.
+
+12
+00:00:25.515 --> 00:00:27.300
+The Naive Bayes formula is as
+
+13
+00:00:27.300 --> 00:00:29.760
+the ratio between these
+two probabilities,
+
+14
+00:00:29.760 --> 00:00:33.135
+the products of the priors
+and the likelihoods.
+
+15
+00:00:33.135 --> 00:00:34.830
+You can use this ratio between
+
+16
+00:00:34.830 --> 00:00:36.960
+conditional
+probabilities for much
+
+17
+00:00:36.960 --> 00:00:38.865
+more than sentiment analysis.
+
+18
+00:00:38.865 --> 00:00:42.045
+For one, you could do
+author identification.
+
+19
+00:00:42.045 --> 00:00:44.284
+If you had two large corporal,
+
+20
+00:00:44.284 --> 00:00:46.430
+each written by
+different authors,
+
+21
+00:00:46.430 --> 00:00:48.770
+you could train a model
+to recognize whether
+
+22
+00:00:48.770 --> 00:00:52.795
+a new document was written
+by one or the other.
+
+23
+00:00:52.795 --> 00:00:54.800
+Or if you had some works by
+
+24
+00:00:54.800 --> 00:00:57.499
+Shakespeare and some
+works by Hemingway,
+
+25
+00:00:57.499 --> 00:00:59.195
+you could calculate
+the Lambda for
+
+26
+00:00:59.195 --> 00:01:01.400
+each word to predict how likely
+
+27
+00:01:01.400 --> 00:01:03.350
+a new word is to be used by
+
+28
+00:01:03.350 --> 00:01:06.655
+Shakespeare or
+alternatively by Hemingway.
+
+29
+00:01:06.655 --> 00:01:11.405
+This method also allows you
+to determine author Identity.
+
+30
+00:01:11.405 --> 00:01:14.075
+Another common use
+is spam filtering.
+
+31
+00:01:14.075 --> 00:01:16.700
+Using information
+taken from the sender,
+
+32
+00:01:16.700 --> 00:01:18.920
+subjects and content, you could
+
+33
+00:01:18.920 --> 00:01:21.500
+decide whether an
+email is spam or not.
+
+34
+00:01:21.500 --> 00:01:23.390
+One of the earliest uses of
+
+35
+00:01:23.390 --> 00:01:25.130
+Naive Bayes was
+filtering between
+
+36
+00:01:25.130 --> 00:01:27.740
+relevant and irrelevant
+documents in
+
+37
+00:01:27.740 --> 00:01:31.310
+a database given the sets
+of keywords in a query.
+
+38
+00:01:31.310 --> 00:01:33.770
+In this case, you only needed to
+
+39
+00:01:33.770 --> 00:01:35.210
+calculate the likelihood of
+
+40
+00:01:35.210 --> 00:01:37.040
+the documents given the query.
+
+41
+00:01:37.040 --> 00:01:38.780
+You can't know beforehand what's
+
+42
+00:01:38.780 --> 00:01:41.395
+a relevant or irrelevant
+document looks like.
+
+43
+00:01:41.395 --> 00:01:45.080
+You can compute the likelihood
+for each document in
+
+44
+00:01:45.080 --> 00:01:46.850
+your dataset and then store
+
+45
+00:01:46.850 --> 00:01:49.325
+the documents based
+on its likelihoods.
+
+46
+00:01:49.325 --> 00:01:52.280
+You can choose to keep
+the first m results or
+
+47
+00:01:52.280 --> 00:01:53.960
+the ones that have a likelihood
+
+48
+00:01:53.960 --> 00:01:55.834
+larger than a certain threshold.
+
+49
+00:01:55.834 --> 00:01:57.920
+Finally, you can also use
+
+50
+00:01:57.920 --> 00:02:00.200
+Naive Bayes for word
+disambiguation,
+
+51
+00:02:00.200 --> 00:02:02.450
+which is to say, breaking
+
+52
+00:02:02.450 --> 00:02:04.730
+down words for
+contextual clarity.
+
+53
+00:02:04.730 --> 00:02:08.240
+Consider that you have only
+two possible interpretations
+
+54
+00:02:08.240 --> 00:02:10.670
+of a given word within a text.
+
+55
+00:02:10.670 --> 00:02:12.050
+Let's say you don't know if
+
+56
+00:02:12.050 --> 00:02:14.390
+the word bank in your reading is
+
+57
+00:02:14.390 --> 00:02:15.590
+referring to the bank of
+
+58
+00:02:15.590 --> 00:02:18.380
+a river or to a
+financial institution.
+
+59
+00:02:18.380 --> 00:02:20.300
+To disambiguate your word,
+
+60
+00:02:20.300 --> 00:02:22.445
+calculate the score
+of the documents,
+
+61
+00:02:22.445 --> 00:02:24.050
+given that it refers to each
+
+62
+00:02:24.050 --> 00:02:25.820
+one of the possible meanings.
+
+63
+00:02:25.820 --> 00:02:27.800
+In this case, if the texts
+
+64
+00:02:27.800 --> 00:02:29.990
+refers to the concept of river,
+
+65
+00:02:29.990 --> 00:02:32.510
+instead of the concept of money,
+
+66
+00:02:32.510 --> 00:02:34.100
+then the score will
+be bigger than
+
+67
+00:02:34.100 --> 00:02:36.265
+one. That's cool, right?
+
+68
+00:02:36.265 --> 00:02:40.370
+In summary, Bayes rule and
+it's Naive approximation
+
+69
+00:02:40.370 --> 00:02:44.675
+has a wide range of applications
+in sentiment analysis,
+
+70
+00:02:44.675 --> 00:02:46.610
+author identification,
+
+71
+00:02:46.610 --> 00:02:50.200
+information retrieval,
+and word disambiguation.
+
+72
+00:02:50.200 --> 00:02:52.745
+It's a popular method since it's
+
+73
+00:02:52.745 --> 00:02:56.105
+relatively simple to
+train use and interpret.
+
+74
+00:02:56.105 --> 00:02:57.890
+You'll be using
+the Bayes rule and
+
+75
+00:02:57.890 --> 00:03:00.020
+Naive Bayes again
+in the weeks ahead.
+
+76
+00:03:00.020 --> 00:03:02.535
+Now, you're fully equipped.
+
+77
+00:03:02.535 --> 00:03:04.580
+As you've seen in this video,
+
+78
+00:03:04.580 --> 00:03:07.955
+Naive Bayes can be used for
+many classification tasks.
+
+79
+00:03:07.955 --> 00:03:10.369
+Next, I'll show you
+the assumptions
+
+80
+00:03:10.369 --> 00:03:13.710
+that underlie the
+Naive Bayes method.

@@ -1,0 +1,232 @@
+WEBVTT
+
+1
+00:00:00.294 --> 00:00:03.777
+Siamese networks have a special
+type of architecture.
+
+2
+00:00:03.777 --> 00:00:08.563
+They have two identical subnetworks
+which are merged together to
+
+3
+00:00:08.563 --> 00:00:11.964
+produce a final output or
+a similarity score.
+
+4
+00:00:11.964 --> 00:00:16.559
+I like to think of these two subnetworks
+as sister networks which come
+
+5
+00:00:16.559 --> 00:00:19.343
+together to produce a similarity score.
+
+6
+00:00:19.343 --> 00:00:22.961
+>> Speaker 2: This is a model
+architecture for a Siamese network.
+
+7
+00:00:22.961 --> 00:00:26.599
+Note that the architecture
+presented here is just an example.
+
+8
+00:00:26.599 --> 00:00:30.647
+Not all Siamese networks will
+be designed to contain LSTMs.
+
+9
+00:00:30.647 --> 00:00:35.111
+On the left, you have two inputs which
+represent question 1 and question 2.
+
+10
+00:00:35.111 --> 00:00:39.820
+You'll take each question, transform it
+into an embedding, and then you'll run
+
+11
+00:00:39.820 --> 00:00:43.876
+the embedding through an LSTM layer
+to model the question's meaning.
+
+12
+00:00:43.876 --> 00:00:46.212
+Each LSTM outputs a vector.
+
+13
+00:00:46.212 --> 00:00:50.998
+So in this architecture, you have
+two identical subnetworks, one for
+
+14
+00:00:50.998 --> 00:00:53.804
+question 1 and a second for question 2.
+
+15
+00:00:53.804 --> 00:00:58.786
+An important note here is that the
+subnetworks share identical parameters.
+
+16
+00:00:58.786 --> 00:01:03.095
+That is, the learned parameters of
+each subnetwork are exactly the same.
+
+17
+00:01:03.095 --> 00:01:07.036
+So you actually only need to train
+one set of weights, not two.
+
+18
+00:01:07.036 --> 00:01:11.534
+Then, given the two outputs vectors,
+one corresponding to each question,
+
+19
+00:01:11.534 --> 00:01:13.414
+find their cosine similarity.
+
+20
+00:01:13.414 --> 00:01:18.760
+Recall that the cosine similarity is a
+measure of similarity between two vectors.
+
+21
+00:01:18.760 --> 00:01:22.662
+When two vectors point generally
+in the same direction,
+
+22
+00:01:22.662 --> 00:01:25.924
+the cosine of the angle
+between them is near 1.
+
+23
+00:01:25.924 --> 00:01:29.509
+And for
+vectors that point in opposite directions,
+
+24
+00:01:29.509 --> 00:01:32.615
+the cosine of the angle
+between them is -1.
+
+25
+00:01:32.615 --> 00:01:35.148
+If that sounds unfamiliar, don't worry.
+
+26
+00:01:35.148 --> 00:01:39.999
+Right now you just need to know that the
+cosine similarity tells you how similar
+
+27
+00:01:39.999 --> 00:01:41.112
+two vectors are.
+
+28
+00:01:41.112 --> 00:01:45.507
+And in this case, it tells you how
+similar the two questions are.
+
+29
+00:01:45.507 --> 00:01:50.117
+So the cosine similarity gives
+the Siamese network's prediction,
+
+30
+00:01:50.117 --> 00:01:55.932
+denoted here by the variable y hat, which
+will be a value between -1 and positive 1.
+
+31
+00:01:55.932 --> 00:01:59.693
+If y hat is less than or
+equal to some threshold tau,
+
+32
+00:01:59.693 --> 00:02:03.988
+then you will say that the input
+questions are different.
+
+33
+00:02:03.988 --> 00:02:09.294
+And if y hat is greater than tau,
+then you will say that they are the same.
+
+34
+00:02:09.294 --> 00:02:14.483
+The threshold tau is a parameter, that
+you'll choose based on how often you want
+
+35
+00:02:14.483 --> 00:02:19.842
+to interpret cosine similarity to indicate
+that two questions are similar or not.
+
+36
+00:02:19.842 --> 00:02:24.407
+A higher threshold means that only
+very similar sentences will be
+
+37
+00:02:24.407 --> 00:02:25.990
+considered similar.
+
+38
+00:02:25.990 --> 00:02:30.070
+If you think of this process as
+a series of steps you take to get
+
+39
+00:02:30.070 --> 00:02:34.474
+from your input to your output,
+it would go something like this.
+
+40
+00:02:34.474 --> 00:02:38.609
+You start with the model architecture for
+a Siamese network,
+
+41
+00:02:38.609 --> 00:02:41.242
+made up of two identical subnetworks.
+
+42
+00:02:41.242 --> 00:02:45.641
+In this case, your inputs are questions
+that you feed into each subnetwork.
+
+43
+00:02:45.641 --> 00:02:49.129
+And each question gets transformed
+into an embedding, and
+
+44
+00:02:49.129 --> 00:02:50.952
+passed through an LSTM layer.
+
+45
+00:02:50.952 --> 00:02:54.561
+Then you take the outputs of
+each of the subnetworks and
+
+46
+00:02:54.561 --> 00:02:58.259
+compare them using cosine
+similarity to get your y hat.
+
+47
+00:02:58.259 --> 00:03:01.460
+>> Speaker 1: After seeing the model
+architecture, I'll start talking about
+
+48
+00:03:01.460 --> 00:03:04.850
+different cost functions you can use for
+this type of architecture.

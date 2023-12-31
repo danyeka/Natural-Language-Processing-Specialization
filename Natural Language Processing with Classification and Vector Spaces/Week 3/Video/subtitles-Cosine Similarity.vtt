@@ -1,0 +1,414 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.300
+In this video, you will
+learn how to compute
+
+2
+00:00:03.300 --> 00:00:04.500
+the dot product between
+
+3
+00:00:04.500 --> 00:00:07.095
+two vectors and how
+to compute the norm.
+
+4
+00:00:07.095 --> 00:00:09.360
+Once you know how to
+do these two things,
+
+5
+00:00:09.360 --> 00:00:13.080
+you'll be able to compute
+the cosine similarity score.
+
+6
+00:00:13.080 --> 00:00:15.150
+Now that you have the intuition
+
+7
+00:00:15.150 --> 00:00:16.650
+behind the use of cosine of
+
+8
+00:00:16.650 --> 00:00:19.035
+the angle between two
+vector representations
+
+9
+00:00:19.035 --> 00:00:20.715
+as a similarity metric.
+
+10
+00:00:20.715 --> 00:00:23.460
+I'll go deeper into
+an explanation and
+
+11
+00:00:23.460 --> 00:00:24.750
+then show you how to
+
+12
+00:00:24.750 --> 00:00:27.060
+calculate the cosine
+similarity metric.
+
+13
+00:00:27.060 --> 00:00:28.530
+In this section, you will get
+
+14
+00:00:28.530 --> 00:00:31.150
+the cosine of the inner
+angle of two vectors.
+
+15
+00:00:31.150 --> 00:00:33.530
+Then I'll show you
+how the value of
+
+16
+00:00:33.530 --> 00:00:36.170
+the cosine similarity
+is related to
+
+17
+00:00:36.170 --> 00:00:39.385
+the similarity of the
+directions of two vectors.
+
+18
+00:00:39.385 --> 00:00:43.355
+First, you have to recall some
+definitions from algebra.
+
+19
+00:00:43.355 --> 00:00:45.290
+The norm of a vector or
+
+20
+00:00:45.290 --> 00:00:47.870
+its magnitude is
+written like this.
+
+21
+00:00:47.870 --> 00:00:49.775
+It's defined to be
+the square root
+
+22
+00:00:49.775 --> 00:00:52.135
+of the sum of its
+elements squared.
+
+23
+00:00:52.135 --> 00:00:55.760
+The dot product between
+two vectors is the sum of
+
+24
+00:00:55.760 --> 00:00:57.635
+the products between
+their elements in
+
+25
+00:00:57.635 --> 00:01:00.290
+each dimension of
+the vector space.
+
+26
+00:01:00.290 --> 00:01:02.540
+Let's take another
+look at two of
+
+27
+00:01:02.540 --> 00:01:04.325
+the corpora from
+the last section.
+
+28
+00:01:04.325 --> 00:01:06.065
+Remember that's in this example,
+
+29
+00:01:06.065 --> 00:01:07.700
+you have a vector space where
+
+30
+00:01:07.700 --> 00:01:10.100
+the representations
+of the corpora is
+
+31
+00:01:10.100 --> 00:01:11.450
+given by the number of
+
+32
+00:01:11.450 --> 00:01:14.765
+occurrences of the
+words disease and eggs.
+
+33
+00:01:14.765 --> 00:01:17.660
+The angle between those
+vector representations
+
+34
+00:01:17.660 --> 00:01:19.550
+is denoted by Beta.
+
+35
+00:01:19.550 --> 00:01:23.440
+The agriculture corpus is
+represented by the vector v,
+
+36
+00:01:23.440 --> 00:01:26.165
+and the history corpus
+is going to be vector
+
+37
+00:01:26.165 --> 00:01:28.880
+w. The dot products
+
+38
+00:01:28.880 --> 00:01:32.000
+between those vectors
+is defined as follows.
+
+39
+00:01:32.000 --> 00:01:33.415
+From this equation,
+
+40
+00:01:33.415 --> 00:01:38.030
+you see that the cosine of
+the angle Beta is equal to
+
+41
+00:01:38.030 --> 00:01:40.430
+the dot-product
+between the vectors
+
+42
+00:01:40.430 --> 00:01:43.475
+divided by the product
+of the two norms.
+
+43
+00:01:43.475 --> 00:01:45.650
+Replacing the actual values from
+
+44
+00:01:45.650 --> 00:01:47.270
+the vector representations
+
+45
+00:01:47.270 --> 00:01:49.055
+should give you this expression.
+
+46
+00:01:49.055 --> 00:01:50.760
+In the numerator,
+
+47
+00:01:50.760 --> 00:01:52.370
+you'll have the product between
+
+48
+00:01:52.370 --> 00:01:55.775
+the occurrences of the
+words disease and eggs,
+
+49
+00:01:55.775 --> 00:01:57.425
+and then the denominator,
+
+50
+00:01:57.425 --> 00:01:59.450
+you have the product
+between the norm of
+
+51
+00:01:59.450 --> 00:02:01.370
+the vector representations of
+
+52
+00:02:01.370 --> 00:02:04.040
+the agriculture and
+history corpora,
+
+53
+00:02:04.040 --> 00:02:08.645
+ultimately, you should get a
+cosine similarity of 0.87.
+
+54
+00:02:08.645 --> 00:02:12.570
+Feel free to pause and do
+the calculations yourself.
+
+55
+00:02:13.690 --> 00:02:16.670
+But what does this
+metric tells you about
+
+56
+00:02:16.670 --> 00:02:19.250
+the similarity of two
+different vectors?
+
+57
+00:02:19.250 --> 00:02:21.350
+Consider when two vectors are
+
+58
+00:02:21.350 --> 00:02:25.205
+orthogonal in the vector
+spaces that you know so far,
+
+59
+00:02:25.205 --> 00:02:27.230
+it is only possible to have
+
+60
+00:02:27.230 --> 00:02:29.555
+positive values
+for any dimension.
+
+61
+00:02:29.555 --> 00:02:34.055
+The maximum angle between pair
+of vectors is 90 degrees.
+
+62
+00:02:34.055 --> 00:02:37.265
+In that case, the cosine
+would be equal to 0,
+
+63
+00:02:37.265 --> 00:02:40.505
+and it would mean that
+the two vectors have
+
+64
+00:02:40.505 --> 00:02:42.800
+orthogonal directions or that
+
+65
+00:02:42.800 --> 00:02:45.364
+they are maximally dissimilar.
+
+66
+00:02:45.364 --> 00:02:47.060
+Now let's look at the case where
+
+67
+00:02:47.060 --> 00:02:49.280
+the vectors have
+the same direction.
+
+68
+00:02:49.280 --> 00:02:52.940
+In this case, the angle
+between them is 0 degrees and
+
+69
+00:02:52.940 --> 00:02:57.540
+the cosine is equal to 1
+Because cosine of 0 is just 1.
+
+70
+00:02:57.540 --> 00:02:59.360
+As you can see, as the cosine of
+
+71
+00:02:59.360 --> 00:03:01.835
+the angle between two
+vectors approaches 1,
+
+72
+00:03:01.835 --> 00:03:04.240
+the closer their directions are.
+
+73
+00:03:04.240 --> 00:03:05.900
+Now you know how to get
+
+74
+00:03:05.900 --> 00:03:08.750
+the cosine similarity
+between any pair of vectors.
+
+75
+00:03:08.750 --> 00:03:10.880
+An important takeaway is that
+
+76
+00:03:10.880 --> 00:03:14.090
+this metric is proportional
+to the similarity between
+
+77
+00:03:14.090 --> 00:03:16.100
+the directions of the
+vectors that you are
+
+78
+00:03:16.100 --> 00:03:17.810
+comparing and that's for
+
+79
+00:03:17.810 --> 00:03:20.405
+the vector spaces
+you've seen so far,
+
+80
+00:03:20.405 --> 00:03:24.500
+the cosine similarity takes
+values between 0 and 1.
+
+81
+00:03:24.500 --> 00:03:27.290
+To recap, you have
+learned to compute
+
+82
+00:03:27.290 --> 00:03:29.900
+the cosine similarity
+score between two vectors.
+
+83
+00:03:29.900 --> 00:03:33.020
+For the positive vectors
+you have seen so far,
+
+84
+00:03:33.020 --> 00:03:35.780
+the score is bounded
+between 0 and 1.
+
+85
+00:03:35.780 --> 00:03:37.250
+Note that if you were to take
+
+86
+00:03:37.250 --> 00:03:40.010
+any cosine similarity score
+of a vector with itself,
+
+87
+00:03:40.010 --> 00:03:41.570
+you will get 1.
+
+88
+00:03:41.570 --> 00:03:45.350
+If the vectors are
+perpendicular, it'll give you 0.
+
+89
+00:03:45.350 --> 00:03:48.840
+Similar vectors
+have higher scores.

@@ -1,0 +1,498 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.270
+LSTMs, as I've mentioned before,
+
+2
+00:00:03.270 --> 00:00:04.830
+are the best known solution to
+
+3
+00:00:04.830 --> 00:00:06.675
+the vanishing gradients problem.
+
+4
+00:00:06.675 --> 00:00:08.760
+Let me tell you about it.
+
+5
+00:00:08.760 --> 00:00:10.470
+Now, I'll give you
+
+6
+00:00:10.470 --> 00:00:12.930
+a high-level view
+into the LSTM model,
+
+7
+00:00:12.930 --> 00:00:15.000
+what's its architecture
+looks like,
+
+8
+00:00:15.000 --> 00:00:16.680
+along with a few examples of
+
+9
+00:00:16.680 --> 00:00:18.945
+what they're used for
+in the real-world.
+
+10
+00:00:18.945 --> 00:00:21.660
+The LSTM is a special variety
+
+11
+00:00:21.660 --> 00:00:23.930
+of RNN that was
+designed to handle
+
+12
+00:00:23.930 --> 00:00:26.030
+entire sequences of data by
+
+13
+00:00:26.030 --> 00:00:28.880
+learning when to remember
+and went to forget,
+
+14
+00:00:28.880 --> 00:00:31.840
+which is similar to what
+is done in the GRU.
+
+15
+00:00:31.840 --> 00:00:35.720
+An LSTM is essentially
+composed of a cell state,
+
+16
+00:00:35.720 --> 00:00:37.655
+which you can think
+of as its memory.
+
+17
+00:00:37.655 --> 00:00:40.280
+The hidden state where
+computations are
+
+18
+00:00:40.280 --> 00:00:41.540
+performed during training to
+
+19
+00:00:41.540 --> 00:00:43.325
+decide on what changes to make.
+
+20
+00:00:43.325 --> 00:00:45.530
+An LSTM has multiple gates
+
+21
+00:00:45.530 --> 00:00:47.890
+that transformed the
+states in the network.
+
+22
+00:00:47.890 --> 00:00:49.610
+The cell state travels through
+
+23
+00:00:49.610 --> 00:00:52.160
+these gates and track
+inputs as it's arrives,
+
+24
+00:00:52.160 --> 00:00:54.710
+each one plays a
+part in deciding
+
+25
+00:00:54.710 --> 00:00:56.120
+how much information to pass
+
+26
+00:00:56.120 --> 00:00:58.510
+along and how much leave behind.
+
+27
+00:00:58.510 --> 00:01:01.850
+The series of gates allows
+the gradients to flow,
+
+28
+00:01:01.850 --> 00:01:05.270
+avoiding the risk of vanishing
+or exploding gradients.
+
+29
+00:01:05.270 --> 00:01:07.070
+Let's take a moment to relate
+
+30
+00:01:07.070 --> 00:01:08.480
+this concept to something
+
+31
+00:01:08.480 --> 00:01:10.585
+you might find a
+bit more familiar.
+
+32
+00:01:10.585 --> 00:01:14.150
+Imagine receiving a phone
+call from your best friend,
+
+33
+00:01:14.150 --> 00:01:15.950
+at the time your phone rings,
+
+34
+00:01:15.950 --> 00:01:17.480
+you might be thinking
+of any number
+
+35
+00:01:17.480 --> 00:01:19.520
+of things unrelated
+to your friend.
+
+36
+00:01:19.520 --> 00:01:21.305
+When you answer the call,
+
+37
+00:01:21.305 --> 00:01:23.390
+you put aside those
+unrelated thoughts
+
+38
+00:01:23.390 --> 00:01:25.985
+while retaining anything that
+concerns the both of you.
+
+39
+00:01:25.985 --> 00:01:28.265
+As your friend gives you
+some more information
+
+40
+00:01:28.265 --> 00:01:29.555
+on why he's calling,
+
+41
+00:01:29.555 --> 00:01:30.830
+you'll be thinking of what else
+
+42
+00:01:30.830 --> 00:01:32.770
+might be relevant to talk about.
+
+43
+00:01:32.770 --> 00:01:34.730
+With the inputs from
+your friend and
+
+44
+00:01:34.730 --> 00:01:37.070
+whatever relevant
+information you had in mind,
+
+45
+00:01:37.070 --> 00:01:39.140
+you'll start the
+conversation with him.
+
+46
+00:01:39.140 --> 00:01:40.880
+You will then continue to evolve
+
+47
+00:01:40.880 --> 00:01:43.885
+the conversation in this
+way until you hang up.
+
+48
+00:01:43.885 --> 00:01:45.575
+At the end of the call,
+
+49
+00:01:45.575 --> 00:01:47.210
+you'll have a memory with
+
+50
+00:01:47.210 --> 00:01:49.975
+the most relevant information
+from your conversation.
+
+51
+00:01:49.975 --> 00:01:51.810
+That's how an LSTM works.
+
+52
+00:01:51.810 --> 00:01:55.700
+It updates the cell and hidden
+states constantly using
+
+53
+00:01:55.700 --> 00:01:58.730
+multiple gates so that
+relevant information is
+
+54
+00:01:58.730 --> 00:02:02.155
+passed along the network and
+used to produce outputs.
+
+55
+00:02:02.155 --> 00:02:04.610
+Let's take a look at
+the basic anatomy of
+
+56
+00:02:04.610 --> 00:02:08.290
+a typical LSTM units and
+what each part does.
+
+57
+00:02:08.290 --> 00:02:10.790
+An LSTM stores information in
+
+58
+00:02:10.790 --> 00:02:13.130
+the cell and hidden
+states which are
+
+59
+00:02:13.130 --> 00:02:17.440
+denoted by C and H. As
+with the [inaudible] RNNs,
+
+60
+00:02:17.440 --> 00:02:20.150
+we have inputs X and outputs Y.
+
+61
+00:02:20.150 --> 00:02:22.820
+On the LSTM, there are
+
+62
+00:02:22.820 --> 00:02:25.895
+multiple computations performed
+within a single units.
+
+63
+00:02:25.895 --> 00:02:27.620
+Here, the information
+
+64
+00:02:27.620 --> 00:02:29.390
+flows through three
+different gates.
+
+65
+00:02:29.390 --> 00:02:31.360
+First, you have
+
+66
+00:02:31.360 --> 00:02:33.485
+the cell state goes
+through a forget gate.
+
+67
+00:02:33.485 --> 00:02:35.500
+In this step, the inputs and
+
+68
+00:02:35.500 --> 00:02:37.630
+the previous hidden
+states are used to
+
+69
+00:02:37.630 --> 00:02:39.040
+decide which information from
+
+70
+00:02:39.040 --> 00:02:42.560
+the cell state is no longer
+important and throws it away.
+
+71
+00:02:42.560 --> 00:02:45.670
+Then the input gate
+is used to decide
+
+72
+00:02:45.670 --> 00:02:47.410
+which information
+from the inputs and
+
+73
+00:02:47.410 --> 00:02:49.600
+the previous hidden
+state is relevant,
+
+74
+00:02:49.600 --> 00:02:51.685
+so it is added to
+the cell state.
+
+75
+00:02:51.685 --> 00:02:54.040
+Finally, the outputs gate
+
+76
+00:02:54.040 --> 00:02:56.410
+determines the information
+from the cell state
+
+77
+00:02:56.410 --> 00:02:58.720
+that is stored in
+the hidden state and
+
+78
+00:02:58.720 --> 00:03:01.660
+used to construct an output
+at the given timestep.
+
+79
+00:03:01.660 --> 00:03:03.985
+Before diving deeper
+into the math,
+
+80
+00:03:03.985 --> 00:03:07.430
+let's discuss some of the
+many applications of LSTMs.
+
+81
+00:03:07.430 --> 00:03:09.490
+As you might have guessed, it is
+
+82
+00:03:09.490 --> 00:03:11.725
+very handy for building
+language models,
+
+83
+00:03:11.725 --> 00:03:13.600
+spanning use cases from
+
+84
+00:03:13.600 --> 00:03:15.490
+predicting the next
+character of your email
+
+85
+00:03:15.490 --> 00:03:17.290
+to building chat bots
+
+86
+00:03:17.290 --> 00:03:19.955
+capable of remembering
+longer conversations.
+
+87
+00:03:19.955 --> 00:03:23.080
+Music composition can
+be done with LSTMs.
+
+88
+00:03:23.080 --> 00:03:25.030
+This approach makes
+a lot of sense
+
+89
+00:03:25.030 --> 00:03:27.370
+considering that's
+music is built using
+
+90
+00:03:27.370 --> 00:03:29.380
+long sequences of nodes much
+
+91
+00:03:29.380 --> 00:03:32.060
+like texts uses long
+sequences of words.
+
+92
+00:03:32.060 --> 00:03:34.270
+Other cool applications are
+
+93
+00:03:34.270 --> 00:03:37.540
+automatic image captioning
+and speech recognition.
+
+94
+00:03:37.540 --> 00:03:40.795
+In overcoming the problems
+of a traditional RNN,
+
+95
+00:03:40.795 --> 00:03:42.220
+the LSTM has become
+
+96
+00:03:42.220 --> 00:03:46.180
+an incredibly popular tool
+with a wide range of uses and
+
+97
+00:03:46.180 --> 00:03:48.780
+has helped evolve NLP in
+
+98
+00:03:48.780 --> 00:03:50.500
+some exciting ways
+that's all discussed
+
+99
+00:03:50.500 --> 00:03:52.850
+in more detail towards
+the end of this week.
+
+100
+00:03:52.850 --> 00:03:56.030
+In summary, LSTMs
+are a solution to
+
+101
+00:03:56.030 --> 00:03:58.370
+the vanishing gradients
+problem and that
+
+102
+00:03:58.370 --> 00:04:00.215
+typical LSTMs have cell
+
+103
+00:04:00.215 --> 00:04:02.510
+and hidden states
+and three gates,
+
+104
+00:04:02.510 --> 00:04:03.995
+which are the forget gate,
+
+105
+00:04:03.995 --> 00:04:06.490
+inputs gates, and outputs gates.
+
+106
+00:04:06.490 --> 00:04:09.650
+Now you understand LSTMs
+on the high level.
+
+107
+00:04:09.650 --> 00:04:13.730
+But what exactly is the math
+behind the LSTM computation?
+
+108
+00:04:13.730 --> 00:04:16.650
+I'll show you this
+in the next video.

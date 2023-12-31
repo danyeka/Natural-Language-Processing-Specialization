@@ -1,0 +1,387 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.460
+There are a lots of
+word embedding methods.
+
+2
+00:00:02.460 --> 00:00:04.965
+As time goes by, scientists
+keep discovering
+
+3
+00:00:04.965 --> 00:00:06.690
+better methods that allow
+
+4
+00:00:06.690 --> 00:00:08.880
+us to capture more
+and more meaning.
+
+5
+00:00:08.880 --> 00:00:11.805
+Let's dive in and take a look
+at some of these methods.
+
+6
+00:00:11.805 --> 00:00:14.790
+Word2vec uses a
+shallow neural network
+
+7
+00:00:14.790 --> 00:00:16.245
+to learn word embeddings.
+
+8
+00:00:16.245 --> 00:00:18.900
+It proposes two
+model architectures,
+
+9
+00:00:18.900 --> 00:00:21.300
+continuous
+bag-of-words, which is
+
+10
+00:00:21.300 --> 00:00:22.860
+a simple but efficient approach
+
+11
+00:00:22.860 --> 00:00:24.510
+that you will
+implement this week.
+
+12
+00:00:24.510 --> 00:00:26.940
+The objective of the
+model is to learn to
+
+13
+00:00:26.940 --> 00:00:30.030
+predict a missing word given
+the surrounding words.
+
+14
+00:00:30.030 --> 00:00:32.280
+Continuous skip-gram, also
+
+15
+00:00:32.280 --> 00:00:34.740
+known as the skip-gram
+with negative sampling,
+
+16
+00:00:34.740 --> 00:00:36.090
+which does the reverse of
+
+17
+00:00:36.090 --> 00:00:38.100
+the continuous
+bag-of-words method.
+
+18
+00:00:38.100 --> 00:00:40.020
+The model learns to
+predict the word
+
+19
+00:00:40.020 --> 00:00:42.435
+surrounding a given input word.
+
+20
+00:00:42.435 --> 00:00:46.790
+Global vectors or GloVe by
+Stanford which involves
+
+21
+00:00:46.790 --> 00:00:48.530
+factorizing the logarithm of
+
+22
+00:00:48.530 --> 00:00:51.065
+the corpuses word
+co-occurrence matrix,
+
+23
+00:00:51.065 --> 00:00:54.340
+which is similar to the count
+matrix you've used before.
+
+24
+00:00:54.340 --> 00:00:57.060
+FastText by Facebook which
+
+25
+00:00:57.060 --> 00:00:58.720
+is based on the skip-gram model,
+
+26
+00:00:58.720 --> 00:01:01.460
+and takes into account
+the structure of words by
+
+27
+00:01:01.460 --> 00:01:04.760
+representing words as an
+n-gram of characters.
+
+28
+00:01:04.760 --> 00:01:06.320
+This enables the model to
+
+29
+00:01:06.320 --> 00:01:08.390
+support previously unseen words,
+
+30
+00:01:08.390 --> 00:01:10.685
+known as outer vocabulary words,
+
+31
+00:01:10.685 --> 00:01:12.230
+by inferring their
+embedding from
+
+32
+00:01:12.230 --> 00:01:14.000
+the sequence of
+characters they are made
+
+33
+00:01:14.000 --> 00:01:16.100
+of and the
+corresponding sequences
+
+34
+00:01:16.100 --> 00:01:17.930
+that it was initially
+trained on.
+
+35
+00:01:17.930 --> 00:01:21.530
+For example, it would create
+similar embeddings for
+
+36
+00:01:21.530 --> 00:01:23.540
+kitty and kitten even if
+
+37
+00:01:23.540 --> 00:01:25.760
+it had never seen the
+word kitty before,
+
+38
+00:01:25.760 --> 00:01:28.310
+as kitty and kitten are
+
+39
+00:01:28.310 --> 00:01:31.090
+made of similar
+sequences of characters.
+
+40
+00:01:31.090 --> 00:01:33.435
+Another benefit of fastText
+
+41
+00:01:33.435 --> 00:01:35.705
+is that word embedding
+vectors can be
+
+42
+00:01:35.705 --> 00:01:37.130
+averaged together to make
+
+43
+00:01:37.130 --> 00:01:40.750
+vector representations of
+phrases and sentences.
+
+44
+00:01:40.750 --> 00:01:44.315
+Next up, some more sophisticated
+modeling approaches.
+
+45
+00:01:44.315 --> 00:01:46.040
+These methods use advanced deep
+
+46
+00:01:46.040 --> 00:01:48.140
+neural network architectures to
+
+47
+00:01:48.140 --> 00:01:49.850
+refine the representation of the
+
+48
+00:01:49.850 --> 00:01:52.369
+words' meaning according
+to their contexts.
+
+49
+00:01:52.369 --> 00:01:53.885
+In the previous models,
+
+50
+00:01:53.885 --> 00:01:56.600
+a given word always has
+the same embedding.
+
+51
+00:01:56.600 --> 00:01:58.720
+In these more advanced models,
+
+52
+00:01:58.720 --> 00:02:00.550
+the words have
+different embeddings
+
+53
+00:02:00.550 --> 00:02:02.335
+depending on their contexts.
+
+54
+00:02:02.335 --> 00:02:04.165
+This ad supports for
+
+55
+00:02:04.165 --> 00:02:07.630
+polysemy or words with
+similar meanings,
+
+56
+00:02:07.630 --> 00:02:09.235
+such as the word plants,
+
+57
+00:02:09.235 --> 00:02:12.040
+which can refer to an
+organism like a flower,
+
+58
+00:02:12.040 --> 00:02:14.110
+a factory, or which can be
+
+59
+00:02:14.110 --> 00:02:16.855
+an adverb with yet more
+different meanings.
+
+60
+00:02:16.855 --> 00:02:18.940
+A few examples of
+advanced models that
+
+61
+00:02:18.940 --> 00:02:21.490
+generates word
+embeddings are birds
+
+62
+00:02:21.490 --> 00:02:24.160
+or Bidirectional
+Encoder Representations
+
+63
+00:02:24.160 --> 00:02:26.525
+from Transformers by Google,
+
+64
+00:02:26.525 --> 00:02:30.160
+ELMo for embeddings
+from language models by
+
+65
+00:02:30.160 --> 00:02:32.560
+the Allen Institute for AI or
+
+66
+00:02:32.560 --> 00:02:37.195
+GPT-2 or generative
+pretraining 2 by OpenAI.
+
+67
+00:02:37.195 --> 00:02:39.225
+If you want to use
+these advanced methods,
+
+68
+00:02:39.225 --> 00:02:40.760
+you can find off the shelf
+
+69
+00:02:40.760 --> 00:02:42.980
+pretrained models
+on the Internet.
+
+70
+00:02:42.980 --> 00:02:46.370
+You can find you in these
+models using your own corpus to
+
+71
+00:02:46.370 --> 00:02:50.000
+generate high-quality domain
+specific word embeddings.
+
+72
+00:02:50.000 --> 00:02:51.830
+To recap, you now have
+
+73
+00:02:51.830 --> 00:02:53.840
+some tools in your
+toolbox for creating
+
+74
+00:02:53.840 --> 00:02:55.460
+word embeddings including
+
+75
+00:02:55.460 --> 00:02:57.770
+some pretty sophisticated
+new models.
+
+76
+00:02:57.770 --> 00:02:59.900
+That's nice. Up next,
+
+77
+00:02:59.900 --> 00:03:03.020
+I will introduce the
+continuous bag-of-words model
+
+78
+00:03:03.020 --> 00:03:06.325
+that you'll be using for
+this week's assignments.
+
+79
+00:03:06.325 --> 00:03:08.750
+You have now seen
+a little history
+
+80
+00:03:08.750 --> 00:03:10.280
+of word embedding methods.
+
+81
+00:03:10.280 --> 00:03:11.480
+We went all the way from
+
+82
+00:03:11.480 --> 00:03:14.450
+word2vec to the latest
+transformer methods.
+
+83
+00:03:14.450 --> 00:03:16.730
+Currently, transformers are
+
+84
+00:03:16.730 --> 00:03:19.830
+one of the most
+advanced AI methods.

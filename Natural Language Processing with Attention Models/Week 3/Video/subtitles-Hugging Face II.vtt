@@ -1,0 +1,252 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.774
+Let's do a quick recap.
+
+2
+00:00:02.774 --> 00:00:07.675
+The transformers library has a pipeline
+object that you can use to apply state of
+
+3
+00:00:07.675 --> 00:00:10.981
+the art transformer models for
+different NLP tasks.
+
+4
+00:00:10.981 --> 00:00:14.924
+Pipelines take care of pre-processing
+your inputs, running the model and
+
+5
+00:00:14.924 --> 00:00:17.028
+post processing the outsports for you.
+
+6
+00:00:17.028 --> 00:00:21.400
+So it is human readable for instance with
+a pipeline for the question answering
+
+7
+00:00:21.400 --> 00:00:26.250
+task, you can use a transformer to answer
+different questions provided the context.
+
+8
+00:00:26.250 --> 00:00:27.876
+To use a transformer model,
+
+9
+00:00:27.876 --> 00:00:32.027
+you only need to indicate the task that
+you need your pipeline to work on.
+
+10
+00:00:32.027 --> 00:00:36.675
+In other words, pipelines are objects
+that you built for specific and
+
+11
+00:00:36.675 --> 00:00:39.213
+copy tasks to initialize a pipeline.
+
+12
+00:00:39.213 --> 00:00:42.750
+You only need to pass the task,
+but if you need you can also
+
+13
+00:00:42.750 --> 00:00:47.718
+indicate the model checkpoints you want
+to use to use an initialized pipeline.
+
+14
+00:00:47.718 --> 00:00:50.962
+You only need to provide
+the appropriate inputs that your
+
+15
+00:00:50.962 --> 00:00:54.688
+task requires hugging face supports
+the most popular NLP tasks.
+
+16
+00:00:54.688 --> 00:00:58.942
+But hugging face does not focus only
+on NLP it also supports other tasks,
+
+17
+00:00:58.942 --> 00:01:02.221
+such as image classification,
+object detection, for
+
+18
+00:01:02.221 --> 00:01:05.937
+computer vision,
+automatic speech recognition and others.
+
+19
+00:01:05.937 --> 00:01:10.845
+For instance, you could use the familiar
+sentiment analysis task if your goal is
+
+20
+00:01:10.845 --> 00:01:13.817
+to classify a sequence is positive or
+negative.
+
+21
+00:01:13.817 --> 00:01:16.411
+The input of this pipeline
+is a sentence and
+
+22
+00:01:16.411 --> 00:01:19.952
+the output is the category to
+which the sentence belongs.
+
+23
+00:01:19.952 --> 00:01:22.873
+You can also create a pipeline for
+question answering.
+
+24
+00:01:22.873 --> 00:01:25.331
+If you want a model
+that answers questions,
+
+25
+00:01:25.331 --> 00:01:28.462
+extracting information from a context,
+you provide.
+
+26
+00:01:28.462 --> 00:01:32.338
+The input here is the context and
+the sets of questions and
+
+27
+00:01:32.338 --> 00:01:36.558
+the model outputs the corresponding
+answers if it finds any.
+
+28
+00:01:36.558 --> 00:01:40.740
+Another task that you might find
+helpful is film mask what you
+
+29
+00:01:40.740 --> 00:01:45.171
+can use when you need your model
+to fill blank spaces in the text.
+
+30
+00:01:45.171 --> 00:01:47.951
+This pipeline needs the sentence
+you want to fill and
+
+31
+00:01:47.951 --> 00:01:50.616
+the exact position you need
+your model to fill it.
+
+32
+00:01:50.616 --> 00:01:54.243
+It's us puts a series of possible
+ways to complete the sentence.
+
+33
+00:01:54.243 --> 00:01:58.935
+And there are many more tasks that you can
+find directly on the hugging face website.
+
+34
+00:01:58.935 --> 00:02:00.137
+As I already told you,
+
+35
+00:02:00.137 --> 00:02:04.584
+you can pick the specific model checkpoint
+that you want to use with your pipeline.
+
+36
+00:02:04.584 --> 00:02:09.007
+Hugging face provides a huge number of
+checkpoints and some of them are fine
+
+37
+00:02:09.007 --> 00:02:13.655
+tuned using massive data sets to give
+exceptional results on specific tasks.
+
+38
+00:02:13.655 --> 00:02:18.094
+However, it's best to keep in mind that
+not every checkpoint is suitable for
+
+39
+00:02:18.094 --> 00:02:18.854
+every task.
+
+40
+00:02:18.854 --> 00:02:22.739
+So you should check the description
+of the pre-trained models to select
+
+41
+00:02:22.739 --> 00:02:26.830
+the appropriate checkpoint or stick
+with the default used by the pipeline.
+
+42
+00:02:26.830 --> 00:02:31.499
+Finally, you could be asking where can
+I find a proper model for my task and
+
+43
+00:02:31.499 --> 00:02:33.156
+use the checkpoints, for
+
+44
+00:02:33.156 --> 00:02:37.469
+that hugging face has a model hub
+available as hugging face dot com.
+
+45
+00:02:37.469 --> 00:02:42.191
+There you will find several pre-trained
+models you'll be able to filter by
+
+46
+00:02:42.191 --> 00:02:46.409
+your desire task or even by the dataset or
+framework you need to use.
+
+47
+00:02:46.409 --> 00:02:49.729
+Once you select the model that
+fits better to your needs,
+
+48
+00:02:49.729 --> 00:02:52.020
+you will see the model card interface.
+
+49
+00:02:52.020 --> 00:02:56.962
+The model card shows you information about
+your selected model such as description
+
+50
+00:02:56.962 --> 00:02:59.087
+of the same and some code snippets.
+
+51
+00:02:59.087 --> 00:03:01.458
+Such as a description of the same model,
+and
+
+52
+00:03:01.458 --> 00:03:05.061
+some code snippets with examples
+on how to use the selected model.

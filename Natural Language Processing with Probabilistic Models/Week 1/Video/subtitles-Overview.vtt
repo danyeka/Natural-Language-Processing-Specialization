@@ -1,0 +1,181 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:04.485
+Welcome. This week I will
+go over autocorrect.
+
+2
+00:00:04.485 --> 00:00:06.480
+It is how your
+misspelled words are
+
+3
+00:00:06.480 --> 00:00:09.135
+corrected automatically
+to the right ones.
+
+4
+00:00:09.135 --> 00:00:10.515
+You know it already from your
+
+5
+00:00:10.515 --> 00:00:12.225
+email clients on your phone.
+
+6
+00:00:12.225 --> 00:00:14.325
+Let me show you how it works.
+
+7
+00:00:14.325 --> 00:00:17.025
+Let's go over this week's
+learning objectives.
+
+8
+00:00:17.025 --> 00:00:19.860
+You will learn about
+autocorrect conceptually.
+
+9
+00:00:19.860 --> 00:00:21.450
+You've most likely used it in
+
+10
+00:00:21.450 --> 00:00:23.295
+your phone or Word processor.
+
+11
+00:00:23.295 --> 00:00:25.770
+But what is autocorrect exactly?
+
+12
+00:00:25.770 --> 00:00:27.480
+It's going to mean
+slightly different things
+
+13
+00:00:27.480 --> 00:00:29.055
+depending on the context.
+
+14
+00:00:29.055 --> 00:00:31.530
+You will learn about
+the nuances this week.
+
+15
+00:00:31.530 --> 00:00:34.960
+You'll practice building a
+model to perform autocorrect.
+
+16
+00:00:34.960 --> 00:00:37.250
+You'll learn each step
+in autocorrect and
+
+17
+00:00:37.250 --> 00:00:40.210
+key concepts to prepare you
+for the coding assignments.
+
+18
+00:00:40.210 --> 00:00:43.580
+When performing autocorrect,
+you'll learn to be able to
+
+19
+00:00:43.580 --> 00:00:47.660
+quantify how far apart or
+different to strings are.
+
+20
+00:00:47.660 --> 00:00:49.370
+Ask how many letters you can
+
+21
+00:00:49.370 --> 00:00:51.620
+change to go from one
+string to another.
+
+22
+00:00:51.620 --> 00:00:53.120
+To do this, you will learn to
+
+23
+00:00:53.120 --> 00:00:55.115
+measure minimum edit distance.
+
+24
+00:00:55.115 --> 00:00:56.840
+You will implement a really
+
+25
+00:00:56.840 --> 00:00:58.730
+interesting algorithmic
+approach for
+
+26
+00:00:58.730 --> 00:01:00.620
+solving the minimum
+edit distance
+
+27
+00:01:00.620 --> 00:01:02.870
+called dynamic programming.
+
+28
+00:01:02.870 --> 00:01:04.520
+At the end of the lecture,
+
+29
+00:01:04.520 --> 00:01:06.590
+you'll demonstrate your
+new skills and put
+
+30
+00:01:06.590 --> 00:01:09.860
+all these techniques to work
+in this week's assignments.
+
+31
+00:01:09.860 --> 00:01:12.110
+Exciting content.
+
+32
+00:01:12.110 --> 00:01:14.390
+I'm looking forward to
+tell you everything
+
+33
+00:01:14.390 --> 00:01:17.120
+about how you will be
+building your autocorrect.
+
+34
+00:01:17.120 --> 00:01:19.490
+One very important
+concept is that
+
+35
+00:01:19.490 --> 00:01:20.810
+the autocorrect you will be
+
+36
+00:01:20.810 --> 00:01:23.390
+building uses
+dynamic programming.
+
+37
+00:01:23.390 --> 00:01:26.615
+This comes up again and again
+in technical interviews.
+
+38
+00:01:26.615 --> 00:01:28.880
+But first, let's
+get started with
+
+39
+00:01:28.880 --> 00:01:32.610
+an overview of autocorrect
+in the next video.

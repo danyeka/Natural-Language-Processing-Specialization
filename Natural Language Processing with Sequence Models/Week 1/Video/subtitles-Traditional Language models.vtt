@@ -1,0 +1,232 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.389
+Welcome back.
+
+2
+00:00:02.389 --> 00:00:05.808
+You have previously learned
+about N-gram Language Models.
+
+3
+00:00:05.808 --> 00:00:10.974
+And specifically we used it to compute
+the probability of a sequence of words.
+
+4
+00:00:10.974 --> 00:00:14.894
+Now, in this video, you're going to
+identify the limitations of that model.
+
+5
+00:00:14.894 --> 00:00:18.072
+And You will see that it requires
+a lot of space in memory.
+
+6
+00:00:18.072 --> 00:00:20.998
+So with that said, let's dive in.
+
+7
+00:00:20.998 --> 00:00:26.919
+Suppose you have to translate the sentence
+[FOREIGN] from French to English.
+
+8
+00:00:26.919 --> 00:00:33.224
+If you had several similar sentence
+candidates like I saw the game of soccer,
+
+9
+00:00:33.224 --> 00:00:39.338
+I saw the soccer game, I saw the soccer
+match, and saw I the game of soccer.
+
+10
+00:00:39.338 --> 00:00:44.331
+For an accurate translation, you could
+compute the probabilities of each sentence
+
+11
+00:00:44.331 --> 00:00:47.003
+using a language model like the N-gram,
+and
+
+12
+00:00:47.003 --> 00:00:51.169
+end up selecting the sequence of
+words with the highest probability.
+
+13
+00:00:51.169 --> 00:00:55.378
+In this case,
+that would be I saw the soccer game.
+
+14
+00:00:55.378 --> 00:00:59.631
+You may have encountered the N-gram
+model before, but let's go ahead and
+
+15
+00:00:59.631 --> 00:01:00.791
+review it quickly.
+
+16
+00:01:00.791 --> 00:01:04.358
+Recall that in order to build
+an N-gram language model,
+
+17
+00:01:04.358 --> 00:01:07.491
+you have to compute
+conditional probabilities.
+
+18
+00:01:07.491 --> 00:01:08.439
+For bigrams,
+
+19
+00:01:08.439 --> 00:01:13.345
+you have to compute conditional
+probabilities using one previous word.
+
+20
+00:01:13.345 --> 00:01:17.446
+For trigrams, you could compute
+it using two previous words.
+
+21
+00:01:17.446 --> 00:01:19.463
+So for an N-gram model,
+
+22
+00:01:19.463 --> 00:01:24.273
+you use conditional probabilities
+using N minus 1 words.
+
+23
+00:01:24.273 --> 00:01:25.099
+At the end,
+
+24
+00:01:25.099 --> 00:01:30.814
+you'll get the probability of a whole
+sentence by multiplying the probabilities
+
+25
+00:01:30.814 --> 00:01:35.311
+of each word in the sentence using
+its previous N minus 1 words.
+
+26
+00:01:35.311 --> 00:01:39.974
+So in the case of a Bigram to get
+the probability of a three word sentence,
+
+27
+00:01:39.974 --> 00:01:44.560
+you would multiply the probability
+of the first word by the probability
+
+28
+00:01:44.560 --> 00:01:47.388
+of the second word given the first word,
+and
+
+29
+00:01:47.388 --> 00:01:51.456
+then by the probability of the third
+word given the second one.
+
+30
+00:01:51.456 --> 00:01:53.774
+These models have many limitations.
+
+31
+00:01:53.774 --> 00:01:58.622
+One of them is that in order to capture
+dependencies between words far away from
+
+32
+00:01:58.622 --> 00:02:01.633
+each other,
+your model would have to account for
+
+33
+00:02:01.633 --> 00:02:05.463
+conditional probabilities in
+very long sequences of words.
+
+34
+00:02:05.463 --> 00:02:11.147
+This could be difficult to estimate
+without correspondingly large corporal.
+
+35
+00:02:11.147 --> 00:02:16.128
+Even in the case of large corporal your
+model would need a lot of space and
+
+36
+00:02:16.128 --> 00:02:20.790
+RAM to store the probabilities of
+all the possible combinations.
+
+37
+00:02:20.790 --> 00:02:24.128
+You can see how quickly this
+approach becomes impractical.
+
+38
+00:02:24.128 --> 00:02:28.227
+Up next, I'll introduce you to
+recurrent neural networks and
+
+39
+00:02:28.227 --> 00:02:33.564
+gated recurrent units, two models that
+are much more efficient than N-grams for
+
+40
+00:02:33.564 --> 00:02:36.056
+NLP tasks like machine translation.
+
+41
+00:02:36.056 --> 00:02:40.864
+You have now seen that traditional N-gram
+language models require a lot of space and
+
+42
+00:02:40.864 --> 00:02:41.821
+a lot of memory.
+
+43
+00:02:41.821 --> 00:02:45.644
+So if a user is downloading an app,
+for example, on their phone,
+
+44
+00:02:45.644 --> 00:02:48.297
+then they might not have
+enough space there.
+
+45
+00:02:48.297 --> 00:02:51.804
+And as a result, the developers
+might not want to use traditional
+
+46
+00:02:51.804 --> 00:02:56.205
+N-gram Language Models there, and they
+might want to use a different approach,
+
+47
+00:02:56.205 --> 00:02:58.715
+which is known as
+Recurrent Neural Networks.
+
+48
+00:02:58.715 --> 00:03:03.490
+In this video, I'll introduce you to
+RNNs or Recurrent Neural Networks.

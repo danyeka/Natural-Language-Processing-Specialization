@@ -1,0 +1,242 @@
+WEBVTT
+
+1
+00:00:00.240 --> 00:00:04.440
+This is the last technique I will show
+you to evaluate your NMT systems.
+
+2
+00:00:04.440 --> 00:00:05.557
+It is very simple and
+
+3
+00:00:05.557 --> 00:00:10.378
+works surprisingly well when compared to
+the other techniques, let's get started.
+
+4
+00:00:10.378 --> 00:00:14.473
+>> Earlier, you encountered random
+sampling to choose a probable token and
+
+5
+00:00:14.473 --> 00:00:17.540
+the issues with that decoding method.
+
+6
+00:00:17.540 --> 00:00:21.600
+But if you go a little further with that,
+say by generating 30 samples and
+
+7
+00:00:21.600 --> 00:00:24.440
+comparing them all against one another.
+
+8
+00:00:24.440 --> 00:00:27.740
+You'll see quite a bit of
+improvements in your decoding.
+
+9
+00:00:27.740 --> 00:00:31.491
+You'll have to compare multiple
+candidate translations for
+
+10
+00:00:31.491 --> 00:00:35.035
+the minimum bayes risk decoding method,
+MBR for shorts.
+
+11
+00:00:35.035 --> 00:00:38.440
+Implementing MBR is
+pretty straightforward.
+
+12
+00:00:38.440 --> 00:00:43.550
+Begin by generating several random
+samples, then compare each sample
+
+13
+00:00:43.550 --> 00:00:48.740
+against each other using a similarity
+score or a loss function.
+
+14
+00:00:48.740 --> 00:00:51.761
+ROUGE would be a good choice that
+you may recall from a bit earlier.
+
+15
+00:00:53.440 --> 00:00:57.165
+Finally, choose the sample with
+the highest average similarity or
+
+16
+00:00:57.165 --> 00:00:58.840
+the lowest loss.
+
+17
+00:00:58.840 --> 00:01:03.047
+The translation that you get using this
+method is the closest to all candidate
+
+18
+00:01:03.047 --> 00:01:04.540
+translations.
+
+19
+00:01:04.540 --> 00:01:07.698
+This process can be viewed
+as some authors suggest,
+
+20
+00:01:07.698 --> 00:01:12.440
+as finding a consensus between
+all candidate translations.
+
+21
+00:01:12.440 --> 00:01:15.563
+If you decide to use ROUGE score
+as a similarity metric for
+
+22
+00:01:15.563 --> 00:01:18.362
+comparing every pair of
+candidate translations,
+
+23
+00:01:18.362 --> 00:01:21.761
+you would have MBR summarized
+in the formula presented here.
+
+24
+00:01:23.140 --> 00:01:28.140
+Your goal is to find the candidate
+translation E that maximizes
+
+25
+00:01:28.140 --> 00:01:33.440
+the average ROUGE score with
+every other candidates E prime.
+
+26
+00:01:33.440 --> 00:01:36.640
+So MBR is relatively easy to implement.
+
+27
+00:01:36.640 --> 00:01:39.475
+You need to have multiple
+candidate translations and
+
+28
+00:01:39.475 --> 00:01:41.640
+select a way to compare them.
+
+29
+00:01:41.640 --> 00:01:43.251
+But for the sake of clarity,
+
+30
+00:01:43.251 --> 00:01:46.756
+let's go through an implementation
+process in more detail.
+
+31
+00:01:46.756 --> 00:01:48.005
+Here are the steps for
+
+32
+00:01:48.005 --> 00:01:53.040
+implementing MVR with ROUGE on a small
+set of four candidate translations.
+
+33
+00:01:53.040 --> 00:01:58.772
+First, calculate the ROUGE score
+between the first C subscript 1 and
+
+34
+00:01:58.772 --> 00:02:03.060
+the second C subscript 2
+candidate translations.
+
+35
+00:02:03.060 --> 00:02:06.714
+For the 1st and 3rd and
+for the 1st and 4th,
+
+36
+00:02:06.714 --> 00:02:13.040
+then compute the average R subscript
+1 using those three rules scores.
+
+37
+00:02:13.040 --> 00:02:14.749
+Then you repeat this process for
+
+38
+00:02:14.749 --> 00:02:20.040
+the other three candidates in your sets to
+average ROUGE scores for each one of them.
+
+39
+00:02:20.040 --> 00:02:24.502
+Finally, you select the candidate with
+the highest average ROUGE score and
+
+40
+00:02:24.502 --> 00:02:25.686
+that's it for MBR,
+
+41
+00:02:25.686 --> 00:02:30.652
+you'll be implementing this method in the
+assignment along with a greedy decoder.
+
+42
+00:02:30.652 --> 00:02:34.459
+In summary, MBR takes several
+translation candidates and
+
+43
+00:02:34.459 --> 00:02:37.340
+compares them against each other.
+
+44
+00:02:37.340 --> 00:02:41.147
+Then chooses the one with the highest
+average similarity as the beam
+
+45
+00:02:41.147 --> 00:02:42.340
+search case.
+
+46
+00:02:42.340 --> 00:02:46.283
+This method can give you a more
+contextually accurate translation than
+
+47
+00:02:46.283 --> 00:02:48.840
+random sampling and greedy decoding.
+
+48
+00:02:48.840 --> 00:02:53.291
+>> Congratulations on finishing this week,
+you now know how to implement in your own
+
+49
+00:02:53.291 --> 00:02:57.440
+machine translation system and
+you also know how to evaluate it.
+
+50
+00:02:57.440 --> 00:03:01.379
+Next week, I'll talk about one of
+the states of the arts models known as
+
+51
+00:03:01.379 --> 00:03:05.660
+the transformer, which also makes use
+of an encoder decoder architecture.

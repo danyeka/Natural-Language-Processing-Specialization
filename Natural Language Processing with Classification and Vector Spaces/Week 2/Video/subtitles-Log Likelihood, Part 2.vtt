@@ -1,0 +1,147 @@
+WEBVTT
+
+1
+00:00:00.340 --> 00:00:04.450
+We will continue from the previous
+video and show you how to do inference.
+
+2
+00:00:04.450 --> 00:00:08.740
+Given your lambda dictionary
+the task is pretty straightforward.
+
+3
+00:00:08.740 --> 00:00:12.520
+You have done most of the work to
+arrive at your log likelihood already.
+
+4
+00:00:12.520 --> 00:00:14.240
+Now let's wrap up.
+
+5
+00:00:14.240 --> 00:00:18.546
+Now you can calculate the log likelihood
+of the tweet as the sum of the lambdas
+
+6
+00:00:18.546 --> 00:00:20.240
+from each word in the tweet.
+
+7
+00:00:20.240 --> 00:00:24.283
+So for word I you add 0,
+for am you add 0, for
+
+8
+00:00:24.283 --> 00:00:28.968
+word, happy you had 2.2,
+for words because I and
+
+9
+00:00:28.968 --> 00:00:34.040
+am you add 0 and for
+word learning you add 1.1.
+
+10
+00:00:34.040 --> 00:00:37.761
+This sum is 3.3 and
+this value is higher than 0.
+
+11
+00:00:40.240 --> 00:00:45.185
+Remember how previously you saw
+that the tweet was positive if
+
+12
+00:00:45.185 --> 00:00:50.050
+the product was bigger than 1
+with the log of 1 equal to 0.
+
+13
+00:00:50.050 --> 00:00:53.888
+The positive values indicate
+that the tweet is positive,
+
+14
+00:00:53.888 --> 00:00:58.540
+a value less than 0 would indicate
+that the tweet is negative.
+
+15
+00:00:58.540 --> 00:01:02.123
+The log likelihood for
+the suite is 3.3 and
+
+16
+00:01:02.123 --> 00:01:07.340
+since 3.3 is bigger than 0,
+the tweet is positive.
+
+17
+00:01:07.340 --> 00:01:11.480
+Notice that this score is based
+entirely on the words happy and
+
+18
+00:01:11.480 --> 00:01:15.440
+learning both of which
+carry a positive sentiment.
+
+19
+00:01:15.440 --> 00:01:19.840
+All the other words were neutral and
+didn't contribute to the score.
+
+20
+00:01:19.840 --> 00:01:22.740
+See how much influence
+the power words have.
+
+21
+00:01:22.740 --> 00:01:24.240
+Let's do a quick recap.
+
+22
+00:01:24.240 --> 00:01:28.617
+You used your new skills to predict
+the sentiment of a tweet by summing all
+
+23
+00:01:28.617 --> 00:01:32.340
+the lambdas for
+each word that appeared in the tweet.
+
+24
+00:01:32.340 --> 00:01:36.073
+This score is called the log
+likelihood for the log likelihood,
+
+25
+00:01:36.073 --> 00:01:39.440
+the decision threshold
+is zero instead of one.
+
+26
+00:01:39.440 --> 00:01:44.831
+Positive tweets will have a positive
+log likelihood above 0, and
+
+27
+00:01:44.831 --> 00:01:50.895
+negative tweets will have a negative
+log likelihood below 0, well done.
+
+28
+00:01:50.895 --> 00:01:55.607
+Congratulations now that you have a good
+understanding of how to compute the log
+
+29
+00:01:55.607 --> 00:01:57.787
+likelihood and how to do inference,
+
+30
+00:01:57.787 --> 00:02:01.251
+I will proceed to show you how
+to train a naive based model.

@@ -1,0 +1,383 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.715
+Hello. You will now learn
+
+2
+00:00:02.715 --> 00:00:04.860
+about two ways that will allow
+
+3
+00:00:04.860 --> 00:00:07.275
+you to construct a sentence.
+
+4
+00:00:07.275 --> 00:00:09.030
+The first approach is known as
+
+5
+00:00:09.030 --> 00:00:11.430
+greedy decoding and
+the second approach
+
+6
+00:00:11.430 --> 00:00:13.305
+is known as random sampling.
+
+7
+00:00:13.305 --> 00:00:16.890
+You'll also see the pros and
+the cons of each method.
+
+8
+00:00:16.890 --> 00:00:18.900
+For example, when
+choosing the word with
+
+9
+00:00:18.900 --> 00:00:21.210
+the highest probability
+at every time step,
+
+10
+00:00:21.210 --> 00:00:24.435
+that does not necessarily
+generate the best sequence.
+
+11
+00:00:24.435 --> 00:00:26.160
+With that said, let's dive
+
+12
+00:00:26.160 --> 00:00:28.200
+in and explore
+these two methods.
+
+13
+00:00:28.200 --> 00:00:30.570
+By now you have reached
+the final parts of
+
+14
+00:00:30.570 --> 00:00:32.925
+this week's lectures.
+That's awesome.
+
+15
+00:00:32.925 --> 00:00:35.940
+I'll show you a few methods
+for sampling and decoding,
+
+16
+00:00:35.940 --> 00:00:38.040
+as well as a discussion of
+
+17
+00:00:38.040 --> 00:00:39.655
+an important type of parameter
+
+18
+00:00:39.655 --> 00:00:41.890
+in sampling called temperature.
+
+19
+00:00:41.890 --> 00:00:44.750
+First, a quick reminder on
+
+20
+00:00:44.750 --> 00:00:47.540
+how a seq2seq model
+predicts words.
+
+21
+00:00:47.540 --> 00:00:50.270
+The output of the
+decoder is produced from
+
+22
+00:00:50.270 --> 00:00:54.520
+a dense layer and a softmax
+or log softmax operation.
+
+23
+00:00:54.520 --> 00:00:57.000
+The output at each step then is
+
+24
+00:00:57.000 --> 00:00:59.360
+the probability
+distribution over
+
+25
+00:00:59.360 --> 00:01:02.495
+all the words and symbols
+in the target vocabulary.
+
+26
+00:01:02.495 --> 00:01:05.960
+The final output of the
+model depends on how
+
+27
+00:01:05.960 --> 00:01:07.220
+you choose the words using
+
+28
+00:01:07.220 --> 00:01:10.325
+these probability
+distributions at each step.
+
+29
+00:01:10.325 --> 00:01:15.020
+Greedy decoding is the
+simplest way to decode
+
+30
+00:01:15.020 --> 00:01:16.970
+the model's predictions
+as it selects
+
+31
+00:01:16.970 --> 00:01:19.675
+the most probable
+word at every step.
+
+32
+00:01:19.675 --> 00:01:23.715
+However, this approach
+has limitations.
+
+33
+00:01:23.715 --> 00:01:25.790
+When you consider the
+highest probability
+
+34
+00:01:25.790 --> 00:01:26.960
+for each prediction
+
+35
+00:01:26.960 --> 00:01:28.580
+and concatenate all predicted
+
+36
+00:01:28.580 --> 00:01:30.605
+tokens for the output sequence.
+
+37
+00:01:30.605 --> 00:01:32.435
+As the greedy decoder does,
+
+38
+00:01:32.435 --> 00:01:34.580
+you can end up with
+a situation where
+
+39
+00:01:34.580 --> 00:01:36.695
+the output instead of,
+
+40
+00:01:36.695 --> 00:01:39.620
+"I am hungry," gives you "I am,
+
+41
+00:01:39.620 --> 00:01:42.115
+am, am" and so forth.
+
+42
+00:01:42.115 --> 00:01:44.745
+You can see how this
+could be a problem,
+
+43
+00:01:44.745 --> 00:01:46.275
+but not in all cases.
+
+44
+00:01:46.275 --> 00:01:48.830
+For shorter sequences,
+it's going to be fine.
+
+45
+00:01:48.830 --> 00:01:51.770
+But if you have many
+other words to consider,
+
+46
+00:01:51.770 --> 00:01:53.825
+then knowing what's
+coming up next
+
+47
+00:01:53.825 --> 00:01:56.815
+might help you better
+predict the next sequence.
+
+48
+00:01:56.815 --> 00:01:59.910
+Another option is known
+as random sampling.
+
+49
+00:01:59.910 --> 00:02:02.750
+What random sampling
+does is it provides
+
+50
+00:02:02.750 --> 00:02:04.580
+probabilities for each word and
+
+51
+00:02:04.580 --> 00:02:07.205
+sample accordingly
+for the next outputs.
+
+52
+00:02:07.205 --> 00:02:09.410
+One of the problems with this is
+
+53
+00:02:09.410 --> 00:02:11.915
+that it could be a
+little bit too random.
+
+54
+00:02:11.915 --> 00:02:15.140
+A solution for this is to
+assign more weight to the words
+
+55
+00:02:15.140 --> 00:02:18.410
+with higher probabilities and
+less weight to the others.
+
+56
+00:02:18.410 --> 00:02:19.910
+You will see a method for doing
+
+57
+00:02:19.910 --> 00:02:21.735
+this in just a few moment.
+
+58
+00:02:21.735 --> 00:02:25.175
+In sampling, temperature
+is a parameter you can
+
+59
+00:02:25.175 --> 00:02:26.240
+adjust to allow for
+
+60
+00:02:26.240 --> 00:02:28.795
+more or less randomness
+in your predictions.
+
+61
+00:02:28.795 --> 00:02:31.465
+It's measured on a scale of 0-1,
+
+62
+00:02:31.465 --> 00:02:34.595
+indicating low to
+high randomness.
+
+63
+00:02:34.595 --> 00:02:38.090
+Let's say you need your
+model to make careful,
+
+64
+00:02:38.090 --> 00:02:41.180
+safe decisions about
+what to output.
+
+65
+00:02:41.180 --> 00:02:43.400
+Then set you're parameter lower
+
+66
+00:02:43.400 --> 00:02:45.710
+and get the prediction
+equivalent of a very
+
+67
+00:02:45.710 --> 00:02:47.630
+confident but rather a boring
+
+68
+00:02:47.630 --> 00:02:50.770
+person seated next to
+you at a dinner table.
+
+69
+00:02:50.770 --> 00:02:54.425
+If you feel like taking
+more of a gamble,
+
+70
+00:02:54.425 --> 00:02:56.555
+set your temperature
+a bit higher.
+
+71
+00:02:56.555 --> 00:03:00.755
+This has the effect of making
+your network more excited.
+
+72
+00:03:00.755 --> 00:03:03.575
+You may get some pretty
+fun predictions.
+
+73
+00:03:03.575 --> 00:03:05.730
+On the other hand, there will be
+
+74
+00:03:05.730 --> 00:03:08.235
+probably a lot more mistakes.
+
+75
+00:03:08.235 --> 00:03:09.950
+You have seen in this video,
+
+76
+00:03:09.950 --> 00:03:12.560
+methods for sampling
+and decoding that will
+
+77
+00:03:12.560 --> 00:03:15.545
+allow you to construct
+sentences using your model.
+
+78
+00:03:15.545 --> 00:03:17.720
+However, these methods don't
+
+79
+00:03:17.720 --> 00:03:20.285
+always produce the most
+convincing outputs.
+
+80
+00:03:20.285 --> 00:03:24.380
+Instead, you'll often get a
+very random set of words.
+
+81
+00:03:24.380 --> 00:03:25.565
+In the next videos,
+
+82
+00:03:25.565 --> 00:03:27.530
+you'll see two methods
+for sampling and
+
+83
+00:03:27.530 --> 00:03:31.230
+decoding that tend to
+produce better results.

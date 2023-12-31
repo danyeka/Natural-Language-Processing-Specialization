@@ -1,0 +1,262 @@
+WEBVTT
+
+1
+00:00:00.540 --> 00:00:03.994
+The T5 model could be used
+on several NLP tasks and
+
+2
+00:00:03.994 --> 00:00:07.840
+it also uses similar
+training strategy to birds.
+
+3
+00:00:07.840 --> 00:00:12.840
+Concretely, it makes use of transfer
+learning and masked language modeling.
+
+4
+00:00:12.840 --> 00:00:16.428
+The T5 model also uses
+transformers when training.
+
+5
+00:00:16.428 --> 00:00:21.007
+So let's take a look at how you can use
+this model in your own applications.
+
+6
+00:00:21.007 --> 00:00:25.570
+>> So you're going to understand how T5
+works, then you're going to recognize
+
+7
+00:00:25.570 --> 00:00:31.040
+the different types of attention used and
+see an overview of the model architecture.
+
+8
+00:00:31.040 --> 00:00:35.619
+So T5 transformers known as
+the text to text transformer and
+
+9
+00:00:35.619 --> 00:00:39.477
+you can use it in classification,
+you can use it for
+
+10
+00:00:39.477 --> 00:00:42.735
+question answering to answer a question.
+
+11
+00:00:42.735 --> 00:00:47.107
+You can use it for machine translation,
+you can use it for summarization and
+
+12
+00:00:47.107 --> 00:00:48.890
+you can use it for sentiments.
+
+13
+00:00:48.890 --> 00:00:52.034
+And there are other applications
+that you can use T5 for, but
+
+14
+00:00:52.034 --> 00:00:53.940
+we'll focus on this for now.
+
+15
+00:00:53.940 --> 00:00:58.740
+So the model architecture and the way the
+pre training is done first of all is you
+
+16
+00:00:58.740 --> 00:01:03.105
+have an original text, something like
+this where you have thank you for
+
+17
+00:01:03.105 --> 00:01:05.383
+inviting me to your party last week.
+
+18
+00:01:05.383 --> 00:01:08.819
+So you mask the certain words,
+so for inviting me last and
+
+19
+00:01:08.819 --> 00:01:12.911
+then you replace it with these
+tokens like brackets X, brackets Y.
+
+20
+00:01:12.911 --> 00:01:16.435
+So brackets X corresponding to for
+inviting and
+
+21
+00:01:16.435 --> 00:01:19.840
+brackets why corresponding to last.
+
+22
+00:01:19.840 --> 00:01:24.403
+And your targets are going to be
+brackets X for inviting brackets Y last.
+
+23
+00:01:24.403 --> 00:01:29.550
+And these tokens or these brackets like
+they keep going in increments order,
+
+24
+00:01:29.550 --> 00:01:34.311
+so then it's bracket Z, then maybe
+brackets A brackets B and so forth.
+
+25
+00:01:34.311 --> 00:01:39.087
+So each brackets corresponds to a certain
+targets, the model architecture and
+
+26
+00:01:39.087 --> 00:01:44.079
+a different transformer architectural
+variants that we're going to consider for
+
+27
+00:01:44.079 --> 00:01:46.040
+the attention party are.
+
+28
+00:01:46.040 --> 00:01:50.944
+So we start with the basic
+encoder decoder representation.
+
+29
+00:01:50.944 --> 00:01:56.554
+So you can see over here you have fully
+visible attention in the encoder and
+
+30
+00:01:56.554 --> 00:01:59.631
+then causal attention in the decoder and
+
+31
+00:01:59.631 --> 00:02:05.631
+then you have the general encoder decoder
+representation just as a notation.
+
+32
+00:02:05.631 --> 00:02:09.284
+So light gray lines correspond
+to causal masking and
+
+33
+00:02:09.284 --> 00:02:14.240
+dark gray lines correspond to
+the fully visible masking.
+
+34
+00:02:14.240 --> 00:02:19.110
+So on the left, as I said again,
+it's the standard encoder decoder
+
+35
+00:02:19.110 --> 00:02:24.068
+architecture in the middle over here
+what we have we have the language
+
+36
+00:02:24.068 --> 00:02:28.511
+model which consists of a single
+transformer layers stack and
+
+37
+00:02:28.511 --> 00:02:33.440
+it's being fed the concatenation
+of the input and the target.
+
+38
+00:02:33.440 --> 00:02:37.684
+So it uses causal masking throughout
+as you can see because they're
+
+39
+00:02:37.684 --> 00:02:42.340
+all great lines and you have X1
+going inside over here, get a X2.
+
+40
+00:02:42.340 --> 00:02:46.340
+X two goes into the model X three and
+so forth.
+
+41
+00:02:46.340 --> 00:02:50.510
+Now over here to the right we
+have prefix language model which
+
+42
+00:02:50.510 --> 00:02:55.500
+corresponds to allowing fully visible
+masking over the inputs as you can
+
+43
+00:02:55.500 --> 00:02:59.861
+see here in the dark arrows and
+then causal masking in the rest.
+
+44
+00:03:01.340 --> 00:03:06.340
+So as you can see over here
+it's doing causal masking.
+
+45
+00:03:06.340 --> 00:03:10.373
+So the model architecture which
+uses encoder decoder stack,
+
+46
+00:03:10.373 --> 00:03:13.540
+it has 12 transformer blocks each.
+
+47
+00:03:13.540 --> 00:03:19.430
+So you can think of it as a dozen X and
+then 220 million parameters.
+
+48
+00:03:19.430 --> 00:03:24.078
+So in summary, you've seen prefix language
+model attention, you've seen the model
+
+49
+00:03:24.078 --> 00:03:28.600
+architecture for T5 and you've seen how
+the pre training is done similar to birds,
+
+50
+00:03:28.600 --> 00:03:32.040
+but we just use masked
+language modeling here.
+
+51
+00:03:32.040 --> 00:03:35.189
+>> You now have an overview
+of the transformer model,
+
+52
+00:03:35.189 --> 00:03:40.440
+you know how to train it and you've seen
+that you can use it on multiple tasks.
+
+53
+00:03:40.440 --> 00:03:45.640
+In the next video, I'll be talking about
+a few training strategies for this model.
+
+54
+00:03:45.640 --> 00:03:46.361
+See you there.

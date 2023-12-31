@@ -1,0 +1,274 @@
+WEBVTT
+
+1
+00:00:00.004 --> 00:00:03.974
+First, you'll revisit the general
+structure of neural networks and
+
+2
+00:00:03.974 --> 00:00:05.598
+how they make predictions.
+
+3
+00:00:05.598 --> 00:00:11.173
+And I'll show you the structure you'll
+be using to perform sentiment analysis.
+
+4
+00:00:11.173 --> 00:00:15.912
+Neural networks are computational
+structures that in a very simplistic
+
+5
+00:00:15.912 --> 00:00:20.271
+way attempt to mimic the way
+the human brain recognizes patterns.
+
+6
+00:00:20.271 --> 00:00:24.765
+They're used in many applications
+of artificial intelligence and
+
+7
+00:00:24.765 --> 00:00:29.743
+have proven very effective on a variety
+of tasks, including those in NLP.
+
+8
+00:00:29.743 --> 00:00:35.534
+Have a look at this example of a simple
+neural network with n input parameters,
+
+9
+00:00:35.534 --> 00:00:38.884
+two hidden layers, and three output units.
+
+10
+00:00:38.884 --> 00:00:45.006
+As input this neural network receives
+a data representation x with n features.
+
+11
+00:00:45.006 --> 00:00:48.250
+Then performs computations
+in its hidden layers.
+
+12
+00:00:48.250 --> 00:00:53.417
+And finally it delivers an output
+which in this case has size 3.
+
+13
+00:00:53.417 --> 00:00:56.407
+Let's take a look at how
+it works mathematically.
+
+14
+00:00:56.407 --> 00:01:01.403
+I'll denote every activation
+layer as a superscript i,
+
+15
+00:01:01.403 --> 00:01:04.013
+where i is the layers number.
+
+16
+00:01:04.013 --> 00:01:09.244
+First, define a superscript
+0 to be the input vector X.
+
+17
+00:01:09.244 --> 00:01:14.523
+To get the values for each layer's
+activations a, you have to compute
+
+18
+00:01:14.523 --> 00:01:20.159
+the value for z superscript i, which
+depends on both the weights matrix for
+
+19
+00:01:20.159 --> 00:01:24.562
+that layer and
+the activations a from the previous layer.
+
+20
+00:01:24.562 --> 00:01:26.893
+Finally, you get the values for
+
+21
+00:01:26.893 --> 00:01:31.654
+each layer by applying an activation
+function g to the value of z.
+
+22
+00:01:31.654 --> 00:01:35.915
+As you can see, this computation moves
+forward from the left of the neural
+
+23
+00:01:35.915 --> 00:01:37.770
+network towards the right, and
+
+24
+00:01:37.770 --> 00:01:41.154
+that's why this process is
+called forward propagation.
+
+25
+00:01:41.154 --> 00:01:42.811
+For this module's assignment,
+
+26
+00:01:42.811 --> 00:01:46.131
+you're going to implement a neural
+network that looks like this.
+
+27
+00:01:46.131 --> 00:01:52.233
+As input, it will receive a simple
+vector representation of your tweets.
+
+28
+00:01:52.233 --> 00:01:56.852
+It will have an embedding layer that
+will transform your representation into
+
+29
+00:01:56.852 --> 00:01:58.640
+an optimal one for this task.
+
+30
+00:01:58.640 --> 00:02:03.937
+And finally, it will have a hidden layer
+with a ReLU activation function and
+
+31
+00:02:03.937 --> 00:02:09.484
+an output layer with a softmax function
+that will give you the probabilities for
+
+32
+00:02:09.484 --> 00:02:13.318
+whether a tweet has a positive or
+negative sentiment.
+
+33
+00:02:13.318 --> 00:02:18.232
+This neural network will allow you to
+predict sentiments for complex tweets,
+
+34
+00:02:18.232 --> 00:02:22.327
+such as a tweet like this one that
+says this movie was almost good,
+
+35
+00:02:22.327 --> 00:02:27.241
+that you wouldn't have been able to
+classify correctly using simpler methods
+
+36
+00:02:27.241 --> 00:02:31.349
+such as naive Bayes because they
+missed important information.
+
+37
+00:02:31.349 --> 00:02:36.308
+The initial representation X that you
+will use for this neural network will be
+
+38
+00:02:36.308 --> 00:02:41.279
+a vector of integers similar to your
+previous work with sentiment analysis.
+
+39
+00:02:41.279 --> 00:02:46.003
+You'll first need to list all of your
+words from your vocabulary, and next, for
+
+40
+00:02:46.003 --> 00:02:50.047
+this application, you'll assign
+an integer index to each of them.
+
+41
+00:02:50.047 --> 00:02:54.987
+Then for each word in your tweet,
+add the index from your vocabulary to
+
+42
+00:02:54.987 --> 00:02:58.516
+construct a vector like this one for
+every tweet.
+
+43
+00:02:58.516 --> 00:03:02.569
+After you have all the vector
+representations of your tweets,
+
+44
+00:03:02.569 --> 00:03:05.934
+you will need to identify
+the maximum vector size and
+
+45
+00:03:05.934 --> 00:03:09.084
+fill every vector with
+zeros to match that size.
+
+46
+00:03:09.084 --> 00:03:11.375
+This process is called padding and
+
+47
+00:03:11.375 --> 00:03:16.747
+assures that all of your vectors have
+the same size, even if your tweets don't.
+
+48
+00:03:16.747 --> 00:03:18.432
+Let's do a quick recap.
+
+49
+00:03:18.432 --> 00:03:23.006
+At this point you're familiar with the
+general structure of the neural network
+
+50
+00:03:23.006 --> 00:03:25.804
+that you'll be using to
+classify sentiments for
+
+51
+00:03:25.804 --> 00:03:27.726
+a set of complex nuanced tweets.
+
+52
+00:03:27.726 --> 00:03:32.101
+You also reviewed the integer
+representation that's going to be used in
+
+53
+00:03:32.101 --> 00:03:32.971
+this module.
+
+54
+00:03:32.971 --> 00:03:33.909
+In this video,
+
+55
+00:03:33.909 --> 00:03:38.906
+you have seen an overview of how to use
+sentiment analysis using neural networks.
+
+56
+00:03:38.906 --> 00:03:42.903
+You have seen how to use padding and
+how to represent a tweet.
+
+57
+00:03:42.903 --> 00:03:46.290
+In the next video, we will dive
+deeper into sentiments analysis.

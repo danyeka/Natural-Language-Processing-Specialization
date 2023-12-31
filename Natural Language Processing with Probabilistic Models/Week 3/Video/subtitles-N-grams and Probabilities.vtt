@@ -1,0 +1,753 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.370
+Welcome. This week I
+
+2
+00:00:02.370 --> 00:00:04.545
+will teach you N-gram
+language models.
+
+3
+00:00:04.545 --> 00:00:05.910
+This will allow you to write
+
+4
+00:00:05.910 --> 00:00:09.115
+your first program that
+generates texts on its own.
+
+5
+00:00:09.115 --> 00:00:12.680
+First, I'll go over
+what an N-gram is.
+
+6
+00:00:12.680 --> 00:00:15.780
+Then you'll estimate the
+conditional probability
+
+7
+00:00:15.780 --> 00:00:17.940
+of an N-gram from
+your text corpus.
+
+8
+00:00:17.940 --> 00:00:19.770
+Now what is an N-gram?
+
+9
+00:00:19.770 --> 00:00:23.925
+Simply put, an N-gram
+is a sequence of words.
+
+10
+00:00:23.925 --> 00:00:26.460
+Note, that it's more
+than just a set of
+
+11
+00:00:26.460 --> 00:00:29.110
+words because the
+word order matters.
+
+12
+00:00:29.110 --> 00:00:32.510
+N-grams can also be
+characters or other elements.
+
+13
+00:00:32.510 --> 00:00:36.295
+But for now, you'll be focusing
+on sequences of words.
+
+14
+00:00:36.295 --> 00:00:38.255
+When you process the corpus,
+
+15
+00:00:38.255 --> 00:00:40.490
+the punctuation is
+treated like words.
+
+16
+00:00:40.490 --> 00:00:42.724
+But all other special characters
+
+17
+00:00:42.724 --> 00:00:45.145
+such as codes will be removed.
+
+18
+00:00:45.145 --> 00:00:46.980
+Let's look at an example.
+
+19
+00:00:46.980 --> 00:00:49.170
+I am happy because
+I am learning.
+
+20
+00:00:49.170 --> 00:00:51.195
+Unigrams for this corpus,
+
+21
+00:00:51.195 --> 00:00:53.495
+are a set of all
+unique single words
+
+22
+00:00:53.495 --> 00:00:55.000
+appearing in the text.
+
+23
+00:00:55.000 --> 00:00:56.400
+For example, the word,
+
+24
+00:00:56.400 --> 00:00:58.830
+I, appears in the corpus twice.
+
+25
+00:00:58.830 --> 00:01:02.510
+But is included only once
+in the unigram sets.
+
+26
+00:01:02.510 --> 00:01:05.460
+The prefix uni stands for one.
+
+27
+00:01:05.460 --> 00:01:07.530
+Bigrams are all sets of
+
+28
+00:01:07.530 --> 00:01:10.585
+two words that appear
+side-by-side in the corpus.
+
+29
+00:01:10.585 --> 00:01:13.795
+Again, the bigram, I am,
+
+30
+00:01:13.795 --> 00:01:15.635
+can be found twice in the texts,
+
+31
+00:01:15.635 --> 00:01:18.620
+but it is only included
+once in the bigram sets.
+
+32
+00:01:18.620 --> 00:01:21.430
+The prefix bi means two.
+
+33
+00:01:21.430 --> 00:01:24.260
+Also notice that the
+words must appear next
+
+34
+00:01:24.260 --> 00:01:27.170
+to each other to be
+considered a bigram.
+
+35
+00:01:27.170 --> 00:01:31.195
+Another example of
+bigram is, I'm happy.
+
+36
+00:01:31.195 --> 00:01:33.955
+On the other hand, the
+sequence, I happy,
+
+37
+00:01:33.955 --> 00:01:35.960
+does not belong to
+the bigram sets
+
+38
+00:01:35.960 --> 00:01:38.435
+as that phrase does not
+appear in the corpus.
+
+39
+00:01:38.435 --> 00:01:40.235
+I happy, is emitted
+
+40
+00:01:40.235 --> 00:01:42.605
+even though both
+individual words I,
+
+41
+00:01:42.605 --> 00:01:44.815
+and happy, appear in the texts.
+
+42
+00:01:44.815 --> 00:01:47.540
+Trigrams represents
+unique triplets of
+
+43
+00:01:47.540 --> 00:01:50.690
+words that appear in the
+sequence together in the corpus.
+
+44
+00:01:50.690 --> 00:01:54.005
+The prefix tri means three.
+
+45
+00:01:54.005 --> 00:01:56.000
+Here's some notation
+that's you're
+
+46
+00:01:56.000 --> 00:01:58.370
+going to use going forward.
+
+47
+00:01:58.370 --> 00:02:01.880
+If you have a corpus of
+texts that has 500 words,
+
+48
+00:02:01.880 --> 00:02:05.540
+the sequence of words
+can be denoted as W1,
+
+49
+00:02:05.540 --> 00:02:09.275
+W2, W3, all the way to W500.
+
+50
+00:02:09.275 --> 00:02:13.670
+The corpus length is denoted
+by the variable M. Now,
+
+51
+00:02:13.670 --> 00:02:16.340
+for a sub-sequence
+of that vocabulary,
+
+52
+00:02:16.340 --> 00:02:18.470
+if you want to refer to
+just the sequence of
+
+53
+00:02:18.470 --> 00:02:20.780
+words from word 1 to word 3,
+
+54
+00:02:20.780 --> 00:02:22.370
+then you can denote it as
+
+55
+00:02:22.370 --> 00:02:25.175
+W subscript one,
+superscripts three.
+
+56
+00:02:25.175 --> 00:02:27.935
+To refer to the last three
+words of the corpus,
+
+57
+00:02:27.935 --> 00:02:30.305
+you can use the
+notation W subscript
+
+58
+00:02:30.305 --> 00:02:32.870
+M minus 2 superscripts
+
+59
+00:02:32.870 --> 00:02:35.540
+M. Next you estimate
+
+60
+00:02:35.540 --> 00:02:38.540
+the probability of an
+N-gram from a text corpus.
+
+61
+00:02:38.540 --> 00:02:40.640
+Let's start with unigrams.
+
+62
+00:02:40.640 --> 00:02:42.845
+For example, in this corpus,
+
+63
+00:02:42.845 --> 00:02:44.935
+I'm happy because I'm learning,
+
+64
+00:02:44.935 --> 00:02:48.080
+the size of the
+corpus is M equals 7.
+
+65
+00:02:48.080 --> 00:02:51.500
+The counts of unigram
+I is equal to 2.
+
+66
+00:02:51.500 --> 00:02:54.280
+So the probability
+is 2 divided by 7.
+
+67
+00:02:54.280 --> 00:02:56.075
+For unigram happy,
+
+68
+00:02:56.075 --> 00:02:59.900
+the probability is equal
+to 1 divided by 7.
+
+69
+00:02:59.900 --> 00:03:03.860
+The probability of a
+unigram shown here as W,
+
+70
+00:03:03.860 --> 00:03:06.290
+can be estimated by
+taking the counts of
+
+71
+00:03:06.290 --> 00:03:10.400
+how many times word W appears
+in the corpus and then you
+
+72
+00:03:10.400 --> 00:03:13.900
+divide that by the total
+size of the corpus M. This
+
+73
+00:03:13.900 --> 00:03:16.130
+is similar to the word
+probability concepts
+
+74
+00:03:16.130 --> 00:03:17.990
+you used in previous weeks.
+
+75
+00:03:17.990 --> 00:03:20.900
+Now let's calculate the
+probability of bigrams.
+
+76
+00:03:20.900 --> 00:03:22.460
+Let's start with an example and
+
+77
+00:03:22.460 --> 00:03:24.260
+then I'll show you
+the general formula.
+
+78
+00:03:24.260 --> 00:03:27.170
+In the example, I'm happy
+because I'm learning,
+
+79
+00:03:27.170 --> 00:03:29.330
+what is the probability
+of the word, am,
+
+80
+00:03:29.330 --> 00:03:32.140
+occurring if the
+previous word was I?
+
+81
+00:03:32.140 --> 00:03:34.665
+It would just be the
+count of the bigrams,
+
+82
+00:03:34.665 --> 00:03:38.135
+I am, divided by the
+count of the unigram I.
+
+83
+00:03:38.135 --> 00:03:40.085
+You get the count
+of the bigrams,
+
+84
+00:03:40.085 --> 00:03:43.400
+I am, divided by the
+count of the unigram I.
+
+85
+00:03:43.400 --> 00:03:45.620
+In this example,
+the bigram I am,
+
+86
+00:03:45.620 --> 00:03:48.200
+appears twice and the unigram I,
+
+87
+00:03:48.200 --> 00:03:49.670
+appears twice as well.
+
+88
+00:03:49.670 --> 00:03:53.585
+The conditional probability
+of M appearing given that I
+
+89
+00:03:53.585 --> 00:03:57.745
+appeared immediately before
+is equal to 2 divided by 2.
+
+90
+00:03:57.745 --> 00:04:00.305
+In other words, the
+probability of the bigram
+
+91
+00:04:00.305 --> 00:04:02.630
+I am is equal to 1.
+
+92
+00:04:02.630 --> 00:04:05.900
+For the bigram, I happy
+the probabilities equal
+
+93
+00:04:05.900 --> 00:04:09.595
+to 0 because that sequence
+never appears in the corpus.
+
+94
+00:04:09.595 --> 00:04:12.480
+Finally, bigram, am learning,
+
+95
+00:04:12.480 --> 00:04:14.490
+has a probability of 1/2.
+
+96
+00:04:14.490 --> 00:04:16.390
+That's because the word am,
+
+97
+00:04:16.390 --> 00:04:18.650
+followed by the
+word Learning makes
+
+98
+00:04:18.650 --> 00:04:21.050
+up 1/2 of the bigrams
+in your corpus.
+
+99
+00:04:21.050 --> 00:04:22.550
+Here's a general expression
+
+100
+00:04:22.550 --> 00:04:24.470
+for the probability of bigram.
+
+101
+00:04:24.470 --> 00:04:26.540
+The bigram is represented by
+
+102
+00:04:26.540 --> 00:04:29.510
+the word X followed
+by the word Y.
+
+103
+00:04:29.510 --> 00:04:33.080
+The probability of the word Y
+appearing immediately after
+
+104
+00:04:33.080 --> 00:04:34.490
+the word X is
+
+105
+00:04:34.490 --> 00:04:37.600
+the conditional probability
+of word Y given X.
+
+106
+00:04:37.600 --> 00:04:39.860
+The conditional
+probability of Y given
+
+107
+00:04:39.860 --> 00:04:42.530
+X can be estimated
+as the counts of
+
+108
+00:04:42.530 --> 00:04:45.560
+the bigram X comma
+Y and then you
+
+109
+00:04:45.560 --> 00:04:49.070
+divide that by the counts of
+all bigrams starting with X.
+
+110
+00:04:49.070 --> 00:04:51.410
+This can be simplified
+to the count of
+
+111
+00:04:51.410 --> 00:04:53.680
+the bigram X comma Y
+
+112
+00:04:53.680 --> 00:04:56.720
+divided by the counts
+of all unigrams X.
+
+113
+00:04:56.720 --> 00:04:58.460
+This last step only works
+
+114
+00:04:58.460 --> 00:05:00.640
+if X is followed
+by another word.
+
+115
+00:05:00.640 --> 00:05:03.720
+Let's calculate the
+probability of some trigrams.
+
+116
+00:05:03.720 --> 00:05:06.255
+Using the same
+example from before,
+
+117
+00:05:06.255 --> 00:05:08.380
+the probability of
+the word happy,
+
+118
+00:05:08.380 --> 00:05:10.170
+following the phrase I am,
+
+119
+00:05:10.170 --> 00:05:13.670
+is calculated as 1
+divided by the number
+
+120
+00:05:13.670 --> 00:05:15.215
+of occurrences of the phrase
+
+121
+00:05:15.215 --> 00:05:17.275
+I am in the corpus,
+which is two.
+
+122
+00:05:17.275 --> 00:05:19.520
+The probability
+of the trigram or
+
+123
+00:05:19.520 --> 00:05:23.285
+consecutive sequence of three
+words is the probability
+
+124
+00:05:23.285 --> 00:05:25.790
+of the third word
+appearing given that
+
+125
+00:05:25.790 --> 00:05:27.320
+the previous two words
+
+126
+00:05:27.320 --> 00:05:29.755
+already appeared in
+the correct order.
+
+127
+00:05:29.755 --> 00:05:32.915
+This is the conditional
+probability of the third word,
+
+128
+00:05:32.915 --> 00:05:36.515
+given that the previous two
+words occurred in the texts.
+
+129
+00:05:36.515 --> 00:05:39.980
+The conditional probability
+of the third word given
+
+130
+00:05:39.980 --> 00:05:41.630
+the previous two words is
+
+131
+00:05:41.630 --> 00:05:43.850
+the counts of all
+three words appearing,
+
+132
+00:05:43.850 --> 00:05:45.350
+divided by the count of
+
+133
+00:05:45.350 --> 00:05:46.820
+all the previous two words
+
+134
+00:05:46.820 --> 00:05:49.250
+appearing in the
+correct sequence.
+
+135
+00:05:49.250 --> 00:05:52.580
+Note that the notation for
+the counts of all three words
+
+136
+00:05:52.580 --> 00:05:56.435
+appearing is written as
+the previous two words,
+
+137
+00:05:56.435 --> 00:06:00.200
+denoted by W subscript
+1 superscript 2,
+
+138
+00:06:00.200 --> 00:06:05.090
+separated by a space and then
+followed by W subscript 3.
+
+139
+00:06:05.090 --> 00:06:07.595
+So this is just the counts
+of the whole trigram,
+
+140
+00:06:07.595 --> 00:06:11.360
+written as a bigram
+followed by a unigram.
+
+141
+00:06:11.360 --> 00:06:14.770
+What about if you want to
+consider any number N?
+
+142
+00:06:14.770 --> 00:06:18.860
+Let's generalize the formula
+to N-grams for any number n,
+
+143
+00:06:18.860 --> 00:06:21.645
+the probability of a word WN,
+
+144
+00:06:21.645 --> 00:06:25.675
+following the sequence
+W1 to WN minus 1,
+
+145
+00:06:25.675 --> 00:06:28.820
+is estimated as the
+counts of N-grams,
+
+146
+00:06:28.820 --> 00:06:32.745
+W1 to Wn divided by the count of
+
+147
+00:06:32.745 --> 00:06:37.350
+N-gram prefix W1 to WN minus 1.
+
+148
+00:06:37.350 --> 00:06:39.510
+Notice here that's the counts of
+
+149
+00:06:39.510 --> 00:06:42.165
+the N-gram for words W1 to
+
+150
+00:06:42.165 --> 00:06:45.300
+WN is written as counts of
+
+151
+00:06:45.300 --> 00:06:49.065
+W subscripts one
+superscript N minus 1,
+
+152
+00:06:49.065 --> 00:06:51.855
+and then space W subscripts N.
+
+153
+00:06:51.855 --> 00:06:55.860
+This is equivalent to
+C of W subscript 1
+
+154
+00:06:55.860 --> 00:06:59.530
+superscript N. By this
+point you've seen N-grams
+
+155
+00:06:59.530 --> 00:07:01.190
+along with specific examples of
+
+156
+00:07:01.190 --> 00:07:03.550
+unigrams, bigrams and trigrams.
+
+157
+00:07:03.550 --> 00:07:06.110
+You've also calculated
+their probability from
+
+158
+00:07:06.110 --> 00:07:10.505
+a corpus by counting their
+occurrences. This great work.
+
+159
+00:07:10.505 --> 00:07:13.310
+Now you know what N-grams
+are and how they can be
+
+160
+00:07:13.310 --> 00:07:16.250
+used to compute the
+probability of the next word.
+
+161
+00:07:16.250 --> 00:07:18.410
+Next, you will
+learn to use it to
+
+162
+00:07:18.410 --> 00:07:21.840
+compute probabilities
+of whole sentences.

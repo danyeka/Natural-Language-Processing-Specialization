@@ -1,0 +1,233 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.700
+Hello. You'll now learn how to
+
+2
+00:00:02.700 --> 00:00:05.235
+train your neural machine
+translation system.
+
+3
+00:00:05.235 --> 00:00:07.470
+You will learn about
+certain concepts
+
+4
+00:00:07.470 --> 00:00:08.700
+like teacher forcing,
+
+5
+00:00:08.700 --> 00:00:13.005
+and you'll see some of its
+advantages. Let's dive in.
+
+6
+00:00:13.005 --> 00:00:15.540
+In this section, you'll see how
+
+7
+00:00:15.540 --> 00:00:17.580
+to train your neural
+machine translation,
+
+8
+00:00:17.580 --> 00:00:20.680
+NMT for sorts, model
+with attention.
+
+9
+00:00:20.680 --> 00:00:24.295
+I'll introduce you to the
+concepts of teacher forcing.
+
+10
+00:00:24.295 --> 00:00:26.225
+As you learned before,
+
+11
+00:00:26.225 --> 00:00:29.270
+seek to seek models generate
+translations by feeding
+
+12
+00:00:29.270 --> 00:00:32.885
+the output of the decoder
+back in as the next inputs.
+
+13
+00:00:32.885 --> 00:00:36.590
+This way there is no set
+length on the output sequence.
+
+14
+00:00:36.590 --> 00:00:39.395
+When training the
+model, intuitively,
+
+15
+00:00:39.395 --> 00:00:41.990
+you would compare the
+decoder output sequence
+
+16
+00:00:41.990 --> 00:00:44.695
+with the target sequence
+to calculate the loss.
+
+17
+00:00:44.695 --> 00:00:46.340
+That is, you would calculate
+
+18
+00:00:46.340 --> 00:00:48.155
+the cross entropy
+loss for each step,
+
+19
+00:00:48.155 --> 00:00:51.395
+then sum the steps together
+for the total loss.
+
+20
+00:00:51.395 --> 00:00:54.400
+However, in practice, this
+doesn't work too well.
+
+21
+00:00:54.400 --> 00:00:58.145
+The problem is that in the
+early stages of training,
+
+22
+00:00:58.145 --> 00:00:59.810
+the model is naive.
+
+23
+00:00:59.810 --> 00:01:03.055
+It'll make wrong predictions
+early in the sequence.
+
+24
+00:01:03.055 --> 00:01:04.850
+This problem compounds as
+
+25
+00:01:04.850 --> 00:01:07.430
+the model keeps making
+wrong predictions and
+
+26
+00:01:07.430 --> 00:01:09.350
+the translated sequence gets
+
+27
+00:01:09.350 --> 00:01:11.945
+further and further from
+the target sequence.
+
+28
+00:01:11.945 --> 00:01:14.810
+The problem is illustrated
+in this slide,
+
+29
+00:01:14.810 --> 00:01:18.155
+where the final
+outputs word duveteux
+
+30
+00:01:18.155 --> 00:01:21.200
+has a similar word to the
+word fluffy in English,
+
+31
+00:01:21.200 --> 00:01:24.965
+which has a very different
+meaning from the word team.
+
+32
+00:01:24.965 --> 00:01:27.090
+To avoid this problem,
+
+33
+00:01:27.090 --> 00:01:29.480
+you can use the
+ground truth words as
+
+34
+00:01:29.480 --> 00:01:32.705
+decoder inputs instead
+of the decoder outputs.
+
+35
+00:01:32.705 --> 00:01:35.585
+Even if the model makes
+a wrong prediction,
+
+36
+00:01:35.585 --> 00:01:37.340
+it pretends as if it's made
+
+37
+00:01:37.340 --> 00:01:39.580
+the correct one and
+this can continue.
+
+38
+00:01:39.580 --> 00:01:42.510
+This method makes training much
+
+39
+00:01:42.510 --> 00:01:45.700
+faster and has a special
+name, teacher forcing.
+
+40
+00:01:45.700 --> 00:01:48.065
+There are some
+variations on this tool.
+
+41
+00:01:48.065 --> 00:01:49.965
+For example, you can slowly
+
+42
+00:01:49.965 --> 00:01:52.350
+start using decoder
+outputs over time,
+
+43
+00:01:52.350 --> 00:01:54.155
+so that leads into training,
+
+44
+00:01:54.155 --> 00:01:56.660
+you are no longer feeding
+in the target words.
+
+45
+00:01:56.660 --> 00:01:59.040
+This is known as
+curriculum learning.
+
+46
+00:01:59.040 --> 00:02:01.670
+You are now familiar
+with teacher forcing,
+
+47
+00:02:01.670 --> 00:02:04.400
+and you can add this
+technique to your toolbox,
+
+48
+00:02:04.400 --> 00:02:06.290
+to help you with
+training your model,
+
+49
+00:02:06.290 --> 00:02:09.629
+and to help you get
+a better accuracy.

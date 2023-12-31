@@ -1,0 +1,494 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.730
+In this video, you'll learn
+how you can construct
+
+2
+00:00:02.730 --> 00:00:05.550
+your vectors based off
+a co-occurrence matrix.
+
+3
+00:00:05.550 --> 00:00:07.470
+Specifically, depending on
+
+4
+00:00:07.470 --> 00:00:09.015
+the task you are
+trying to solve,
+
+5
+00:00:09.015 --> 00:00:11.445
+you can have several
+possible designs.
+
+6
+00:00:11.445 --> 00:00:13.440
+You will also see
+how you can encode
+
+7
+00:00:13.440 --> 00:00:16.350
+a word or in documents
+as a vector.
+
+8
+00:00:16.350 --> 00:00:18.690
+Let me show you how
+you can do this.
+
+9
+00:00:18.690 --> 00:00:22.800
+To get a vector space model
+using a word-by-word design,
+
+10
+00:00:22.800 --> 00:00:25.530
+you will make a co-occurrence
+matrix and extract
+
+11
+00:00:25.530 --> 00:00:28.770
+vector or presentations for
+the words in your corpus.
+
+12
+00:00:28.770 --> 00:00:31.725
+You'll be able to get a
+vector space model using
+
+13
+00:00:31.725 --> 00:00:35.565
+a word by document design
+using a similar approach.
+
+14
+00:00:35.565 --> 00:00:39.000
+Finally, I'll show you
+how in a vector space
+
+15
+00:00:39.000 --> 00:00:42.370
+you can find relationships
+between words and vectors,
+
+16
+00:00:42.370 --> 00:00:45.065
+also known as their similarity.
+
+17
+00:00:45.065 --> 00:00:47.885
+The co-occurrence of
+two different words
+
+18
+00:00:47.885 --> 00:00:50.270
+is the number of times
+that they appear in
+
+19
+00:00:50.270 --> 00:00:52.580
+your corpus together
+within a certain word
+
+20
+00:00:52.580 --> 00:00:55.550
+distance k. For instance,
+
+21
+00:00:55.550 --> 00:00:59.270
+suppose that your corpus has
+the following two sentences.
+
+22
+00:00:59.270 --> 00:01:02.750
+The role of the co-occurrence
+matrix corresponding to
+
+23
+00:01:02.750 --> 00:01:06.260
+the word data with a
+k value equal to 2,
+
+24
+00:01:06.260 --> 00:01:09.125
+would be populated with
+the following values.
+
+25
+00:01:09.125 --> 00:01:12.290
+For the column corresponding
+to the word simple,
+
+26
+00:01:12.290 --> 00:01:14.735
+you'd get a value equal to 2,
+
+27
+00:01:14.735 --> 00:01:17.135
+because data and simple
+
+28
+00:01:17.135 --> 00:01:19.190
+co-occur in the first
+sentence within
+
+29
+00:01:19.190 --> 00:01:21.560
+a distance of one word and in
+
+30
+00:01:21.560 --> 00:01:24.815
+the second sentence within
+a distance of two words,
+
+31
+00:01:24.815 --> 00:01:27.350
+the row of the
+co-occurrence matrix
+
+32
+00:01:27.350 --> 00:01:29.360
+corresponding to the word data
+
+33
+00:01:29.360 --> 00:01:31.220
+would look like this
+if you consider
+
+34
+00:01:31.220 --> 00:01:34.160
+the co-occurrence with
+the words simple,
+
+35
+00:01:34.160 --> 00:01:36.850
+raw, like and I.
+
+36
+00:01:36.850 --> 00:01:39.770
+In this case, the vector
+representation of
+
+37
+00:01:39.770 --> 00:01:44.495
+the word data would be
+equal to 2, 1, 1, 0.
+
+38
+00:01:44.495 --> 00:01:46.745
+With a word by word design,
+
+39
+00:01:46.745 --> 00:01:49.775
+you can get a representation
+with n entries,
+
+40
+00:01:49.775 --> 00:01:51.800
+with n between one
+
+41
+00:01:51.800 --> 00:01:54.990
+and the size of your
+entire vocabulary.
+
+42
+00:01:55.910 --> 00:01:58.670
+For a word by document design,
+
+43
+00:01:58.670 --> 00:02:00.305
+the process is quite similar.
+
+44
+00:02:00.305 --> 00:02:03.560
+In this case, you will count
+the times that words from
+
+45
+00:02:03.560 --> 00:02:05.510
+your vocabulary appear in
+
+46
+00:02:05.510 --> 00:02:08.480
+documents that belong
+to specific categories.
+
+47
+00:02:08.480 --> 00:02:11.900
+For instance, you could
+have a corpus consisting of
+
+48
+00:02:11.900 --> 00:02:15.880
+documents between different
+topics like entertainment,
+
+49
+00:02:15.880 --> 00:02:18.415
+economy, and machine learning.
+
+50
+00:02:18.415 --> 00:02:20.270
+Here, you'd have to
+
+51
+00:02:20.270 --> 00:02:22.205
+count the number of
+times that your words
+
+52
+00:02:22.205 --> 00:02:24.050
+appear on the documents that
+
+53
+00:02:24.050 --> 00:02:26.255
+belong to each of the
+three categories.
+
+54
+00:02:26.255 --> 00:02:29.630
+In this example, suppose
+that the word data,
+
+55
+00:02:29.630 --> 00:02:31.610
+appears 500 times in
+
+56
+00:02:31.610 --> 00:02:34.895
+documents from your corpus
+related to entertainment,
+
+57
+00:02:34.895 --> 00:02:39.155
+6,620 times in
+economy documents,
+
+58
+00:02:39.155 --> 00:02:44.600
+and 9,320 in documents
+related to machine learning.
+
+59
+00:02:44.600 --> 00:02:48.170
+The word film appears in
+each document's category,
+
+60
+00:02:48.170 --> 00:02:50.030
+7,000, 4,000,
+
+61
+00:02:50.030 --> 00:02:52.190
+and 1,000 times respectively.
+
+62
+00:02:52.190 --> 00:02:55.790
+Can you get a sense of where
+this is going already?
+
+63
+00:02:55.790 --> 00:02:58.700
+Once you've constructed
+the representations
+
+64
+00:02:58.700 --> 00:03:01.265
+for multiple sets of
+documents or words,
+
+65
+00:03:01.265 --> 00:03:03.305
+you'll guess your vector space.
+
+66
+00:03:03.305 --> 00:03:05.980
+Let's take the matrix
+from the last example.
+
+67
+00:03:05.980 --> 00:03:09.305
+Here you could take a
+representation for the words,
+
+68
+00:03:09.305 --> 00:03:12.215
+data and film from the
+rows of the table.
+
+69
+00:03:12.215 --> 00:03:14.840
+However, I'll take the
+representation for
+
+70
+00:03:14.840 --> 00:03:18.515
+every category of documents
+by looking at the columns.
+
+71
+00:03:18.515 --> 00:03:21.290
+The vector space will
+have two-dimensions.
+
+72
+00:03:21.290 --> 00:03:23.210
+The number of times
+that the words,
+
+73
+00:03:23.210 --> 00:03:26.515
+data and film appear on
+the type of documents.
+
+74
+00:03:26.515 --> 00:03:28.385
+For the entertainment corpus,
+
+75
+00:03:28.385 --> 00:03:31.010
+you'd have the following
+vector representations
+
+76
+00:03:31.010 --> 00:03:33.635
+This one for the
+economy category,
+
+77
+00:03:33.635 --> 00:03:35.360
+and that's for the
+machine learning
+
+78
+00:03:35.360 --> 00:03:39.470
+category.Note that in this
+space it is easy to see
+
+79
+00:03:39.470 --> 00:03:42.320
+that the economy and machine
+learning documents are
+
+80
+00:03:42.320 --> 00:03:43.880
+much more similar than they
+
+81
+00:03:43.880 --> 00:03:45.965
+are to the
+entertainment category.
+
+82
+00:03:45.965 --> 00:03:47.780
+Coming up soon, you'll make
+
+83
+00:03:47.780 --> 00:03:50.270
+comparisons between vector
+representations using
+
+84
+00:03:50.270 --> 00:03:51.980
+the cosine similarity and
+
+85
+00:03:51.980 --> 00:03:54.110
+the Euclidean
+distance in order to
+
+86
+00:03:54.110 --> 00:03:56.860
+get the angle and
+distance between them.
+
+87
+00:03:56.860 --> 00:03:58.640
+So far you've seen how to get
+
+88
+00:03:58.640 --> 00:04:00.995
+vector spaces by two
+different designs;
+
+89
+00:04:00.995 --> 00:04:03.920
+word by word and
+word by document;
+
+90
+00:04:03.920 --> 00:04:06.485
+by either counting the
+co-occurrence of words
+
+91
+00:04:06.485 --> 00:04:09.550
+or the co-occurrence of words
+in the documents corpora.
+
+92
+00:04:09.550 --> 00:04:12.575
+I've also showed you
+that in vector spaces,
+
+93
+00:04:12.575 --> 00:04:14.600
+you can determine
+relationships between
+
+94
+00:04:14.600 --> 00:04:17.215
+types of documents
+like similarity.
+
+95
+00:04:17.215 --> 00:04:18.860
+Now you're becoming
+more and more
+
+96
+00:04:18.860 --> 00:04:20.875
+familiar with these
+vector spaces.
+
+97
+00:04:20.875 --> 00:04:23.030
+You've seen several
+possible designs that
+
+98
+00:04:23.030 --> 00:04:25.510
+you can use to solve
+a specific task.
+
+99
+00:04:25.510 --> 00:04:27.740
+You've also seen
+how you can encode
+
+100
+00:04:27.740 --> 00:04:30.110
+words or tweets as vectors.
+
+101
+00:04:30.110 --> 00:04:31.579
+In the next video,
+
+102
+00:04:31.579 --> 00:04:33.500
+you'll learn about
+a new similarity
+
+103
+00:04:33.500 --> 00:04:36.889
+metric that will allow you to
+compare these two vectors.
+
+104
+00:04:36.889 --> 00:04:41.160
+The similarity metric is known
+as the Euclidean distance.

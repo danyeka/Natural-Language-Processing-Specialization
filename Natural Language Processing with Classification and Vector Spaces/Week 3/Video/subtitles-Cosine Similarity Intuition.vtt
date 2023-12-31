@@ -1,0 +1,323 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.310
+In this video, you're going to
+
+2
+00:00:02.310 --> 00:00:04.155
+learn about cosine similarity,
+
+3
+00:00:04.155 --> 00:00:06.870
+which is another type
+of similarity function.
+
+4
+00:00:06.870 --> 00:00:08.460
+It basically makes use of
+
+5
+00:00:08.460 --> 00:00:11.055
+the cosine of the angle
+between two vectors.
+
+6
+00:00:11.055 --> 00:00:13.020
+Based on that, it tells you
+
+7
+00:00:13.020 --> 00:00:15.450
+whether two vectors
+are close or not.
+
+8
+00:00:15.450 --> 00:00:17.190
+In this section, you will see
+
+9
+00:00:17.190 --> 00:00:19.425
+the problem of using
+Euclidean distance,
+
+10
+00:00:19.425 --> 00:00:21.945
+especially when comparing
+vector representations
+
+11
+00:00:21.945 --> 00:00:23.685
+of documents or corpora,
+
+12
+00:00:23.685 --> 00:00:25.320
+and how the cosine similarity
+
+13
+00:00:25.320 --> 00:00:28.215
+metric could help you
+overcome this problem.
+
+14
+00:00:28.215 --> 00:00:30.450
+To illustrate how the
+Euclidean distance
+
+15
+00:00:30.450 --> 00:00:31.650
+might be problematic,
+
+16
+00:00:31.650 --> 00:00:33.585
+let's take the
+following example.
+
+17
+00:00:33.585 --> 00:00:34.980
+Suppose that you are in
+
+18
+00:00:34.980 --> 00:00:37.020
+a vector space where
+the corpora are
+
+19
+00:00:37.020 --> 00:00:38.849
+represented by the occurrence
+
+20
+00:00:38.849 --> 00:00:41.080
+of the words disease and eggs.
+
+21
+00:00:41.080 --> 00:00:43.895
+Here's the representation
+of a food corpus,
+
+22
+00:00:43.895 --> 00:00:46.025
+and agriculture corpus,
+
+23
+00:00:46.025 --> 00:00:48.090
+and the history corpus.
+
+24
+00:00:48.090 --> 00:00:49.830
+Each one of these corpora have
+
+25
+00:00:49.830 --> 00:00:51.780
+texts related to that subject.
+
+26
+00:00:51.780 --> 00:00:54.035
+But you know that
+the word totals
+
+27
+00:00:54.035 --> 00:00:56.120
+in the corpora differ
+from one another.
+
+28
+00:00:56.120 --> 00:00:58.670
+In fact, the agriculture and
+
+29
+00:00:58.670 --> 00:01:01.820
+the history corpus have a
+similar number of words,
+
+30
+00:01:01.820 --> 00:01:05.560
+while the food corpus has
+a relatively small number.
+
+31
+00:01:05.560 --> 00:01:08.240
+Let's define the Euclidean
+distance between
+
+32
+00:01:08.240 --> 00:01:10.880
+the food and the
+agriculture corpus as
+
+33
+00:01:10.880 --> 00:01:13.730
+d_1 and let's the
+Euclidean distance between
+
+34
+00:01:13.730 --> 00:01:17.630
+the agriculture and the
+history corpus be d_2.
+
+35
+00:01:17.630 --> 00:01:19.710
+As you can see, the distance d_2
+
+36
+00:01:19.710 --> 00:01:21.700
+is smaller than
+the distance d_1,
+
+37
+00:01:21.700 --> 00:01:25.000
+which would suggest that
+the agriculture and history
+
+38
+00:01:25.000 --> 00:01:26.900
+corpora are more similar than
+
+39
+00:01:26.900 --> 00:01:29.240
+the agriculture
+and food corpora.
+
+40
+00:01:29.240 --> 00:01:30.770
+Another common method for
+
+41
+00:01:30.770 --> 00:01:32.360
+determining the
+similarity between
+
+42
+00:01:32.360 --> 00:01:36.580
+vectors is computing the
+cosine of their inner angle.
+
+43
+00:01:36.580 --> 00:01:38.210
+If the angle is small,
+
+44
+00:01:38.210 --> 00:01:39.980
+the cosine would
+be close to one.
+
+45
+00:01:39.980 --> 00:01:42.635
+As the angle
+approaches 90 degrees,
+
+46
+00:01:42.635 --> 00:01:44.690
+the cosine approaches zero.
+
+47
+00:01:44.690 --> 00:01:48.950
+As you can see here, the
+angle Alpha between food and
+
+48
+00:01:48.950 --> 00:01:51.050
+agriculture is smaller than
+
+49
+00:01:51.050 --> 00:01:54.605
+the angle Beta between
+agriculture and history.
+
+50
+00:01:54.605 --> 00:01:56.465
+In this particular case,
+
+51
+00:01:56.465 --> 00:01:59.930
+the cosine of those angles
+is a better proxy of
+
+52
+00:01:59.930 --> 00:02:02.585
+similarity between these
+vector representations
+
+53
+00:02:02.585 --> 00:02:04.865
+than their Euclidean distance.
+
+54
+00:02:04.865 --> 00:02:06.710
+Now you're familiar with
+
+55
+00:02:06.710 --> 00:02:08.930
+the main intuition
+behind the use of
+
+56
+00:02:08.930 --> 00:02:11.420
+the cosine similarity
+as a metric to
+
+57
+00:02:11.420 --> 00:02:12.920
+compare the similarity between
+
+58
+00:02:12.920 --> 00:02:14.675
+two vector representations.
+
+59
+00:02:14.675 --> 00:02:18.230
+Remember that the main
+advantage of this metric over
+
+60
+00:02:18.230 --> 00:02:20.315
+the Euclidean distance
+is that it isn't
+
+61
+00:02:20.315 --> 00:02:22.160
+biased by the size difference
+
+62
+00:02:22.160 --> 00:02:23.820
+between the representations.
+
+63
+00:02:23.820 --> 00:02:25.580
+Soon, you'll get the chance to
+
+64
+00:02:25.580 --> 00:02:28.070
+actually calculate this metric.
+
+65
+00:02:28.070 --> 00:02:30.770
+In this video, you learned why
+
+66
+00:02:30.770 --> 00:02:33.410
+the cosine similarity
+metric is useful.
+
+67
+00:02:33.410 --> 00:02:36.485
+If you have two documents
+of very different sizes,
+
+68
+00:02:36.485 --> 00:02:39.650
+then taking the Euclidean
+distance is not ideal.
+
+69
+00:02:39.650 --> 00:02:42.620
+The cosine similarity
+used the angle between
+
+70
+00:02:42.620 --> 00:02:44.645
+the documents and is thus
+
+71
+00:02:44.645 --> 00:02:48.150
+not dependent on the
+size of the corpuses.

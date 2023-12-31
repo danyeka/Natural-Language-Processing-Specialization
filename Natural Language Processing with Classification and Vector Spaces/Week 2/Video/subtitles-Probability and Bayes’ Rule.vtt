@@ -1,0 +1,365 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.430
+This video will give
+you an overview of
+
+2
+00:00:02.430 --> 00:00:04.845
+Bayes rule and go over
+some probability.
+
+3
+00:00:04.845 --> 00:00:07.335
+Don't worry if your math
+is a little bit rusty.
+
+4
+00:00:07.335 --> 00:00:09.960
+We'll go through this
+together, step-by-step.
+
+5
+00:00:09.960 --> 00:00:13.830
+Probability is fundamental
+to many applications in NLP.
+
+6
+00:00:13.830 --> 00:00:16.260
+You'll see how you
+can use it to help
+
+7
+00:00:16.260 --> 00:00:19.500
+classify whether a tweet
+is positive or negative.
+
+8
+00:00:19.500 --> 00:00:22.950
+Let's get started. To start,
+
+9
+00:00:22.950 --> 00:00:24.510
+we are going to
+first review what's
+
+10
+00:00:24.510 --> 00:00:27.690
+probabilities and conditional
+probabilities are,
+
+11
+00:00:27.690 --> 00:00:28.965
+how they operate,
+
+12
+00:00:28.965 --> 00:00:31.575
+and how they can be
+expressed mathematically.
+
+13
+00:00:31.575 --> 00:00:34.140
+Then I'll go over how to derive
+
+14
+00:00:34.140 --> 00:00:35.669
+Bayes rule from the definition
+
+15
+00:00:35.669 --> 00:00:37.515
+of conditional probabilities.
+
+16
+00:00:37.515 --> 00:00:40.020
+Bayes rule is applied in
+many different fields,
+
+17
+00:00:40.020 --> 00:00:42.090
+ranging from medicine
+to education
+
+18
+00:00:42.090 --> 00:00:44.665
+and is used extensively in NLP.
+
+19
+00:00:44.665 --> 00:00:47.365
+Once you understand the
+theory behind Bayes rule,
+
+20
+00:00:47.365 --> 00:00:50.455
+you can use it to perform
+sentiment analysis on tweets,
+
+21
+00:00:50.455 --> 00:00:52.404
+which will be this
+week's assignments.
+
+22
+00:00:52.404 --> 00:00:53.935
+Then in the next course,
+
+23
+00:00:53.935 --> 00:00:55.720
+you'll implement
+auto-correct using
+
+24
+00:00:55.720 --> 00:00:57.730
+its basic formulation as well.
+
+25
+00:00:57.730 --> 00:00:59.890
+Imagine you have an
+extensive corpus
+
+26
+00:00:59.890 --> 00:01:01.720
+of tweets that can
+be categorized
+
+27
+00:01:01.720 --> 00:01:05.710
+as either positive or negative
+sentiment, but not both.
+
+28
+00:01:05.710 --> 00:01:08.650
+Within that corpus,
+the word happy is
+
+29
+00:01:08.650 --> 00:01:12.040
+sometimes being labeled positive
+and sometimes negative.
+
+30
+00:01:12.040 --> 00:01:14.995
+Let's explore why this
+situation is occurring.
+
+31
+00:01:14.995 --> 00:01:17.575
+One way to think
+about probabilities
+
+32
+00:01:17.575 --> 00:01:20.545
+is by counting how
+frequently events occur.
+
+33
+00:01:20.545 --> 00:01:22.990
+Suppose you define event A
+
+34
+00:01:22.990 --> 00:01:25.590
+as a tweets being
+labeled positive,
+
+35
+00:01:25.590 --> 00:01:28.650
+then the probability of event A,
+
+36
+00:01:28.650 --> 00:01:30.995
+shown as B of A here,
+
+37
+00:01:30.995 --> 00:01:33.230
+is calculated as the ratio
+
+38
+00:01:33.230 --> 00:01:35.390
+between the counts of
+positive tweets in
+
+39
+00:01:35.390 --> 00:01:37.250
+the corpus divided by
+
+40
+00:01:37.250 --> 00:01:39.800
+the total number of
+tweets in the corpus.
+
+41
+00:01:39.800 --> 00:01:43.040
+In this example, that
+number comes out to
+
+42
+00:01:43.040 --> 00:01:46.765
+13 over 20, or 0.65.
+
+43
+00:01:46.765 --> 00:01:49.010
+You could also
+express this value as
+
+44
+00:01:49.010 --> 00:01:52.415
+a percentage, 65
+percent positive.
+
+45
+00:01:52.415 --> 00:01:54.050
+It's worth noting that
+
+46
+00:01:54.050 --> 00:01:56.270
+the complimentary
+probability here,
+
+47
+00:01:56.270 --> 00:01:58.655
+which is the probability
+of the tweets
+
+48
+00:01:58.655 --> 00:02:01.055
+expressing a negative sentiment
+
+49
+00:02:01.055 --> 00:02:03.410
+is just equal to one minus
+
+50
+00:02:03.410 --> 00:02:06.445
+the probability of a
+positive sentiment.
+
+51
+00:02:06.445 --> 00:02:08.825
+Note that for this to be true,
+
+52
+00:02:08.825 --> 00:02:11.360
+all tweets must be
+categorized as either
+
+53
+00:02:11.360 --> 00:02:14.075
+positive or negative
+but not both.
+
+54
+00:02:14.075 --> 00:02:16.100
+Let's define Event B in
+
+55
+00:02:16.100 --> 00:02:17.540
+a similar way by counting
+
+56
+00:02:17.540 --> 00:02:19.595
+tweets containing
+the word happy.
+
+57
+00:02:19.595 --> 00:02:21.920
+In this case, the total number
+
+58
+00:02:21.920 --> 00:02:24.050
+of tweets containing
+the word happy,
+
+59
+00:02:24.050 --> 00:02:27.230
+shown here as N-happy is 4.
+
+60
+00:02:27.230 --> 00:02:29.750
+Here's another way
+of looking at it.
+
+61
+00:02:29.750 --> 00:02:32.720
+Take a look at the section
+of the diagram were
+
+62
+00:02:32.720 --> 00:02:34.355
+tweets are labeled positive
+
+63
+00:02:34.355 --> 00:02:36.470
+and also contain the word happy.
+
+64
+00:02:36.470 --> 00:02:38.690
+In the context of this diagram,
+
+65
+00:02:38.690 --> 00:02:41.045
+the probability that
+a tweet is labeled
+
+66
+00:02:41.045 --> 00:02:44.105
+positive and also
+contains the word happy
+
+67
+00:02:44.105 --> 00:02:46.190
+is just the ratio of the area of
+
+68
+00:02:46.190 --> 00:02:48.380
+the intersection divided by
+
+69
+00:02:48.380 --> 00:02:50.630
+the area of the entire corpus.
+
+70
+00:02:50.630 --> 00:02:55.010
+In other words, if there were
+20 tweets in the corpus,
+
+71
+00:02:55.010 --> 00:02:56.870
+and three of them are labeled
+
+72
+00:02:56.870 --> 00:02:59.660
+positive and also
+contain the word happy,
+
+73
+00:02:59.660 --> 00:03:02.480
+then the associated
+probability is
+
+74
+00:03:02.480 --> 00:03:07.980
+3 divided by 20 or 0.15.
+
+75
+00:03:08.240 --> 00:03:10.550
+You now know how to calculate
+
+76
+00:03:10.550 --> 00:03:12.590
+the probability of
+an intersection.
+
+77
+00:03:12.590 --> 00:03:15.230
+You know how to calculate
+the probability of a word,
+
+78
+00:03:15.230 --> 00:03:18.875
+namely happy with the
+probability of being positive.
+
+79
+00:03:18.875 --> 00:03:22.770
+In the next video, we will
+talk about Naive Bayes.
